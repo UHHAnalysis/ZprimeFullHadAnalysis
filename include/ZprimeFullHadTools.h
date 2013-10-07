@@ -26,5 +26,6 @@ private:
 };
 
 void printTrigger(BaseCycleContainer *);
+std::vector<int> getTopJetsIndices(BaseCycleContainer *bcc,int m_TopTag1,int m_TopTag2,int m_BTag1,int m_BTag2,int m_NsubjettinessTag1,int m_NsubjettinessTag2,double m_minPt);
 
 #endif

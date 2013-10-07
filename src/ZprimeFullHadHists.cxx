@@ -66,6 +66,8 @@ void ZprimeFullHadHists::Init()
   Book( TH1F( "N_events_perLumiBin", "N^{evt}", 24, 0, 24 ) );
   Book( TH1F( "N_pv_perLumiBin", "N^{PV}", 24, 0, 24 ) );
 
+  Book( TH1F( "SumOfTopCandidatesPt", "Sum of Jet pT (Top Tag candidates)", 100, 0, 1500 ) );
+  Book( TH1F( "LeadingTopCandidatePt", "Leading Jet pT (Top Tag candidate)", 100, 0, 1500 ) );
 }
 
 void ZprimeFullHadHists::Fill()
@@ -74,6 +76,7 @@ void ZprimeFullHadHists::Fill()
 
 
   EventCalc* calc = EventCalc::Instance();
+  BaseCycleContainer* bcc = calc->GetBaseCycleContainer();
   bool IsRealData = calc->IsRealData();
   LuminosityHandler* lumih = calc->GetLumiHandler();
 
@@ -135,6 +138,12 @@ void ZprimeFullHadHists::Fill()
     Hist("reliso_mu")->Fill(thismu.relIso(), weight);
   }
 
+  std::vector<int> TopJetIndices = getTopJetsIndices(bcc,1,1,1,1,0,0,200.);
+  if (TopJetIndices[0]!=-1 && TopJetIndices[1]!=-1 && TopJetIndices[0]!=TopJetIndices[1])
+  {
+    Hist("SumOfTopCandidatesPt")->Fill(bcc->topjets->at(TopJetIndices[0]).pt()+bcc->topjets->at(TopJetIndices[1]).pt(),weight);
+    Hist("LeadingTopCandidatePt")->Fill(bcc->topjets->at(TopJetIndices[0]).pt(),weight);
+  }
 
 }
 

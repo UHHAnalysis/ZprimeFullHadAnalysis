@@ -73,11 +73,11 @@ void ZprimeFullHadCycle::BeginInputData( const SInputData& id ) throw( SError )
   Trigger3Sel = new Selection("Trigger3Sel");
   Trigger4Sel = new Selection("Trigger4Sel");
   Trigger5Sel = new Selection("Trigger5Sel");
-  Trigger1Sel->addSelectionModule(new TriggerSelection("HT750"));
-  Trigger2Sel->addSelectionModule(new TriggerSelection("BTagMu_Jet300_Mu5"));
-  Trigger3Sel->addSelectionModule(new TriggerSelection("HLT_Jet160Eta2p4_Jet120Eta2p4_DiBTagIP3DFastPVLoose"));
-  Trigger4Sel->addSelectionModule(new TriggerSelection("HLT_DiPFJet80_DiPFJet30_BTagCSVd07d05_v6"));
-  Trigger5Sel->addSelectionModule(new TriggerSelection("DiJet80Eta2p6_BTagIP3DFastPVLoose"));
+  Trigger1Sel->addSelectionModule(new TriggerSelection("HLT_HT750_v3"));
+  Trigger2Sel->addSelectionModule(new TriggerSelection("HLT_BTagMu_Jet300_Mu5_v3"));
+  Trigger3Sel->addSelectionModule(new TriggerSelection("HLT_Jet160Eta2p4_Jet120Eta2p4_DiBTagIP3DFastPVLoose_v4"));
+  Trigger4Sel->addSelectionModule(new TriggerSelection("HLT_DiPFJet80_DiPFJet30_BTagCSVd07d05_v1"));
+  Trigger5Sel->addSelectionModule(new TriggerSelection("HLT_DiJet80Eta2p6_BTagIP3DFastPVLoose_v4"));
   RegisterSelection(Trigger1Sel);
   RegisterSelection(Trigger2Sel);
   RegisterSelection(Trigger3Sel);
@@ -126,6 +126,13 @@ void ZprimeFullHadCycle::BeginInputData( const SInputData& id ) throw( SError )
   RegisterHistCollection( new ZprimeFullHadHists("TopSel") );
   RegisterHistCollection( new HypothesisHists("Chi2_TopSel", m_chi2discr ) );
 */
+  RegisterHistCollection( new ZprimeFullHadHists("NoCutsHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("BaseHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("Trigger1Histos"));
+  RegisterHistCollection( new ZprimeFullHadHists("Trigger2Histos"));
+  RegisterHistCollection( new ZprimeFullHadHists("Trigger3Histos"));
+  RegisterHistCollection( new ZprimeFullHadHists("Trigger4Histos"));
+  RegisterHistCollection( new ZprimeFullHadHists("Trigger5Histos"));
   // important: initialise histogram collections after their definition
   InitHistos();
 
@@ -167,13 +174,29 @@ void ZprimeFullHadCycle::ExecuteEvent( const SInputData& id, Double_t weight) th
   BaseHists* Chi2_HistsNoBTag = GetHistCollection("Chi2_NoBTag");
   BaseHists* Chi2_HistsTopSel = GetHistCollection("Chi2_TopSel");*/
 
+  BaseHists* NoCutsHistos = GetHistCollection("NoCutsHistos");
+  BaseHists* BaseHistos = GetHistCollection("BaseHistos");
+  BaseHists* Trigger1Histos = GetHistCollection("Trigger1Histos");
+  BaseHists* Trigger2Histos = GetHistCollection("Trigger2Histos");
+  BaseHists* Trigger3Histos = GetHistCollection("Trigger3Histos");
+  BaseHists* Trigger4Histos = GetHistCollection("Trigger4Histos");
+  BaseHists* Trigger5Histos = GetHistCollection("Trigger5Histos");
+  
   //if(!chi2_selection->passSelection())  throw SError( SError::SkipEvent );
 
   EventCalc* calc = EventCalc::Instance();
   BaseCycleContainer* bcc = calc->GetBaseCycleContainer();
+  //printTrigger(bcc);
+  NoCutsHistos->Fill();
   //if (bcc->topjets->size()>=2){std::cout<<"p "<<std::endl;}
   if (!ZprimeSel->passSelection()) return;
-  //printTrigger(bcc);
+  BaseHistos->Fill();
+  if (Trigger1Sel->passSelection()) Trigger1Histos->Fill();
+  if (Trigger2Sel->passSelection()) Trigger2Histos->Fill();    
+  if (Trigger3Sel->passSelection()) Trigger3Histos->Fill();
+  if (Trigger4Sel->passSelection()) Trigger4Histos->Fill();
+  if (Trigger5Sel->passSelection()) Trigger5Histos->Fill();
+  
  /* if(calc->GetJets()->size()>=12){
     std::cout << "run: " << calc->GetRunNum() << "   lb: " << calc->GetLumiBlock() << "  event: " << calc->GetEventNum() << "   N(jets): " << calc->GetJets()->size() << std::endl;
   }

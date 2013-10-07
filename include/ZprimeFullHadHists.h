@@ -2,7 +2,7 @@
 #define ZprimeFullHadHists_H
 
 #include "SFrameTools/include/BaseHists.h"
-
+#include "include/ZprimeFullHadTools.h"
 /**
  *   ZprimeFullHad class for booking and filling histograms
  *

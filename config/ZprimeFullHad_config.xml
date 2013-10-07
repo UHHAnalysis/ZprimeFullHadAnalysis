@@ -33,8 +33,8 @@
 
 	<Package Name="ZprimeFullHadAnalysis.par" /> 
 
-   <Cycle Name="ZprimeFullHadCycle" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/" PostFix="" TargetLumi="1" > 
-<!--    <Cycle Name="ZprimeFullHadCycle"  RunMode="PROOF" ProofServer="lite://"  ProofWorkDir="/scratch/hh/dust/naf/cms/user/usai/PROOF/" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/" PostFix="" TargetLumi="1" >  -->
+<!--    <Cycle Name="ZprimeFullHadCycle" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/" PostFix="" TargetLumi="1" >  -->
+   <Cycle Name="ZprimeFullHadCycle"  RunMode="PROOF" ProofServer="lite://"  ProofWorkDir="/scratch/hh/dust/naf/cms/user/usai/PROOF/" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/" PostFix="" TargetLumi="1" > 
    <!-- <Cycle Name="ZprimeFullHadCycle" OutputDirectory="./" PostFix="" TargetLumi="1.0"> -->
 
 <!--		<InputData Lumi="1.0" NEventsMax="-1" Type="DATA" Version="DATA" Cacheable="False">
