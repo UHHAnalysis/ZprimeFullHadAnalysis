@@ -66,8 +66,8 @@ void ZprimeFullHadHists::Init()
   Book( TH1F( "N_events_perLumiBin", "N^{evt}", 24, 0, 24 ) );
   Book( TH1F( "N_pv_perLumiBin", "N^{PV}", 24, 0, 24 ) );
 
-  Book( TH1F( "SumOfTopCandidatesPt", "Sum of Jet pT (Top Tag candidates)", 100, 0, 1500 ) );
-  Book( TH1F( "LeadingTopCandidatePt", "Leading Jet pT (Top Tag candidate)", 100, 0, 1500 ) );
+  Book( TH1F( "SumOfTopCandidatesPt", ";Sum of Jet pT (Top Tag candidates) [GeV];Events", 30, 0, 1500 ) );
+  Book( TH1F( "LeadingTopCandidatePt", ";Leading Jet pT (Top Tag candidate) [GeV];Events", 30, 0, 1500 ) );
 }
 
 void ZprimeFullHadHists::Fill()
@@ -82,7 +82,8 @@ void ZprimeFullHadHists::Fill()
 
   // important: get the event weight
   double weight = calc->GetWeight();
-
+  weight=1.0;////////////////////////////////////////////////
+  
   int run = calc->GetRunNum();
   int lumiblock = calc->GetLumiBlock();
   int Npvs = calc->GetPrimaryVertices()->size();
