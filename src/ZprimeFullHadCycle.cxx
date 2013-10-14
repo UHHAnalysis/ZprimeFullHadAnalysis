@@ -211,38 +211,82 @@ void ZprimeFullHadCycle::ExecuteEvent( const SInputData& id, Double_t weight) th
   
   BaseHists* AntitagHistos = GetHistCollection("AntitagHistos");
   BaseHists* MistagHistos = GetHistCollection("MistagHistos");
-  
+
   //if(!chi2_selection->passSelection())  throw SError( SError::SkipEvent );
 
   EventCalc* calc = EventCalc::Instance();
   BaseCycleContainer* bcc = calc->GetBaseCycleContainer();
+    bool IsRealData = calc->IsRealData();
   //printTrigger(bcc);
   NoCutsHistos->Fill();
   //if (bcc->topjets->size()>=2){std::cout<<"p "<<std::endl;}
-  
-//   getTopJetsIndices(bcc,0,0,0,0,0,0,e_CSVM,e_CSVM,200.0) Cat_2jetHistos
-//   getTopJetsIndices(bcc,1,1,0,0,0,0,e_CSVM,e_CSVM,200.0) Cat_2httHistos
-//   getTopJetsIndices(bcc,1,1,1,1,0,0,e_CSVL,e_CSVL,200.0) Cat_2htt_2btlHistos
-//   getTopJetsIndices(bcc,1,1,1,1,0,0,e_CSVM,e_CSVM,200.0) Cat_2htt_2btmHistos
-//   getTopJetsIndices(bcc,1,1,0,0,1,1,e_CSVM,e_CSVM,200.0) Cat_2htt_2nsbHistos
-//   getTopJetsIndices(bcc,1,1,1,1,1,1,e_CSVL,e_CSVL,200.0) Cat_2htt_2btl_2nsbHistos
-//   getTopJetsIndices(bcc,0,0,1,1,0,0,e_CSVM,e_CSVM,200.0) Cat_2btmHistos
-//   getTopJetsIndices(bcc,0,0,1,1,1,1,e_CSVL,e_CSVL,200.0) Cat_2btl_2nsbHistos
-//   getTopJetsIndices(bcc,0,0,0,0,1,1,e_CSVM,e_CSVM,200.0) Cat_2nsbHistos
-//   getTopJetsIndices(bcc,1,1,1,0,0,0,e_CSVL,e_CSVM,200.0) Cat_2htt_1btlHistos
-//   getTopJetsIndices(bcc,1,1,1,0,0,0,e_CSVM,e_CSVM,200.0) Cat_2htt_1btmHistos
-//   
-//   getTopJetsIndices(bcc,-1,0,-1,0,0,0,e_CSVM,e_CSVM,200.0) AntitagHistos
-//   getTopJetsIndices(bcc,-1,1,-1,1,0,0,e_CSVM,e_CSVM,200.0) MistagHistos
-  
-  std::vector<int> Indices = getTopJetsIndices(bcc,1,1,1,1,0,0,e_CSVM,e_CSVM,200.0);
+
+std::vector<int> Indices;  
+
+  Indices=getTopJetsIndices(bcc,0,0,0,0,0,0,e_CSVM,e_CSVM,200.0);
+  if (checkIndices(Indices)){
+  ((ZprimeFullHadHists*)Cat_2jetHistos)->Fill2(Indices);}
+  else {return;}
+  Indices=getTopJetsIndices(bcc,1,1,0,0,0,0,e_CSVM,e_CSVM,200.0);
+  if (checkIndices(Indices)){
+  ((ZprimeFullHadHists*)Cat_2httHistos)->Fill2(Indices);}
+  Indices=getTopJetsIndices(bcc,1,1,1,1,0,0,e_CSVL,e_CSVL,200.0);
+  if (checkIndices(Indices)){
+  ((ZprimeFullHadHists*)Cat_2htt_2btlHistos)->Fill2(Indices);}
+  Indices=getTopJetsIndices(bcc,1,1,1,1,0,0,e_CSVM,e_CSVM,200.0);
+  if (checkIndices(Indices)){
+  ((ZprimeFullHadHists*)Cat_2htt_2btmHistos)->Fill2(Indices);}
+  Indices=getTopJetsIndices(bcc,1,1,0,0,1,1,e_CSVM,e_CSVM,200.0);
+  if (checkIndices(Indices)){
+  ((ZprimeFullHadHists*)Cat_2htt_2nsbHistos)->Fill2(Indices);}
+  Indices=getTopJetsIndices(bcc,1,1,1,1,1,1,e_CSVL,e_CSVL,200.0);
+  if (checkIndices(Indices)){
+  ((ZprimeFullHadHists*)Cat_2htt_2btl_2nsbHistos)->Fill2(Indices);}
+  Indices=getTopJetsIndices(bcc,0,0,1,1,0,0,e_CSVM,e_CSVM,200.0);
+  if (checkIndices(Indices)){
+  ((ZprimeFullHadHists*)Cat_2btmHistos)->Fill2(Indices);}
+  Indices=getTopJetsIndices(bcc,0,0,1,1,1,1,e_CSVL,e_CSVL,200.0);
+  if (checkIndices(Indices)){
+  ((ZprimeFullHadHists*)Cat_2btl_2nsbHistos)->Fill2(Indices);}
+  Indices=getTopJetsIndices(bcc,0,0,0,0,1,1,e_CSVM,e_CSVM,200.0);
+  if (checkIndices(Indices)){
+  ((ZprimeFullHadHists*)Cat_2nsbHistos)->Fill2(Indices);}
+  Indices=getTopJetsIndices(bcc,1,1,1,0,0,0,e_CSVL,e_CSVM,200.0);
+  if (checkIndices(Indices)){
+  ((ZprimeFullHadHists*)Cat_2htt_1btlHistos)->Fill2(Indices);}
+  Indices=getTopJetsIndices(bcc,1,1,1,0,0,0,e_CSVM,e_CSVM,200.0);
+  if (checkIndices(Indices)){
+  ((ZprimeFullHadHists*)Cat_2htt_1btmHistos)->Fill2(Indices);}
+
+  if (IsRealData)
+  {
+    std::vector<int> probeindex;
+    Indices=getTopJetsIndices(bcc,-1,0,-1,0,0,0,e_CSVM,e_CSVM,200.0);
+    if (checkIndices(Indices))
+    {
+      probeindex=Indices; 
+      Indices=getTopJetsIndices(bcc,-1,1,-1,1,0,0,e_CSVM,e_CSVM,200.0);
+      if (checkIndices(Indices))
+      {
+	((ZprimeFullHadHists*)MistagHistos)->Fill2(Indices);
+	((ZprimeFullHadHists*)AntitagHistos)->Fill2(Indices);
+      }
+      else
+      {
+	((ZprimeFullHadHists*)AntitagHistos)->Fill2(probeindex);
+      }
+    }
+  }
+
+
+  Indices = getTopJetsIndices(bcc,1,1,1,0,0,0,e_CSVM,e_CSVM,200.0);
   if (!checkIndices(Indices)) return;
   ((ZprimeFullHadHists*)BaseHistos)->setIndices(Indices);
   BaseHistos->Fill();
-  if (Trigger1Sel->passSelection()) ((ZprimeFullHadHists*)Trigger1Histos)->Fill2(Indices);
+/*  if (Trigger1Sel->passSelection()) ((ZprimeFullHadHists*)Trigger1Histos)->Fill2(Indices);
   if (Trigger2Sel->passSelection()) ((ZprimeFullHadHists*)Trigger2Histos)->Fill2(Indices);    
   if (Trigger3Sel->passSelection()) ((ZprimeFullHadHists*)Trigger3Histos)->Fill2(Indices);
-  if (Trigger4Sel->passSelection()) ((ZprimeFullHadHists*)Trigger4Histos)->Fill2(Indices);
+  if (Trigger4Sel->passSelection()) ((ZprimeFullHadHists*)Trigger4Histos)->Fill2(Indices);*/
   if (Trigger5Sel->passSelection()) ((ZprimeFullHadHists*)Trigger5Histos)->Fill2(Indices);
   
  /* if(calc->GetJets()->size()>=12){

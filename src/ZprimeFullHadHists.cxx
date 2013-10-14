@@ -103,7 +103,7 @@ void ZprimeFullHadHists::Fill()
 
   // important: get the event weight
   double weight = calc->GetWeight();
-  weight=1.0;////////////////////////////////////////////////
+  //weight=1.0;////////////////////////////////////////////////
   
   int run = calc->GetRunNum();
   int lumiblock = calc->GetLumiBlock();

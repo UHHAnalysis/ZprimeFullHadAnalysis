@@ -110,13 +110,16 @@ std::string ZprimeFullHadSelection::description()
 std::vector<int> getTopJetsIndices(BaseCycleContainer *bcc,int m_TopTag1,int m_TopTag2,int m_BTag1,int m_BTag2,int m_NsubjettinessTag1,int m_NsubjettinessTag2,E_BtagType m_BTagType1,E_BtagType m_BTagType2,double m_minPt)
 {
   int index1=-1,index2=-1;
+//   cout<<bcc->toptagjets<<endl;
   for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
   {
+//     cout<<1<<endl;
     bool isTopTagged = HepTopTag(bcc->toptagjets->at(i));
 //     bool isBTagged = subJetBTag(bcc->toptagjets->at(i),m_BTagType1,"mean","/scratch/hh/dust/naf/cms/user/usai/heptoptagval/ttbarsemiforspecialSF.root")>0;
     bool isBTagged = subJetBTag(bcc->toptagjets->at(i),m_BTagType1)>0;
     int indexCA15 = getMatchedCA15Index(bcc, i);
     bool isNsubTagged = false;
+//     cout<<2<<endl;
     if (indexCA15>=0) isNsubTagged = ((bcc->topjets->at(indexCA15).tau3()/bcc->topjets->at(indexCA15).tau2())<0.6);
     bool TopTagCond = false, BTagCond = false, NsubCond = false;
     bool ptCond = bcc->toptagjets->at(i).pt()>m_minPt;

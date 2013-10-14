@@ -50,7 +50,7 @@
 	<Package Name="ZprimeFullHadAnalysis.par" /> 
 
 <!--    <Cycle Name="ZprimeFullHadCycle" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/" PostFix="" TargetLumi="1" >  -->
-   <Cycle Name="PileUpHistoCycle"  RunMode="PROOF" ProofServer="lite://"  ProofWorkDir="/scratch/hh/dust/naf/cms/user/usai/PROOF/" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/" PostFix="" TargetLumi="1" > 
+   <Cycle Name="ZprimeFullHadCycle"  RunMode="PROOF" ProofServer="lite://"  ProofWorkDir="/scratch/hh/dust/naf/cms/user/usai/PROOF/" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/" PostFix="" TargetLumi="1" > 
    <!-- <Cycle Name="ZprimeFullHadCycle" OutputDirectory="./" PostFix="" TargetLumi="1.0"> -->
 
 <!--		<InputData Lumi="1.0" NEventsMax="-1" Type="DATA" Version="DATA" Cacheable="False">
@@ -63,15 +63,15 @@
 			<InputTree Name="AnalysisTree" /> 
 		    </InputData>-->
 
-<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="DATA" Cacheable="True">
+<!--<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="DATA" Cacheable="True">
 &RunA;
 &RunB;
 &RunC;
 &RunD;
 <InputTree Name="AnalysisTree" /> 
-</InputData>
+</InputData>-->
 		    
-<InputData Lumi="238028" NEventsMax="-1" Type="MC" Version="ZP500W5" Cacheable="True">
+<!--<InputData Lumi="238028" NEventsMax="-1" Type="MC" Version="ZP500W5" Cacheable="True">
 &ZP500W5;
 <InputTree Name="AnalysisTree" /> 
 </InputData>
@@ -119,14 +119,14 @@
 <InputData Lumi="196751" NEventsMax="-1" Type="MC" Version="ZP1500W150" Cacheable="True">
 &ZP1500W150;
 <InputTree Name="AnalysisTree" /> 
-</InputData>
+</InputData>-->
 
-<InputData Lumi="189522" NEventsMax="-1" Type="MC" Version="ZP2000W20" Cacheable="True">
+<!--<InputData Lumi="189522" NEventsMax="-1" Type="MC" Version="ZP2000W20" Cacheable="True">
 &ZP2000W20;
 <InputTree Name="AnalysisTree" /> 
-</InputData>
+</InputData>-->
 
-<InputData Lumi="485137" NEventsMax="-1" Type="MC" Version="ZP2000W200" Cacheable="True">
+<!--<InputData Lumi="485137" NEventsMax="-1" Type="MC" Version="ZP2000W200" Cacheable="True">
 &ZP2000W200;
 <InputTree Name="AnalysisTree" /> 
 </InputData>
@@ -149,32 +149,40 @@
 <InputData Lumi="103388" NEventsMax="-1" Type="MC" Version="ZP4000W400" Cacheable="True">
 &ZP4000W400;
 <InputTree Name="AnalysisTree" /> 
-</InputData>
+</InputData>-->
 
-<InputData Lumi="88185" NEventsMax="-1" Type="MC" Version="TTbar" Cacheable="True">
+<InputData Lumi="8818.5" NEventsMax="2156010" Type="MC" Version="TTbar" Cacheable="True">
 &TTbar;
 <InputTree Name="AnalysisTree" /> 
 </InputData>
 
-<InputData Lumi="1" NEventsMax="-1" Type="MC" Version="QCD_HT-100To250" Cacheable="True">
+<!--<InputData Lumi="0.4834294305" NEventsMax="5008328" Type="MC" Version="QCD_HT-100To250" Cacheable="True">
 &QCD_HT-100To250;
 <InputTree Name="AnalysisTree" /> 
 </InputData>
 
-<InputData Lumi="1" NEventsMax="-1" Type="MC" Version="QCD_HT-250To500" Cacheable="True">
+<InputData Lumi="9.775942029" NEventsMax="2698160" Type="MC" Version="QCD_HT-250To500" Cacheable="True">
 &QCD_HT-250To500;
 <InputTree Name="AnalysisTree" /> 
 </InputData>
 
-<InputData Lumi="1" NEventsMax="-1" Type="MC" Version="QCD_HT-500To1000" Cacheable="True">
+<InputData Lumi="360.1486707809" NEventsMax="3034612" Type="MC" Version="QCD_HT-500To1000" Cacheable="True">
 &QCD_HT-500To1000;
 <InputTree Name="AnalysisTree" /> 
 </InputData>
 
-<InputData Lumi="1" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf" Cacheable="True">
+<InputData Lumi="6650.8416666667" NEventsMax="1356771" Type="MC" Version="QCD_HT-1000ToInf" Cacheable="True">
 &QCD_HT-1000ToInf;
 <InputTree Name="AnalysisTree" /> 
-</InputData>
+</InputData>-->
+
+<!--<InputData Lumi="1" NEventsMax="-1" Type="MC" Version="QCD" Cacheable="True">
+  &QCD_HT-100To250;
+  &QCD_HT-250To500;
+  &QCD_HT-500To1000;
+  &QCD_HT-1000ToInf;
+<InputTree Name="AnalysisTree" /> 
+</InputData>-->
 
 		<UserConfig>
 
