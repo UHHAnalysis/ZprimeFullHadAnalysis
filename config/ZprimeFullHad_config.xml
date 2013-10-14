@@ -17,6 +17,22 @@
 <!ENTITY ZP3000W300 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP3000W300.xml">
 <!ENTITY ZP4000W40 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP4000W40.xml">
 <!ENTITY ZP4000W400 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP4000W400.xml">
+
+<!ENTITY TTbarHad SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/TTJets_HadronicMGDecays_8TeV-madgraph.xml">
+<!ENTITY TTbarSemi SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/TTJets_SemiLeptMGDecays_8TeV-madgraph.xml">
+<!ENTITY TTbarLept SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/TTJets_FullLeptMGDecays_8TeV-madgraph.xml">
+<!ENTITY TTbar SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/TT_Powheg.xml">
+
+<!ENTITY QCD_HT-100To250 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-100To250_TuneZ2star_8TeV-madgraph-pythia.xml">
+<!ENTITY QCD_HT-250To500 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-250To500_TuneZ2star_8TeV-madgraph-pythia6.xml">
+<!ENTITY QCD_HT-500To1000 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-500To1000_TuneZ2star_8TeV-madgraph-pythia6.xml">
+<!ENTITY QCD_HT-1000ToInf SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-1000ToInf_TuneZ2star_8TeV-madgraph-pythia6.xml">
+
+<!ENTITY RunA SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/Jet_Run2012A-22Jan2013-v1_ntuplewriter_ttbsm_53_plusprunedcfg">
+<!ENTITY RunB SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/JetHT_Run2012B-22Jan2013-v1_ntuplewriter_ttbsm_53_plusprunedcfg">
+<!ENTITY RunC SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/JetHT_Run2012C-22Jan2013-v1_ntuplewriter_ttbsm_53_plusprunedcfg">
+<!ENTITY RunD SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/JetHT_Run2012D-22Jan2013-v1_ntuplewriter_ttbsm_53_plusprunedcfg">
+
 ]>
 
 <!-- <JobConfiguration JobName="ZprimeFullHadCycleJob" OutputLevel="VERBOSE"> -->
@@ -34,7 +50,7 @@
 	<Package Name="ZprimeFullHadAnalysis.par" /> 
 
 <!--    <Cycle Name="ZprimeFullHadCycle" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/" PostFix="" TargetLumi="1" >  -->
-   <Cycle Name="ZprimeFullHadCycle"  RunMode="PROOF" ProofServer="lite://"  ProofWorkDir="/scratch/hh/dust/naf/cms/user/usai/PROOF/" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/" PostFix="" TargetLumi="1" > 
+   <Cycle Name="PileUpHistoCycle"  RunMode="PROOF" ProofServer="lite://"  ProofWorkDir="/scratch/hh/dust/naf/cms/user/usai/PROOF/" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/" PostFix="" TargetLumi="1" > 
    <!-- <Cycle Name="ZprimeFullHadCycle" OutputDirectory="./" PostFix="" TargetLumi="1.0"> -->
 
 <!--		<InputData Lumi="1.0" NEventsMax="-1" Type="DATA" Version="DATA" Cacheable="False">
@@ -47,6 +63,14 @@
 			<InputTree Name="AnalysisTree" /> 
 		    </InputData>-->
 
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="DATA" Cacheable="True">
+&RunA;
+&RunB;
+&RunC;
+&RunD;
+<InputTree Name="AnalysisTree" /> 
+</InputData>
+		    
 <InputData Lumi="238028" NEventsMax="-1" Type="MC" Version="ZP500W5" Cacheable="True">
 &ZP500W5;
 <InputTree Name="AnalysisTree" /> 
@@ -127,6 +151,31 @@
 <InputTree Name="AnalysisTree" /> 
 </InputData>
 
+<InputData Lumi="88185" NEventsMax="-1" Type="MC" Version="TTbar" Cacheable="True">
+&TTbar;
+<InputTree Name="AnalysisTree" /> 
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="MC" Version="QCD_HT-100To250" Cacheable="True">
+&QCD_HT-100To250;
+<InputTree Name="AnalysisTree" /> 
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="MC" Version="QCD_HT-250To500" Cacheable="True">
+&QCD_HT-250To500;
+<InputTree Name="AnalysisTree" /> 
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="MC" Version="QCD_HT-500To1000" Cacheable="True">
+&QCD_HT-500To1000;
+<InputTree Name="AnalysisTree" /> 
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf" Cacheable="True">
+&QCD_HT-1000ToInf;
+<InputTree Name="AnalysisTree" /> 
+</InputData>
+
 		<UserConfig>
 
 		   <Item Name="JetCollection" Value="goodPatJetsPFlow" />
@@ -137,7 +186,10 @@
 <!--		   <Item Name="PhotonCollection" Value="patPhotons" /> -->
 		   <Item Name="PrimaryVertexCollection" Value="goodOfflinePrimaryVertices" /> 
 		   <Item Name="METName" Value="patMETsPFlow" />  
-		   <Item Name="TopJetCollection" Value="goodPatJetsCAHEPTopTagPFPacked" />
+		   <!--<Item Name="TopJetCollection" Value="goodPatJetsCAHEPTopTagPFPacked" />
+		   <Item Name="TopTagJetCollection" Value="goodPatJetsCA15FilteredPFPacked"/>-->
+		   <Item Name="TopJetCollection" Value="goodPatJetsCA15FilteredPFPacked" />
+		   <Item Name="TopTagJetCollection" Value="goodPatJetsCAHEPTopTagPFPacked" />
 		   <Item Name="TopJetCollectionGen" Value="caHEPTopTagGen" />
 		   <Item Name="GenParticleCollection" Value="GenParticles" /> 
 		      

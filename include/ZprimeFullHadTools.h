@@ -9,7 +9,7 @@
 
 class ZprimeFullHadSelection: public SelectionModule {
 public:
-    ZprimeFullHadSelection(int,int,int,int,int,int,double);
+    ZprimeFullHadSelection(int,int,int,int,int,int,E_BtagType,E_BtagType,double);
     ~ZprimeFullHadSelection() {};
 
     virtual bool pass(BaseCycleContainer*);
@@ -22,10 +22,13 @@ private:
     int m_BTag2;
     int m_NsubjettinessTag1;
     int m_NsubjettinessTag2;
+    E_BtagType m_BTagType1;
+    E_BtagType m_BTagType2;
     double m_minPt;
 };
 
 void printTrigger(BaseCycleContainer *);
-std::vector<int> getTopJetsIndices(BaseCycleContainer *bcc,int m_TopTag1,int m_TopTag2,int m_BTag1,int m_BTag2,int m_NsubjettinessTag1,int m_NsubjettinessTag2,double m_minPt);
-
+std::vector<int> getTopJetsIndices(BaseCycleContainer *bcc,int m_TopTag1,int m_TopTag2,int m_BTag1,int m_BTag2,int m_NsubjettinessTag1,int m_NsubjettinessTag2,E_BtagType m_BTagType1,E_BtagType m_BTagType2,double m_minPt);
+int getMatchedCA15Index(BaseCycleContainer *bcc, int indexHTT);
+bool checkIndices(std::vector<int>);
 #endif

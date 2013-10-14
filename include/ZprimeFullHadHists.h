@@ -28,12 +28,14 @@ public:
 
    void Init();
 
+   void setIndices(std::vector<int>);
    void Fill();
+   void Fill2(std::vector<int>);
 
    void Finish();
 
 private:
-
+  std::vector<int> TopJetIndices;
 }; // class ZprimeFullHadHists
 
 

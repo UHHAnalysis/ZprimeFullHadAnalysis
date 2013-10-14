@@ -65,7 +65,7 @@ void ZprimeFullHadCycle::BeginInputData( const SInputData& id ) throw( SError )
   ZprimeSel = new Selection("ZprimeSel");
   //DO NOT use trigger selection in PROOF mode at the moment
   //TopSel->addSelectionModule(new TriggerSelection("HLT_PFJet320_v"));
-  ZprimeSel->addSelectionModule(new ZprimeFullHadSelection(1,1,1,1,0,0,200.0));
+  ZprimeSel->addSelectionModule(new ZprimeFullHadSelection(1,1,1,1,0,0,e_CSVM,e_CSVM,200.0));
   RegisterSelection(ZprimeSel);
   
   Trigger1Sel = new Selection("Trigger1Sel");
@@ -133,6 +133,21 @@ void ZprimeFullHadCycle::BeginInputData( const SInputData& id ) throw( SError )
   RegisterHistCollection( new ZprimeFullHadHists("Trigger3Histos"));
   RegisterHistCollection( new ZprimeFullHadHists("Trigger4Histos"));
   RegisterHistCollection( new ZprimeFullHadHists("Trigger5Histos"));
+  
+  RegisterHistCollection( new ZprimeFullHadHists("Cat_2jet"));
+  RegisterHistCollection( new ZprimeFullHadHists("Cat_2htt"));
+  RegisterHistCollection( new ZprimeFullHadHists("Cat_2htt_2btl"));
+  RegisterHistCollection( new ZprimeFullHadHists("Cat_2htt_2btm"));
+  RegisterHistCollection( new ZprimeFullHadHists("Cat_2htt_2nsb"));
+  RegisterHistCollection( new ZprimeFullHadHists("Cat_2htt_2btl_2nsb"));
+  RegisterHistCollection( new ZprimeFullHadHists("Cat_2btm"));
+  RegisterHistCollection( new ZprimeFullHadHists("Cat_2btl_2nsb"));
+  RegisterHistCollection( new ZprimeFullHadHists("Cat_2nsb"));
+  RegisterHistCollection( new ZprimeFullHadHists("Cat_2htt_1btl"));
+  RegisterHistCollection( new ZprimeFullHadHists("Cat_2htt_1btm"));
+  
+  RegisterHistCollection( new ZprimeFullHadHists("AntitagHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("MistagHistos"));
   // important: initialise histogram collections after their definition
   InitHistos();
 
@@ -182,6 +197,21 @@ void ZprimeFullHadCycle::ExecuteEvent( const SInputData& id, Double_t weight) th
   BaseHists* Trigger4Histos = GetHistCollection("Trigger4Histos");
   BaseHists* Trigger5Histos = GetHistCollection("Trigger5Histos");
   
+  BaseHists* Cat_2jetHistos = GetHistCollection("Cat_2jet");
+  BaseHists* Cat_2httHistos = GetHistCollection("Cat_2htt");
+  BaseHists* Cat_2htt_2btlHistos = GetHistCollection("Cat_2htt_2btl");
+  BaseHists* Cat_2htt_2btmHistos = GetHistCollection("Cat_2htt_2btm");
+  BaseHists* Cat_2htt_2nsbHistos = GetHistCollection("Cat_2htt_2nsb");
+  BaseHists* Cat_2htt_2btl_2nsbHistos = GetHistCollection("Cat_2htt_2btl_2nsb");
+  BaseHists* Cat_2btmHistos = GetHistCollection("Cat_2btm");
+  BaseHists* Cat_2btl_2nsbHistos = GetHistCollection("Cat_2btl_2nsb");
+  BaseHists* Cat_2nsbHistos = GetHistCollection("Cat_2nsb");
+  BaseHists* Cat_2htt_1btlHistos = GetHistCollection("Cat_2htt_1btl");
+  BaseHists* Cat_2htt_1btmHistos = GetHistCollection("Cat_2htt_1btm");
+  
+  BaseHists* AntitagHistos = GetHistCollection("AntitagHistos");
+  BaseHists* MistagHistos = GetHistCollection("MistagHistos");
+  
   //if(!chi2_selection->passSelection())  throw SError( SError::SkipEvent );
 
   EventCalc* calc = EventCalc::Instance();
@@ -189,13 +219,31 @@ void ZprimeFullHadCycle::ExecuteEvent( const SInputData& id, Double_t weight) th
   //printTrigger(bcc);
   NoCutsHistos->Fill();
   //if (bcc->topjets->size()>=2){std::cout<<"p "<<std::endl;}
-  if (!ZprimeSel->passSelection()) return;
+  
+//   getTopJetsIndices(bcc,0,0,0,0,0,0,e_CSVM,e_CSVM,200.0) Cat_2jetHistos
+//   getTopJetsIndices(bcc,1,1,0,0,0,0,e_CSVM,e_CSVM,200.0) Cat_2httHistos
+//   getTopJetsIndices(bcc,1,1,1,1,0,0,e_CSVL,e_CSVL,200.0) Cat_2htt_2btlHistos
+//   getTopJetsIndices(bcc,1,1,1,1,0,0,e_CSVM,e_CSVM,200.0) Cat_2htt_2btmHistos
+//   getTopJetsIndices(bcc,1,1,0,0,1,1,e_CSVM,e_CSVM,200.0) Cat_2htt_2nsbHistos
+//   getTopJetsIndices(bcc,1,1,1,1,1,1,e_CSVL,e_CSVL,200.0) Cat_2htt_2btl_2nsbHistos
+//   getTopJetsIndices(bcc,0,0,1,1,0,0,e_CSVM,e_CSVM,200.0) Cat_2btmHistos
+//   getTopJetsIndices(bcc,0,0,1,1,1,1,e_CSVL,e_CSVL,200.0) Cat_2btl_2nsbHistos
+//   getTopJetsIndices(bcc,0,0,0,0,1,1,e_CSVM,e_CSVM,200.0) Cat_2nsbHistos
+//   getTopJetsIndices(bcc,1,1,1,0,0,0,e_CSVL,e_CSVM,200.0) Cat_2htt_1btlHistos
+//   getTopJetsIndices(bcc,1,1,1,0,0,0,e_CSVM,e_CSVM,200.0) Cat_2htt_1btmHistos
+//   
+//   getTopJetsIndices(bcc,-1,0,-1,0,0,0,e_CSVM,e_CSVM,200.0) AntitagHistos
+//   getTopJetsIndices(bcc,-1,1,-1,1,0,0,e_CSVM,e_CSVM,200.0) MistagHistos
+  
+  std::vector<int> Indices = getTopJetsIndices(bcc,1,1,1,1,0,0,e_CSVM,e_CSVM,200.0);
+  if (!checkIndices(Indices)) return;
+  ((ZprimeFullHadHists*)BaseHistos)->setIndices(Indices);
   BaseHistos->Fill();
-  if (Trigger1Sel->passSelection()) Trigger1Histos->Fill();
-  if (Trigger2Sel->passSelection()) Trigger2Histos->Fill();    
-  if (Trigger3Sel->passSelection()) Trigger3Histos->Fill();
-  if (Trigger4Sel->passSelection()) Trigger4Histos->Fill();
-  if (Trigger5Sel->passSelection()) Trigger5Histos->Fill();
+  if (Trigger1Sel->passSelection()) ((ZprimeFullHadHists*)Trigger1Histos)->Fill2(Indices);
+  if (Trigger2Sel->passSelection()) ((ZprimeFullHadHists*)Trigger2Histos)->Fill2(Indices);    
+  if (Trigger3Sel->passSelection()) ((ZprimeFullHadHists*)Trigger3Histos)->Fill2(Indices);
+  if (Trigger4Sel->passSelection()) ((ZprimeFullHadHists*)Trigger4Histos)->Fill2(Indices);
+  if (Trigger5Sel->passSelection()) ((ZprimeFullHadHists*)Trigger5Histos)->Fill2(Indices);
   
  /* if(calc->GetJets()->size()>=12){
     std::cout << "run: " << calc->GetRunNum() << "   lb: " << calc->GetLumiBlock() << "  event: " << calc->GetEventNum() << "   N(jets): " << calc->GetJets()->size() << std::endl;

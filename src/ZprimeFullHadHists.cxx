@@ -7,7 +7,8 @@ using namespace std;
 ZprimeFullHadHists::ZprimeFullHadHists(const char* name) : BaseHists(name)
 {
   // named default constructor
-   
+  TopJetIndices.push_back(-1);
+  TopJetIndices.push_back(-1);
 }
 
 ZprimeFullHadHists::~ZprimeFullHadHists(){
@@ -68,6 +69,26 @@ void ZprimeFullHadHists::Init()
 
   Book( TH1F( "SumOfTopCandidatesPt", ";Sum of Jet pT (Top Tag candidates) [GeV];Events", 30, 0, 1500 ) );
   Book( TH1F( "LeadingTopCandidatePt", ";Leading Jet pT (Top Tag candidate) [GeV];Events", 30, 0, 1500 ) );
+  Book( TH1F( "Mtt", ";Mtt [GeV];Events", 40, 0, 2000 ) );
+  Book( TH1F( "Nevts", "Nevts", 1, 0, 1 ) );
+  double pt_bins[] = {200,400,600,10000};
+  Book( TH1F("ptNevts",";Top pT [GeV];Events",sizeof(pt_bins)/sizeof(double)-1,pt_bins));
+  double toppt_bins[] = {0,40,80,120,160,200,240,280,320,360,400,500,600,1000};
+  Book( TH1F("toppt",";Top pT [GeV];Events",sizeof(toppt_bins)/sizeof(double)-1,toppt_bins));
+  
+  TopJetIndices.push_back(-1);
+  TopJetIndices.push_back(-1);
+}
+
+void ZprimeFullHadHists::setIndices(std::vector<int> Indices)
+{
+  TopJetIndices = Indices;
+}
+
+void ZprimeFullHadHists::Fill2(std::vector<int> Indices)
+{
+  TopJetIndices = Indices;
+  Fill();
 }
 
 void ZprimeFullHadHists::Fill()
@@ -139,11 +160,19 @@ void ZprimeFullHadHists::Fill()
     Hist("reliso_mu")->Fill(thismu.relIso(), weight);
   }
 
-  std::vector<int> TopJetIndices = getTopJetsIndices(bcc,1,1,1,1,0,0,200.);
-  if (TopJetIndices[0]!=-1 && TopJetIndices[1]!=-1 && TopJetIndices[0]!=TopJetIndices[1])
+  //std::vector<int> TopJetIndices = getTopJetsIndices(bcc,1,1,1,1,0,0,200.);
+  
+   Hist("Nevts")->Fill(0.5,weight);
+  if(TopJetIndices[0]>=0)
   {
-    Hist("SumOfTopCandidatesPt")->Fill(bcc->topjets->at(TopJetIndices[0]).pt()+bcc->topjets->at(TopJetIndices[1]).pt(),weight);
-    Hist("LeadingTopCandidatePt")->Fill(bcc->topjets->at(TopJetIndices[0]).pt(),weight);
+    Hist("ptNevts")->Fill(bcc->toptagjets->at(TopJetIndices[0]).pt(),weight);
+    Hist("toppt")->Fill(bcc->toptagjets->at(TopJetIndices[0]).pt(),weight);
+  }
+  if (checkIndices(TopJetIndices))
+  {
+    Hist("SumOfTopCandidatesPt")->Fill(bcc->toptagjets->at(TopJetIndices[0]).pt()+bcc->toptagjets->at(TopJetIndices[1]).pt(),weight);
+    Hist("LeadingTopCandidatePt")->Fill(bcc->toptagjets->at(TopJetIndices[0]).pt(),weight);
+    Hist("Mtt")->Fill((bcc->toptagjets->at(TopJetIndices[0]).v4()+bcc->toptagjets->at(TopJetIndices[1]).v4()).M(),weight);
   }
 
 }
