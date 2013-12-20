@@ -46,7 +46,7 @@ private:
   // Put all your private variables here
   //
   
-   Selection *TriggerSel,*TriggerSel2;//* BSel, * NoBSel, *TopSel, *chi2_selection;
+   Selection *TriggerHT,*TriggerQuad;//* BSel, * NoBSel, *TopSel, *chi2_selection;
 
   // Macro adding the functions for dictionary generation
   ClassDef( PreselectionCycle, 0 );

@@ -1,4 +1,7 @@
 obj/
 src/ZprimeFullHadAnalysis_Dict.cxx
 src/ZprimeFullHadAnalysis_Dict.h
-
+*~
+*.pdf
+*.root
+*.txt

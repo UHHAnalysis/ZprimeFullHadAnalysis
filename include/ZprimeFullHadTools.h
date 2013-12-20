@@ -47,7 +47,7 @@ public:
 
    void setIndices(std::vector<int>);
    void Fill();
-   void Fill2(std::vector<int>,string version="");
+   void Fill2(std::vector<int>,string version="",bool useCMSTT=false);
 
    void Finish();
 

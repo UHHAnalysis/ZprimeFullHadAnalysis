@@ -64,10 +64,10 @@ void PreselectionCycle::BeginInputData( const SInputData& id ) throw( SError )
   // -------------------- set up the selections ---------------------------
   //DO NOT use trigger selection in PROOF mode at the moment
   //TopSel->addSelectionModule(new TriggerSelection("HLT_PFJet320_v"));
-  TriggerSel = new Selection("TriggerSel");
-  TriggerSel2 = new Selection("TriggerSel2");
-  TriggerSel->addSelectionModule(new TriggerSelection("HLT_QuadJet50"));
-  TriggerSel2->addSelectionModule(new TriggerSelection("HLT_HT750"));
+  TriggerHT = new Selection("TriggerHT");
+  TriggerQuad = new Selection("TriggerQuad");
+  TriggerQuad->addSelectionModule(new TriggerSelection("HLT_QuadJet50"));
+  TriggerHT->addSelectionModule(new TriggerSelection("HLT_HT750"));
 
   // ---------------- set up the histogram collections --------------------
 
@@ -115,23 +115,40 @@ void PreselectionCycle::ExecuteEvent( const SInputData& id, Double_t weight) thr
   BaseCycleContainer* bcc = calc->GetBaseCycleContainer();
   //bool IsRealData = calc->IsRealData();
   NoCutsHistos->Fill();
-//   if (TriggerSel->passSelection() || TriggerSel2->passSelection()) TriggerHistos->Fill(); else throw SError( SError::SkipEvent );
-  if (TriggerSel2->passSelection()) TriggerHistos->Fill(); else throw SError( SError::SkipEvent );
-  //std::vector<int> Indices;  
+  
+  if(TriggerHT->passSelection() || TriggerQuad->passSelection() ) TriggerHistos->Fill(); else throw SError( SError::SkipEvent );
+  
   int n=0;
   for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
   {
     if (bcc->toptagjets->at(i).pt()>=200.0) n++;
   }
+  
+  for (unsigned int i=0; i<bcc->higgstagjets->size(); i++)
+  {
+    if (bcc->higgstagjets->at(i).pt()>=400.0) n++;
+  }
+  
   if (n>1) BaseHistos->Fill(); else throw SError( SError::SkipEvent );
-  //if (TriggerSel->passSelection()) TriggerHistos->Fill(); else throw SError( SError::SkipEvent );
-  //Indices=getTopJetsIndices(bcc,0,0,0,0,0,0,e_CSVM,e_CSVM,0.6,200.0);
-  //if (checkIndices(Indices))
-  //{
-  //  //cout<<"2ok\n";
-  //  ((ZprimeFullHadHists*)BaseHistos)->Fill2(Indices);
-  //}
-  //else throw SError( SError::SkipEvent );
+  
+  
+// //   if (TriggerSel->passSelection() || TriggerSel2->passSelection()) TriggerHistos->Fill(); else throw SError( SError::SkipEvent );
+//   if (TriggerSel2->passSelection()) TriggerHistos->Fill(); else throw SError( SError::SkipEvent );
+//   //std::vector<int> Indices;  
+//   int n=0;
+//   for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
+//   {
+//     if (bcc->toptagjets->at(i).pt()>=200.0) n++;
+//   }
+//   if (n>1) BaseHistos->Fill(); else throw SError( SError::SkipEvent );
+//   //if (TriggerSel->passSelection()) TriggerHistos->Fill(); else throw SError( SError::SkipEvent );
+//   //Indices=getTopJetsIndices(bcc,0,0,0,0,0,0,e_CSVM,e_CSVM,0.6,200.0);
+//   //if (checkIndices(Indices))
+//   //{
+//   //  //cout<<"2ok\n";
+//   //  ((ZprimeFullHadHists*)BaseHistos)->Fill2(Indices);
+//   //}
+//   //else throw SError( SError::SkipEvent );
   
   WriteOutputTree();
   
