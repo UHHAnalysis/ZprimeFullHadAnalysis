@@ -1,5 +1,7 @@
-#include "include/ZprimeFullHadHists.h"
+#include "include/ZprimeFullHadTools.h"
+#include "include/HEPTopTaggerReweight.h"
 #include "SFrameTools/include/EventCalc.h"
+#include "TH2.h"
 #include <iostream>
 
 using namespace std;
@@ -7,8 +9,9 @@ using namespace std;
 ZprimeFullHadHists::ZprimeFullHadHists(const char* name) : BaseHists(name)
 {
   // named default constructor
-  TopJetIndices.push_back(-1);
-  TopJetIndices.push_back(-1);
+//   TopJetIndices.push_back(-1);
+//   TopJetIndices.push_back(-1);
+  TopJetIndices={-1,-1};
 }
 
 ZprimeFullHadHists::~ZprimeFullHadHists(){
@@ -67,17 +70,27 @@ void ZprimeFullHadHists::Init()
   Book( TH1F( "N_events_perLumiBin", "N^{evt}", 24, 0, 24 ) );
   Book( TH1F( "N_pv_perLumiBin", "N^{PV}", 24, 0, 24 ) );
 
-  Book( TH1F( "SumOfTopCandidatesPt", ";Sum of Jet pT (Top Tag candidates) [GeV];Events", 30, 0, 1500 ) );
-  Book( TH1F( "LeadingTopCandidatePt", ";Leading Jet pT (Top Tag candidate) [GeV];Events", 30, 0, 1500 ) );
-  Book( TH1F( "Mtt", ";Mtt [GeV];Events", 40, 0, 2000 ) );
+  Book( TH1F( "Ntopjets", "Ntopjets", 10, 0, 10 ) );
+  Book( TH1F( "Njets", "Njets", 20, 0, 20 ) );
+  Book( TH2F( "Njetsvspt", "Njetsvspt", 20, 0, 20 ,50,0,1000) );
+  Book( TH1F( "SumOfTopCandidatesPt", "Sum of Jet pT (Top Tag candidates) [GeV];Sum of Jet pT (Top Tag candidates) [GeV];Events", 15, 0, 1500 ) );
+  Book( TH1F( "LeadingTopCandidatePt", "Leading Jet pT (Top Tag candidate) [GeV];Leading Jet pT (Top Tag candidate) [GeV];Events", 15, 0, 1500 ) );
+  Book( TH1F( "SubLeadingTopCandidatePt", "Subleading Jet pT (Top Tag candidate) [GeV];Subleading Jet pT (Top Tag candidate) [GeV];Events", 15, 0, 1500 ) );
+  Book( TH1F( "TopCandidate1Pt", "Jet 1 pT (Top Tag candidate) [GeV];Jet 1 pT (Top Tag candidate) [GeV];Events", 30, 0, 1500 ) );
+  Book( TH1F( "TopCandidate2Pt", "Jet 2 pT (Top Tag candidate) [GeV];Jet 2 pT (Top Tag candidate) [GeV];Events", 30, 0, 1500 ) );
+  Book( TH1F( "Mtt", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
   Book( TH1F( "Nevts", "Nevts", 1, 0, 1 ) );
   double pt_bins[] = {200,400,600,10000};
-  Book( TH1F("ptNevts",";Top pT [GeV];Events",sizeof(pt_bins)/sizeof(double)-1,pt_bins));
+  Book( TH1F("ptNevts","Top pT [GeV];Top pT [GeV];Events",sizeof(pt_bins)/sizeof(double)-1,pt_bins));
   double toppt_bins[] = {0,40,80,120,160,200,240,280,320,360,400,500,600,1000};
-  Book( TH1F("toppt",";Top pT [GeV];Events",sizeof(toppt_bins)/sizeof(double)-1,toppt_bins));
+  Book( TH1F("toppt","Top pT [GeV];Top pT [GeV];Events",sizeof(toppt_bins)/sizeof(double)-1,toppt_bins));
+  Book( TH1F( "DeltaY", "#Delta y;#Delta y;Events", 200, 0, 10 ) );
+  Book( TH1F( "Nsub", "#tau_{3}/#tau_{2};#tau_{3}/#tau_{2};Events", 100, 0, 1 ) );
   
-  TopJetIndices.push_back(-1);
-  TopJetIndices.push_back(-1);
+//   TopJetIndices.clear();
+//   TopJetIndices.push_back(-1);
+//   TopJetIndices.push_back(-1);
+  TopJetIndices={-1,-1};
 }
 
 void ZprimeFullHadHists::setIndices(std::vector<int> Indices)
@@ -85,16 +98,10 @@ void ZprimeFullHadHists::setIndices(std::vector<int> Indices)
   TopJetIndices = Indices;
 }
 
-void ZprimeFullHadHists::Fill2(std::vector<int> Indices)
+void ZprimeFullHadHists::Fill2(std::vector<int> Indices, string version)
 {
+    // fill the histograms
   TopJetIndices = Indices;
-  Fill();
-}
-
-void ZprimeFullHadHists::Fill()
-{
-  // fill the histograms
-
 
   EventCalc* calc = EventCalc::Instance();
   BaseCycleContainer* bcc = calc->GetBaseCycleContainer();
@@ -161,8 +168,14 @@ void ZprimeFullHadHists::Fill()
   }
 
   //std::vector<int> TopJetIndices = getTopJetsIndices(bcc,1,1,1,1,0,0,200.);
-  
-   Hist("Nevts")->Fill(0.5,weight);
+  Hist("Nevts")->Fill(0.5,weight);
+  Hist("Ntopjets")->Fill(bcc->toptagjets->size(),weight);
+  int nj=0;
+  for (unsigned int ii=0; ii<bcc->jets->size(); ii++)
+  {
+    if (bcc->jets->at(ii).pt()>50.0) nj++;
+  }
+  Hist("Njets")->Fill(nj,weight);
   if(TopJetIndices[0]>=0)
   {
     Hist("ptNevts")->Fill(bcc->toptagjets->at(TopJetIndices[0]).pt(),weight);
@@ -170,11 +183,36 @@ void ZprimeFullHadHists::Fill()
   }
   if (checkIndices(TopJetIndices))
   {
-    Hist("SumOfTopCandidatesPt")->Fill(bcc->toptagjets->at(TopJetIndices[0]).pt()+bcc->toptagjets->at(TopJetIndices[1]).pt(),weight);
-    Hist("LeadingTopCandidatePt")->Fill(bcc->toptagjets->at(TopJetIndices[0]).pt(),weight);
-    Hist("Mtt")->Fill((bcc->toptagjets->at(TopJetIndices[0]).v4()+bcc->toptagjets->at(TopJetIndices[1]).v4()).M(),weight);
+    HEPTopTaggerReweight httr;
+    double htt_weight=1.0;
+    if (version=="TTbarLept" || version=="TTbarSemi" || version=="TTbarHad") htt_weight=httr.GetScaleWeight(TopJetIndices);
+    ((TH2F*)Hist("Njetsvspt"))->Fill(nj,bcc->toptagjets->at(TopJetIndices[0]).pt(),weight*htt_weight);
+    Hist("SumOfTopCandidatesPt")->Fill(bcc->toptagjets->at(TopJetIndices[0]).pt()+bcc->toptagjets->at(TopJetIndices[1]).pt(),weight*htt_weight);
+    if ( bcc->toptagjets->at(TopJetIndices[0]).pt() > bcc->toptagjets->at(TopJetIndices[1]).pt() )
+    {
+      Hist("LeadingTopCandidatePt")->Fill(bcc->toptagjets->at(TopJetIndices[0]).pt(),weight*htt_weight);
+      Hist("SubLeadingTopCandidatePt")->Fill(bcc->toptagjets->at(TopJetIndices[1]).pt(),weight*htt_weight);
+    }
+    else
+    {
+      Hist("LeadingTopCandidatePt")->Fill(bcc->toptagjets->at(TopJetIndices[1]).pt(),weight*htt_weight);
+      Hist("SubLeadingTopCandidatePt")->Fill(bcc->toptagjets->at(TopJetIndices[0]).pt(),weight*htt_weight);
+    }
+    Hist("TopCandidate1Pt")->Fill(bcc->toptagjets->at(TopJetIndices[0]).pt(),weight*htt_weight);
+    Hist("TopCandidate2Pt")->Fill(bcc->toptagjets->at(TopJetIndices[1]).pt(),weight*htt_weight);
+    Hist("Mtt")->Fill((bcc->toptagjets->at(TopJetIndices[0]).v4()+bcc->toptagjets->at(TopJetIndices[1]).v4()).M(),weight*htt_weight);
+    Hist( "DeltaY" )->Fill(deltaY(bcc,TopJetIndices),weight*htt_weight);
+    Hist(  "Nsub"  )->Fill(getNsub(bcc,TopJetIndices[0]),weight*htt_weight);
   }
+  
+//   TopJetIndices = Indices;
+//   Fill();
+}
 
+void ZprimeFullHadHists::Fill()
+{
+  std::vector<int> Indices = {-1,-1};
+  Fill2(Indices);
 }
 
 void ZprimeFullHadHists::Finish()

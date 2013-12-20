@@ -32,7 +32,7 @@
 <!ENTITY RunB SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/JetHT_Run2012B-22Jan2013-v1_ntuplewriter_ttbsm_53_plusprunedcfg">
 <!ENTITY RunC SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/JetHT_Run2012C-22Jan2013-v1_ntuplewriter_ttbsm_53_plusprunedcfg">
 <!ENTITY RunD SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/JetHT_Run2012D-22Jan2013-v1_ntuplewriter_ttbsm_53_plusprunedcfg">
-
+<!ENTITY TTbarHad SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/TTJets_HadronicMGDecays_8TeV-madgraph.xml">
 ]>
 
 <!-- <JobConfiguration JobName="ZprimeFullHadCycleJob" OutputLevel="VERBOSE"> -->
@@ -50,7 +50,7 @@
 	<Package Name="ZprimeFullHadAnalysis.par" /> 
 
 <!--    <Cycle Name="ZprimeFullHadCycle" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/" PostFix="" TargetLumi="1" >  -->
-   <Cycle Name="ZprimeFullHadCycle"  RunMode="PROOF" ProofServer="lite://"  ProofWorkDir="/scratch/hh/dust/naf/cms/user/usai/PROOF/" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/" PostFix="" TargetLumi="1" > 
+   <Cycle Name="ZprimeFullHadCycle"  RunMode="PROOF" ProofServer="pod://"  ProofWorkDir="/scratch/hh/dust/naf/cms/user/usai/PROOF/" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/" PostFix="" TargetLumi="19700" > 
    <!-- <Cycle Name="ZprimeFullHadCycle" OutputDirectory="./" PostFix="" TargetLumi="1.0"> -->
 
 <!--		<InputData Lumi="1.0" NEventsMax="-1" Type="DATA" Version="DATA" Cacheable="False">
@@ -71,72 +71,72 @@
 <InputTree Name="AnalysisTree" /> 
 </InputData>-->
 		    
-<!--<InputData Lumi="238028" NEventsMax="-1" Type="MC" Version="ZP500W5" Cacheable="True">
+<InputData Lumi="238028" NEventsMax="-1" Type="MC" Version="ZP500W5" Cacheable="True">
 &ZP500W5;
 <InputTree Name="AnalysisTree" /> 
 </InputData>
 
-<InputData Lumi="229767" NEventsMax="-1" Type="MC" Version="ZP500W50" Cacheable="True">
+<!--<InputData Lumi="229767" NEventsMax="-1" Type="MC" Version="ZP500W50" Cacheable="True">
 &ZP500W50;
 <InputTree Name="AnalysisTree" /> 
-</InputData>
+</InputData>-->
 
 <InputData Lumi="217629" NEventsMax="-1" Type="MC" Version="ZP750W7p5" Cacheable="True">
 &ZP750W7p5;
 <InputTree Name="AnalysisTree" /> 
 </InputData>
 
-<InputData Lumi="216010" NEventsMax="-1" Type="MC" Version="ZP750W75" Cacheable="True">
+<!--<InputData Lumi="216010" NEventsMax="-1" Type="MC" Version="ZP750W75" Cacheable="True">
 &ZP750W75;
 <InputTree Name="AnalysisTree" /> 
-</InputData>
+</InputData>-->
 
 <InputData Lumi="206846" NEventsMax="-1" Type="MC" Version="ZP1000W10" Cacheable="True">
 &ZP1000W10;
 <InputTree Name="AnalysisTree" /> 
 </InputData>
 
-<InputData Lumi="207430" NEventsMax="-1" Type="MC" Version="ZP1000W100" Cacheable="True">
+<!--<InputData Lumi="207430" NEventsMax="-1" Type="MC" Version="ZP1000W100" Cacheable="True">
 &ZP1000W100;
 <InputTree Name="AnalysisTree" /> 
-</InputData>
+</InputData>-->
 
 <InputData Lumi="197422" NEventsMax="-1" Type="MC" Version="ZP1250W12p5" Cacheable="True">
 &ZP1250W12p5;
 <InputTree Name="AnalysisTree" /> 
 </InputData>
 
-<InputData Lumi="201420" NEventsMax="-1" Type="MC" Version="ZP1250W125" Cacheable="True">
+<!--<InputData Lumi="201420" NEventsMax="-1" Type="MC" Version="ZP1250W125" Cacheable="True">
 &ZP1250W125;
 <InputTree Name="AnalysisTree" /> 
-</InputData>
+</InputData>-->
 
 <InputData Lumi="486109" NEventsMax="-1" Type="MC" Version="ZP1500W15" Cacheable="True">
 &ZP1500W15;
 <InputTree Name="AnalysisTree" /> 
 </InputData>
 
-<InputData Lumi="196751" NEventsMax="-1" Type="MC" Version="ZP1500W150" Cacheable="True">
+<!--<InputData Lumi="196751" NEventsMax="-1" Type="MC" Version="ZP1500W150" Cacheable="True">
 &ZP1500W150;
 <InputTree Name="AnalysisTree" /> 
 </InputData>-->
 
-<!--<InputData Lumi="189522" NEventsMax="-1" Type="MC" Version="ZP2000W20" Cacheable="True">
+<InputData Lumi="189522" NEventsMax="-1" Type="MC" Version="ZP2000W20" Cacheable="True">
 &ZP2000W20;
 <InputTree Name="AnalysisTree" /> 
-</InputData>-->
+</InputData>
 
 <!--<InputData Lumi="485137" NEventsMax="-1" Type="MC" Version="ZP2000W200" Cacheable="True">
 &ZP2000W200;
 <InputTree Name="AnalysisTree" /> 
-</InputData>
+</InputData>-->
 
 <InputData Lumi="96371" NEventsMax="-1" Type="MC" Version="ZP3000W30" Cacheable="True">
 &ZP3000W30;
 <InputTree Name="AnalysisTree" /> 
 </InputData>
 
-<InputData Lumi="200810" NEventsMax="-1" Type="MC" Version="ZP3000W300" Cacheable="True">
+<!--<InputData Lumi="200810" NEventsMax="-1" Type="MC" Version="ZP3000W300" Cacheable="True">
 &ZP3000W300;
 <InputTree Name="AnalysisTree" /> 
 </InputData>
@@ -151,12 +151,12 @@
 <InputTree Name="AnalysisTree" /> 
 </InputData>-->
 
-<InputData Lumi="8818.5" NEventsMax="2156010" Type="MC" Version="TTbar" Cacheable="True">
+<!--<InputData Lumi="8818.5" NEventsMax="2156010" Type="MC" Version="TTbar" Cacheable="True">
 &TTbar;
 <InputTree Name="AnalysisTree" /> 
 </InputData>
 
-<!--<InputData Lumi="0.4834294305" NEventsMax="5008328" Type="MC" Version="QCD_HT-100To250" Cacheable="True">
+<InputData Lumi="0.4834294305" NEventsMax="5008328" Type="MC" Version="QCD_HT-100To250" Cacheable="True">
 &QCD_HT-100To250;
 <InputTree Name="AnalysisTree" /> 
 </InputData>
@@ -184,6 +184,11 @@
 <InputTree Name="AnalysisTree" /> 
 </InputData>-->
 
+<!--<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarHad" Cacheable="True">
+&TTbarHad;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>-->
+
 		<UserConfig>
 
 		   <Item Name="JetCollection" Value="goodPatJetsPFlow" />
@@ -201,32 +206,40 @@
 		   <Item Name="TopJetCollectionGen" Value="caHEPTopTagGen" />
 		   <Item Name="GenParticleCollection" Value="GenParticles" /> 
 		      
-		      <Item Name="PU_Filename_MC" Value="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/PileUpHistoCycle" />
+<!--		      <Item Name="PU_Filename_MC" Value="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/PileUpHistoCycle" />
 		      <Item Name="PU_Filename_Data" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/PileUpHistos/MyDataPileupHistogram_206745.root" />
 		      <Item Name="PU_Histname_Data" Value="pileup" />
-		      <Item Name="PU_Histname_MC" Value="N_pileup_hist" />
+		      <Item Name="PU_Histname_MC" Value="N_pileup_hist" />-->
 
 <!--		      <Item Name="writeTTbarReco" Value="True" />  
 		      <Item Name="readTTbarReco" Value="True" /> -->
 		      
 		   
 		   <!-- to apply jet energy (re-)corrections (esp. updated ones since the gridding), use these lines: -->
-		   <Item Name="JECFileLocation" Value="/scratch/hh/dust/naf/cms/user/peiffer/CMSSW_5_3_10/src" />
+<!--		   <Item Name="JECFileLocation" Value="/scratch/hh/dust/naf/cms/user/peiffer/CMSSW_5_3_10/src" />
+		   <Item Name="JECDataGlobalTag" Value="FT_53_V21_AN6" />
+		   <Item Name="JECMCGlobalTag" Value="START53_V27" />
+		   <Item Name="JECJetCollection" Value="AK5PFchs" />-->
+		   
+		   
+		   <Item Name="JECFileLocation" Value="/scratch/hh/dust/naf/cms/user/imarches/JECfiles" />
 		   <Item Name="JECDataGlobalTag" Value="FT_53_V21_AN6" />
 		   <Item Name="JECMCGlobalTag" Value="START53_V27" />
 		   <Item Name="JECJetCollection" Value="AK5PFchs" />
+		   <Item Name="JECTopJetCollection" Value="AK7PFchs" />
+		   <Item Name="JECTopTagJetCollection" Value="AK7PFchs" />
 		   
 		   <!-- this would perform systematic variations of the jet energy corrections in the down direction:
 		   <Item Name="SystematicUncertainty" Value="JEC" />
 		   <Item Name="SystematicVariation" Value="down" /> -->
 
-		   <Item Name="LumiFilePath" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/LumiFiles/" /> 
+		   <!--<Item Name="LumiFilePath" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/LumiFiles/" /> 
 		   <Item Name="LumiFileName" Value="Mu40_206745.root" /> 
-		   <Item Name="LumiTrigger" Value="HLT_Mu40_eta2p1_v" /> 
+		   <Item Name="LumiTrigger" Value="HLT_Mu40_eta2p1_v" /> -->
 
-		   <Item Name="BTaggingScaleFactors" Value="true" />
+		  <!-- <Item Name="BTaggingScaleFactors" Value="true" />-->
 
-		    <Item Name="LeptonScaleFactors" Value="MuonRunA 1051.4 MuonRunB 4778 MuonRunC 11946" /> 
+		    <!--<Item Name="LeptonScaleFactors" Value="MuonRunA 1051.4 MuonRunB 4778 MuonRunC 11946" /> -->
 		      
                 </UserConfig>
 	</Cycle>

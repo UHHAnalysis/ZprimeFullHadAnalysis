@@ -14,5 +14,10 @@
 // #pragma link C++ class MySuperClass+;
 
 #pragma link C++ class ZprimeFullHadCycle+;
+#pragma link C++ class PreselectionCycle+;
+#pragma link C++ class ZAnalysisCycle+;
 #pragma link C++ class PileUpHistoCycle+;
+#pragma link C++ class SemileptonicHepTopTagValSelCycle+;
+#pragma link C++ class SemileptonicPreselectionCycle+;
+#pragma link C++ class RocCycle+;
 #endif // __CINT__

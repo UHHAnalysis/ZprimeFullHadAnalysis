@@ -46,8 +46,10 @@ private:
   // Put all your private variables here
   //
   
-   Selection *ZprimeSel, *Trigger1Sel, *Trigger2Sel, *Trigger3Sel, *Trigger4Sel, *Trigger5Sel,;//* BSel, * NoBSel, *TopSel, *chi2_selection;
-   int counter;
+   Selection /* *ZprimeSel,*/ *Trigger1Sel, *Trigger2Sel, *Trigger3Sel, *Trigger4Sel, *Trigger5Sel;//* BSel, * NoBSel, *TopSel, *chi2_selection;
+//    std::vector<Selection*> selections;
+//    std::vector<string> hltpaths;
+//    int counter;
 
   // Macro adding the functions for dictionary generation
   ClassDef( ZprimeFullHadCycle, 0 );

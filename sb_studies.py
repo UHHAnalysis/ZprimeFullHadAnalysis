@@ -11,10 +11,12 @@ path_base='/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/ZprimeFullHadCycle.M
 sample_list=['ZP2000W20','QCD']
 sample_list2=["QCD_HT-100To250","QCD_HT-250To500","QCD_HT-500To1000","QCD_HT-1000ToInf","TTbar"]
 histo_name='Nevts'
-cut_list=["Cat_2jet","Cat_2htt","Cat_2htt_2btl","Cat_2htt_2btm","Cat_2htt_2nsb","Cat_2htt_2btl_2nsb","Cat_2btm","Cat_2btl_2nsb","Cat_2nsb","Cat_2htt_1btl","Cat_2htt_1btm"]
-name_list=["2jet","2htt","2htt_2btl","2htt_2btm","2htt_2nsb","2htt_2btl_2nsb","2btm","2btl_2nsb","2nsb","2htt_1btl","2htt_1btm"]
+cut_list=["Cat_2jet","Cat_2htt","Cat_2htt_2btl","Cat_2htt_2btm","Cat_2htt_2nsb","Cat_2htt_2btl_2nsb","Cat_2htt_2btm_2nsb","Cat_2btm","Cat_2btl_2nsb","Cat_2nsb","Cat_2htt_1btl","Cat_2htt_1btm"]
+name_list=["2jet","2htt","2htt_2btl","2htt_2btm","2htt_2nsb","2htt_2btl_2nsb","2htt_2btm_2nsb","2btm","2btl_2nsb","2nsb","2htt_1btl","2htt_1btm"]
 base_cut="NoCutsHistos"
-outfile=TFile("sbout.root","RECREATE")
+postfix='y'
+outfile=TFile("sbout_"+postfix+".root","RECREATE")
+
 
 def getEff(sample_index,cut_index):
   sample_file=TFile(path_base+sample_list[sample_index]+'.root')
@@ -64,6 +66,8 @@ for cut_index in range(len(cut_list)):
   shisto.SetLineWidth(3)
   shisto.SetMaximum(1.01)
   shisto.SetMinimum(mini)
+  shisto.GetXaxis().SetLabelSize(0.055)
+  shisto.GetXaxis().SetTitle("")
   bv=getEff2(cut_index)
   print bv
   bhisto.SetBinContent(cut_index+1,bv[0]/bv[1])
@@ -74,6 +78,8 @@ for cut_index in range(len(cut_list)):
   bhisto.SetLineColor(kRed)
   bhisto.SetMaximum(1.01)
   bhisto.SetMinimum(mini)
+  bhisto.GetXaxis().SetLabelSize(0.055)
+  bhisto.GetXaxis().SetTitle("")
   sbhisto.SetBinContent(cut_index+1,sv[0]/bv[0])
   #sbhisto.SetBinError(cut_index+1,bv[1])
   sbhisto.GetXaxis().SetBinLabel(cut_index+1,name_list[cut_index])
@@ -82,16 +88,18 @@ for cut_index in range(len(cut_list)):
   sbhisto.SetLineColor(kBlack)
   sbhisto.SetMaximum(0.1)
   sbhisto.SetMinimum(0.000001)
+  sbhisto.GetXaxis().SetLabelSize(0.055)
+  sbhisto.GetXaxis().SetTitle("")
 outfile.cd()
 c=TCanvas("sbcanvas")
 shisto.Draw()
 bhisto.Draw("SAME")
 c.SetLogy()
-c.SaveAs("pdf/sbcanvas_2.pdf")
+c.SaveAs("pdf/sbcanvas_"+postfix+".pdf")
 c.Write()
 c2=TCanvas("sbcanvas2")
 sbhisto.Draw()
 c2.SetLogy()
-c2.SaveAs("pdf/sbcanvas2_2.pdf")
+c2.SaveAs("pdf/sbcanvas2_"+postfix+".pdf")
 c2.Write()
 outfile.Close()
