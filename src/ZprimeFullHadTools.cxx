@@ -200,16 +200,21 @@ bool checkIndices(std::vector<int> index)
   return (index[0]!=-1 && index[1]!=-1 && index[0]!=index[1]); 
 }
 
-float deltaY(BaseCycleContainer * bcc,std::vector<int> index)
+float deltaY(TopJet j1,TopJet j2)
 {
-  return fabs(bcc->toptagjets->at(index[0]).v4().Rapidity()-bcc->toptagjets->at(index[1]).v4().Rapidity());
+  return fabs(j1.v4().Rapidity()-j2.v4().Rapidity());
+}
+
+float getMtt(TopJet j1,TopJet j2)
+{
+  return (j1.v4()+j2.v4()).M();
 }
 
 bool rapidityCut(BaseCycleContainer * bcc,std::vector<int> index, double value)
 {
-  double mass=(bcc->toptagjets->at(index[0]).v4()+bcc->toptagjets->at(index[1]).v4()).M();
+  double mass=getMtt(bcc->toptagjets->at(index[0]),bcc->toptagjets->at(index[1]));
   if (mass<2000) return true;
-  else return deltaY(bcc,index)<value;
+  else return deltaY(bcc->toptagjets->at(index[0]),bcc->toptagjets->at(index[1]))<value;
 }
 
 float getNsub(BaseCycleContainer * bcc,int index)
@@ -217,6 +222,11 @@ float getNsub(BaseCycleContainer * bcc,int index)
   int indexCA15 = getMatchedCA15Index(bcc, index);
   if (indexCA15>=0)  return bcc->topjets->at(indexCA15).tau3()/bcc->topjets->at(indexCA15).tau2();
   else               return 1000;
+}
+
+float getCMSNsub(BaseCycleContainer * bcc,int index)
+{
+  return bcc->higgstagjets->at(index).tau3()/bcc->higgstagjets->at(index).tau2();
 }
 
 bool variableMassHepTopTag(TopJet topjet, double ptJetMin, double massWindowLower, double massWindowUpper, double cutCondition2, double cutCondition3, double mlow, double mhigh)
@@ -369,6 +379,33 @@ void makeCategories(BaseCycleContainer * bcc, ZprimeFullHadHists * inclusive_bta
   }
 }
 
+void makeCMSCategories(BaseCycleContainer * bcc, ZprimeFullHadHists * inclusive_btag, ZprimeFullHadHists * zero_btag, ZprimeFullHadHists * one_btag, ZprimeFullHadHists * two_btag,
+		    std::vector<bool> toptag_list,
+		    std::vector<int> btag_list,
+		    std::vector<double> nsubjettiness_list)
+{
+  std::vector<int> Indices,Indices2,Indices3;
+  Indices=getCMSTopJetsIndices(bcc,1,1,toptag_list,btag_list,nsubjettiness_list);
+  if (checkIndices(Indices)){//2 btag cat
+  two_btag->Fill2(Indices,"",true);
+  inclusive_btag->Fill2(Indices,"",true);
+  }
+  else{
+    Indices2=getCMSTopJetsIndices(bcc,1,0,toptag_list,btag_list,nsubjettiness_list);
+    if (checkIndices(Indices2)){//1 btag cat
+      one_btag->Fill2(Indices2,"",true);
+      inclusive_btag->Fill2(Indices2,"",true);
+    }
+    else{
+      Indices3=getCMSTopJetsIndices(bcc,0,0,toptag_list,btag_list,nsubjettiness_list);
+      if(checkIndices(Indices3)){//0 btag cat
+         zero_btag->Fill2(Indices3,"",true);
+	 inclusive_btag->Fill2(Indices3,"",true);
+      }
+    }
+  }   
+}
+
 double TopJetMass(TopJet topjet)
 {
 //   double mjet;
@@ -388,6 +425,89 @@ double TopJetMass(TopJet topjet)
     return allsubjets.M();
   }
   
+}
+
+std::vector<int> getCMSTopJetsIndices(BaseCycleContainer *bcc, int m_BTag1,int m_BTag2,
+  		    std::vector<bool> toptag_list,
+		    std::vector<int> btag_list,
+		    std::vector<double> nsubjettiness_list)
+{
+  int index1=-1,index2=-1;
+  /////////first topjet
+  for (unsigned int i=0; i<bcc->higgstagjets->size(); i++)
+  {
+    
+    bool isTopTagged = false, isBTagged = false, isNsubTagged = false;
+    if (toptag_list.size()>0)
+    {
+      isTopTagged = toptag_list[i];
+      isBTagged = (btag_list[i]>0);
+      isNsubTagged = (nsubjettiness_list[i]<0.7);
+    }
+    else
+    {
+      double mjet=0; int nsubjets=0; double mmin=0;
+      isTopTagged = TopTag(bcc->higgstagjets->at(i),mjet,nsubjets,mmin);
+      isBTagged = subJetBTag(bcc->higgstagjets->at(i),e_CSVM)>0;
+      isNsubTagged = (getCMSNsub(bcc,i)<0.7);
+    }  
+    
+    if (m_BTag1==0) isBTagged = true;
+    
+    bool ptCond = bcc->higgstagjets->at(i).pt()>400.0;
+    if ( isTopTagged && isBTagged && isNsubTagged && ptCond )
+    {
+      if (index1==-1)
+      {
+	index1=i;
+      }
+      else
+      {
+	if (bcc->higgstagjets->at(i).pt()>bcc->higgstagjets->at(index1).pt()) index1=i;
+      }
+    }
+  }
+  if (index1==-1) return {-1,-1};
+  /////////second topjet
+  for (unsigned int i=0; i<bcc->higgstagjets->size(); i++)
+  {
+    
+    bool isTopTagged = false, isBTagged = false, isNsubTagged = false;
+    if (toptag_list.size()>0)
+    {
+      isTopTagged = toptag_list[i];
+      isBTagged = (btag_list[i]>0);
+      isNsubTagged = (nsubjettiness_list[i]<0.7);
+    }
+    else
+    {
+      double mjet=0; int nsubjets=0; double mmin=0;
+      isTopTagged = TopTag(bcc->higgstagjets->at(i),mjet,nsubjets,mmin);
+      isBTagged = subJetBTag(bcc->higgstagjets->at(i),e_CSVM)>0;
+      isNsubTagged = (getCMSNsub(bcc,i)<0.7);
+    }  
+    
+    if (m_BTag2==0) isBTagged = true;
+    
+    bool ptCond = bcc->higgstagjets->at(i).pt()>400.0;
+    bool yCond = true;//(deltaY(bcc->higgstagjets->at(index1),bcc->higgstagjets->at(i))<1.0);
+    bool phiCond = true;//(bcc->higgstagjets->at(index1).deltaPhi(bcc->higgstagjets->at(i))<2.1);
+    if ( isTopTagged && isBTagged && isNsubTagged && ptCond && yCond && phiCond)
+    {
+      if (i!=index1)
+      {
+	if (index2==-1)
+	{
+	  index2=i;
+	}
+	else
+	{
+	  if (bcc->higgstagjets->at(i).pt()>bcc->higgstagjets->at(index1).pt()) index2=i;
+	}
+      }
+    }
+  }
+  return {index1,index2}; 
 }
 
 //htt validation stuff

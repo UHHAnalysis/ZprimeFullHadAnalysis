@@ -66,8 +66,10 @@ void ZAnalysisCycle::BeginInputData( const SInputData& id ) throw( SError )
   // -------------------- set up the selections ---------------------------
   //DO NOT use trigger selection in PROOF mode at the moment
   //TopSel->addSelectionModule(new TriggerSelection("HLT_PFJet320_v"));
-  TriggerSel = new Selection("TriggerSel");
-  TriggerSel->addSelectionModule(new TriggerSelection("HLT_HT750"));
+  TriggerHT = new Selection("TriggerHT");
+  TriggerQuad = new Selection("TriggerQuad");
+  TriggerQuad->addSelectionModule(new TriggerSelection("HLT_QuadJet50"));
+  TriggerHT->addSelectionModule(new TriggerSelection("HLT_HT750"));
 
   // ---------------- set up the histogram collections --------------------
 
@@ -121,6 +123,21 @@ void ZAnalysisCycle::BeginInputData( const SInputData& id ) throw( SError )
   RegisterHistCollection( new ZprimeFullHadHists("had_012btag_ly"));
   RegisterHistCollection( new ZprimeFullHadHists("had_012btag_mny"));
   RegisterHistCollection( new ZprimeFullHadHists("had_012btag_lny"));
+  
+  RegisterHistCollection( new ZprimeFullHadHists("had_0btag_cms"));
+  RegisterHistCollection( new ZprimeFullHadHists("had_1btag_cms")); 
+  RegisterHistCollection( new ZprimeFullHadHists("had_2btag_cms"));
+  RegisterHistCollection( new ZprimeFullHadHists("had_012btag_cms"));
+  
+  RegisterHistCollection( new ZprimeFullHadHists("had_0btag_htt"));
+  RegisterHistCollection( new ZprimeFullHadHists("had_1btag_htt")); 
+  RegisterHistCollection( new ZprimeFullHadHists("had_2btag_htt"));
+  RegisterHistCollection( new ZprimeFullHadHists("had_012btag_htt"));
+  
+  RegisterHistCollection( new ZprimeFullHadHists("had_0btag_httcms"));
+  RegisterHistCollection( new ZprimeFullHadHists("had_1btag_httcms")); 
+  RegisterHistCollection( new ZprimeFullHadHists("had_2btag_httcms"));
+  RegisterHistCollection( new ZprimeFullHadHists("had_012btag_httcms"));
   
   RegisterHistCollection( new ZprimeFullHadHists("antitag_den"));
   RegisterHistCollection( new ZprimeFullHadHists("antitag_num"));
@@ -207,6 +224,21 @@ void ZAnalysisCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw(
   BaseHists* had_012btag_mny = GetHistCollection("had_012btag_mny");
   BaseHists* had_012btag_lny = GetHistCollection("had_012btag_lny");
   
+  BaseHists* had_0btag_cms = GetHistCollection("had_0btag_cms");
+  BaseHists* had_1btag_cms = GetHistCollection("had_1btag_cms"); 
+  BaseHists* had_2btag_cms = GetHistCollection("had_2btag_cms");
+  BaseHists* had_012btag_cms = GetHistCollection("had_012btag_cms");
+  
+  BaseHists* had_0btag_htt = GetHistCollection("had_0btag_htt");
+  BaseHists* had_1btag_htt = GetHistCollection("had_1btag_htt"); 
+  BaseHists* had_2btag_htt = GetHistCollection("had_2btag_htt");
+  BaseHists* had_012btag_htt = GetHistCollection("had_012btag_htt");
+  
+  BaseHists* had_0btag_httcms = GetHistCollection("had_0btag_httcms");
+  BaseHists* had_1btag_httcms = GetHistCollection("had_1btag_httcms"); 
+  BaseHists* had_2btag_httcms = GetHistCollection("had_2btag_httcms");
+  BaseHists* had_012btag_httcms = GetHistCollection("had_012btag_httcms");
+  
   BaseHists* antitag_den = GetHistCollection("antitag_den");
   BaseHists* antitag_num = GetHistCollection("antitag_num");
   BaseHists* antitag_num_l = GetHistCollection("antitag_num_l");
@@ -236,30 +268,73 @@ void ZAnalysisCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw(
   double ycut=1.0;
   
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   if ((TriggerSel->passSelection()) /*&& (calc->GetHT()>1000.0)*/) TriggerHistos->Fill(); else throw SError( SError::SkipEvent );
+   //if ((TriggerSel->passSelection()) /*&& (calc->GetHT()>1000.0)*/) TriggerHistos->Fill(); else throw SError( SError::SkipEvent );
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   std::vector<int> btag_medium_list;
   std::vector<int> btag_loose_list;
   std::vector<bool> heptoptag_list;
   std::vector<double> nsubjettiness_list;
+  
+  std::vector<int> CMSbtag_medium_list;
+  std::vector<bool> CMStoptag_list;
+  std::vector<double> CMSnsubjettiness_list;
   for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
   {
     heptoptag_list.push_back(HepTopTag(bcc->toptagjets->at(i)));
-    btag_loose_list.push_back(subJetBTag(bcc->toptagjets->at(i),e_CSVL,"mean","/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/ZBTagEff.root"));
-    btag_medium_list.push_back(subJetBTag(bcc->toptagjets->at(i),e_CSVM,"mean","/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/ZBTagEff.root"));
+    btag_loose_list.push_back(subJetBTag(bcc->toptagjets->at(i),e_CSVL/*,"mean","/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/ZBTagEff.root"*/));
+    btag_medium_list.push_back(subJetBTag(bcc->toptagjets->at(i),e_CSVM/*,"mean","/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/ZBTagEff.root"*/));
     nsubjettiness_list.push_back(getNsub(bcc,i));
+    //cout<<subJetBTag(bcc->toptagjets->at(i),e_CSVM)<<" "<< HepTopTag(bcc->toptagjets->at(i))<<" "<< getNsub(bcc,i)<<"\n";
+  }
+   //cout<<"\n";
+  for (unsigned int i=0; i<bcc->higgstagjets->size(); i++)
+  {
+    double mjet=0; int nsubjets=0; double mmin=0;
+    CMSbtag_medium_list.push_back( subJetBTag(bcc->higgstagjets->at(i),e_CSVM/*,"mean","/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/ZBTagEff.root"*/) );
+    CMStoptag_list.push_back( TopTag(bcc->higgstagjets->at(i),mjet,nsubjets,mmin) );
+    CMSnsubjettiness_list.push_back( getCMSNsub(bcc,i) );
+    //cout<<subJetBTag(bcc->higgstagjets->at(i),e_CSVM)<<" "<< TopTag(bcc->higgstagjets->at(i),mjet,nsubjets,mmin)<<" "<< getCMSNsub(bcc,i)<<"\n";
+  }
+  //cout<<"\n\n";
+  
+  int n=0,ncms=0;
+  for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
+  {
+    if (bcc->toptagjets->at(i).pt()>=200.0) n++;
+  }
+  for (unsigned int i=0; i<bcc->higgstagjets->size(); i++)
+  {
+    if (bcc->higgstagjets->at(i).pt()>=400.0) ncms++;
+  }
+  
+  //getTopJetsIndices(bcc,0,0,0,0,0,0,0,e_CSVM,e_CSVM,0,0,0,200,200,heptoptag_list,btag_medium_list,nsubjettiness_list);
+  
+  if ((ncms>1)&&(TriggerHT->passSelection()))
+  {
+    makeCMSCategories(bcc, (ZprimeFullHadHists*)had_012btag_cms, (ZprimeFullHadHists*)had_0btag_cms, (ZprimeFullHadHists*)had_1btag_cms, (ZprimeFullHadHists*)had_2btag_cms,CMStoptag_list,CMSbtag_medium_list,CMSnsubjettiness_list);
+    makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_httcms, (ZprimeFullHadHists*)had_0btag_httcms, (ZprimeFullHadHists*)had_1btag_httcms, (ZprimeFullHadHists*)had_2btag_httcms, e_CSVM, 0, 0,heptoptag_list,btag_medium_list,nsubjettiness_list);
+  }
+  else
+  {
+    if(n>1)
+    {
+      makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_htt, (ZprimeFullHadHists*)had_0btag_htt, (ZprimeFullHadHists*)had_1btag_htt, (ZprimeFullHadHists*)had_2btag_htt, e_CSVM, 0, 0,heptoptag_list,btag_medium_list,nsubjettiness_list);
+    }
   }
   
   makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_m, (ZprimeFullHadHists*)had_0btag_m, (ZprimeFullHadHists*)had_1btag_m, (ZprimeFullHadHists*)had_2btag_m, e_CSVM, 0, 0,heptoptag_list,btag_medium_list,nsubjettiness_list);
-  makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_l, (ZprimeFullHadHists*)had_0btag_l, (ZprimeFullHadHists*)had_1btag_l, (ZprimeFullHadHists*)had_2btag_l, e_CSVL, 0, 0,heptoptag_list,btag_loose_list,nsubjettiness_list);
-  makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_mn, (ZprimeFullHadHists*)had_0btag_mn, (ZprimeFullHadHists*)had_1btag_mn, (ZprimeFullHadHists*)had_2btag_mn, e_CSVM, 1, 0,heptoptag_list,btag_medium_list,nsubjettiness_list);
-  makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_ln, (ZprimeFullHadHists*)had_0btag_ln, (ZprimeFullHadHists*)had_1btag_ln, (ZprimeFullHadHists*)had_2btag_ln, e_CSVL, 1, 0,heptoptag_list,btag_loose_list,nsubjettiness_list);
-  makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_my, (ZprimeFullHadHists*)had_0btag_my, (ZprimeFullHadHists*)had_1btag_my, (ZprimeFullHadHists*)had_2btag_my, e_CSVM, 0, 1,heptoptag_list,btag_medium_list,nsubjettiness_list);
-  makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_ly, (ZprimeFullHadHists*)had_0btag_ly, (ZprimeFullHadHists*)had_1btag_ly, (ZprimeFullHadHists*)had_2btag_ly, e_CSVL, 0, 1,heptoptag_list,btag_loose_list,nsubjettiness_list);
-  makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_mny, (ZprimeFullHadHists*)had_0btag_mny, (ZprimeFullHadHists*)had_1btag_mny, (ZprimeFullHadHists*)had_2btag_mny, e_CSVM, 1, 1,heptoptag_list,btag_medium_list,nsubjettiness_list);
-  makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_lny, (ZprimeFullHadHists*)had_0btag_lny, (ZprimeFullHadHists*)had_1btag_lny, (ZprimeFullHadHists*)had_2btag_lny, e_CSVL, 1, 1,heptoptag_list,btag_loose_list,nsubjettiness_list);
+  
+//   makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_m, (ZprimeFullHadHists*)had_0btag_m, (ZprimeFullHadHists*)had_1btag_m, (ZprimeFullHadHists*)had_2btag_m, e_CSVM, 0, 0,heptoptag_list,btag_medium_list,nsubjettiness_list);
+//   makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_l, (ZprimeFullHadHists*)had_0btag_l, (ZprimeFullHadHists*)had_1btag_l, (ZprimeFullHadHists*)had_2btag_l, e_CSVL, 0, 0,heptoptag_list,btag_loose_list,nsubjettiness_list);
+//   makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_mn, (ZprimeFullHadHists*)had_0btag_mn, (ZprimeFullHadHists*)had_1btag_mn, (ZprimeFullHadHists*)had_2btag_mn, e_CSVM, 1, 0,heptoptag_list,btag_medium_list,nsubjettiness_list);
+//   makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_ln, (ZprimeFullHadHists*)had_0btag_ln, (ZprimeFullHadHists*)had_1btag_ln, (ZprimeFullHadHists*)had_2btag_ln, e_CSVL, 1, 0,heptoptag_list,btag_loose_list,nsubjettiness_list);
+//   makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_my, (ZprimeFullHadHists*)had_0btag_my, (ZprimeFullHadHists*)had_1btag_my, (ZprimeFullHadHists*)had_2btag_my, e_CSVM, 0, 1,heptoptag_list,btag_medium_list,nsubjettiness_list);
+//   makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_ly, (ZprimeFullHadHists*)had_0btag_ly, (ZprimeFullHadHists*)had_1btag_ly, (ZprimeFullHadHists*)had_2btag_ly, e_CSVL, 0, 1,heptoptag_list,btag_loose_list,nsubjettiness_list);
+//   makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_mny, (ZprimeFullHadHists*)had_0btag_mny, (ZprimeFullHadHists*)had_1btag_mny, (ZprimeFullHadHists*)had_2btag_mny, e_CSVM, 1, 1,heptoptag_list,btag_medium_list,nsubjettiness_list);
+//   makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_lny, (ZprimeFullHadHists*)had_0btag_lny, (ZprimeFullHadHists*)had_1btag_lny, (ZprimeFullHadHists*)had_2btag_lny, e_CSVL, 1, 1,heptoptag_list,btag_loose_list,nsubjettiness_list);
 
+//   makeCMSCategories(bcc, (ZprimeFullHadHists*)had_012btag_cms, (ZprimeFullHadHists*)had_0btag_cms, (ZprimeFullHadHists*)had_1btag_cms, (ZprimeFullHadHists*)had_2btag_cms,CMStoptag_list,CMSbtag_medium_list,CMSnsubjettiness_list);
   
   int antitag_index=-1;
   double max_antitag_pt=-1;

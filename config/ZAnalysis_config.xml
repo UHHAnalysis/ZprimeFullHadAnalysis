@@ -143,7 +143,7 @@
 	<Package Name="ZprimeFullHadAnalysis.par" /> 
 
 <!--   <Cycle Name="ZAnalysisCycle" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/" PostFix="" TargetLumi="19708" > -->
-   <Cycle Name="ZAnalysisCycle"  RunMode="PROOF" ProofServer="pod://"  ProofWorkDir="/scratch/hh/dust/naf/cms/user/usai/PROOF/" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/750/" PostFix="" TargetLumi="19700" > 
+   <Cycle Name="ZAnalysisCycle"  RunMode="PROOF" ProofServer="pod://"  ProofWorkDir="/scratch/hh/dust/naf/cms/user/usai/PROOF/" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/" PostFix="" TargetLumi="19700" > 
    <!-- <Cycle Name="ZprimeFullHadCycle" OutputDirectory="./" PostFix="" TargetLumi="1.0"> -->
 
 <!--		<InputData Lumi="1.0" NEventsMax="-1" Type="DATA" Version="DATA" Cacheable="False">
@@ -261,7 +261,7 @@
 
 
 <InputTree Name="AnalysisTree" />
-</InputData>
+</InputData>-->
 
 
 
@@ -378,9 +378,9 @@
 <InputData Lumi="461894.034276552" NEventsMax="-1" Type="MC" Version="TTbarLept" Cacheable="True">
 <In FileName="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/preselection/PreselectionCycle.MC.TTbarLept.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
-</InputData>-->
+</InputData>
 
-<!--<InputData Lumi="4.834294305" NEventsMax="-1" Type="MC" Version="QCD_HT-100To250" Cacheable="True">
+<InputData Lumi="4.834294305" NEventsMax="-1" Type="MC" Version="QCD_HT-100To250" Cacheable="True">
 <In FileName="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-100To250.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
 </InputData>
@@ -404,7 +404,7 @@
 <In FileName="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-500To100008.root" Lumi="0.0"/> 
 <In FileName="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-500To100009.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
-</InputData>-->
+</InputData>
 
 
 
@@ -478,13 +478,14 @@
 		   <Item Name="TopTagJetCollection" Value="goodPatJetsCAHEPTopTagPFPacked" />
 		   <Item Name="TopJetCollectionGen" Value="caHEPTopTagGen" />
 		   <Item Name="GenParticleCollection" Value="GenParticles" /> 
+	           <Item Name="HiggsTagJetCollection" Value="goodPatJetsCATopTagPFPacked" />
 		      
 		   <!-- 		      <Item Name="PU_Filename_Data" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/PileUpHistos/MyDataPileupHistogram_206745.root" /> -->
 		      <Item Name="PU_Filename_MC" Value="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/PileUpHistoCycle" />
                        <Item Name="PU_Filename_Data" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root" />
 		      <Item Name="PU_Histname_Data" Value="pileup" />
 		      <Item Name="PU_Histname_MC" Value="N_pileup_hist" />
-
+                      <Item Name="JECHiggsTagJetCollection" Value="AK7PFchs" />
 <!--		      <Item Name="writeTTbarReco" Value="True" />  
 		      <Item Name="readTTbarReco" Value="True" /> -->
 		      

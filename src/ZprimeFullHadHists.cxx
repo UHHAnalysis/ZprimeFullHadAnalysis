@@ -193,7 +193,7 @@ void ZprimeFullHadHists::Fill2(std::vector<int> Indices, string version, bool us
   }
   if (checkIndices(TopJetIndices))
   {
-    HEPTopTaggerReweight httr;
+    //HEPTopTaggerReweight httr;
     double htt_weight=1.0;
 //     if (version=="TTbarLept" || version=="TTbarSemi" || version=="TTbarHad") htt_weight=httr.GetScaleWeight(TopJetIndices);
     ((TH2F*)Hist("Njetsvspt"))->Fill(nj,collection->at(TopJetIndices[0]).pt(),weight*htt_weight);
@@ -212,9 +212,18 @@ void ZprimeFullHadHists::Fill2(std::vector<int> Indices, string version, bool us
     }
     Hist("TopCandidate1Pt")->Fill(collection->at(TopJetIndices[0]).pt(),weight*htt_weight);
     Hist("TopCandidate2Pt")->Fill(collection->at(TopJetIndices[1]).pt(),weight*htt_weight);
-    Hist("Mtt")->Fill((collection->at(TopJetIndices[0]).v4()+collection->at(TopJetIndices[1]).v4()).M(),weight*htt_weight);
-    Hist( "DeltaY" )->Fill(deltaY(bcc,TopJetIndices),weight*htt_weight);
-    Hist(  "Nsub"  )->Fill(getNsub(bcc,TopJetIndices[0]),weight*htt_weight);
+    Hist("Mtt")->Fill(getMtt(collection->at(TopJetIndices[0]),collection->at(TopJetIndices[1])),weight*htt_weight);    
+    Hist( "DeltaY" )->Fill(deltaY(collection->at(TopJetIndices[0]),collection->at(TopJetIndices[1])),weight*htt_weight);
+    
+    if (useCMSTT)
+    {
+      Hist(  "Nsub"  )->Fill(getCMSNsub(bcc,TopJetIndices[0]),weight*htt_weight);
+    }
+    else
+    {
+      Hist(  "Nsub"  )->Fill(getNsub(bcc,TopJetIndices[0]),weight*htt_weight);
+    }
+    
     Hist( "DeltaEta" )->Fill(fabs(collection->at(TopJetIndices[0]).eta()-collection->at(TopJetIndices[1]).eta()),weight*htt_weight);
     Hist( "DeltaPhi" )->Fill(collection->at(TopJetIndices[0]).deltaPhi(collection->at(TopJetIndices[1])),weight*htt_weight);
     Hist( "DeltaR" )->Fill(collection->at(TopJetIndices[0]).deltaR(collection->at(TopJetIndices[1])),weight*htt_weight);

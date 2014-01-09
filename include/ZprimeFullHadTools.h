@@ -80,11 +80,17 @@ std::vector<int> getTopJetsIndices(BaseCycleContainer *bcc,int m_TopTag1,int m_T
 				   std::vector<bool> heptoptag_list = std::vector<bool>(),
 				   std::vector<int> btag_list = std::vector<int>(),
 				   std::vector<double> nsubjettiness_list = std::vector<double>());
+std::vector<int> getCMSTopJetsIndices(BaseCycleContainer *bcc, int m_BTag1,int m_BTag2,
+  		    std::vector<bool> toptag_list,
+		    std::vector<int> btag_list,
+		    std::vector<double> nsubjettiness_list);
 int getMatchedCA15Index(BaseCycleContainer *bcc, int indexHTT);
 bool checkIndices(std::vector<int>);
-float deltaY(BaseCycleContainer *,std::vector<int>);
+float deltaY(TopJet j1,TopJet j2);
+float getMtt(TopJet j1,TopJet j2);
 bool rapidityCut(BaseCycleContainer *,std::vector<int>, double value=1.0);
 float getNsub(BaseCycleContainer *,int);
+float getCMSNsub(BaseCycleContainer *,int);
 bool MassHepTopTag(TopJet topjet, double mlow=140.0, double mhigh=250.0);
 bool MassHepTopTag(TopJet topjet, double minpt, double mlow, double mhigh);
 bool BareHepTopTag(TopJet topjet);
@@ -95,7 +101,12 @@ void makeCategories(BaseCycleContainer * bcc, ZprimeFullHadHists * inclusive_bta
 		    std::vector<bool> heptoptag_list,
 		    std::vector<int> btag_list,
 		    std::vector<double> nsubjettiness_list, string version="");
+void makeCMSCategories(BaseCycleContainer * bcc, ZprimeFullHadHists * inclusive_btag, ZprimeFullHadHists * zero_btag, ZprimeFullHadHists * one_btag, ZprimeFullHadHists * two_btag,
+		    std::vector<bool> toptag_list,
+		    std::vector<int> btag_list,
+		    std::vector<double> nsubjettiness_list);
 double TopJetMass(TopJet topjet);
+
 
 //for HepTopTagger validation
 class NHadTopJetSelection2: public SelectionModule {

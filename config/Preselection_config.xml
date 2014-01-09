@@ -544,7 +544,7 @@
 
 
 
-<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunD00" Cacheable="True">
+<!--<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunD00" Cacheable="True">
 &RunD00;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -642,7 +642,7 @@
 <InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunD19" Cacheable="True">
 &RunD19;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>
+</InputData>-->
 
 <!--<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunD20" Cacheable="True">
 &RunD20;
@@ -967,7 +967,7 @@
 </InputData>-->
 
 
-<!--<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf00" Cacheable="True">
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf00" Cacheable="True">
 &QCD_HT-1000ToInf00;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -1015,13 +1015,13 @@
 <InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf09" Cacheable="True">
 &QCD_HT-1000ToInf09;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>-->
+</InputData>
 
 
 
 
 
-<!--<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf10" Cacheable="True">
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf10" Cacheable="True">
 &QCD_HT-1000ToInf10;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -1069,13 +1069,13 @@
 <InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf19" Cacheable="True">
 &QCD_HT-1000ToInf19;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>-->
+</InputData>
 
 
 
 
 
-<!--<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf20" Cacheable="True">
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf20" Cacheable="True">
 &QCD_HT-1000ToInf20;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -1123,7 +1123,7 @@
 <InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf29" Cacheable="True">
 &QCD_HT-1000ToInf29;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>-->
+</InputData>
 
 
 <!--DO NOT USE<InputData Lumi="8818.5" NEventsMax="2156010" Type="MC" Version="TTbar" Cacheable="True">
