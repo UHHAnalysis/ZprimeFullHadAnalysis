@@ -3,7 +3,7 @@ from ROOT import TFile,gROOT,TGraph,TLegend,TCanvas,kBlack,kRed,kBlue,kGreen,kWh
 from array import array
 gROOT.SetBatch()
 
-doy=False
+doy=True
 
 xj = [1.0 , 1.5, 2.0, 3.0]
 xs = [0.5,0.625,0.75,1.0,1.25,1.5,2.0,3.0]
@@ -20,15 +20,15 @@ postfix=''
 if doy:
   zero12T=zero12TDY
   zero12TNsub=zero12TNsubDY
-  postfix='y'
+  #postfix='y'
 
 twoT = [0.359, 0.05528, 0.02544, 0.02167]
 twoTNsub = [ 0.3272, 0.0521, 0.02204, 0.02042 ]
 #zero12T=twoT
 #zero12TNsub=twoTNsub
 
-f_m = open("/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/zphad_012btag_l"+postfix+".txt", "r" )
-f_mn = open("/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/zphad_012btag_ln"+postfix+".txt", "r" )
+f_m = open("/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_cms"+postfix+".txt", "r" )
+f_mn = open("/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_cms_htt"+postfix+".txt", "r" )
 f_m_lines=f_m.readlines()
 f_mn_lines=f_mn.readlines()
 f_m.close()
@@ -97,13 +97,14 @@ b2gs.Draw('l')
 j_m.Draw('l')
 m.Draw('l')
 legend.Draw()
-c1.SaveAs('pdf/zphad_012btag_l'+postfix+'.pdf')
+#c1.SaveAs('pdf/zphad_012btag_cms'+postfix+'.pdf')
 
 c2=TCanvas('mn')
 c2.SetLogy()
 b2g.Draw('al')
 b2gs.Draw('l')
 j_mn.Draw('l')
+m.Draw('l')
 mn.Draw('l')
 legend.Draw()
-c2.SaveAs('pdf/zphad_012btag_ln'+postfix+'.pdf')
+c2.SaveAs('pdf/zphad_012btag_cms2'+postfix+'.pdf')
