@@ -490,8 +490,8 @@ std::vector<int> getCMSTopJetsIndices(BaseCycleContainer *bcc, int m_BTag1,int m
     if (m_BTag2==0) isBTagged = true;
     
     bool ptCond = bcc->higgstagjets->at(i).pt()>400.0;
-    bool yCond = true;//(deltaY(bcc->higgstagjets->at(index1),bcc->higgstagjets->at(i))<1.0);
-    bool phiCond = true;//(bcc->higgstagjets->at(index1).deltaPhi(bcc->higgstagjets->at(i))<2.1);
+    bool yCond = (deltaY(bcc->higgstagjets->at(index1),bcc->higgstagjets->at(i))<1.0);
+    bool phiCond = (bcc->higgstagjets->at(index1).deltaPhi(bcc->higgstagjets->at(i))>2.1);
     if ( isTopTagged && isBTagged && isNsubTagged && ptCond && yCond && phiCond)
     {
       if (i!=index1)
@@ -508,6 +508,12 @@ std::vector<int> getCMSTopJetsIndices(BaseCycleContainer *bcc, int m_BTag1,int m
     }
   }
   return {index1,index2}; 
+}
+
+bool TopTag(TopJet t)
+{
+  double mjet=0; int nsubjets=0; double mmin=0;
+  return TopTag(t,mjet,nsubjets,mmin);
 }
 
 //htt validation stuff

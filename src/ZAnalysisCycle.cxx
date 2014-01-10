@@ -305,7 +305,7 @@ void ZAnalysisCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw(
   }
   for (unsigned int i=0; i<bcc->higgstagjets->size(); i++)
   {
-    if (bcc->higgstagjets->at(i).pt()>=400.0) ncms++;
+    if ((bcc->higgstagjets->at(i).pt()>=400.0)&&TopTag(bcc->higgstagjets->at(i))) ncms++;
   }
   
   //getTopJetsIndices(bcc,0,0,0,0,0,0,0,e_CSVM,e_CSVM,0,0,0,200,200,heptoptag_list,btag_medium_list,nsubjettiness_list);

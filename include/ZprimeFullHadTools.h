@@ -106,6 +106,7 @@ void makeCMSCategories(BaseCycleContainer * bcc, ZprimeFullHadHists * inclusive_
 		    std::vector<int> btag_list,
 		    std::vector<double> nsubjettiness_list);
 double TopJetMass(TopJet topjet);
+bool TopTag(TopJet t);
 
 
 //for HepTopTagger validation
