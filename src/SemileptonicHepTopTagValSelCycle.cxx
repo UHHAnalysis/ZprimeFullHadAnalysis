@@ -116,7 +116,7 @@ void SemileptonicHepTopTagValSelCycle::BeginInputData( const SInputData& id ) th
     {
       if(id.GetVersion()=="TTbar" || id.GetVersion()=="TTbarsemi_powheg" || id.GetVersion()=="TTbarlept_powheg" || id.GetVersion()=="TTbarsemi_mcatnlo" || id.GetVersion()=="TTbarlept_mcatnlo")
       {
-	m_BTagEffiFilenameMC="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/preselection/SemileptonicPreselectionCycle";
+	m_BTagEffiFilenameMC="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/SemileptonicPreselectionCycle";
       }
       m_BTagEffiFilenameMC += ".";
       m_BTagEffiFilenameMC += id.GetType();
@@ -330,6 +330,13 @@ void SemileptonicHepTopTagValSelCycle::BeginInputData( const SInputData& id ) th
     
     RegisterHistCollection( new SemileptonicselectionHists("eta1p0_HTT_nsub") );
     RegisterHistCollection( new SemileptonicselectionHists("eta1p0to2p4_HTT_nsub") );
+    
+    RegisterHistCollection( new SemileptonicselectionHists("cutflow_mass_eta1p0") );
+    RegisterHistCollection( new SemileptonicselectionHists("cutflow_mass_eta1p0to2p4") );
+    RegisterHistCollection( new SemileptonicselectionHists("cutflow_mass_htt_eta1p0") );
+    RegisterHistCollection( new SemileptonicselectionHists("cutflow_mass_htt_eta1p0to2p4") );
+    RegisterHistCollection( new SemileptonicselectionHists("cutflow_mass_htt_nsub_eta1p0") );
+    RegisterHistCollection( new SemileptonicselectionHists("cutflow_mass_htt_nsub_eta1p0to2p4") );
       
     RegisterHistCollection( new BTagEffHistsHadTop("BTagEff") );
     Book( TH1D( "LeptToppt_2", ";Pt leptonic top (GeV);Events", 25, 0, 1000));
@@ -614,6 +621,13 @@ void SemileptonicHepTopTagValSelCycle::ExecuteEvent( const SInputData& id, Doubl
     BaseHists* Hists_eta1p0to2p4_HTT_nsub = GetHistCollection("eta1p0to2p4_HTT_nsub");
     
     BaseHists* specialSFeffi = GetHistCollection("BTagEff");
+    
+    BaseHists* Hists_cutflow_mass_eta1p0 = GetHistCollection("cutflow_mass_eta1p0");
+    BaseHists* Hists_cutflow_mass_eta1p0to2p4 = GetHistCollection("cutflow_mass_eta1p0to2p4");
+    BaseHists* Hists_cutflow_mass_htt_eta1p0 = GetHistCollection("cutflow_mass_htt_eta1p0");
+    BaseHists* Hists_cutflow_mass_htt_eta1p0to2p4 = GetHistCollection("cutflow_mass_htt_eta1p0to2p4");
+    BaseHists* Hists_cutflow_mass_htt_nsub_eta1p0 = GetHistCollection("cutflow_mass_htt_nsub_eta1p0");
+    BaseHists* Hists_cutflow_mass_htt_nsub_eta1p0to2p4 = GetHistCollection("cutflow_mass_htt_nsub_eta1p0to2p4");
 
    Histsnocuts->Fill();
 
@@ -867,6 +881,45 @@ void SemileptonicHepTopTagValSelCycle::ExecuteEvent( const SInputData& id, Doubl
       }
     }
 
+    
+    //cutflow
+    if(indexjet>-1)
+    {
+      float topeta=fabs(bcc->toptagjets->at(indexjet).eta());
+      double topjetmass=TopJetMass(bcc->toptagjets->at(indexjet));
+      double nsub=getNsub(bcc,indexjet);
+      if (topjetmass>140.0 && topjetmass<250.0)
+      {
+	if(topeta<1.0)
+	{
+	  Hists_cutflow_mass_eta1p0->Fill();
+	  if(heptoptag_NOmasscut->passSelection())
+	  {
+	    Hists_cutflow_mass_htt_eta1p0->Fill();
+	    if(nsub<0.63)
+	    {
+	      Hists_cutflow_mass_htt_nsub_eta1p0->Fill();
+	    }
+	  }
+	}
+	if(topeta>1.0 && topeta<2.4)
+	{
+	  Hists_cutflow_mass_eta1p0to2p4->Fill();
+	  if(heptoptag_NOmasscut->passSelection())
+	  {
+	    Hists_cutflow_mass_htt_eta1p0to2p4->Fill();
+	    if(nsub<0.63)
+	    {
+	      Hists_cutflow_mass_htt_nsub_eta1p0to2p4->Fill();
+	    }
+	  }
+	}
+	
+      }
+    }
+    
+    
+    
     //hep top tagger with no mass cut
     if(heptoptag_NOmasscut->passSelection())
     { 

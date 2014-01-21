@@ -379,31 +379,36 @@ void makeCategories(BaseCycleContainer * bcc, ZprimeFullHadHists * inclusive_bta
   }
 }
 
-void makeCMSCategories(BaseCycleContainer * bcc, ZprimeFullHadHists * inclusive_btag, ZprimeFullHadHists * zero_btag, ZprimeFullHadHists * one_btag, ZprimeFullHadHists * two_btag,
+bool makeCMSCategories(BaseCycleContainer * bcc, ZprimeFullHadHists * inclusive_btag, ZprimeFullHadHists * zero_btag, ZprimeFullHadHists * one_btag, ZprimeFullHadHists * two_btag,
 		    std::vector<bool> toptag_list,
 		    std::vector<int> btag_list,
 		    std::vector<double> nsubjettiness_list)
 {
+  bool iscmsgood=false;
   std::vector<int> Indices,Indices2,Indices3;
   Indices=getCMSTopJetsIndices(bcc,1,1,toptag_list,btag_list,nsubjettiness_list);
   if (checkIndices(Indices)){//2 btag cat
   two_btag->Fill2(Indices,"",true);
   inclusive_btag->Fill2(Indices,"",true);
+  iscmsgood=true;
   }
   else{
     Indices2=getCMSTopJetsIndices(bcc,1,0,toptag_list,btag_list,nsubjettiness_list);
     if (checkIndices(Indices2)){//1 btag cat
       one_btag->Fill2(Indices2,"",true);
       inclusive_btag->Fill2(Indices2,"",true);
+      iscmsgood=true;
     }
     else{
       Indices3=getCMSTopJetsIndices(bcc,0,0,toptag_list,btag_list,nsubjettiness_list);
       if(checkIndices(Indices3)){//0 btag cat
          zero_btag->Fill2(Indices3,"",true);
 	 inclusive_btag->Fill2(Indices3,"",true);
+	 iscmsgood=true;
       }
     }
-  }   
+  }
+  return iscmsgood;
 }
 
 double TopJetMass(TopJet topjet)
@@ -637,7 +642,7 @@ bool NAntiMuonSubBTagSelection2::pass(BaseCycleContainer *bcc)
 	if(m_type==e_CSVT && test>0.898) jettagged=1;
 	
       }*/
-      if(subJetBTag(bcc->toptagjets->at(i), e_CSVM, "mean" ,"/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/subjetbtageff.root")>=1) jettagged=1;
+      if(subJetBTag(bcc->toptagjets->at(i), e_CSVM, "mean" ,"/nfs/dust/cms/user/usaiem/ZprimeFullHad/subjetbtageff.root")>=1) jettagged=1;
 
       
       

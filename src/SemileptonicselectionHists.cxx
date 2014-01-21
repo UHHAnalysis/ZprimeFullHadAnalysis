@@ -76,7 +76,7 @@ void SemileptonicselectionHists::Init()
   Book( TH1D( "var1_HTT", ";atan(m_{13}/m_{12});Events",50 ,0. ,1.5 ));
   Book( TH1D( "var2_HTT", ";m_{23}/m_{123};Events",50 ,0. ,1. ));
   Book( TH1D( "var3_HTT", ";m_{W};Events", 50, 0, 150));
-  Book( TH2D( "HTT2D", ";atan(m_{13}/m_{12});m_{23}/m_{123}",100 ,0. ,1.5, 100,0. ,1.));
+  Book( TH2D( "HTT2D", ";atan(m_{13}/m_{12});m_{23}/m_{123}",200 ,0. ,3., 200,0. ,2.));
   Book( TH1D( "dRsubjet", ";DeltaR(subjets);Events", 200, 0, 3));
   Book( TH1D( "LeptToppt", ";Pt leptonic top (GeV);Events", 25, 0, 1000));
 }

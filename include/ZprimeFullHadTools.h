@@ -101,7 +101,7 @@ void makeCategories(BaseCycleContainer * bcc, ZprimeFullHadHists * inclusive_bta
 		    std::vector<bool> heptoptag_list,
 		    std::vector<int> btag_list,
 		    std::vector<double> nsubjettiness_list, string version="");
-void makeCMSCategories(BaseCycleContainer * bcc, ZprimeFullHadHists * inclusive_btag, ZprimeFullHadHists * zero_btag, ZprimeFullHadHists * one_btag, ZprimeFullHadHists * two_btag,
+bool makeCMSCategories(BaseCycleContainer * bcc, ZprimeFullHadHists * inclusive_btag, ZprimeFullHadHists * zero_btag, ZprimeFullHadHists * one_btag, ZprimeFullHadHists * two_btag,
 		    std::vector<bool> toptag_list,
 		    std::vector<int> btag_list,
 		    std::vector<double> nsubjettiness_list);

@@ -1,4 +1,4 @@
-from ROOT import TFile,TH1F,THStack,TCanvas,TLegend,TLatex,gROOT,kRed,kBlue,kGreen,kGray,kBlack,kOrange,gStyle,kTRUE,kFALSE,TLine,TF1,TGraphAsymmErrors,kWhite,kMagenta,kAzure
+from ROOT import TFile,TH1F,THStack,TCanvas,TLegend,TLatex,gROOT,kRed,kBlue,kGreen,kGray,kBlack,kOrange,gStyle,kTRUE,kFALSE,TLine,TF1,TGraphAsymmErrors,kWhite,kMagenta,kAzure,TPaveText
 from math import atan,sqrt
 from copy import deepcopy
 from array import array
@@ -17,7 +17,7 @@ if len(argv[1:])>0:
   appendix='_'+argv[1]
 
 
-files_path = "/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/"
+files_path = "/nfs/dust/cms/user/usaiem/ZprimeFullHad/"
 #if len(argv[1:])==2:
   #files_path = "/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad"+appendix+"/"
   
@@ -284,7 +284,7 @@ histogram_yaxes.append('Events')
 #HTT2D
 histogram_names.append('HTT2D')
 histogram_descriptions.append('HTT2D')
-histogram_yaxes.append('atan(m_{13}/m_{12})')
+histogram_yaxes.append('atan( m_{13} / m_{12} )')
 histogram_xaxes.append('m_{23}/m_{123}')
 #dRsubjet
 histogram_names.append('dRsubjet')
@@ -297,7 +297,11 @@ histogram_descriptions.append('LeptToppt')
 histogram_yaxes.append('Pt leptonic top (GeV)')
 histogram_xaxes.append('Events')
 
-cut_names = ["nocutshists","nleptbtagshists","probeselehists","htcuthists","etmisshists","njetshists","masswindowhists","heptoptag_masscut_hists","heptoptag_masscut_nsub_hists","NOheptoptag_NOmasscut_hists","NOheptoptag_masscut_hists","heptoptag_NOmasscut_hists","heptoptag_NOmasscut__NOheptoptag_masscut_hists","pt200hists","pt250hists","pt300hists","pt350hists","pt400hists","ptlowhists","before_tpr_hists","after_tpr_hists","heptoptag_masscut_hists_notpr","NOheptoptag_NOmasscut_hists_notpr","eta0p5","eta1p0","eta2p4","eta0p5to1p0","eta1p0to2p4","eta0p5_HTT","eta1p0_HTT","eta1p0_HTT_nsub","eta2p4_HTT","eta0p5to1p0_HTT","eta1p0to2p4_HTT","eta1p0to2p4_HTT_nsub","eta1p0_400","eta1p0to2p4_400","pt300histshtt","pt400histshtt"]#,"eta1p0","eta1p0_HTT"]"mcmatch_NOhtt","NOmcmatch_NOhtt","mcmatch_htt","NOmcmatch_htt","mcmatch_NOhtt_pt","NOmcmatch_NOhtt_pt","mcmatch_htt_pt","NOmcmatch_htt_pt","pt300histshtt","pt400histshtt",
+cut_names = ["nocutshists","nleptbtagshists","probeselehists","htcuthists","etmisshists","njetshists","masswindowhists","heptoptag_masscut_hists","heptoptag_masscut_nsub_hists","NOheptoptag_NOmasscut_hists","NOheptoptag_masscut_hists","heptoptag_NOmasscut_hists","heptoptag_NOmasscut__NOheptoptag_masscut_hists","pt200hists","pt250hists","pt300hists","pt350hists","pt400hists","ptlowhists","before_tpr_hists","after_tpr_hists","heptoptag_masscut_hists_notpr","NOheptoptag_NOmasscut_hists_notpr","eta0p5","eta1p0","eta2p4","eta0p5to1p0","eta1p0to2p4","eta0p5_HTT","eta1p0_HTT","eta1p0_HTT_nsub","eta2p4_HTT","eta0p5to1p0_HTT","eta1p0to2p4_HTT","eta1p0to2p4_HTT_nsub","eta1p0_400","eta1p0to2p4_400","pt300histshtt","pt400histshtt","cutflow_mass_eta1p0","cutflow_mass_eta1p0to2p4","cutflow_mass_htt_eta1p0","cutflow_mass_htt_eta1p0to2p4","cutflow_mass_htt_nsub_eta1p0","cutflow_mass_htt_nsub_eta1p0to2p4"]
+#,"eta1p0","eta1p0_HTT"]"mcmatch_NOhtt","NOmcmatch_NOhtt","mcmatch_htt","NOmcmatch_htt","mcmatch_NOhtt_pt","NOmcmatch_NOhtt_pt","mcmatch_htt_pt","NOmcmatch_htt_pt","pt300histshtt","pt400histshtt",
+
+
+
 
 nevts_index=histogram_names.index('Nevts')
 ptSFcount_index=histogram_names.index('ptSFcount')
@@ -742,6 +746,13 @@ index_yy_eta1p0_nsub=cut_names.index("eta1p0_HTT_nsub")
 index_nn_eta1p0to2p4_nsub=cut_names.index("eta1p0to2p4")
 index_yy_eta1p0to2p4_nsub=cut_names.index("eta1p0to2p4_HTT_nsub")
 
+index_cutflow1_eta1p0=cut_names.index("cutflow_mass_eta1p0")
+index_cutflow1_eta1p0to2p4=cut_names.index("cutflow_mass_eta1p0to2p4")
+index_cutflow2_eta1p0=cut_names.index("cutflow_mass_htt_eta1p0")
+index_cutflow2_eta1p0to2p4=cut_names.index("cutflow_mass_htt_eta1p0to2p4")
+index_cutflow3_eta1p0=cut_names.index("cutflow_mass_htt_nsub_eta1p0")
+index_cutflow3_eta1p0to2p4=cut_names.index("cutflow_mass_htt_nsub_eta1p0to2p4")
+
 sf_eta=[]
 
 sf_eta.append(scalefactor2(
@@ -812,6 +823,60 @@ sf_eta1p0to2p4_nsub=scalefactor2(
 '_sf_eta1p0to2p4_nsub'
 )[5]
 
+
+index_cutflow1_eta1p0=cut_names.index("cutflow_mass_eta1p0")
+index_cutflow1_eta1p0to2p4=cut_names.index("cutflow_mass_eta1p0to2p4")
+index_cutflow2_eta1p0=cut_names.index("cutflow_mass_htt_eta1p0")
+index_cutflow2_eta1p0to2p4=cut_names.index("cutflow_mass_htt_eta1p0to2p4")
+index_cutflow3_eta1p0=cut_names.index("cutflow_mass_htt_nsub_eta1p0")
+index_cutflow3_eta1p0to2p4=cut_names.index("cutflow_mass_htt_nsub_eta1p0to2p4")
+
+#cutflow-like SFs
+sf_cutflow1_eta1p0=scalefactor2(
+[input_histos_data[ptSFcount_index][index_cutflow1_eta1p0] , input_histos_data[ptSFcount_index][index_nn_eta1p0]],
+[added_mc         [ptSFcount_index][index_cutflow1_eta1p0] , added_mc         [ptSFcount_index][index_nn_eta1p0]],
+[added_mc_signal  [ptSFcount_index][index_cutflow1_eta1p0] , added_mc_signal  [ptSFcount_index][index_nn_eta1p0]],
+[added_mc_DmB     [ptSFcount_index][index_cutflow1_eta1p0] , added_mc_DmB     [ptSFcount_index][index_nn_eta1p0]],
+'_sf_cutflow1_eta1p0'
+)[5]
+sf_cutflow2_eta1p0=scalefactor2(
+[input_histos_data[ptSFcount_index][index_cutflow2_eta1p0] , input_histos_data[ptSFcount_index][index_cutflow1_eta1p0]],
+[added_mc         [ptSFcount_index][index_cutflow2_eta1p0] , added_mc         [ptSFcount_index][index_cutflow1_eta1p0]],
+[added_mc_signal  [ptSFcount_index][index_cutflow2_eta1p0] , added_mc_signal  [ptSFcount_index][index_cutflow1_eta1p0]],
+[added_mc_DmB     [ptSFcount_index][index_cutflow2_eta1p0] , added_mc_DmB     [ptSFcount_index][index_cutflow1_eta1p0]],
+'_sf_cutflow2_eta1p0'
+)[5]
+sf_cutflow3_eta1p0=scalefactor2(
+[input_histos_data[ptSFcount_index][index_cutflow3_eta1p0] , input_histos_data[ptSFcount_index][index_cutflow2_eta1p0]],
+[added_mc         [ptSFcount_index][index_cutflow3_eta1p0] , added_mc         [ptSFcount_index][index_cutflow2_eta1p0]],
+[added_mc_signal  [ptSFcount_index][index_cutflow3_eta1p0] , added_mc_signal  [ptSFcount_index][index_cutflow2_eta1p0]],
+[added_mc_DmB     [ptSFcount_index][index_cutflow3_eta1p0] , added_mc_DmB     [ptSFcount_index][index_cutflow2_eta1p0]],
+'_sf_cutflow3_eta1p0'
+)[5]
+
+sf_cutflow1_eta1p0to2p4=scalefactor2(
+[input_histos_data[ptSFcount_index][index_cutflow1_eta1p0to2p4] , input_histos_data[ptSFcount_index][index_nn_eta1p0to2p4]],
+[added_mc         [ptSFcount_index][index_cutflow1_eta1p0to2p4] , added_mc         [ptSFcount_index][index_nn_eta1p0to2p4]],
+[added_mc_signal  [ptSFcount_index][index_cutflow1_eta1p0to2p4] , added_mc_signal  [ptSFcount_index][index_nn_eta1p0to2p4]],
+[added_mc_DmB     [ptSFcount_index][index_cutflow1_eta1p0to2p4] , added_mc_DmB     [ptSFcount_index][index_nn_eta1p0to2p4]],
+'_sf_cutflow1_eta1p0to2p4'
+)[5]
+sf_cutflow2_eta1p0to2p4=scalefactor2(
+[input_histos_data[ptSFcount_index][index_cutflow2_eta1p0to2p4] , input_histos_data[ptSFcount_index][index_cutflow1_eta1p0to2p4]],
+[added_mc         [ptSFcount_index][index_cutflow2_eta1p0to2p4] , added_mc         [ptSFcount_index][index_cutflow1_eta1p0to2p4]],
+[added_mc_signal  [ptSFcount_index][index_cutflow2_eta1p0to2p4] , added_mc_signal  [ptSFcount_index][index_cutflow1_eta1p0to2p4]],
+[added_mc_DmB     [ptSFcount_index][index_cutflow2_eta1p0to2p4] , added_mc_DmB     [ptSFcount_index][index_cutflow1_eta1p0to2p4]],
+'_sf_cutflow2_eta1p0to2p4'
+)[5]
+sf_cutflow3_eta1p0to2p4=scalefactor2(
+[input_histos_data[ptSFcount_index][index_cutflow3_eta1p0to2p4] , input_histos_data[ptSFcount_index][index_cutflow2_eta1p0to2p4]],
+[added_mc         [ptSFcount_index][index_cutflow3_eta1p0to2p4] , added_mc         [ptSFcount_index][index_cutflow2_eta1p0to2p4]],
+[added_mc_signal  [ptSFcount_index][index_cutflow3_eta1p0to2p4] , added_mc_signal  [ptSFcount_index][index_cutflow2_eta1p0to2p4]],
+[added_mc_DmB     [ptSFcount_index][index_cutflow3_eta1p0to2p4] , added_mc_DmB     [ptSFcount_index][index_cutflow2_eta1p0to2p4]],
+'_sf_cutflow3_eta1p0to2p4'
+)[5]
+
+
 print 'sf_eta1p0'
 for i in range(2,len(SF_bins)):
   print ScaleFactorsNames[i-1],"%.2f" % sf_eta1p0.GetBinContent(i),"%.2f" % sf_eta1p0.GetBinError(i)
@@ -825,6 +890,25 @@ print 'sf_eta1p0to2p4_nsub'
 for i in range(2,len(SF_bins)):
   print ScaleFactorsNames[i-1],"%.2f" % sf_eta1p0to2p4_nsub.GetBinContent(i),"%.2f" % sf_eta1p0to2p4_nsub.GetBinError(i)
 print '\n'
+print 'sf_cutflow1_eta1p0'
+for i in range(2,len(SF_bins)):
+  print ScaleFactorsNames[i-1],"%.2f" % sf_cutflow1_eta1p0.GetBinContent(i),"%.2f" % sf_cutflow1_eta1p0.GetBinError(i)
+print 'sf_cutflow2_eta1p0'
+for i in range(2,len(SF_bins)):
+  print ScaleFactorsNames[i-1],"%.2f" % sf_cutflow2_eta1p0.GetBinContent(i),"%.2f" % sf_cutflow2_eta1p0.GetBinError(i)
+print 'sf_cutflow3_eta1p0'
+for i in range(2,len(SF_bins)):
+  print ScaleFactorsNames[i-1],"%.2f" % sf_cutflow3_eta1p0.GetBinContent(i),"%.2f" % sf_cutflow3_eta1p0.GetBinError(i)
+print '\n'
+print 'sf_cutflow1_eta1p0to2p4'
+for i in range(2,len(SF_bins)):
+  print ScaleFactorsNames[i-1],"%.2f" % sf_cutflow1_eta1p0to2p4.GetBinContent(i),"%.2f" % sf_cutflow1_eta1p0to2p4.GetBinError(i)
+print 'sf_cutflow2_eta1p0to2p4'
+for i in range(2,len(SF_bins)):
+  print ScaleFactorsNames[i-1],"%.2f" % sf_cutflow2_eta1p0to2p4.GetBinContent(i),"%.2f" % sf_cutflow2_eta1p0to2p4.GetBinError(i)
+print 'sf_cutflow3_eta1p0to2p4'
+for i in range(2,len(SF_bins)):
+  print ScaleFactorsNames[i-1],"%.2f" % sf_cutflow3_eta1p0to2p4.GetBinContent(i),"%.2f" % sf_cutflow3_eta1p0to2p4.GetBinError(i)
   #added_mc.append(cut_sublist)
   #added_mc_signal.append(cut_sublist_signal)
   #added_mc_background.append(cut_sublist_background)
@@ -1142,7 +1226,7 @@ print 'make legend'
 #legend.SetFillColor(kWhite)
 
 #legend = TLegend(0.5,0.55,0.84,0.84,'HEPTopTagger',"brNDC")
-legend = TLegend(0.6192529,0.3280872,0.94,0.8849879,'HEPTopTagger',"brNDC")
+legend = TLegend(0.6392529,0.3480872,0.94,0.8849879,'',"brNDC")#'HEP Top Tagger'
 #legend = TLegend(0.65,0.35,0.94,0.8849879,'HEPTopTagger',"brNDC")
 legend.SetBorderSize(0)
 legend.SetTextFont(62)
@@ -1181,6 +1265,160 @@ cmslabelsim2.SetLineWidth(2)
 cmslabelsim2.SetTextSize(0.05508475)
 #cmslabel.Draw()
 
+uno=0.1810345
+due=0.52
+tre=0.63
+quattro=0.8698547
+
+infolabel=TPaveText(uno,due,tre,quattro,"NDC")
+infolabel.SetBorderSize(0)
+infolabel.SetTextFont(42)
+infolabel.SetLineColor(1)
+infolabel.SetLineStyle(1)
+infolabel.SetLineWidth(1)
+infolabel.SetFillColor(0)
+infolabel.SetFillStyle(1001)
+infolabel.SetTextAlign()
+infolabel.AddText("HEP Top Tagger")
+infolabel.AddText("CA R=1.5 |#eta|<2.4")
+infolabel.AddText("p_{T}>200 GeV/c")
+#infolabel.AddText("HEP W mass selection")
+infolabel.AddText("t#bar{t} simulated with MADGRAPH")
+
+infolabel_htt=TPaveText(uno,due,tre,quattro,"NDC")
+infolabel_htt.SetBorderSize(0)
+infolabel_htt.SetTextFont(42)
+infolabel_htt.SetLineColor(1)
+infolabel_htt.SetLineStyle(1)
+infolabel_htt.SetLineWidth(1)
+infolabel_htt.SetFillColor(0)
+infolabel_htt.SetFillStyle(1001)
+infolabel_htt.SetTextAlign()
+infolabel_htt.AddText("HEP Top Tagger")
+infolabel_htt.AddText("CA R=1.5 |#eta|<2.4")
+infolabel_htt.AddText("p_{T}>200 GeV/c")
+infolabel_htt.AddText("HEP W mass selection")
+infolabel_htt.AddText("t#bar{t} simulated with MADGRAPH")
+
+infolabel_300=TPaveText(uno,due,tre,quattro,"NDC")
+infolabel_300.SetBorderSize(0)
+infolabel_300.SetTextFont(42)
+infolabel_300.SetLineColor(1)
+infolabel_300.SetLineStyle(1)
+infolabel_300.SetLineWidth(1)
+infolabel_300.SetFillColor(0)
+infolabel_300.SetFillStyle(1001)
+infolabel_300.SetTextAlign()
+infolabel_300.AddText("HEP Top Tagger")
+infolabel_300.AddText("CA R=1.5 |#eta|<2.4")
+infolabel_300.AddText("p_{T}>300 GeV/c")
+infolabel_300.AddText("t#bar{t} simulated with MADGRAPH")
+
+infolabel_400=TPaveText(uno,due,tre,quattro,"NDC")
+infolabel_400.SetBorderSize(0)
+infolabel_400.SetTextFont(42)
+infolabel_400.SetLineColor(1)
+infolabel_400.SetLineStyle(1)
+infolabel_400.SetLineWidth(1)
+infolabel_400.SetFillColor(0)
+infolabel_400.SetFillStyle(1001)
+infolabel_400.SetTextAlign()
+infolabel_400.AddText("HEP Top Tagger")
+infolabel_400.AddText("CA R=1.5 |#eta|<2.4")
+infolabel_400.AddText("p_{T}>400 GeV/c")
+infolabel_400.AddText("t#bar{t} simulated with MADGRAPH")
+
+infolabel_htt300=TPaveText(uno,due,tre,quattro,"NDC")
+infolabel_htt300.SetBorderSize(0)
+infolabel_htt300.SetTextFont(42)
+infolabel_htt300.SetLineColor(1)
+infolabel_htt300.SetLineStyle(1)
+infolabel_htt300.SetLineWidth(1)
+infolabel_htt300.SetFillColor(0)
+infolabel_htt300.SetFillStyle(1001)
+infolabel_htt300.SetTextAlign()
+infolabel_htt300.AddText("HEP Top Tagger")
+infolabel_htt300.AddText("CA R=1.5 |#eta|<2.4")
+infolabel_htt300.AddText("p_{T}>300 GeV/c")
+infolabel_htt300.AddText("HEP W mass selection")
+infolabel_htt300.AddText("t#bar{t} simulated with MADGRAPH")
+
+infolabel_htt400=TPaveText(uno,due,tre,quattro,"NDC")
+infolabel_htt400.SetBorderSize(0)
+infolabel_htt400.SetTextFont(42)
+infolabel_htt400.SetLineColor(1)
+infolabel_htt400.SetLineStyle(1)
+infolabel_htt400.SetLineWidth(1)
+infolabel_htt400.SetFillColor(0)
+infolabel_htt400.SetFillStyle(1001)
+infolabel_htt400.SetTextAlign()
+infolabel_htt400.AddText("HEP Top Tagger")
+infolabel_htt400.AddText("CA R=1.5 |#eta|<2.4")
+infolabel_htt400.AddText("p_{T}>400 GeV/c")
+infolabel_htt400.AddText("HEP W mass selection")
+infolabel_htt400.AddText("t#bar{t} simulated with MADGRAPH")
+
+uno2d=0.1748148
+due2d=0.7003484
+tre2d=0.72
+quattro2d=0.9100346
+
+infolabel2d=TPaveText(uno2d,due2d,tre2d,quattro2d,"NDC")
+infolabel2d.SetBorderSize(0)
+infolabel2d.SetTextFont(42)
+infolabel2d.SetLineColor(1)
+infolabel2d.SetLineStyle(1)
+infolabel2d.SetLineWidth(1)
+infolabel2d.SetFillColor(0)
+infolabel2d.SetFillStyle(1001)
+infolabel2d.SetTextAlign()
+infolabel2d.AddText("HEP Top Tagger")
+infolabel2d.AddText("CA R=1.5 |#eta|<2.4")
+infolabel2d.AddText("p_{T}>200 GeV/c")
+#infolabel.AddText("HEP W mass selection")
+infolabel2d.AddText("t#bar{t} simulated with MADGRAPH")
+
+infolabel2d_300=TPaveText(uno2d,due2d,tre2d,quattro2d,"NDC")
+infolabel2d_300.SetBorderSize(0)
+infolabel2d_300.SetTextFont(42)
+infolabel2d_300.SetLineColor(1)
+infolabel2d_300.SetLineStyle(1)
+infolabel2d_300.SetLineWidth(1)
+infolabel2d_300.SetFillColor(0)
+infolabel2d_300.SetFillStyle(1001)
+infolabel2d_300.SetTextAlign()
+infolabel2d_300.AddText("HEP Top Tagger")
+infolabel2d_300.AddText("CA R=1.5 |#eta|<2.4")
+infolabel2d_300.AddText("p_{T}>300 GeV/c")
+infolabel2d_300.AddText("t#bar{t} simulated with MADGRAPH")
+
+infolabel2d_400=TPaveText(uno2d,due2d,tre2d,quattro2d,"NDC")
+infolabel2d_400.SetBorderSize(0)
+infolabel2d_400.SetTextFont(42)
+infolabel2d_400.SetLineColor(1)
+infolabel2d_400.SetLineStyle(1)
+infolabel2d_400.SetLineWidth(1)
+infolabel2d_400.SetFillColor(0)
+infolabel2d_400.SetFillStyle(1001)
+infolabel2d_400.SetTextAlign()
+infolabel2d_400.AddText("HEP Top Tagger")
+infolabel2d_400.AddText("CA R=1.5 |#eta|<2.4")
+infolabel2d_400.AddText("p_{T}>400 GeV/c")
+infolabel2d_400.AddText("t#bar{t} simulated with MADGRAPH")
+
+infolabel2d_nottbar=TPaveText(uno2d,due2d,tre2d,quattro2d,"NDC")
+infolabel2d_nottbar.SetBorderSize(0)
+infolabel2d_nottbar.SetTextFont(42)
+infolabel2d_nottbar.SetLineColor(1)
+infolabel2d_nottbar.SetLineStyle(1)
+infolabel2d_nottbar.SetLineWidth(1)
+infolabel2d_nottbar.SetFillColor(0)
+infolabel2d_nottbar.SetFillStyle(1001)
+infolabel2d_nottbar.SetTextAlign()
+infolabel2d_nottbar.AddText("HEP Top Tagger")
+infolabel2d_nottbar.AddText("CA R=1.5 |#eta|<2.4")
+infolabel2d_nottbar.AddText("p_{T}>200 GeV/c")
+infolabel2d_nottbar.AddText(" ")
 
 #cutflow
 print 'cutflow'
@@ -1400,8 +1638,8 @@ Pheno2DInputList.append(added_mc_background[htt2d_index][index_400])
 Pheno2DInputList.append(input_histos_data[htt2d_index][index_400])
 
 for j in Pheno2DInputList:
-  #print j.GetName()
-  pheno_canvas=TCanvas('Pheno2DPlot_'+j.GetName())
+  print j.GetName()
+  pheno_canvas=TCanvas('Pheno2DPlot_'+j.GetName(),'',428,120,679,606)
 
   j.GetXaxis().SetLabelSize(0.06)
   j.GetXaxis().SetTitleSize(0.06)
@@ -1411,7 +1649,7 @@ for j in Pheno2DInputList:
   j.GetYaxis().SetTitleOffset(1.1)
   j.GetZaxis().SetLabelSize(0.05)
   pheno_canvas.SetLeftMargin(0.15)
-  pheno_canvas.SetRightMargin(0.10)
+  pheno_canvas.SetRightMargin(0.12)
   pheno_canvas.SetBottomMargin(0.15)
   pheno_canvas.SetTopMargin(0.05)
   #pheno_canvas.SetLeftMargin(0.1494253)
@@ -1420,10 +1658,17 @@ for j in Pheno2DInputList:
   #print j.GetName()
   if j.GetName()=='HTT2D_NOheptoptag_NOmasscut_hists' or j.GetName()=='HTT2D_heptoptag_masscut_hists':
     j.Rebin2D(2,2)
+  if j.GetName()=='HTT2D_pt400hists_Signal_Add':
+    j.Rebin2D(2,2)
+   
   j.SetStats(kFALSE)
 #  j.Rebin2D(2,2)
   gStyle.SetNumberContours(255)
   gStyle.SetPalette(55)
+  #j.GetXaxis().SetRangeUser(0,1.5)
+  #j.GetYaxis().SetRangeUser(0,1.5)
+  j.GetXaxis().SetRangeUser(0,1.5)
+  j.GetYaxis().SetRangeUser(0,1.3)
   j.Draw('COLZ')
   for i in htt_cut_line:
     i.Draw('SAME')
@@ -1431,6 +1676,21 @@ for j in Pheno2DInputList:
     cmslabelsim2.Draw()
   else:
     cmslabel2.Draw()
+  if j.GetName()=='HTT2D_NOheptoptag_NOmasscut_hists':
+    infolabel2d_nottbar.Draw()
+    pheno_canvas.SaveAs('pdf/'+j.GetName()+'.pdf')
+  if j.GetName()=='HTT2D_NOheptoptag_NOmasscut_hists_Signal_Add':
+    infolabel2d.Draw()
+    pheno_canvas.SaveAs('pdf/'+j.GetName()+'.pdf')
+  if j.GetName()=='HTT2D_NOheptoptag_NOmasscut_hists_Background_Add':
+    infolabel2d_nottbar.Draw()
+    pheno_canvas.SaveAs('pdf/'+j.GetName()+'.pdf')
+  if j.GetName()=='HTT2D_pt300hists_Signal_Add':
+    infolabel2d_300.Draw()
+    pheno_canvas.SaveAs('pdf/'+j.GetName()+'.pdf')
+  if j.GetName()=='HTT2D_pt400hists_Signal_Add':
+    infolabel2d_400.Draw()
+    pheno_canvas.SaveAs('pdf/'+j.GetName()+'.pdf')
   pheno_canvas.Write()
   Pheno2DPlot.append(pheno_canvas)
 #.Clone(input_histos_data[htt2d_index][index_yy].GetName()+'_2')
@@ -1489,7 +1749,8 @@ for histogram_name_index in range(len(histogram_names)):
     pull.GetYaxis().SetTitleOffset(0.38)
     pull.GetXaxis().SetLabelSize(0.22)
     pull.GetXaxis().SetTitleSize(0.22)
-    
+    if histogram_name=='var1_HTT':
+      pull.GetXaxis().SetTitleSize(0.2)
     
     #pull.SetLineColor(kBlue+2)
     #pull.SetLineWidth(2)
@@ -1568,7 +1829,9 @@ for histogram_name_index in range(len(histogram_names)):
     stacked_mc[histogram_name_index][cut_name_index].GetYaxis().SetTitleSize(0.1)
     stacked_mc[histogram_name_index][cut_name_index].GetYaxis().SetTitleOffset(0.85)
     
-    stacked_mc[histogram_name_index][cut_name_index].SetMaximum(stacked_mc[histogram_name_index][cut_name_index].GetMaximum()*1.2)
+    maximum=max(stacked_mc[histogram_name_index][cut_name_index].GetMaximum(),input_histos_data[histogram_name_index][cut_name_index].GetMaximum())
+    
+    stacked_mc[histogram_name_index][cut_name_index].SetMaximum(maximum*1.7)
     #if histogram_name=='MassTop':
      # stacked_mc[histogram_name_index][cut_name_index].SetMaximum(1500)
     #if histogram_name=='var1_HTT':
@@ -1584,8 +1847,8 @@ for histogram_name_index in range(len(histogram_names)):
       linemin.SetLineColor(kRed)
       linemax.SetLineWidth(3)
       linemax.SetLineColor(kRed)
-      linemin.Draw()
-      linemax.Draw()
+      #linemin.Draw()
+      #linemax.Draw()
     if histogram_name=='var2_HTT':
       linemin=TLine(0.4,0,0.4,stacked_mc[histogram_name_index][cut_name_index].GetMaximum())
       linemax=TLine(0.54,0,0.54,stacked_mc[histogram_name_index][cut_name_index].GetMaximum())
@@ -1593,32 +1856,59 @@ for histogram_name_index in range(len(histogram_names)):
       linemin.SetLineColor(kRed)
       linemax.SetLineWidth(3)
       linemax.SetLineColor(kRed)
-      linemin.Draw()
-      linemax.Draw()
+      #linemin.Draw()
+      #linemax.Draw()
     if histogram_name=='var3_HTT':
-      stacked_mc[histogram_name_index][cut_name_index].GetXaxis().SetRangeUser(20.,160.)
+      stacked_mc[histogram_name_index][cut_name_index].GetXaxis().SetRangeUser(20.,150.)
     if histogram_name in ['MassTop']:
       stacked_mc[histogram_name_index][cut_name_index].GetXaxis().SetRangeUser(0.,349.9)
-    if histogram_name in ['m01','m02','m12']:
-      stacked_mc[histogram_name_index][cut_name_index].GetXaxis().SetRangeUser(0.,289.9)
+    if histogram_name in ['m01']:
+      stacked_mc[histogram_name_index][cut_name_index].GetXaxis().SetRangeUser(0.,249.9)
+    if histogram_name in ['m02']:
+      stacked_mc[histogram_name_index][cut_name_index].GetXaxis().SetRangeUser(0.,199.9)
+    if histogram_name in ['m12']:
+      stacked_mc[histogram_name_index][cut_name_index].GetXaxis().SetRangeUser(0.,159.9)
     legend.Draw()
     cmslabel.Draw()
+    #infolabel.Draw()
+    if cut_name == "NOheptoptag_NOmasscut_hists":
+      infolabel.Draw()
+    if cut_name == "heptoptag_NOmasscut_hists":
+      infolabel_htt.Draw()   
+    if cut_name == "pt300hists":
+      infolabel_300.Draw()
+    if cut_name == "pt400hists":
+      infolabel_400.Draw()
+    if cut_name == "pt300histshtt":
+      infolabel_htt300.Draw()
+    if cut_name == "pt400histshtt":
+      infolabel_htt400.Draw()
+       
     tmp_canvas.cd(2)
-    pulls[histogram_name_index][cut_name_index].Draw('EX0')
+    
     xmax=stacked_mc[histogram_name_index][cut_name_index].GetXaxis().GetXmax()
     xmin=stacked_mc[histogram_name_index][cut_name_index].GetXaxis().GetXmin()
     if histogram_name=='var3_HTT':
       xmin=20.
-      xmax=160.
-      pulls[histogram_name_index][cut_name_index].GetXaxis().SetRangeUser(20.,160.)
+      xmax=150.
+      pulls[histogram_name_index][cut_name_index].GetXaxis().SetRangeUser(20.,149.9)
     if histogram_name in ['MassTop']:
       xmin=0.
       xmax=350.
       pulls[histogram_name_index][cut_name_index].GetXaxis().SetRangeUser(0.,349.9)
-    if histogram_name in ['m01','m02','m12']:
+    if histogram_name in ['m01']:
       xmin=0.
-      xmax=300.
-      pulls[histogram_name_index][cut_name_index].GetXaxis().SetRangeUser(0.,289.9)
+      xmax=250.
+      pulls[histogram_name_index][cut_name_index].GetXaxis().SetRangeUser(0.,249.9)
+    if histogram_name in ['m02']:
+      xmin=0.
+      xmax=200.
+      pulls[histogram_name_index][cut_name_index].GetXaxis().SetRangeUser(0.,199.9)
+    if histogram_name in ['m12']:
+      xmin=0.
+      xmax=160.
+      pulls[histogram_name_index][cut_name_index].GetXaxis().SetRangeUser(0.,159.9)
+    pulls[histogram_name_index][cut_name_index].Draw('EX0') 
     line1=TLine(xmin,1.0,xmax,1.0)
     line1.SetLineStyle(2)
     line1.Draw()
@@ -1631,6 +1921,8 @@ for histogram_name_index in range(len(histogram_names)):
       #tmp_canvas.SaveAs('z'+histogram_name+'_'+'Canvas.pdf')
     if histogram_name in ['Toppt','MassTop','var1_HTT','var2_HTT','var3_HTT','m01','m02','m12','LeptToppt'] and cut_name in ["heptoptag_masscut_hists","NOheptoptag_NOmasscut_hists","heptoptag_NOmasscut_hists","eta0p5","eta2p4","eta0p5to1p0","eta1p0to2p4","pt250hists","pt300hists","pt350hists","pt400hists","after_tpr_hists","eta1p0_400","eta1p0to2p4_400","pt300histshtt","pt400histshtt"]:#,"eta1p0","eta1p0_HTT"]#"heptoptag_masscut_hists_notpr","NOheptoptag_NOmasscut_hists_notpr","pt200hists","pt250hists","pt300hists","pt350hists","pt400hists","ptlowhists"]:#'N_pv','N_pv200','N_pv300','N_pv400','N_pv500','N_pv600','Toppt_2','m012','dRsubjet'"pt300histshtt","pt400histshtt",
       tmp_canvas.Write()
+      if histogram_name in ['Toppt','MassTop','var1_HTT','var2_HTT','var3_HTT','m01','m02','m12'] and cut_name in ["NOheptoptag_NOmasscut_hists","heptoptag_NOmasscut_hists","pt300hists","pt400hists","pt300histshtt","pt400histshtt"]:
+        tmp_canvas.SaveAs('pdf/'+tmp_canvas.GetName()+'.pdf')
       #if histogram_name in ["subTrackNPixelHits","subTrackMomentum","subTrackJetDistVal","subTrackDecayLenVal","subTrackSip3dVal","subTrackSip3dSig","subJetNSecondaryVertices","subCSV","subFlightDistance3dSig"]:
       # top_pad.SetLogy()
   

@@ -13,152 +13,152 @@
 	<Library Name="libZprimeFullHadAnalysis"/>
 
 	<Package Name="ZprimeFullHadAnalysis.par" /> 
-<!--   <Cycle Name="SemileptonicHepTopTagValSelCycle" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/" PostFix="" TargetLumi="19708" > -->
-  <Cycle Name="SemileptonicHepTopTagValSelCycle"  RunMode="PROOF" ProofServer="pod://"  ProofWorkDir="/scratch/hh/dust/naf/cms/user/usai/PROOF/" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/" PostFix="" TargetLumi="19700" >
+<!--   <Cycle Name="SemileptonicHepTopTagValSelCycle" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19708" > -->
+  <Cycle Name="SemileptonicHepTopTagValSelCycle"  RunMode="PROOF" ProofServer="pod://"  ProofWorkDir="/nfs/dust/cms/user/usaiem/PROOF/" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19700" >
  
      
 
                  <InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="DATA" Cacheable="True">
-		        <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.DATA.DATAA.root"  Lumi="0.0"/>
-			<In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.DATA.DATAB.root"  Lumi="0.0"/>
-			<In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.DATA.DATAC.root"  Lumi="0.0"/>
-			<In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.DATA.DATAD.root"  Lumi="0.0"/>
+		        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.DATA.DATAA.root"  Lumi="0.0"/>
+			<In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.DATA.DATAB.root"  Lumi="0.0"/>
+			<In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.DATA.DATAC.root"  Lumi="0.0"/>
+			<In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.DATA.DATAD.root"  Lumi="0.0"/>
 		        <InputTree Name="AnalysisTree" /> 
 		</InputData>
   
 
 	        <InputData Lumi="3593.1" NEventsMax="-1" Type="MC" Version="WJets1" Cacheable="True">
-                        <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.WJets1.root"  Lumi="0.0"/>
+                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.WJets1.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 
 
 	        <InputData Lumi="16311" NEventsMax="-1" Type="MC" Version="WJets2" Cacheable="True">
-                        <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.WJets2.root"  Lumi="0.0"/>
+                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.WJets2.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 
 
 	        <InputData Lumi="25104" NEventsMax="-1" Type="MC" Version="WJets3" Cacheable="True">
-                        <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.WJets3.root"  Lumi="0.0"/>
+                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.WJets3.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 
 
 	        <InputData Lumi="52433" NEventsMax="-1" Type="MC" Version="WJets4" Cacheable="True">
-                        <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.WJets4.root"  Lumi="0.0"/>
+                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.WJets4.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 
 
 	        <InputData Lumi="36088" NEventsMax="-1" Type="MC" Version="ZJets1" Cacheable="True">
-                        <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.ZJets1.root"  Lumi="0.0"/>
+                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.ZJets1.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 
 
                 <InputData Lumi="101650" NEventsMax="-1" Type="MC" Version="ZJets2" Cacheable="True">
-                        <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.ZJets2.root"  Lumi="0.0"/>
+                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.ZJets2.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 
 
                  <InputData Lumi="181499" NEventsMax="-1" Type="MC" Version="ZJets3" Cacheable="True">
-                        <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.ZJets3.root"  Lumi="0.0"/>
+                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.ZJets3.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 
 
                  <InputData Lumi="233982" NEventsMax="-1" Type="MC" Version="ZJets4" Cacheable="True">
-                        <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.ZJets4.root"  Lumi="0.0"/>
+                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.ZJets4.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 
 
                 <InputData Lumi="182490" NEventsMax="-1" Type="MC" Version="doubleWW" Cacheable="True">
-                        <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.doubleWW.root"  Lumi="0.0"/>
+                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.doubleWW.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 
 
                 <InputData Lumi="301123" NEventsMax="-1" Type="MC" Version="doubleWZ" Cacheable="True">
-                        <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.doubleWZ.root"  Lumi="0.0"/>
+                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.doubleWZ.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 
 
                 <InputData Lumi="1214680" NEventsMax="-1" Type="MC" Version="doubleZZ" Cacheable="True">
-                        <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.doubleZZ.root"  Lumi="0.0"/>
+                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.doubleZZ.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 	
 
 	        <InputData Lumi="79531" NEventsMax="-1" Type="MC" Version="singleTbars" Cacheable="True">
-                        <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.singleTbars.root"  Lumi="0.0"/>
+                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.singleTbars.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 
 
                 <InputData Lumi="63032" NEventsMax="-1" Type="MC" Version="singleTbart" Cacheable="True">
-                        <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.singleTbart.root"  Lumi="0.0"/>
+                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.singleTbart.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 
 
                 <InputData Lumi="44456" NEventsMax="-1" Type="MC" Version="singleTbartW" Cacheable="True">
-                        <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.singleTbartW.root"  Lumi="0.0"/>
+                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.singleTbartW.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 
 
                 <InputData Lumi="68591" NEventsMax="-1" Type="MC" Version="singleTs" Cacheable="True">
-                        <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.singleTs.root"  Lumi="0.0"/>
+                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.singleTs.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 
 
                 <InputData Lumi="66635" NEventsMax="-1" Type="MC" Version="singleTt" Cacheable="True">
-                        <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.singleTt.root"  Lumi="0.0"/>
+                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.singleTt.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 
 
                 <InputData Lumi="44834" NEventsMax="-1" Type="MC" Version="singleTtW" Cacheable="True">
-                        <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.singleTtW.root"  Lumi="0.0"/>
+                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.singleTtW.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 		
 
                  <InputData Lumi="466809.88372093" NEventsMax="-1" Type="MC" Version="TTbarlept" Cacheable="True">
-                       <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.TTbarlept.root"  Lumi="0.0"/>
+                       <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.TTbarlept.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
 
                 </InputData>
 		
 
 		<InputData Lumi="234615.547506269" NEventsMax="-1" Type="MC" Version="TTbarsemi" Cacheable="True">
-                       <In FileName="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.TTbarsemi.root"  Lumi="0.0"/>
+                       <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.TTbarsemi.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
 
                 </InputData>
 		
 <!--		<InputData Lumi="87714.031733116" NEventsMax="-1" Type="MC" Version="TTbarsemi_powheg" Cacheable="True">
-                       <In FileName="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/preselection/SemileptonicPreselectionCycle.MC.TTbar.root"  Lumi="0.0"/>
+                       <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/SemileptonicPreselectionCycle.MC.TTbar.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 		
 		<InputData Lumi="87714.031733116" NEventsMax="-1" Type="MC" Version="TTbarlept_powheg" Cacheable="True">
-                       <In FileName="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/preselection/SemileptonicPreselectionCycle.MC.TTbar.root"  Lumi="0.0"/>
+                       <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/SemileptonicPreselectionCycle.MC.TTbar.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>-->
 
 <!--		<InputData Lumi="130846.598860862" NEventsMax="-1" Type="MC" Version="TTbarsemi_mcatnlo" Cacheable="True">
-                       <In FileName="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/preselection/SemileptonicPreselectionCycle.MC.TTbar_mcatnlo.root"  Lumi="0.0"/>
+                       <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/SemileptonicPreselectionCycle.MC.TTbar_mcatnlo.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>
 		
 		<InputData Lumi="130846.598860862" NEventsMax="-1" Type="MC" Version="TTbarlept_mcatnlo" Cacheable="True">
-                       <In FileName="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/preselection/SemileptonicPreselectionCycle.MC.TTbar_mcatnlo.root"  Lumi="0.0"/>
+                       <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/SemileptonicPreselectionCycle.MC.TTbar_mcatnlo.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
                 </InputData>-->
      
@@ -200,9 +200,9 @@
 		   <!--<Item Name="TopJetCollectionGen" Value="caHEPTopTagGen" />-->
 		   <Item Name="GenParticleCollection" Value="GenParticles" /> 
 		      
-		   <!-- 		      <Item Name="PU_Filename_Data" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/PileUpHistos/MyDataPileupHistogram_206745.root" /> -->
-		      <Item Name="PU_Filename_MC" Value="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/PileUpHistoCycle" />
-                       <Item Name="PU_Filename_Data" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root" />
+		   <!-- 		      <Item Name="PU_Filename_Data" Value="/nfs/dust/cms/user/peiffer/Analysis53X/PileUpHistos/MyDataPileupHistogram_206745.root" /> -->
+		      <Item Name="PU_Filename_MC" Value="/nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle" />
+                       <Item Name="PU_Filename_Data" Value="/nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root" />
 		      <Item Name="PU_Histname_Data" Value="pileup" />
 		      <Item Name="PU_Histname_MC" Value="N_pileup_hist" />
 
@@ -211,13 +211,13 @@
 		      
 		   
 		   <!-- to apply jet energy (re-)corrections (esp. updated ones since the gridding), use these lines: -->
-<!--		   <Item Name="JECFileLocation" Value="/scratch/hh/dust/naf/cms/user/peiffer/CMSSW_5_3_10/src" />
+<!--		   <Item Name="JECFileLocation" Value="/nfs/dust/cms/user/peiffer/CMSSW_5_3_10/src" />
 		   <Item Name="JECDataGlobalTag" Value="FT_53_V21_AN6" />
 		   <Item Name="JECMCGlobalTag" Value="START53_V27" />
 		   <Item Name="JECJetCollection" Value="AK5PFchs" />-->
 		   
 		   
-		   <Item Name="JECFileLocation" Value="/scratch/hh/dust/naf/cms/user/imarches/JECfiles" />
+		   <Item Name="JECFileLocation" Value="/nfs/dust/cms/user/marchesi/JECfiles" />
 		   <Item Name="JECDataGlobalTag" Value="FT_53_V21_AN6" />
 		   <Item Name="JECMCGlobalTag" Value="START53_V27" />
 		   <Item Name="JECJetCollection" Value="AK5PFchs" />
@@ -226,13 +226,13 @@
 		   
 		   <!--<Item Name="toppagptweight" Value="" />-->
 		   <Item Name="CSVOperatingPoint" Value="0.679" />
-		   <!--<Item Name="BTagEffi_Filename_MC" Value="/scratch/hh/dust/naf/cms/user/usai/preselection/SemileptonicPreselectionCycle" />-->
-		   <Item Name="BTagEffi_Filename_MC" Value="/scratch/hh/dust/naf/cms/user/imarches/gitSFrame/SemileptPre/SemileptonicPreselectionCycle" />
+		   <!--<Item Name="BTagEffi_Filename_MC" Value="/nfs/dust/cms/user/usaiem/preselection/SemileptonicPreselectionCycle" />-->
+		     <Item Name="BTagEffi_Filename_MC" Value="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle" />
 
 		   <Item Name="BTaggingMode" Value="default" />
 		   
 		   <Item Name="LeptonScaleFactors" Value="MuonRunABCD 1" />
-		   <Item Name="LumiFilePath" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X_v3/LumiFiles/" />
+		   <Item Name="LumiFilePath" Value="/nfs/dust/cms/user/peiffer/Analysis53X_v3/LumiFiles/" />
                     <Item Name="LumiFileName" Value="Mu40.root" />
                     <Item Name="LumiTrigger" Value="HLT_Mu40_eta2p1_v" />
 
@@ -240,7 +240,7 @@
 		   <Item Name="SystematicUncertainty" Value="JEC" />
 		   <Item Name="SystematicVariation" Value="down" /> -->
 
-<!--		   <Item Name="LumiFilePath" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/LumiFiles/" /> 
+<!--		   <Item Name="LumiFilePath" Value="/nfs/dust/cms/user/peiffer/Analysis53X/LumiFiles/" /> 
 		   <Item Name="LumiFileName" Value="Mu40.root" /> 
 		   <Item Name="LumiTrigger" Value="HLT_Mu40_eta2p1_v" /> -->
 

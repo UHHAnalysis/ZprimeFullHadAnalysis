@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE JobConfiguration PUBLIC "" "JobConfig.dtd"
 [
-<!ENTITY ZP500W5 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP500W5.xml">
-<!ENTITY ZP500W50 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP500W50.xml">
-<!ENTITY ZP750W7p5 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP750W7p5.xml">
-<!ENTITY ZP750W75 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP750W75.xml">
-<!ENTITY ZP1000W10 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP1000W10.xml">
-<!ENTITY ZP1000W100 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP1000W100.xml">
-<!ENTITY ZP1250W12p5 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP1250W12p5.xml">
-<!ENTITY ZP1250W125 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP1250W125.xml">
-<!ENTITY ZP1500W15 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP1500W15.xml">
-<!ENTITY ZP1500W150 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP1500W150.xml">
-<!ENTITY ZP2000W20 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP2000W20.xml">
-<!ENTITY ZP2000W200 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP2000W200.xml">
-<!ENTITY ZP3000W30 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP3000W30.xml">
-<!ENTITY ZP3000W300 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP3000W300.xml">
-<!ENTITY ZP4000W40 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP4000W40.xml">
-<!ENTITY ZP4000W400 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/ZP4000W400.xml">
+<!ENTITY ZP500W5 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP500W5.xml">
+<!ENTITY ZP500W50 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP500W50.xml">
+<!ENTITY ZP750W7p5 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP750W7p5.xml">
+<!ENTITY ZP750W75 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP750W75.xml">
+<!ENTITY ZP1000W10 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP1000W10.xml">
+<!ENTITY ZP1000W100 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP1000W100.xml">
+<!ENTITY ZP1250W12p5 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP1250W12p5.xml">
+<!ENTITY ZP1250W125 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP1250W125.xml">
+<!ENTITY ZP1500W15 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP1500W15.xml">
+<!ENTITY ZP1500W150 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP1500W150.xml">
+<!ENTITY ZP2000W20 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP2000W20.xml">
+<!ENTITY ZP2000W200 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP2000W200.xml">
+<!ENTITY ZP3000W30 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP3000W30.xml">
+<!ENTITY ZP3000W300 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP3000W300.xml">
+<!ENTITY ZP4000W40 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP4000W40.xml">
+<!ENTITY ZP4000W400 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP4000W400.xml">
 
-<!ENTITY TTbarHad SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/TTJets_HadronicMGDecays_8TeV-madgraph.xml">
+<!ENTITY TTbarHad SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/TTJets_HadronicMGDecays_8TeV-madgraph.xml">
 <!ENTITY TTbarHad00 SYSTEM "TTbarHad00">
 <!ENTITY TTbarHad01 SYSTEM "TTbarHad01">
 <!ENTITY TTbarHad02 SYSTEM "TTbarHad02">
@@ -29,7 +29,7 @@
 <!ENTITY TTbarHad07 SYSTEM "TTbarHad07">
 <!ENTITY TTbarHad08 SYSTEM "TTbarHad08">
 <!ENTITY TTbarHad09 SYSTEM "TTbarHad09">
-<!ENTITY TTbarSemi SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/TTJets_SemiLeptMGDecays_8TeV-madgraph.xml">
+<!ENTITY TTbarSemi SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/TTJets_SemiLeptMGDecays_8TeV-madgraph.xml">
 <!ENTITY TTbarSemi00 SYSTEM "TTbarSemi00">
 <!ENTITY TTbarSemi01 SYSTEM "TTbarSemi01">
 <!ENTITY TTbarSemi02 SYSTEM "TTbarSemi02">
@@ -40,12 +40,12 @@
 <!ENTITY TTbarSemi07 SYSTEM "TTbarSemi07">
 <!ENTITY TTbarSemi08 SYSTEM "TTbarSemi08">
 <!ENTITY TTbarSemi09 SYSTEM "TTbarSemi09">
-<!ENTITY TTbarLept SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/TTJets_FullLeptMGDecays_8TeV-madgraph.xml">
-<!ENTITY TTbar SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/TT_Powheg.xml">
+<!ENTITY TTbarLept SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/TTJets_FullLeptMGDecays_8TeV-madgraph.xml">
+<!ENTITY TTbar SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/TT_Powheg.xml">
 
-<!ENTITY QCD_HT-100To250 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-100To250_TuneZ2star_8TeV-madgraph-pythia.xml">
-<!ENTITY QCD_HT-250To500 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-250To500_TuneZ2star_8TeV-madgraph-pythia6.xml">
-<!ENTITY QCD_HT-500To1000 SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-500To1000_TuneZ2star_8TeV-madgraph-pythia6.xml">
+<!ENTITY QCD_HT-100To250 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-100To250_TuneZ2star_8TeV-madgraph-pythia.xml">
+<!ENTITY QCD_HT-250To500 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-250To500_TuneZ2star_8TeV-madgraph-pythia6.xml">
+<!ENTITY QCD_HT-500To1000 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-500To1000_TuneZ2star_8TeV-madgraph-pythia6.xml">
 <!ENTITY QCD_HT-500To100000 SYSTEM "QCD_HT-500To100000">
 <!ENTITY QCD_HT-500To100001 SYSTEM "QCD_HT-500To100001">
 <!ENTITY QCD_HT-500To100002 SYSTEM "QCD_HT-500To100002">
@@ -56,7 +56,7 @@
 <!ENTITY QCD_HT-500To100007 SYSTEM "QCD_HT-500To100007">
 <!ENTITY QCD_HT-500To100008 SYSTEM "QCD_HT-500To100008">
 <!ENTITY QCD_HT-500To100009 SYSTEM "QCD_HT-500To100009">
-<!ENTITY QCD_HT-1000ToInf SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-1000ToInf_TuneZ2star_8TeV-madgraph-pythia6.xml">
+<!ENTITY QCD_HT-1000ToInf SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-1000ToInf_TuneZ2star_8TeV-madgraph-pythia6.xml">
 <!ENTITY QCD_HT-1000ToInf00 SYSTEM "QCD_HT-1000ToInf00">
 <!ENTITY QCD_HT-1000ToInf01 SYSTEM "QCD_HT-1000ToInf01">
 <!ENTITY QCD_HT-1000ToInf02 SYSTEM "QCD_HT-1000ToInf02">
@@ -90,7 +90,7 @@
 <!ENTITY QCD_HT-1000ToInf28 SYSTEM "QCD_HT-1000ToInf28">
 <!ENTITY QCD_HT-1000ToInf29 SYSTEM "QCD_HT-1000ToInf29">
 
-<!ENTITY RunA SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/Jet_Run2012A-22Jan2013-v1_ntuplewriter_ttbsm_53_plusprunedcfg.xml">
+<!ENTITY RunA SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/Jet_Run2012A-22Jan2013-v1_ntuplewriter_ttbsm_53_plusprunedcfg.xml">
 <!ENTITY RunA00 SYSTEM "RunA00">
 <!ENTITY RunA01 SYSTEM "RunA01">
 <!ENTITY RunA02 SYSTEM "RunA02">
@@ -102,7 +102,7 @@
 <!ENTITY RunA08 SYSTEM "RunA08">
 <!ENTITY RunA09 SYSTEM "RunA09">
 
-<!ENTITY RunB SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/JetHT_Run2012B-22Jan2013-v1_ntuplewriter_ttbsm_53_plusprunedcfg.xml">
+<!ENTITY RunB SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/JetHT_Run2012B-22Jan2013-v1_ntuplewriter_ttbsm_53_plusprunedcfg.xml">
 <!ENTITY RunB00 SYSTEM "RunB00">
 <!ENTITY RunB01 SYSTEM "RunB01">
 <!ENTITY RunB02 SYSTEM "RunB02">
@@ -124,7 +124,7 @@
 <!ENTITY RunB18 SYSTEM "RunB18">
 <!ENTITY RunB19 SYSTEM "RunB19">
 
-<!ENTITY RunC SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/JetHT_Run2012C-22Jan2013-v1_ntuplewriter_ttbsm_53_plusprunedcfg.xml">
+<!ENTITY RunC SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/JetHT_Run2012C-22Jan2013-v1_ntuplewriter_ttbsm_53_plusprunedcfg.xml">
 <!ENTITY RunC00 SYSTEM "RunC00">
 <!ENTITY RunC01 SYSTEM "RunC01">
 <!ENTITY RunC02 SYSTEM "RunC02">
@@ -156,7 +156,7 @@
 <!ENTITY RunC28 SYSTEM "RunC28">
 <!ENTITY RunC29 SYSTEM "RunC29">
 
-<!ENTITY RunD SYSTEM "/afs/naf.desy.de/user/u/usai/code/SFrame/SFrameAnalysis/config/Samples_TTBSM53/JetHT_Run2012D-22Jan2013-v1_ntuplewriter_ttbsm_53_plusprunedcfg.xml">
+<!ENTITY RunD SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/JetHT_Run2012D-22Jan2013-v1_ntuplewriter_ttbsm_53_plusprunedcfg.xml">
 <!ENTITY RunD00 SYSTEM "RunD00">
 <!ENTITY RunD01 SYSTEM "RunD01">
 <!ENTITY RunD02 SYSTEM "RunD02">
@@ -1194,7 +1194,7 @@
 		   <Item Name="JECJetCollection" Value="AK5PFchs" />-->
 		   
 		   
-		   <Item Name="JECFileLocation" Value="/scratch/hh/dust/naf/cms/user/imarches/JECfiles" />
+		   <Item Name="JECFileLocation" Value="/nfs/dust/cms/user/marchesi/JECfiles" />
 		   <Item Name="JECDataGlobalTag" Value="FT_53_V21_AN6" />
 		   <Item Name="JECMCGlobalTag" Value="START53_V27" />
 		   <Item Name="JECJetCollection" Value="AK5PFchs" />

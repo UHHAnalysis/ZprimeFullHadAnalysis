@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 #from subprocess import check_output,call
 from os import system
-from ROOT import TFile,gROOT,THStack,TCanvas,TLegend,kRed,kYellow,kWhite,TLatex
+from ROOT import TFile,gROOT,THStack,TCanvas,TLegend,kRed,kYellow,kWhite,TLatex,kBlue
 from sys import argv
 
 print 'setup'
 
 dolimits=True
-doplots=False
+doplots=True
 dolimitplot=False
 
 gROOT.SetBatch()
@@ -62,7 +62,7 @@ if doplots:
 
   
   def make_plot(histo_name,cut_name):
-    legend=TLegend(0.6,0.6,0.9,0.9)
+    legend=TLegend(0.7,0.6,0.989,0.89)
     legend.SetFillColor(kWhite)
     legend.SetBorderSize(0)
     stack=THStack(histo_name+us+cut_name+us+'stack','')
@@ -78,8 +78,11 @@ if doplots:
     legend.AddEntry(qcd_histo,'QCD','f')
     stack.Add(ttbar_histo)
     stack.Add(qcd_histo)
-    cmslabel=TLatex(0.3,0.87,"CMS Preliminary #sqrt{s} = 8TeV  19.7 fb^{-1}")
+    cmslabel=TLatex(0.15,0.925,"CMS Preliminary #sqrt{s} = 8TeV  19.7 fb^{-1}")
+    cmslabel.SetTextSize(0.07)
     cmslabel.SetNDC()
+    cmslabel.SetTextFont(42)
+    #cmslabel.SetLineWidth(5)
     signal1000=signal_files[process_names_signal_narrow.index('1000')].Get(cut_name+'/'+histo_name).Clone('ZP1000'+us+histo_name+us+cut_name)
     signal2000=signal_files[process_names_signal_narrow.index('2000')].Get(cut_name+'/'+histo_name).Clone('ZP2000'+us+histo_name+us+cut_name)
     signal3000=signal_files[process_names_signal_narrow.index('3000')].Get(cut_name+'/'+histo_name).Clone('ZP3000'+us+histo_name+us+cut_name)
@@ -89,22 +92,73 @@ if doplots:
     signal2000.SetLineStyle(3)
     signal3000.SetLineWidth(2)
     signal3000.SetLineStyle(4)
-    legend.AddEntry(signal1000,"Z'1TeV",'l')
-    legend.AddEntry(signal2000,"Z'2TeV",'l')
-    legend.AddEntry(signal3000,"Z'3TeV",'l')
-    canvas=TCanvas(histo_name+us+cut_name+us+'canvas')
+    signal1000.Scale(10.0)
+    signal2000.Scale(10.0)
+    signal3000.Scale(10.0)
+    legend.AddEntry(signal1000,"Z' 1TeV #times 10",'l')
+    legend.AddEntry(signal2000,"Z' 2TeV #times 10",'l')
+    legend.AddEntry(signal3000,"Z' 3TeV #times 10",'l')
+    canvas=TCanvas(histo_name+us+cut_name+us+'canvas')#,'',100,100)
+    canvas.SetLeftMargin(0.15)
+    canvas.SetRightMargin(0.01)
+    canvas.SetTopMargin(0.10)
+    canvas.SetBottomMargin(0.15)
     stack.Draw('hist')
-    signal1000.Draw('samel')
-    signal2000.Draw('samel')
-    signal3000.Draw('samel')
+    stack.SetMinimum(0.1)
+    stack.GetXaxis().SetTitle(signal1000.GetXaxis().GetTitle())
+    stack.GetYaxis().SetTitle('Events')
+    stack.GetYaxis().SetLabelSize(0.07)
+    stack.GetYaxis().SetTitleSize(0.07)
+    stack.GetYaxis().SetTitleOffset(1.15)
+    stack.GetXaxis().SetLabelSize(0.07)
+    stack.GetXaxis().SetTitleSize(0.07)
+    stack.GetXaxis().SetTitleOffset(1.0)
+    signal1000.Draw('samehisto')
+    signal2000.Draw('samehisto')
+    signal3000.Draw('samehisto')
     legend.Draw()
     cmslabel.Draw()
     outfile.cd(cut_name)
     canvas.Write()
     canvas.SaveAs('pdf/'+canvas.GetName()+'.pdf')
     
-  make_plot(histo_name_list[1],histo_folder_list[1])
-    
+  for i in range(len(histo_name_list)):
+  #  for j in range(len(histo_folder_list)):
+    make_plot(histo_name_list[i],histo_folder_list[3])
+  
+  stack1=THStack('ZP1000stack','')
+  stack2=THStack('ZP2000stack','')
+  histo_name_list.index("SubLeadingTopCandidatePt")
+  sig1htt=signal_files[process_names_signal_narrow.index('1250')].Get('had_012btag_m/SubLeadingTopCandidatePt').Clone('sig1htt')
+  sig2htt=signal_files[process_names_signal_narrow.index('2000')].Get('had_012btag_m/SubLeadingTopCandidatePt').Clone('sig2htt')
+  sig1cms=signal_files[process_names_signal_narrow.index('1250')].Get('had_012btag_cms/SubLeadingTopCandidatePt').Clone('sig1cms')
+  sig2cms=signal_files[process_names_signal_narrow.index('2000')].Get('had_012btag_cms/SubLeadingTopCandidatePt').Clone('sig2cms')
+  #sig1htt.SetFillColor(kBlue)
+  #sig2htt.SetFillColor(kBlue)
+  #sig1cms.SetFillColor(kRed)
+  #sig2cms.SetFillColor(kRed)
+  sig1htt.SetLineColor(kBlue)
+  sig2htt.SetLineColor(kBlue)
+  sig1cms.SetLineColor(kRed)
+  sig2cms.SetLineColor(kRed)
+  sig1htt.SetLineWidth(3)
+  sig2htt.SetLineWidth(3)
+  sig1cms.SetLineWidth(3)
+  sig2cms.SetLineWidth(3)
+  stack1.Add(sig1htt)
+  stack1.Add(sig1cms)
+  stack2.Add(sig2htt)
+  stack2.Add(sig2cms)
+  cs1=TCanvas('cs1')
+  stack1.Draw('histnostack')
+  stack1.GetXaxis().SetTitle('p_{T} GeV')
+  stack1.GetYaxis().SetTitle('Events')
+  cs1.SaveAs('pdf/stack1.pdf')
+  cs2=TCanvas('cs2')
+  stack2.Draw('histnostack')
+  stack2.GetXaxis().SetTitle('p_{T} GeV')
+  stack2.GetYaxis().SetTitle('Events')
+  cs2.SaveAs('pdf/stack2.pdf')
   
   
 if dolimits:
@@ -131,7 +185,8 @@ if dolimits:
 	   tmp_histo.Write()
     limits_input_file.Close()
 
-  cut_types=['cms','htt']
+  #cut_types=['cms','htt']
+  cut_types=['m']
   catstring=''
   for i in range(len(categories)):
     catstring+=categories[i].split('btag')[0]
@@ -171,6 +226,6 @@ report.write_html('"+path_base+"htmlout"+us+theta_input_name+"')")
     #model.add_lognormal_uncertainty('signal2000_rate', 0.15, 'ZP2000')\n\
     #model.add_lognormal_uncertainty('signal3000_rate', 0.15, 'ZP3000')\n\
   
-  system('python /afs/desy.de/user/u/usaiem/xxl-af-cms/theta/utils2/theta-auto.py '+path_base+theta_input_name+'.py')
+  system('export PYTHONPATH=/afs/desy.de/user/o/ottjoc/xxl-af-cms/python/python-dateutil-1.5:$PYTHONPATH; python /afs/desy.de/user/u/usaiem/xxl-af-cms/theta/utils2/theta-auto.py '+path_base+theta_input_name+'.py')
 
   print 'make limit plots'

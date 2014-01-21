@@ -196,10 +196,10 @@ void ZprimeFullHadCycle::BeginInputData( const SInputData& id ) throw( SError )
   Trigger3Sel = new Selection("Trigger3Sel");
   Trigger4Sel = new Selection("Trigger4Sel");
   Trigger5Sel = new Selection("Trigger5Sel");
-  Trigger1Sel->addSelectionModule(new TriggerSelection("HLT_FatDiPFJetMass750_DR1p1_Deta1p5"));
-  Trigger2Sel->addSelectionModule(new TriggerSelection("HLT_HT750"));
-  Trigger3Sel->addSelectionModule(new TriggerSelection("HLT_Jet160Eta2p4_Jet120Eta2p4_DiBTagIP3DFastPVLoose"));
-  Trigger4Sel->addSelectionModule(new TriggerSelection("HLT_DiJet80_DiJet60_DiJet20"));
+  Trigger1Sel->addSelectionModule(new TriggerSelection("HLT_HT750"));
+  Trigger2Sel->addSelectionModule(new TriggerSelection("HLT_QuadJet50"));
+  Trigger3Sel->addSelectionModule(new TriggerSelection("HLT_QuadJet50"));
+  Trigger4Sel->addSelectionModule(new TriggerSelection("HLT_QuadJet50"));
   Trigger5Sel->addSelectionModule(new TriggerSelection("HLT_QuadJet50"));
   RegisterSelection(Trigger1Sel);
   RegisterSelection(Trigger2Sel);
@@ -413,7 +413,7 @@ std::vector<int> Indices;
   for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
   {
     TopJet tj=bcc->toptagjets->at(i);
-    if (HepTopTag(tj) && subJetBTag(tj,e_CSVM)>0 && tj.pt()>200.0 && tj.pt()>Maxpt1)
+    if (variableHepTopTag(tj,150.0) && subJetBTag(tj,e_CSVM)>0 && tj.pt()>150.0 && tj.pt()>Maxpt1)
     {
      Index1=i;
      Maxpt1=tj.pt();
@@ -422,7 +422,7 @@ std::vector<int> Indices;
   for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
   {
     TopJet tj=bcc->toptagjets->at(i);
-    if (HepTopTag(tj) && subJetBTag(tj,e_CSVM)>0 && tj.pt()>200.0 && tj.pt()>Maxpt2 && i!=Index1)
+    if (variableHepTopTag(tj,150.0) && subJetBTag(tj,e_CSVM)>0 && tj.pt()>150.0 && tj.pt()>Maxpt2 && i!=Index1)
     {
      Index2=i;
      Maxpt2=tj.pt();
@@ -433,7 +433,7 @@ std::vector<int> Indices;
   ((ZprimeFullHadHists*)BaseHistos)->Fill2(Indices);
   if (Trigger1Sel->passSelection()) ((ZprimeFullHadHists*)Trigger1Histos)->Fill2(Indices);
   if (Trigger2Sel->passSelection()) ((ZprimeFullHadHists*)Trigger2Histos)->Fill2(Indices);    
-  if (Trigger3Sel->passSelection()) ((ZprimeFullHadHists*)Trigger3Histos)->Fill2(Indices);
+  if (Trigger1Sel->passSelection() || Trigger2Sel->passSelection()) ((ZprimeFullHadHists*)Trigger3Histos)->Fill2(Indices);
   if (Trigger4Sel->passSelection()/*Trigger5Sel->passSelection() || Trigger2Sel->passSelection()*/) ((ZprimeFullHadHists*)Trigger4Histos)->Fill2(Indices);
   if (Trigger5Sel->passSelection()) ((ZprimeFullHadHists*)Trigger5Histos)->Fill2(Indices);
   

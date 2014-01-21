@@ -267,6 +267,8 @@ void ZAnalysisCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw(
   double nsubcut=0.7;
   double ycut=1.0;
   
+  cout<<bcc->run<<" "<<bcc->luminosityBlock<<" "<<bcc->event<<"\n";
+  
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    //if ((TriggerSel->passSelection()) /*&& (calc->GetHT()>1000.0)*/) TriggerHistos->Fill(); else throw SError( SError::SkipEvent );
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -298,14 +300,18 @@ void ZAnalysisCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw(
   }
   //cout<<"\n\n";
   
-  int n=0,ncms=0;
+  int nhtt=0,ncms=0,ncmstag=0;
   for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
   {
-    if (bcc->toptagjets->at(i).pt()>=200.0) n++;
+    if (bcc->toptagjets->at(i).pt()>=200.0) nhtt++;
   }
   for (unsigned int i=0; i<bcc->higgstagjets->size(); i++)
   {
-    if ((bcc->higgstagjets->at(i).pt()>=400.0)&&TopTag(bcc->higgstagjets->at(i))) ncms++;
+    if (bcc->higgstagjets->at(i).pt()>=400.0) ncms++;
+  }
+  for (unsigned int i=0; i<bcc->higgstagjets->size(); i++)
+  {
+    if ((bcc->higgstagjets->at(i).pt()>=400.0)&&TopTag(bcc->higgstagjets->at(i))) ncmstag++;
   }
   
   //getTopJetsIndices(bcc,0,0,0,0,0,0,0,e_CSVM,e_CSVM,0,0,0,200,200,heptoptag_list,btag_medium_list,nsubjettiness_list);
@@ -317,7 +323,7 @@ void ZAnalysisCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw(
   }
   else
   {
-    if(n>1)
+    if(nhtt>1)
     {
       makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_htt, (ZprimeFullHadHists*)had_0btag_htt, (ZprimeFullHadHists*)had_1btag_htt, (ZprimeFullHadHists*)had_2btag_htt, e_CSVM, 0, 0,heptoptag_list,btag_medium_list,nsubjettiness_list);
     }

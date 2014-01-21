@@ -142,8 +142,8 @@
 
 	<Package Name="ZprimeFullHadAnalysis.par" /> 
 
-<!--   <Cycle Name="ZAnalysisCycle" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19708" > -->
-   <Cycle Name="ZAnalysisCycle"  RunMode="PROOF" ProofServer="pod://"  ProofWorkDir="/nfs/dust/cms/user/usaiem/PROOF/" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19700" > 
+  <Cycle Name="ZAnalysisCycle" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19708" >
+<!--    <Cycle Name="ZAnalysisCycle"  RunMode="PROOF" ProofServer="pod://"  ProofWorkDir="/nfs/dust/cms/user/usaiem/PROOF/" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19700" >  -->
    <!-- <Cycle Name="ZprimeFullHadCycle" OutputDirectory="./" PostFix="" TargetLumi="1.0"> -->
 
 <!--		<InputData Lumi="1.0" NEventsMax="-1" Type="DATA" Version="DATA" Cacheable="False">

@@ -7,14 +7,14 @@ import sys
 print 'setup'
 gROOT.SetBatch()
 
-path_base='/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/ZprimeFullHadCycle.MC.'
+path_base='/nfs/dust/cms/user/usaiem/ZprimeFullHad/ZprimeFullHadCycle.MC.'
 sample_list=['ZP500W5','ZP750W7p5','ZP1000W10','ZP1250W12p5','ZP1500W15','ZP2000W20']
 #sample_list=['ZP2000W20']
 colors=[kRed,kBlue,kGreen,kBlack,kOrange,kGray]
 histo_list=['SumOfTopCandidatesPt','LeadingTopCandidatePt','SubLeadingTopCandidatePt']
 cut_list=["Trigger1Histos","Trigger2Histos","Trigger3Histos","Trigger4Histos","Trigger5Histos"]
 #trigger_names=["HLT_SixJet50","HLT_QuadJet50","HLT_QuadJet70","HLT_QuadJet80","HLT_QuadJet90"]
-trigger_names=["HLT_FatDiPFJetMass750_DR1p1_Deta1p5","HLT_HT750","HLT_Jet160Eta2p4_Jet120Eta2p4_DiBTagIP3DFastPVLoose","HLT_DiJet80_DiJet60_DiJet20","HLT_QuadJet50"]
+trigger_names=["HLT_HT750","HLT_QuadJet50","HLT_HT750||HLT_QuadJet50","a","a"]
   #["HLT_DiJet80_DiJet60_DiJet20","HLT_QuadJet90","HLT_SixJet50","HLT_DiPFJet80_DiPFJet30_BTagCSVd07d05d03","HLT_DiJet80Eta2p6_BTagIP3DFastPVLoose_v4"]
 #cut_list#["HLT_HT750_v3","HLT_BTagMu_Jet300_Mu5_v3","HLT_Jet160Eta2p4_Jet120Eta2p4_DiBTagIP3DFastPVLoose_v4","HLT_DiPFJet80_DiPFJet30_BTagCSVd07d05_v1","HLT_DiJet80Eta2p6_BTagIP3DFastPVLoose_v4"]
 base_cut="BaseHistos"
