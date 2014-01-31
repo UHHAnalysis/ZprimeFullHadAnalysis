@@ -1923,6 +1923,7 @@ for histogram_name_index in range(len(histogram_names)):
       tmp_canvas.Write()
       if histogram_name in ['Toppt','MassTop','var1_HTT','var2_HTT','var3_HTT','m01','m02','m12'] and cut_name in ["NOheptoptag_NOmasscut_hists","heptoptag_NOmasscut_hists","pt300hists","pt400hists","pt300histshtt","pt400histshtt"]:
         tmp_canvas.SaveAs('pdf/'+tmp_canvas.GetName()+'.pdf')
+        tmp_canvas.SaveAs('pdf/'+tmp_canvas.GetName()+'.C')
       #if histogram_name in ["subTrackNPixelHits","subTrackMomentum","subTrackJetDistVal","subTrackDecayLenVal","subTrackSip3dVal","subTrackSip3dSig","subJetNSecondaryVertices","subCSV","subFlightDistance3dSig"]:
       # top_pad.SetLogy()
   

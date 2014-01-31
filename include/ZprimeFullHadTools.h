@@ -7,7 +7,7 @@
 #include "SFrameTools/include/Selection.h"
 #include "SFrameTools/include/EventCalc.h"
 #include "SFrameTools/include/BaseHists.h"
-
+#include "TH2.h"
 
 class ZprimeFullHadSelection: public SelectionModule {
 public:
@@ -54,6 +54,23 @@ public:
 private:
   std::vector<int> TopJetIndices;
 }; // class ZprimeFullHadHists
+
+class BackgroundHists : public BaseHists {
+public:
+   /// Named constructor
+   BackgroundHists(const char* name);
+
+   /// Default destructor
+   ~BackgroundHists();
+
+   void Init();
+   void Fill();
+   void Finish();
+private:
+  TFile* f;
+  TH2F* mistag;
+  TH2F* shape;
+}; // class BackgroundHists
 
 // class RapidityCutSelection: public SelectionModule {
 // public:

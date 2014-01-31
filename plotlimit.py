@@ -33,9 +33,9 @@ limit_legend_names=['B2G-12-006','B2G-12-005',"Justin's CMSTT","Emanuele's CMSTT
 #limit_legend_names=["Justin's CMSTT","Emanuele's CMSTT","Emanuele's CMSTT+HTT","HTT"]
 limit_colors=[kGray,kBlack,kGreen,kRed,kViolet,kBlue]
 #limit_colors=[kRed,kBlue,kGreen,kViolet]
-limit_points=[semiapproved,approved,zero12TNsubDY]
+limit_points=[semiapproved,approved]#,zero12TNsubDY]
 #limit_points=[zero12TNsubDY]
-limit_paths=["/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_cms.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_cms_htt.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_m.txt"]
+limit_paths=["/nfs/dust/cms/user/usaiem/ZprimeFullHad/justin.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_cms.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_cms_htt.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_m.txt"]
 for i in range(len(limit_paths)):
   limit_points.append(getPoints(limit_paths[i]))
 

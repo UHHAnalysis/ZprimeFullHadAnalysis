@@ -185,7 +185,7 @@ if dolimits:
 	   tmp_histo.Write()
     limits_input_file.Close()
 
-  #cut_types=['cms','htt']
+  #cut_types=['cms','htt']['m']
   cut_types=['m']
   catstring=''
   for i in range(len(categories)):
@@ -202,16 +202,32 @@ if dolimits:
   for i in range(len(process_list_signal_narrow)):
     model_strings+="    model.add_lognormal_uncertainty('signal"+process_names_signal_narrow[i]+"_rate', 0.15, 'ZP"+process_names_signal_narrow[i]+"')\n"
   theta_config = open(path_base+theta_input_name+'.py', 'w')
+  #theta_config.write("def get_model():\n\
+    #model = build_model_from_rootfile('"+path_base+theta_input_name+'.root'+"')\n\
+    #model.fill_histogram_zerobins()\n\
+    #model.set_signal_processes('ZP*')\n\
+    #model.add_lognormal_uncertainty('ttbar_rate', 0.15, 'ttbar')\n\
+    #model.add_lognormal_uncertainty('qcd_rate', 0.15, 'qcd')\n\
+#"+model_strings+"\
+    #for p in model.processes:\n\
+        #if p == 'qcd': continue\n\
+        #model.add_lognormal_uncertainty('lumi', 0.026, p)\n\
+    #return model\n\
+#model = get_model()\n\
+#model_summary(model)\n\
+#plot_exp, plot_obs = asymptotic_cls_limits(model,use_data=False)\n\
+#plot_exp.write_txt('"+path_base+theta_input_name+'.txt'+"')\n\
+#report.write_html('"+path_base+"htmlout"+us+theta_input_name+"')")
   theta_config.write("def get_model():\n\
-    model = build_model_from_rootfile('"+path_base+theta_input_name+'.root'+"')\n\
+    model = build_model_from_rootfile('"+path_base+theta_input_name+'.root'+"',include_mc_uncertainties=True)\n\
     model.fill_histogram_zerobins()\n\
     model.set_signal_processes('ZP*')\n\
-    model.add_lognormal_uncertainty('ttbar_rate', 0.15, 'ttbar')\n\
-    model.add_lognormal_uncertainty('qcd_rate', 0.15, 'qcd')\n\
+    model.add_lognormal_uncertainty('xs_top', math.log(1.15), 'ttbar')\n\
+    model.add_lognormal_uncertainty('qcd_norm', math.log(1.10), 'qcd')\n\
 "+model_strings+"\
     for p in model.processes:\n\
-        if p == 'qcd': continue\n\
-        model.add_lognormal_uncertainty('lumi', 0.026, p)\n\
+        model.add_lognormal_uncertainty('lumi', math.log(1.045), p)\n\
+        model.add_lognormal_uncertainty('btag', math.log(1.05), p)\n\
     return model\n\
 model = get_model()\n\
 model_summary(model)\n\
@@ -226,6 +242,6 @@ report.write_html('"+path_base+"htmlout"+us+theta_input_name+"')")
     #model.add_lognormal_uncertainty('signal2000_rate', 0.15, 'ZP2000')\n\
     #model.add_lognormal_uncertainty('signal3000_rate', 0.15, 'ZP3000')\n\
   
-  system('export PYTHONPATH=/afs/desy.de/user/o/ottjoc/xxl-af-cms/python/python-dateutil-1.5:$PYTHONPATH; python /afs/desy.de/user/u/usaiem/xxl-af-cms/theta/utils2/theta-auto.py '+path_base+theta_input_name+'.py')
-
+  system('python /afs/desy.de/user/u/usaiem/xxl-af-cms/theta/utils2/theta-auto.py '+path_base+theta_input_name+'.py')
+#export PYTHONPATH=/afs/desy.de/user/o/ottjoc/xxl-af-cms/python/python-dateutil-1.5:$PYTHONPATH;
   print 'make limit plots'

@@ -29,6 +29,16 @@
 <!ENTITY TTbarHad07 SYSTEM "TTbarHad07">
 <!ENTITY TTbarHad08 SYSTEM "TTbarHad08">
 <!ENTITY TTbarHad09 SYSTEM "TTbarHad09">
+<!ENTITY TTbarHad10 SYSTEM "TTbarHad10">
+<!ENTITY TTbarHad11 SYSTEM "TTbarHad11">
+<!ENTITY TTbarHad12 SYSTEM "TTbarHad12">
+<!ENTITY TTbarHad13 SYSTEM "TTbarHad13">
+<!ENTITY TTbarHad14 SYSTEM "TTbarHad14">
+<!ENTITY TTbarHad15 SYSTEM "TTbarHad15">
+<!ENTITY TTbarHad16 SYSTEM "TTbarHad16">
+<!ENTITY TTbarHad17 SYSTEM "TTbarHad17">
+<!ENTITY TTbarHad18 SYSTEM "TTbarHad18">
+<!ENTITY TTbarHad19 SYSTEM "TTbarHad19">
 <!ENTITY TTbarSemi SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/TTJets_SemiLeptMGDecays_8TeV-madgraph.xml">
 <!ENTITY TTbarSemi00 SYSTEM "TTbarSemi00">
 <!ENTITY TTbarSemi01 SYSTEM "TTbarSemi01">
@@ -45,6 +55,16 @@
 
 <!ENTITY QCD_HT-100To250 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-100To250_TuneZ2star_8TeV-madgraph-pythia.xml">
 <!ENTITY QCD_HT-250To500 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-250To500_TuneZ2star_8TeV-madgraph-pythia6.xml">
+<!ENTITY QCD_HT-250To50000 SYSTEM "QCD_HT-250To50000">
+<!ENTITY QCD_HT-250To50001 SYSTEM "QCD_HT-250To50001">
+<!ENTITY QCD_HT-250To50002 SYSTEM "QCD_HT-250To50002">
+<!ENTITY QCD_HT-250To50003 SYSTEM "QCD_HT-250To50003">
+<!ENTITY QCD_HT-250To50004 SYSTEM "QCD_HT-250To50004">
+<!ENTITY QCD_HT-250To50005 SYSTEM "QCD_HT-250To50005">
+<!ENTITY QCD_HT-250To50006 SYSTEM "QCD_HT-250To50006">
+<!ENTITY QCD_HT-250To50007 SYSTEM "QCD_HT-250To50007">
+<!ENTITY QCD_HT-250To50008 SYSTEM "QCD_HT-250To50008">
+<!ENTITY QCD_HT-250To50009 SYSTEM "QCD_HT-250To50009">
 <!ENTITY QCD_HT-500To1000 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-500To1000_TuneZ2star_8TeV-madgraph-pythia6.xml">
 <!ENTITY QCD_HT-500To100000 SYSTEM "QCD_HT-500To100000">
 <!ENTITY QCD_HT-500To100001 SYSTEM "QCD_HT-500To100001">
@@ -56,6 +76,17 @@
 <!ENTITY QCD_HT-500To100007 SYSTEM "QCD_HT-500To100007">
 <!ENTITY QCD_HT-500To100008 SYSTEM "QCD_HT-500To100008">
 <!ENTITY QCD_HT-500To100009 SYSTEM "QCD_HT-500To100009">
+<!ENTITY QCD_HT-500To100010 SYSTEM "QCD_HT-500To100010">
+<!ENTITY QCD_HT-500To100011 SYSTEM "QCD_HT-500To100011">
+<!ENTITY QCD_HT-500To100012 SYSTEM "QCD_HT-500To100012">
+<!ENTITY QCD_HT-500To100013 SYSTEM "QCD_HT-500To100013">
+<!ENTITY QCD_HT-500To100014 SYSTEM "QCD_HT-500To100014">
+<!ENTITY QCD_HT-500To100015 SYSTEM "QCD_HT-500To100015">
+<!ENTITY QCD_HT-500To100016 SYSTEM "QCD_HT-500To100016">
+<!ENTITY QCD_HT-500To100017 SYSTEM "QCD_HT-500To100017">
+<!ENTITY QCD_HT-500To100018 SYSTEM "QCD_HT-500To100018">
+<!ENTITY QCD_HT-500To100019 SYSTEM "QCD_HT-500To100019">
+
 <!ENTITY QCD_HT-1000ToInf SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-1000ToInf_TuneZ2star_8TeV-madgraph-pythia6.xml">
 <!ENTITY QCD_HT-1000ToInf00 SYSTEM "QCD_HT-1000ToInf00">
 <!ENTITY QCD_HT-1000ToInf01 SYSTEM "QCD_HT-1000ToInf01">
@@ -89,6 +120,38 @@
 <!ENTITY QCD_HT-1000ToInf27 SYSTEM "QCD_HT-1000ToInf27">
 <!ENTITY QCD_HT-1000ToInf28 SYSTEM "QCD_HT-1000ToInf28">
 <!ENTITY QCD_HT-1000ToInf29 SYSTEM "QCD_HT-1000ToInf29">
+
+<!ENTITY QCD_HT-1000ToInf30 SYSTEM "QCD_HT-1000ToInf30">
+<!ENTITY QCD_HT-1000ToInf31 SYSTEM "QCD_HT-1000ToInf31">
+<!ENTITY QCD_HT-1000ToInf32 SYSTEM "QCD_HT-1000ToInf32">
+<!ENTITY QCD_HT-1000ToInf33 SYSTEM "QCD_HT-1000ToInf33">
+<!ENTITY QCD_HT-1000ToInf34 SYSTEM "QCD_HT-1000ToInf34">
+<!ENTITY QCD_HT-1000ToInf35 SYSTEM "QCD_HT-1000ToInf35">
+<!ENTITY QCD_HT-1000ToInf36 SYSTEM "QCD_HT-1000ToInf36">
+<!ENTITY QCD_HT-1000ToInf37 SYSTEM "QCD_HT-1000ToInf37">
+<!ENTITY QCD_HT-1000ToInf38 SYSTEM "QCD_HT-1000ToInf38">
+<!ENTITY QCD_HT-1000ToInf39 SYSTEM "QCD_HT-1000ToInf39">
+
+<!ENTITY QCD_HT-1000ToInf40 SYSTEM "QCD_HT-1000ToInf40">
+<!ENTITY QCD_HT-1000ToInf41 SYSTEM "QCD_HT-1000ToInf41">
+<!ENTITY QCD_HT-1000ToInf42 SYSTEM "QCD_HT-1000ToInf42">
+<!ENTITY QCD_HT-1000ToInf43 SYSTEM "QCD_HT-1000ToInf43">
+<!ENTITY QCD_HT-1000ToInf44 SYSTEM "QCD_HT-1000ToInf44">
+<!ENTITY QCD_HT-1000ToInf45 SYSTEM "QCD_HT-1000ToInf45">
+<!ENTITY QCD_HT-1000ToInf46 SYSTEM "QCD_HT-1000ToInf46">
+<!ENTITY QCD_HT-1000ToInf47 SYSTEM "QCD_HT-1000ToInf47">
+<!ENTITY QCD_HT-1000ToInf48 SYSTEM "QCD_HT-1000ToInf48">
+<!ENTITY QCD_HT-1000ToInf49 SYSTEM "QCD_HT-1000ToInf49">
+
+<!ENTITY QCD_HT-1000ToInf50 SYSTEM "QCD_HT-1000ToInf50">
+<!ENTITY QCD_HT-1000ToInf51 SYSTEM "QCD_HT-1000ToInf51">
+<!ENTITY QCD_HT-1000ToInf52 SYSTEM "QCD_HT-1000ToInf52">
+<!ENTITY QCD_HT-1000ToInf53 SYSTEM "QCD_HT-1000ToInf53">
+<!ENTITY QCD_HT-1000ToInf54 SYSTEM "QCD_HT-1000ToInf54">
+<!ENTITY QCD_HT-1000ToInf55 SYSTEM "QCD_HT-1000ToInf55">
+<!ENTITY QCD_HT-1000ToInf56 SYSTEM "QCD_HT-1000ToInf56">
+<!ENTITY QCD_HT-1000ToInf57 SYSTEM "QCD_HT-1000ToInf57">
+<!ENTITY QCD_HT-1000ToInf58 SYSTEM "QCD_HT-1000ToInf58">
 
 <!ENTITY RunA SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/Jet_Run2012A-22Jan2013-v1_ntuplewriter_ttbsm_53_plusprunedcfg.xml">
 <!ENTITY RunA00 SYSTEM "RunA00">
@@ -204,8 +267,8 @@
 
 	<Package Name="ZprimeFullHadAnalysis.par" /> 
 
-<!--   <Cycle Name="PreselectionCycle" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/preselection/" PostFix="" TargetLumi="19708" > -->
-   <Cycle Name="PreselectionCycle"  RunMode="PROOF" ProofServer="pod://"  ProofWorkDir="/scratch/hh/dust/naf/cms/user/usai/PROOF/" OutputDirectory="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/preselection/" PostFix="" TargetLumi="19708" > 
+<!--   <Cycle Name="PreselectionCycle" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/" PostFix="" TargetLumi="19708" > -->
+   <Cycle Name="PreselectionCycle"  RunMode="PROOF" ProofServer="pod://"  ProofWorkDir="/nfs/dust/cms/user/usaiem/PROOF/" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/" PostFix="" TargetLumi="19708" > 
    <!-- <Cycle Name="ZprimeFullHadCycle" OutputDirectory="./" PostFix="" TargetLumi="1.0"> -->
 
 <!--		<InputData Lumi="1.0" NEventsMax="-1" Type="DATA" Version="DATA" Cacheable="False">
@@ -261,9 +324,9 @@
 <InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunA04" Cacheable="True">
 &RunA04;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>-->
+</InputData>
 
-<!--<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunA05" Cacheable="True">
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunA05" Cacheable="True">
 &RunA05;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -338,9 +401,9 @@
 <InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunB09" Cacheable="True">
 &RunB09;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>-->
+</InputData>
 
-<!--<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunB10" Cacheable="True">
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunB10" Cacheable="True">
 &RunB10;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -415,9 +478,9 @@
 <InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunC04" Cacheable="True">
 &RunC04;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>-->
+</InputData>
 
-<!--<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunC05" Cacheable="True">
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunC05" Cacheable="True">
 &RunC05;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -465,9 +528,9 @@
 <InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunC14" Cacheable="True">
 &RunC14;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>-->
+</InputData>
 
-<!--<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunC15" Cacheable="True">
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunC15" Cacheable="True">
 &RunC15;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -622,9 +685,9 @@
 <InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunD15" Cacheable="True">
 &RunD15;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>
+</InputData>-->
 
-<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunD16" Cacheable="True">
+<!--<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunD16" Cacheable="True">
 &RunD16;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -642,9 +705,9 @@
 <InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunD19" Cacheable="True">
 &RunD19;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>-->
+</InputData>
 
-<!--<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunD20" Cacheable="True">
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="RunD20" Cacheable="True">
 &RunD20;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -732,9 +795,9 @@
 <InputData Lumi="201420" NEventsMax="-1" Type="MC" Version="ZP1250W125" Cacheable="True">
 &ZP1250W125;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>
+</InputData>-->
 
-<InputData Lumi="486109" NEventsMax="-1" Type="MC" Version="ZP1500W15" Cacheable="True">
+<!--<InputData Lumi="486109" NEventsMax="-1" Type="MC" Version="ZP1500W15" Cacheable="True">
 &ZP1500W15;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -793,16 +856,61 @@
 <!--<InputData Lumi="461894.034276552" NEventsMax="-1" Type="MC" Version="TTbarLept" Cacheable="True">
 &TTbarLept;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>
+</InputData>-->
 
 
-<InputData Lumi="4.834294305" NEventsMax="-1" Type="MC" Version="QCD_HT-100To250" Cacheable="True">
+<!--<InputData Lumi="4.834294305" NEventsMax="-1" Type="MC" Version="QCD_HT-100To250" Cacheable="True">
 &QCD_HT-100To250;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>-->
+
+<!--<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCD_HT-250To50000" Cacheable="True">
+&QCD_HT-250To50000;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
 
-<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCD_HT-250To500" Cacheable="True">
-&QCD_HT-250To500;
+<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCD_HT-250To50001" Cacheable="True">
+&QCD_HT-250To50001;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCD_HT-250To50002" Cacheable="True">
+&QCD_HT-250To50002;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCD_HT-250To50003" Cacheable="True">
+&QCD_HT-250To50003;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCD_HT-250To50004" Cacheable="True">
+&QCD_HT-250To50004;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCD_HT-250To50005" Cacheable="True">
+&QCD_HT-250To50005;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCD_HT-250To50006" Cacheable="True">
+&QCD_HT-250To50006;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCD_HT-250To50007" Cacheable="True">
+&QCD_HT-250To50007;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCD_HT-250To50008" Cacheable="True">
+&QCD_HT-250To50008;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCD_HT-250To50009" Cacheable="True">
+&QCD_HT-250To50009;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>-->
 <!--
@@ -916,6 +1024,57 @@
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>-->
 
+
+<!--<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarHad10" Cacheable="True">
+&TTbarHad10;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarHad11" Cacheable="True">
+&TTbarHad11;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarHad12" Cacheable="True">
+&TTbarHad12;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarHad13" Cacheable="True">
+&TTbarHad13;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarHad14" Cacheable="True">
+&TTbarHad14;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarHad15" Cacheable="True">
+&TTbarHad15;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarHad16" Cacheable="True">
+&TTbarHad16;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarHad17" Cacheable="True">
+&TTbarHad17;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarHad18" Cacheable="True">
+&TTbarHad18;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarHad19" Cacheable="True">
+&TTbarHad19;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>-->
+
 <!--<InputData Lumi="3601.486707809" NEventsMax="-1" Type="MC" Version="QCD_HT-500To100000" Cacheable="True">
 &QCD_HT-500To100000;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
@@ -964,10 +1123,61 @@
 <InputData Lumi="3601.486707809" NEventsMax="-1" Type="MC" Version="QCD_HT-500To100009" Cacheable="True">
 &QCD_HT-500To100009;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+
+<InputData Lumi="3601.486707809" NEventsMax="-1" Type="MC" Version="QCD_HT-500To100010" Cacheable="True">
+&QCD_HT-500To100010;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="3601.486707809" NEventsMax="-1" Type="MC" Version="QCD_HT-500To100011" Cacheable="True">
+&QCD_HT-500To100011;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="3601.486707809" NEventsMax="-1" Type="MC" Version="QCD_HT-500To100012" Cacheable="True">
+&QCD_HT-500To100012;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="3601.486707809" NEventsMax="-1" Type="MC" Version="QCD_HT-500To100013" Cacheable="True">
+&QCD_HT-500To100013;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="3601.486707809" NEventsMax="-1" Type="MC" Version="QCD_HT-500To100014" Cacheable="True">
+&QCD_HT-500To100014;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="3601.486707809" NEventsMax="-1" Type="MC" Version="QCD_HT-500To100015" Cacheable="True">
+&QCD_HT-500To100015;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="3601.486707809" NEventsMax="-1" Type="MC" Version="QCD_HT-500To100016" Cacheable="True">
+&QCD_HT-500To100016;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="3601.486707809" NEventsMax="-1" Type="MC" Version="QCD_HT-500To100017" Cacheable="True">
+&QCD_HT-500To100017;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="3601.486707809" NEventsMax="-1" Type="MC" Version="QCD_HT-500To100018" Cacheable="True">
+&QCD_HT-500To100018;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="3601.486707809" NEventsMax="-1" Type="MC" Version="QCD_HT-500To100019" Cacheable="True">
+&QCD_HT-500To100019;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>-->
 
 
-<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf00" Cacheable="True">
+<!--<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf00" Cacheable="True">
 &QCD_HT-1000ToInf00;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -1126,6 +1336,158 @@
 </InputData>
 
 
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf30" Cacheable="True">
+&QCD_HT-1000ToInf30;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf31" Cacheable="True">
+&QCD_HT-1000ToInf31;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf32" Cacheable="True">
+&QCD_HT-1000ToInf32;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf33" Cacheable="True">
+&QCD_HT-1000ToInf33;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf34" Cacheable="True">
+&QCD_HT-1000ToInf34;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf35" Cacheable="True">
+&QCD_HT-1000ToInf35;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf36" Cacheable="True">
+&QCD_HT-1000ToInf36;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf37" Cacheable="True">
+&QCD_HT-1000ToInf37;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf38" Cacheable="True">
+&QCD_HT-1000ToInf38;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf39" Cacheable="True">
+&QCD_HT-1000ToInf39;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf40" Cacheable="True">
+&QCD_HT-1000ToInf40;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf41" Cacheable="True">
+&QCD_HT-1000ToInf41;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf42" Cacheable="True">
+&QCD_HT-1000ToInf42;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf43" Cacheable="True">
+&QCD_HT-1000ToInf43;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf44" Cacheable="True">
+&QCD_HT-1000ToInf44;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf45" Cacheable="True">
+&QCD_HT-1000ToInf45;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf46" Cacheable="True">
+&QCD_HT-1000ToInf46;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf47" Cacheable="True">
+&QCD_HT-1000ToInf47;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf48" Cacheable="True">
+&QCD_HT-1000ToInf48;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf49" Cacheable="True">
+&QCD_HT-1000ToInf49;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf50" Cacheable="True">
+&QCD_HT-1000ToInf50;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf51" Cacheable="True">
+&QCD_HT-1000ToInf51;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf52" Cacheable="True">
+&QCD_HT-1000ToInf52;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf53" Cacheable="True">
+&QCD_HT-1000ToInf53;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf54" Cacheable="True">
+&QCD_HT-1000ToInf54;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf55" Cacheable="True">
+&QCD_HT-1000ToInf55;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf56" Cacheable="True">
+&QCD_HT-1000ToInf56;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf57" Cacheable="True">
+&QCD_HT-1000ToInf57;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf58" Cacheable="True">
+&QCD_HT-1000ToInf58;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>-->
+
+
+
 <!--DO NOT USE<InputData Lumi="8818.5" NEventsMax="2156010" Type="MC" Version="TTbar" Cacheable="True">
 &TTbar;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
@@ -1178,8 +1540,8 @@
 		   <Item Name="HiggsTagJetCollection" Value="goodPatJetsCATopTagPFPacked" />
 		      
 		   <!-- 		      <Item Name="PU_Filename_Data" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/PileUpHistos/MyDataPileupHistogram_206745.root" /> -->
-		      <Item Name="PU_Filename_MC" Value="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/PileUpHistoCycle" />
-                       <Item Name="PU_Filename_Data" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root" />
+		      <Item Name="PU_Filename_MC" Value="/nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle" />
+                       <Item Name="PU_Filename_Data" Value="/nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root" />
 		      <Item Name="PU_Histname_Data" Value="pileup" />
 		      <Item Name="PU_Histname_MC" Value="N_pileup_hist" />
 

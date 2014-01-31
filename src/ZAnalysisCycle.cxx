@@ -267,11 +267,14 @@ void ZAnalysisCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw(
   double nsubcut=0.7;
   double ycut=1.0;
   
-  cout<<bcc->run<<" "<<bcc->luminosityBlock<<" "<<bcc->event<<"\n";
+  //cout<<bcc->run<<" "<<bcc->luminosityBlock<<" "<<bcc->event<<"\n";
   
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    //if ((TriggerSel->passSelection()) /*&& (calc->GetHT()>1000.0)*/) TriggerHistos->Fill(); else throw SError( SError::SkipEvent );
+  if ( ! TriggerHT->passSelection() ) throw SError( SError::SkipEvent );
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
+  
   
   std::vector<int> btag_medium_list;
   std::vector<int> btag_loose_list;
@@ -313,7 +316,9 @@ void ZAnalysisCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw(
   {
     if ((bcc->higgstagjets->at(i).pt()>=400.0)&&TopTag(bcc->higgstagjets->at(i))) ncmstag++;
   }
-  
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  if (! (nhtt>1 || ncms>1) ) throw SError( SError::SkipEvent );
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //getTopJetsIndices(bcc,0,0,0,0,0,0,0,e_CSVM,e_CSVM,0,0,0,200,200,heptoptag_list,btag_medium_list,nsubjettiness_list);
   
   if ((ncms>1)&&(TriggerHT->passSelection()))
@@ -375,22 +380,22 @@ void ZAnalysisCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw(
       {
 	((ZprimeFullHadHists*)antitag_num)->Fill2(Indices);
       }
-      if (heptoptag_list[probe_index] && btag_loose_list[probe_index]>0)
-      {
-	((ZprimeFullHadHists*)antitag_num_l)->Fill2(Indices);
-      }
-      if (heptoptag_list[probe_index] && btag_medium_list[probe_index]>0)
-      {
-	((ZprimeFullHadHists*)antitag_num_m)->Fill2(Indices);
-      }
-      if (heptoptag_list[probe_index] && btag_loose_list[probe_index]>0 && nsubjettiness_list[probe_index]<nsubcut)
-      {
-	((ZprimeFullHadHists*)antitag_num_ln)->Fill2(Indices);
-      }
-      if (heptoptag_list[probe_index] && btag_medium_list[probe_index]>0 && nsubjettiness_list[probe_index]<nsubcut)
-      {
-	((ZprimeFullHadHists*)antitag_num_mn)->Fill2(Indices);
-      }
+//       if (heptoptag_list[probe_index] && btag_loose_list[probe_index]>0)
+//       {
+// 	((ZprimeFullHadHists*)antitag_num_l)->Fill2(Indices);
+//       }
+//       if (heptoptag_list[probe_index] && btag_medium_list[probe_index]>0)
+//       {
+// 	((ZprimeFullHadHists*)antitag_num_m)->Fill2(Indices);
+//       }
+//       if (heptoptag_list[probe_index] && btag_loose_list[probe_index]>0 && nsubjettiness_list[probe_index]<nsubcut)
+//       {
+// 	((ZprimeFullHadHists*)antitag_num_ln)->Fill2(Indices);
+//       }
+//       if (heptoptag_list[probe_index] && btag_medium_list[probe_index]>0 && nsubjettiness_list[probe_index]<nsubcut)
+//       {
+// 	((ZprimeFullHadHists*)antitag_num_mn)->Fill2(Indices);
+//       }
     }
   }
     

@@ -15,6 +15,7 @@
 
 #pragma link C++ class ZprimeFullHadCycle+;
 #pragma link C++ class PreselectionCycle+;
+#pragma link C++ class BackgroundCycle+;
 #pragma link C++ class ZAnalysisCycle+;
 #pragma link C++ class PileUpHistoCycle+;
 #pragma link C++ class SemileptonicHepTopTagValSelCycle+;
