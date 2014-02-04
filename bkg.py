@@ -5,13 +5,12 @@ from sys import argv
 print 'setup'
 gROOT.SetBatch()
 path_base='/nfs/dust/cms/user/usaiem/ZprimeFullHad/'
-process_list_ttbar=['ZAnalysisCycle.MC.TTbarHad.root','ZAnalysisCycle.MC.TTbarLept.root','ZAnalysisCycle.MC.TTbarSemi.root']
-process_list_qcd=['ZAnalysisCycle.MC.QCD_HT-1000ToInf.root','ZAnalysisCycle.MC.QCD_HT-100To250.root','ZAnalysisCycle.MC.QCD_HT-250To500.root','ZAnalysisCycle.MC.QCD_HT-500To1000.root']
-process_data='ZAnalysisCycle.DATA.DATA'
-den_folder="antitag_den"
-num_folder="antitag_num"
-massshape_folder="NoCutsHistos"
-histo_mistag_name="mistag"
+process_list_ttbar=['BackgroundCycle.MC.TTbarHad.root','BackgroundCycle.MC.TTbarLept.root','BackgroundCycle.MC.TTbarSemi.root']
+process_list_qcd=['BackgroundCycle.MC.QCD_HT-1000ToInf.root','BackgroundCycle.MC.QCD_HT-250To500.root','BackgroundCycle.MC.QCD_HT-500To1000.root']#'BackgroundCycle.MC.QCD_HT-100To250.root',
+process_data='BackgroundCycle.DATA.DATA'
+den_name="den_mistag"
+num_name="num_mistag"
+folder="BaseHistos"
 histo_massshape_name="mass_shape"
 csvcat=['CSV0-L','CSVL-M','CSVM-1']
 postfix=''
@@ -26,7 +25,7 @@ for i in ['HEPTagger','CMSTagger']:
 print 'hadd plots'
 
 def hadd(inputlist,outputname):
-  command_list='hadd -f '+path_base+outputname+'.root'
+  command_list='hadd -v 0 -f '+path_base+outputname+'.root'
   for i in inputlist:
     command_list+=' '+path_base+i
   system(command_list)
@@ -39,36 +38,34 @@ data_file=TFile(path_base+process_data+'.root','READ')
 
 print 'produce hist'
 
-def slice_and_save(sample,histo,folder):
+def slice_and_save(sample,histo):
   histo_stack=THStack(histo,'x','Stack_'+histo.GetName(),'')
   histo_1d=histo_stack.GetHists()
-  outfile.cd()
-  histo.Write(folder+histo.GetName()+'_'+sample)
-  histo_stack.Write(folder+histo_stack.GetName()+'_'+sample)
+  #outfile.cd()
+  histo.Write(histo.GetName()+'_'+sample)
+  histo_stack.Write(histo_stack.GetName()+'_'+sample)
   nextinlist=TIter(histo_1d)
   obj=nextinlist()
   while obj:
-    obj.Write(folder+obj.GetName()+'_'+sample)
+    obj.Write(obj.GetName()+'_'+sample)
     obj=nextinlist()
 
 def getMistag(sample,sample_file,useCMS=False,isData=False):
-  den_folder="antitag_den"
-  num_folder="antitag_num"
-  histo_name=histo_mistag_name
-  num_histo=sample_file.Get(num_folder+"/"+histo_name).Clone('Numerator_'+sample)
-  den_histo=sample_file.Get(den_folder+"/"+histo_name).Clone('Denominator_'+sample)
+  num_histo=sample_file.Get(folder+"/"+num_name).Clone('Numerator')#.Clone('Numerator_'+sample)
+  den_histo=sample_file.Get(folder+"/"+den_name).Clone('Denominator')#.Clone('Denominator_'+sample)
   if isData:
-    num_histo.Add(ttbar_file.Get(num_folder+"/"+histo_name),-1.0)
-    den_histo.Add(ttbar_file.Get(den_folder+"/"+histo_name),-1.0)
-  mistag_histo=num_histo.Clone('Mistag_'+sample)
+    num_histo.Add(ttbar_file.Get(folder+"/"+num_name),-1.0)
+    den_histo.Add(ttbar_file.Get(folder+"/"+den_name),-1.0)
+  mistag_histo=num_histo.Clone('Mistag')#.Clone('Mistag_'+sample)
   mistag_histo.Divide(num_histo,den_histo,1,1,'B')
-  outfile.cd()
-  folder='HEPTagger/Mistag/'
+  outfolder='HEPTagger/Mistag'
   if useCMS:
-    folder='CMSTagger/Mistag/'
-  slice_and_save(sample,num_histo,folder)
-  slice_and_save(sample,den_histo,folder)
-  slice_and_save(sample,mistag_histo,folder)
+    outfolder='CMSTagger/Mistag'
+  outfile.mkdir(outfolder+'/'+sample)
+  outfile.cd(outfolder+'/'+sample)
+  slice_and_save(sample,num_histo)
+  slice_and_save(sample,den_histo)
+  slice_and_save(sample,mistag_histo)
   #mass_shape2D.Write(folder+mass_shape2D.GetName()+'_'+sample)
   #mass_shapeStack.Write(folder+mass_shapeStack.GetName()+'_'+sample)
   #nextinlist=TList(GetListOfPrimitives())
@@ -79,14 +76,16 @@ def getMistag(sample,sample_file,useCMS=False,isData=False):
   
   
 def getMassShape(sample,sample_file,useCMS=False,isData=False):
-  mass_shape2D=qcd_file.Get(massshape_folder+'/'+histo_massshape_name)
+  mass_shape=sample_file.Get(folder+'/'+histo_massshape_name)
   #mass_shapeStack=THStack(mass_shape2D,'x','Stack','')
   #mass_shape1D=mass_shapeStack.GetHists()
-  outfile.cd()
-  folder='HEPTagger/MassShape/'
+  outfolder='HEPTagger/MassShape'
   if useCMS:
-    folder='CMSTagger/MassShape/'
-  slice_and_save(sample,mass_shape2D,folder)
+    outfolder='CMSTagger/MassShape'
+  outfile.mkdir(outfolder+'/'+sample)
+  outfile.cd(outfolder+'/'+sample)
+  #slice_and_save(sample,mass_shape2D,folder)
+  mass_shape.Write(mass_shape.GetName()+'_'+sample)
   #mass_shape2D.Write(folder+mass_shape2D.GetName()+'_'+sample)
   #mass_shapeStack.Write(folder+mass_shapeStack.GetName()+'_'+sample)
   #nextinlist=TList(GetListOfPrimitives())
@@ -100,19 +99,19 @@ use_cms=True
 use_htt=False
 ttbar_subtraction=True
 no_ttbar_subtraction=False
-#getMistag('ttbar_htt',      ttbar_file, use_htt, no_ttbar_subtraction)
+getMistag('ttbar_htt',      ttbar_file, use_htt, no_ttbar_subtraction)
 getMistag('qcd_htt',        qcd_file,   use_htt, no_ttbar_subtraction)
-#getMistag('data_htt',       data_file,  use_htt, ttbar_subtraction)
-#getMistag('data_htt_nosub', data_file,  use_htt, no_ttbar_subtraction)
+getMistag('data_htt',       data_file,  use_htt, ttbar_subtraction)
+getMistag('data_htt_nosub', data_file,  use_htt, no_ttbar_subtraction)
 #getMistag('ttbar_cms',      ttbar_file, use_cms, no_ttbar_subtraction)
 #getMistag('qcd_cms',        qcd_file,   use_cms, no_ttbar_subtraction)
 #getMistag('data_cms',       data_file,  use_cms, ttbar_subtraction)
 #getMistag('data_cms_nosub', data_file,  use_cms, no_ttbar_subtraction)
 
-#getMassShape('ttbar_htt',      ttbar_file, use_htt, no_ttbar_subtraction)
+getMassShape('ttbar_htt',      ttbar_file, use_htt, no_ttbar_subtraction)
 getMassShape('qcd_htt',        qcd_file,   use_htt, no_ttbar_subtraction)
-#getMassShape('data_htt',       data_file,  use_htt, ttbar_subtraction)
-#getMassShape('data_htt_nosub', data_file,  use_htt, no_ttbar_subtraction)
+getMassShape('data_htt',       data_file,  use_htt, ttbar_subtraction)
+getMassShape('data_htt_nosub', data_file,  use_htt, no_ttbar_subtraction)
 #getMassShape('ttbar_cms',      ttbar_file, use_cms, no_ttbar_subtraction)
 #getMassShape('qcd_cms',        qcd_file,   use_cms, no_ttbar_subtraction)
 #getMassShape('data_cms',       data_file,  use_cms, ttbar_subtraction)

@@ -43,7 +43,7 @@ outfile.mkdir('studies')
 
 print 'hadd plots'
 def hadd(inputlist,outputname):
-  command_list='hadd -f '+path_base+outputname+'.root'
+  command_list='hadd -v 0 -f '+path_base+outputname+'.root'
   for i in inputlist:
     command_list+=' '+path_base+i
   system(command_list)
@@ -51,7 +51,11 @@ def hadd(inputlist,outputname):
 ttbar_filename=hadd(process_list_ttbar,'theta_ttbar')
 qcd_filename=hadd(process_list_qcd,'theta_qcd')
 ttbar_file=TFile(ttbar_filename,'READ')
+background_filename=path_base+'BackgroundCycle.DATA.DATA.root'
+data_filename=path_base+'ZAnalysisCycle.DATA.DATA.root'
 qcd_file=TFile(qcd_filename,'READ')
+backgound_file=TFile(background_filename,'READ')
+data_file=TFile(data_filename,'READ')
 signal_files=[]
 for i in range(len(process_list_signal_narrow)):
   tmp_file=TFile(path_base+process_list_signal_narrow[i],'READ')
@@ -68,16 +72,37 @@ if doplots:
     stack=THStack(histo_name+us+cut_name+us+'stack','')
     ttbar_histo=ttbar_file.Get(cut_name+'/'+histo_name).Clone('ttbar'+us+histo_name+us+cut_name)
     qcd_histo=qcd_file.Get(cut_name+'/'+histo_name).Clone('qcd'+us+histo_name+us+cut_name)
+    data_histo=data_file.Get(cut_name+'/'+histo_name).Clone('data'+us+histo_name+us+cut_name)
+    bkg_histo_name=''
+    if '_0btag_' in cut_name:
+      bkg_histo_name='Mtt0'
+    elif '_1btag_' in cut_name:
+      bkg_histo_name='Mtt1'
+    elif '_2btag_' in cut_name:
+      bkg_histo_name='Mtt2'
+    bkg_histo=backgound_file.Get('BaseHistos/'+bkg_histo_name).Clone('bkg'+us+histo_name+us+cut_name)
     ttbar_histo.SetFillColor(kRed)
     qcd_histo.SetFillColor(kYellow)
+    bkg_histo.SetFillColor(kYellow)
     ttbar_histo.SetLineColor(kRed)
     qcd_histo.SetLineColor(kYellow)
+    bkg_histo.SetLineColor(kYellow)
     ttbar_histo.SetMarkerColor(kRed)
     qcd_histo.SetMarkerColor(kYellow)
+    bkg_histo.SetMarkerColor(kYellow)
+    data_histo.SetLineColor(1)
+    data_histo.SetLineStyle(1)
+    data_histo.SetLineWidth(1)
+    data_histo.SetMarkerColor(1)
+    data_histo.SetMarkerStyle(8)
+    data_histo.SetMarkerSize(1)
+    legend.AddEntry(data_histo,'Data','f')
     legend.AddEntry(ttbar_histo,'t#bar{t}','f')
-    legend.AddEntry(qcd_histo,'QCD','f')
+    #legend.AddEntry(qcd_histo,'QCD','f')
+    legend.AddEntry(bkg_histo,'Data driven QCD','f')
     stack.Add(ttbar_histo)
-    stack.Add(qcd_histo)
+    #stack.Add(qcd_histo)
+    stack.Add(bkg_histo)
     cmslabel=TLatex(0.15,0.925,"CMS Preliminary #sqrt{s} = 8TeV  19.7 fb^{-1}")
     cmslabel.SetTextSize(0.07)
     cmslabel.SetNDC()
@@ -104,6 +129,7 @@ if doplots:
     canvas.SetTopMargin(0.10)
     canvas.SetBottomMargin(0.15)
     stack.Draw('hist')
+    data_histo.Draw("sameEX0")
     stack.SetMinimum(0.1)
     stack.GetXaxis().SetTitle(signal1000.GetXaxis().GetTitle())
     stack.GetYaxis().SetTitle('Events')
@@ -122,9 +148,11 @@ if doplots:
     canvas.Write()
     canvas.SaveAs('pdf/'+canvas.GetName()+'.pdf')
     
-  for i in range(len(histo_name_list)):
+  #for i in range(len(histo_name_list)):
   #  for j in range(len(histo_folder_list)):
-    make_plot(histo_name_list[i],histo_folder_list[3])
+  make_plot('Mtt','had_0btag_m')
+  make_plot('Mtt','had_1btag_m')
+  make_plot('Mtt','had_2btag_m')
   
   stack1=THStack('ZP1000stack','')
   stack2=THStack('ZP2000stack','')

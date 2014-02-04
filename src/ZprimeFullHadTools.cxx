@@ -432,6 +432,12 @@ double TopJetMass(TopJet topjet)
   
 }
 
+float getMaxCSV(TopJet t)
+{
+  std::vector<float> csv = t.btagsub_combinedSecondaryVertex();
+  return *max_element(std::begin(csv), std::end(csv)); 
+}
+
 std::vector<int> getCMSTopJetsIndices(BaseCycleContainer *bcc, int m_BTag1,int m_BTag2,
   		    std::vector<bool> toptag_list,
 		    std::vector<int> btag_list,

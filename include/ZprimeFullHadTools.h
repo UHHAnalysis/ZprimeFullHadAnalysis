@@ -69,7 +69,7 @@ public:
 private:
   TFile* f;
   TH2F* mistag;
-  TH2F* shape;
+  TH1F* shape;
 }; // class BackgroundHists
 
 // class RapidityCutSelection: public SelectionModule {
@@ -124,6 +124,7 @@ bool makeCMSCategories(BaseCycleContainer * bcc, ZprimeFullHadHists * inclusive_
 		    std::vector<double> nsubjettiness_list);
 double TopJetMass(TopJet topjet);
 bool TopTag(TopJet t);
+float getMaxCSV(TopJet t);
 
 
 //for HepTopTagger validation

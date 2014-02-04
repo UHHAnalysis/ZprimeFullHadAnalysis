@@ -347,57 +347,57 @@ void ZAnalysisCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw(
 
 //   makeCMSCategories(bcc, (ZprimeFullHadHists*)had_012btag_cms, (ZprimeFullHadHists*)had_0btag_cms, (ZprimeFullHadHists*)had_1btag_cms, (ZprimeFullHadHists*)had_2btag_cms,CMStoptag_list,CMSbtag_medium_list,CMSnsubjettiness_list);
   
-  int antitag_index=-1;
-  double max_antitag_pt=-1;
-  for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
-  {
-    if ( ( !BareHepTopTag(bcc->toptagjets->at(i)) ) && ( MassAndPtCut(bcc->toptagjets->at(i)) ) )
-    {
-      if (bcc->toptagjets->at(i).pt()>max_antitag_pt)
-      {
-        antitag_index=i;
-	max_antitag_pt=bcc->toptagjets->at(i).pt();
-      }
-    }
-  }
-  if (antitag_index>-1)
-  {
-    int probe_index=-1;
-    double max_probe_pt=-1;
-    for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
-    {
-      if (bcc->toptagjets->at(i).pt()>max_probe_pt && i!=antitag_index)
-      {
-	probe_index=i;
-	max_probe_pt=bcc->toptagjets->at(i).pt();
-      }
-    }
-    if (probe_index>-1)
-    {
-      Indices={antitag_index,probe_index};
-      ((ZprimeFullHadHists*)antitag_den)->Fill2(Indices);
-      if (heptoptag_list[probe_index])
-      {
-	((ZprimeFullHadHists*)antitag_num)->Fill2(Indices);
-      }
-//       if (heptoptag_list[probe_index] && btag_loose_list[probe_index]>0)
+//   int antitag_index=-1;
+//   double max_antitag_pt=-1;
+//   for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
+//   {
+//     if ( ( !BareHepTopTag(bcc->toptagjets->at(i)) ) && ( MassAndPtCut(bcc->toptagjets->at(i)) ) )
+//     {
+//       if (bcc->toptagjets->at(i).pt()>max_antitag_pt)
 //       {
-// 	((ZprimeFullHadHists*)antitag_num_l)->Fill2(Indices);
+//         antitag_index=i;
+// 	max_antitag_pt=bcc->toptagjets->at(i).pt();
 //       }
-//       if (heptoptag_list[probe_index] && btag_medium_list[probe_index]>0)
+//     }
+//   }
+//   if (antitag_index>-1)
+//   {
+//     int probe_index=-1;
+//     double max_probe_pt=-1;
+//     for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
+//     {
+//       if (bcc->toptagjets->at(i).pt()>max_probe_pt && i!=antitag_index)
 //       {
-// 	((ZprimeFullHadHists*)antitag_num_m)->Fill2(Indices);
+// 	probe_index=i;
+// 	max_probe_pt=bcc->toptagjets->at(i).pt();
 //       }
-//       if (heptoptag_list[probe_index] && btag_loose_list[probe_index]>0 && nsubjettiness_list[probe_index]<nsubcut)
+//     }
+//     if (probe_index>-1)
+//     {
+//       Indices={antitag_index,probe_index};
+//       ((ZprimeFullHadHists*)antitag_den)->Fill2(Indices);
+//       if (heptoptag_list[probe_index])
 //       {
-// 	((ZprimeFullHadHists*)antitag_num_ln)->Fill2(Indices);
+// 	((ZprimeFullHadHists*)antitag_num)->Fill2(Indices);
 //       }
-//       if (heptoptag_list[probe_index] && btag_medium_list[probe_index]>0 && nsubjettiness_list[probe_index]<nsubcut)
-//       {
-// 	((ZprimeFullHadHists*)antitag_num_mn)->Fill2(Indices);
-//       }
-    }
-  }
+// //       if (heptoptag_list[probe_index] && btag_loose_list[probe_index]>0)
+// //       {
+// // 	((ZprimeFullHadHists*)antitag_num_l)->Fill2(Indices);
+// //       }
+// //       if (heptoptag_list[probe_index] && btag_medium_list[probe_index]>0)
+// //       {
+// // 	((ZprimeFullHadHists*)antitag_num_m)->Fill2(Indices);
+// //       }
+// //       if (heptoptag_list[probe_index] && btag_loose_list[probe_index]>0 && nsubjettiness_list[probe_index]<nsubcut)
+// //       {
+// // 	((ZprimeFullHadHists*)antitag_num_ln)->Fill2(Indices);
+// //       }
+// //       if (heptoptag_list[probe_index] && btag_medium_list[probe_index]>0 && nsubjettiness_list[probe_index]<nsubcut)
+// //       {
+// // 	((ZprimeFullHadHists*)antitag_num_mn)->Fill2(Indices);
+// //       }
+//     }
+//   }
     
   
 //   Indices=getTopJetsIndices(bcc,1,1,1,1,0,0,0,e_CSVM,e_CSVM,nsubcut,nsubcut,ycut,ptcut,ptcut);
