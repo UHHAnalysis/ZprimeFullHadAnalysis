@@ -5,3 +5,4 @@ v=[]
 for i in range(h.GetNbinsX()):
   v.append(h.GetBinContent(i+1))
 print v
+
