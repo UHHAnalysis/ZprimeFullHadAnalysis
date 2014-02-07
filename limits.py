@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #from subprocess import check_output,call
 from os import system
-from ROOT import TFile,gROOT,THStack,TCanvas,TLegend,kRed,kYellow,kWhite,TLatex,kBlue
+from ROOT import TFile,gROOT,THStack,TCanvas,TLegend,kRed,kYellow,kWhite,TLatex,kBlue,TLine
 from sys import argv
 
 print 'setup'
@@ -21,7 +21,7 @@ for i in range(len(process_list_signal_narrow)):
   process_names_signal_narrow.append(process_list_signal_narrow[i].split('.')[2].split('W')[0][2:])
 print process_names_signal_narrow
 process_list_ttbar=['ZAnalysisCycle.MC.TTbarHad.root','ZAnalysisCycle.MC.TTbarLept.root','ZAnalysisCycle.MC.TTbarSemi.root']
-process_list_qcd=['ZAnalysisCycle.MC.QCD_HT-1000ToInf.root','ZAnalysisCycle.MC.QCD_HT-100To250.root','ZAnalysisCycle.MC.QCD_HT-250To500.root','ZAnalysisCycle.MC.QCD_HT-500To1000.root']
+process_list_qcd=['ZAnalysisCycle.MC.QCD_HT-1000ToInf.root','ZAnalysisCycle.MC.QCD_HT-250To500.root','ZAnalysisCycle.MC.QCD_HT-500To1000.root']#,'ZAnalysisCycle.MC.QCD_HT-100To250.root'
 histo_name='Mtt'
 categories=['0btag','1btag','2btag']
 #categories=['2btag']
@@ -66,7 +66,8 @@ if doplots:
 
   
   def make_plot(histo_name,cut_name):
-    legend=TLegend(0.7,0.6,0.989,0.89)
+    zf=0.7
+    legend=TLegend(0.6,0.5,0.989,0.89)
     legend.SetFillColor(kWhite)
     legend.SetBorderSize(0)
     stack=THStack(histo_name+us+cut_name+us+'stack','')
@@ -81,6 +82,31 @@ if doplots:
     elif '_2btag_' in cut_name:
       bkg_histo_name='Mtt2'
     bkg_histo=backgound_file.Get('BaseHistos/'+bkg_histo_name).Clone('bkg'+us+histo_name+us+cut_name)
+    sum_mc=ttbar_histo.Clone('sum_mc'+us+histo_name+us+cut_name)
+    sum_mc.Add(bkg_histo)
+    ratio_histo=data_histo.Clone('ratio'+us+histo_name+us+cut_name)
+    ratio_histo.Divide(sum_mc)
+    ratio_histo.SetLineColor(1)
+    ratio_histo.SetLineStyle(1)
+    ratio_histo.SetLineWidth(1)
+    ratio_histo.SetMarkerColor(1)
+    ratio_histo.SetMarkerStyle(8)
+    ratio_histo.SetMarkerSize(1)
+    ratio_histo.SetStats(0)
+    ratio_histo.SetTitle('') 
+    ratio_histo.GetYaxis().SetLabelSize(0.16333)
+    ratio_histo.GetYaxis().SetTitleSize(0.16333)
+    ratio_histo.GetYaxis().SetTitleOffset(0.4928)
+    ratio_histo.GetXaxis().SetLabelSize(0.16333)
+    ratio_histo.GetXaxis().SetTitleSize(0.16333)
+    ratio_histo.GetXaxis().SetTitleOffset(1.3)
+    ratio_histo.GetYaxis().SetTitle('Data/MC')
+    ratio_histo.GetXaxis().SetTitle('m_{t#bar{t}} [GeV]')
+    ratio_histo.GetYaxis().SetRangeUser(0.3,1.7)
+    ratio_histo.GetYaxis().SetNdivisions(3,2,0)
+    ratio_histo.GetXaxis().SetRangeUser(ratio_histo.GetXaxis().GetXmin(),ratio_histo.GetXaxis().GetXmax()*zf)
+    line1=TLine(ratio_histo.GetXaxis().GetXmin(),1.0,ratio_histo.GetXaxis().GetXmax()*zf,1.0)
+    line1.SetLineStyle(2)
     ttbar_histo.SetFillColor(kRed)
     qcd_histo.SetFillColor(kYellow)
     bkg_histo.SetFillColor(kYellow)
@@ -96,7 +122,8 @@ if doplots:
     data_histo.SetMarkerColor(1)
     data_histo.SetMarkerStyle(8)
     data_histo.SetMarkerSize(1)
-    legend.AddEntry(data_histo,'Data','f')
+    #data_histo.GetXaxis().SetRangeUser(data_histo.GetXaxis().GetXmin(),data_histo.GetXaxis().GetXmax()*zf)
+    legend.AddEntry(data_histo,'Data','pEX0')
     legend.AddEntry(ttbar_histo,'t#bar{t}','f')
     #legend.AddEntry(qcd_histo,'QCD','f')
     legend.AddEntry(bkg_histo,'Data driven QCD','f')
@@ -117,17 +144,27 @@ if doplots:
     signal2000.SetLineStyle(3)
     signal3000.SetLineWidth(2)
     signal3000.SetLineStyle(4)
-    signal1000.Scale(10.0)
-    signal2000.Scale(10.0)
-    signal3000.Scale(10.0)
-    legend.AddEntry(signal1000,"Z' 1TeV #times 10",'l')
-    legend.AddEntry(signal2000,"Z' 2TeV #times 10",'l')
-    legend.AddEntry(signal3000,"Z' 3TeV #times 10",'l')
-    canvas=TCanvas(histo_name+us+cut_name+us+'canvas')#,'',100,100)
-    canvas.SetLeftMargin(0.15)
-    canvas.SetRightMargin(0.01)
-    canvas.SetTopMargin(0.10)
-    canvas.SetBottomMargin(0.15)
+    signal1000.Scale(3.0)
+    signal2000.Scale(3.0)
+    signal3000.Scale(3.0)
+    legend.AddEntry(signal1000,"Z' 1TeV 3pb",'l')
+    legend.AddEntry(signal2000,"Z' 2TeV 3pb",'l')
+    legend.AddEntry(signal3000,"Z' 3TeV 3pb",'l')
+    canvas=TCanvas(histo_name+us+cut_name+us+'canvas','',0,0,600,600)#,'',100,100)
+    canvas.Divide(1,2)
+    top_pad=canvas.GetPad(1)
+    bottom_pad=canvas.GetPad(2)
+    top_pad.SetPad( 0.0, 0.30, 1.0, 1.0 )
+    bottom_pad.SetPad( 0.0, 0.0, 1.0, 0.30 )
+    top_pad.SetLeftMargin(0.15)
+    top_pad.SetRightMargin(0.01)
+    top_pad.SetTopMargin(0.10)
+    top_pad.SetBottomMargin(0.0)
+    bottom_pad.SetLeftMargin(0.15)
+    bottom_pad.SetRightMargin(0.01)
+    bottom_pad.SetTopMargin(0.0)
+    bottom_pad.SetBottomMargin(0.45)
+    top_pad.cd()
     stack.Draw('hist')
     data_histo.Draw("sameEX0")
     stack.SetMinimum(0.1)
@@ -139,11 +176,15 @@ if doplots:
     stack.GetXaxis().SetLabelSize(0.07)
     stack.GetXaxis().SetTitleSize(0.07)
     stack.GetXaxis().SetTitleOffset(1.0)
+    stack.GetXaxis().SetRangeUser(stack.GetXaxis().GetXmin(),stack.GetXaxis().GetXmax()*zf)
     signal1000.Draw('samehisto')
     signal2000.Draw('samehisto')
     signal3000.Draw('samehisto')
     legend.Draw()
     cmslabel.Draw()
+    bottom_pad.cd()
+    ratio_histo.Draw('EX0')
+    line1.Draw()
     outfile.cd(cut_name)
     canvas.Write()
     canvas.SaveAs('pdf/'+canvas.GetName()+'.pdf')

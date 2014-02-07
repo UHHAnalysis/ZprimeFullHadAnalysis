@@ -67,7 +67,7 @@ public:
    void Fill();
    void Finish();
 private:
-  TFile* f;
+  TFile* f,*f_pari,*f_dispari;
   TH2F* mistag;
   TH1F* shape;
 }; // class BackgroundHists
