@@ -14,10 +14,10 @@ folder="BaseHistos"
 histo_massshape_name="mass_shape"
 csvcat=['CSV0-L','CSVL-M','CSVM-1']
 postfix=''
-outfile=TFile("bkg"+postfix+".root","RECREATE")
 if len(argv[1:])>0:
   postfix='_'+argv[1]
-
+outfile=TFile("bkg"+postfix+".root","RECREATE")
+  
 for i in ['HEPTagger','CMSTagger']:
   for j in ['MassShape','Mistag']:
     outfile.mkdir(i+'/'+j)
@@ -77,6 +77,8 @@ def getMistag(sample,sample_file,useCMS=False,isData=False):
   
 def getMassShape(sample,sample_file,useCMS=False,isData=False):
   mass_shape=sample_file.Get(folder+'/'+histo_massshape_name)
+  if isData:
+    mass_shape.Add(ttbar_file.Get(folder+"/"+histo_massshape_name),-1.0)
   #mass_shapeStack=THStack(mass_shape2D,'x','Stack','')
   #mass_shape1D=mass_shapeStack.GetHists()
   outfolder='HEPTagger/MassShape'
@@ -93,7 +95,27 @@ def getMassShape(sample,sample_file,useCMS=False,isData=False):
   #while obj:
     #obj.Write(folder+obj.GetName()+'_'+sample)
     #obj=nextinlist()
-    
+ 
+def getMassShape2D(sample,sample_file,useCMS=False,isData=False):
+  mass_shape=sample_file.Get(folder+'/'+histo_massshape_name+'2D')
+  if isData:
+    mass_shape.Add(ttbar_file.Get(folder+"/"+histo_massshape_name+'2D'),-1.0)
+  #mass_shapeStack=THStack(mass_shape2D,'x','Stack','')
+  #mass_shape1D=mass_shapeStack.GetHists()
+  outfolder='HEPTagger/MassShape2D'
+  if useCMS:
+    outfolder='CMSTagger/MassShape2D'
+  outfile.mkdir(outfolder+'/'+sample)
+  outfile.cd(outfolder+'/'+sample)
+  #slice_and_save(sample,mass_shape2D,folder)
+  slice_and_save(sample,mass_shape)
+  #mass_shape2D.Write(folder+mass_shape2D.GetName()+'_'+sample)
+  #mass_shapeStack.Write(folder+mass_shapeStack.GetName()+'_'+sample)
+  #nextinlist=TList(GetListOfPrimitives())
+  #obj=nextinlist()
+  #while obj:
+    #obj.Write(folder+obj.GetName()+'_'+sample)
+    #obj=nextinlist()
 
 use_cms=True
 use_htt=False
@@ -117,11 +139,16 @@ getMassShape('data_htt_nosub', data_file,  use_htt, no_ttbar_subtraction)
 #getMassShape('data_cms',       data_file,  use_cms, ttbar_subtraction)
 #getMassShape('data_cms_nosub', data_file,  use_cms, no_ttbar_subtraction)
 
+getMassShape2D('ttbar_htt',      ttbar_file, use_htt, no_ttbar_subtraction)
+getMassShape2D('qcd_htt',        qcd_file,   use_htt, no_ttbar_subtraction)
+getMassShape2D('data_htt',       data_file,  use_htt, ttbar_subtraction)
+getMassShape2D('data_htt_nosub', data_file,  use_htt, no_ttbar_subtraction)
+
 print 'make plots'
 
-def make_plot(name,name_list):
+def make_plot(name,name_list,legend_list,normalize=False):
   histo_list=[]
-  c=TCanvas(name)
+  c=TCanvas(name,'',600,600)
   legend=TLegend(0.8,0.2,0.999,0.93)
   legend.SetBorderSize(0)
   legend.SetTextFont(62)
@@ -132,17 +159,34 @@ def make_plot(name,name_list):
   legend.SetFillStyle(1001)
   for i in range(len(name_list)):
     histo_list.append(outfile.Get(name_list[i]))
-    histo_list[-1].SetStats(kFALSE)
+    if normalize:
+      histo_list[-1].Scale(1.0/histo_list[-1].Integral())
+    histo_list[-1].SetStats(0)
     histo_list[-1].SetLineWidth(3)
     histo_list[-1].SetLineColor(i+1)
-    legend.AddEntry(histo_list[-1],name_list[i],'l')
+    legend.AddEntry(histo_list[-1],legend_list[i],'l')
     if i==0:
       histo_list[-1].Draw()
     else:
       histo_list[-1].Draw('SAME')
-  legend.Draw()  
+  legend.Draw()
+  outfile.cd()
   c.Write(name)
 
+make_plot('comp_mistag',['HEPTagger/Mistag/qcd_htt/Mistag_px4_qcd_htt','HEPTagger/Mistag/qcd_htt/Mistag_px3_qcd_htt','HEPTagger/Mistag/qcd_htt/Mistag_px2_qcd_htt','HEPTagger/Mistag/qcd_htt/Mistag_px1_qcd_htt'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])
+  
+make_plot('comp_data_nosub_mistag',['HEPTagger/Mistag/data_htt_nosub/Mistag_px4_data_htt_nosub','HEPTagger/Mistag/data_htt_nosub/Mistag_px3_data_htt_nosub','HEPTagger/Mistag/data_htt_nosub/Mistag_px2_data_htt_nosub','HEPTagger/Mistag/data_htt_nosub/Mistag_px1_data_htt_nosub'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])
+
+make_plot('comp_data_mistag',['HEPTagger/Mistag/data_htt/Mistag_px4_data_htt','HEPTagger/Mistag/data_htt/Mistag_px3_data_htt','HEPTagger/Mistag/data_htt/Mistag_px2_data_htt','HEPTagger/Mistag/data_htt/Mistag_px1_data_htt'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])
+
+make_plot('comp_datamc1_mistag',['HEPTagger/Mistag/data_htt/Mistag_px4_data_htt','HEPTagger/Mistag/qcd_htt/Mistag_px4_qcd_htt'],['Data [CSVM,1]','MC [CSVM,1]'])
+make_plot('comp_datamc2_mistag',['HEPTagger/Mistag/data_htt/Mistag_px3_data_htt','HEPTagger/Mistag/qcd_htt/Mistag_px3_qcd_htt'],['Data [CSVL,CSVM]','MC [CSVL,CSVM]'])
+make_plot('comp_datamc3_mistag',['HEPTagger/Mistag/data_htt/Mistag_px2_data_htt','HEPTagger/Mistag/qcd_htt/Mistag_px2_qcd_htt'],['Data [0,CSVL]','MC [0,CSVL]'])
+
+make_plot('comp_shape',['HEPTagger/MassShape/qcd_htt/mass_shape_qcd_htt','HEPTagger/MassShape/data_htt/mass_shape_data_htt'],['QCD','DATA'],True)
+make_plot('comp_qcd_shape',['HEPTagger/MassShape2D/qcd_htt/mass_shape2D_px4_qcd_htt','HEPTagger/MassShape2D/qcd_htt/mass_shape2D_px3_qcd_htt','HEPTagger/MassShape2D/qcd_htt/mass_shape2D_px2_qcd_htt'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'],True)
+make_plot('comp_data_shape',['HEPTagger/MassShape2D/data_htt/mass_shape2D_px4_data_htt','HEPTagger/MassShape2D/data_htt/mass_shape2D_px3_data_htt','HEPTagger/MassShape2D/data_htt/mass_shape2D_px2_data_htt'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'],True)
+  
 print 'close files'
 ttbar_file.Close()
 qcd_file.Close()

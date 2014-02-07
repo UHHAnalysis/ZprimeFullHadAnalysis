@@ -72,6 +72,8 @@ void BackgroundCycle::BeginInputData( const SInputData& id ) throw( SError )
 //   RegisterHistCollection( new ZprimeFullHadHists("NoCutsHistos"));
 //   RegisterHistCollection( new ZprimeFullHadHists("TriggerHistos"));
   RegisterHistCollection( new BackgroundHists("BaseHistos"));
+  RegisterHistCollection( new BackgroundHists("PariHistos"));
+  RegisterHistCollection( new BackgroundHists("DispariHistos"));
 
   // important: initialise histogram collections after their definition
   InitHistos();
@@ -101,6 +103,8 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
 //   BaseHists* NoCutsHistos = GetHistCollection("NoCutsHistos");
 //   BaseHists* TriggerHistos = GetHistCollection("TriggerHistos");
   BaseHists* BaseHistos = GetHistCollection("BaseHistos");
+  BaseHists* PariHistos = GetHistCollection("PariHistos");
+  BaseHists* DispariHistos = GetHistCollection("DispariHistos");
 
   EventCalc* calc = EventCalc::Instance();
   BaseCycleContainer* bcc = calc->GetBaseCycleContainer();
@@ -116,7 +120,22 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
     if (bcc->toptagjets->at(i).pt()>=200.0) n++;//150
   }
   
-  if (n>1) BaseHistos->Fill(); else throw SError( SError::SkipEvent );
+  if (n>1)
+  {
+    BaseHistos->Fill();
+    if (!IsRealData)
+    {
+      if (bcc->event % 2 == 0)
+      {
+	PariHistos->Fill();
+      }
+      else
+      {
+	DispariHistos->Fill();
+      }
+    }
+  }
+  else throw SError( SError::SkipEvent );
   
   //WriteOutputTree();
   

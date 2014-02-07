@@ -211,9 +211,9 @@ void ZprimeFullHadHists::Fill2(std::vector<int> Indices, string version, bool us
   
   if (checkIndices(TopJetIndices))
   {
-    //HEPTopTaggerReweight httr;
+    HEPTopTaggerReweight httr;
     double htt_weight=1.0;
-//     if (version=="TTbarLept" || version=="TTbarSemi" || version=="TTbarHad") htt_weight=httr.GetScaleWeight(TopJetIndices);
+     if (version=="TTbarLept" || version=="TTbarSemi" || version=="TTbarHad") htt_weight=httr.GetScaleWeight(TopJetIndices);
     ((TH2F*)Hist("Njetsvspt"))->Fill(nj,collection->at(TopJetIndices[0]).pt(),weight*htt_weight);
     Hist("SumOfTopCandidatesPt")->Fill(collection->at(TopJetIndices[0]).pt()+collection->at(TopJetIndices[1]).pt(),weight*htt_weight);
     if ( collection->at(TopJetIndices[0]).pt() > collection->at(TopJetIndices[1]).pt() )

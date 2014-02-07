@@ -12,6 +12,10 @@ using namespace std;
 BackgroundHists::BackgroundHists(const char* name) : BaseHists(name)
 {
   f = new TFile("/afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis/bkg.root");
+  f_pari = new TFile("/afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis/bkg_pari.root");
+  f_dispari = new TFile("/afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis/bkg_dispari.root");
+//   mistag = (TH2F*)f_dispari->Get("HEPTagger/Mistag/qcd_htt/Mistag_qcd_htt");/////////////////////////////////////////////////////////////
+//   shape = (TH1F*)f_pari->Get("HEPTagger/MassShape/qcd_htt/mass_shape_qcd_htt");
   mistag = (TH2F*)f->Get("HEPTagger/Mistag/data_htt/Mistag_data_htt");/////////////////////////////////////////////////////////////
   shape = (TH1F*)f->Get("HEPTagger/MassShape/qcd_htt/mass_shape_qcd_htt");
 }
@@ -25,11 +29,12 @@ void BackgroundHists::Init()
   Book( TH1F( "Mtt0", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
   Book( TH1F( "Mtt1", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
   Book( TH1F( "Mtt2", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+  Book( TH1F( "Mtt012", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
   double csv_bins[] = {-1.0,0.0,0.244,0.679,1.0};
   double mistag_pt_bins[] = {200.0,210.0,220.0,230.0,240.0,250.0,260.0,270.0,280.0,290.0,300.0,310.0,320.0,330.0,340.0,350.0,360.0,370.0,380.0,390.0,400.0,410.0,430.0,450.0,500.0,600.0,800.0,1000.0,2000.0};
   Book( TH2F( "num_mistag", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
   Book( TH2F( "den_mistag", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
-  //Book( TH2F( "mass_shape",";m;CSV",110,140.0,250.0,sizeof(csv_bins)/sizeof(double)-1, csv_bins));
+  Book( TH2F( "mass_shape2D",";m;CSV",110,140.0,250.0,sizeof(csv_bins)/sizeof(double)-1, csv_bins));
   Book( TH1F( "mass_shape",";m;Events",110,140.0,250.0));
   
 }
@@ -43,8 +48,8 @@ void BackgroundHists::Fill()
   bool IsRealData = calc->IsRealData();
   double weight = calc->GetWeight();
 
-  bool doMistag=false;
-  bool doMassShape=false;
+  bool doMistag=true;
+  bool doMassShape=true;
   bool doBackground=true;
   
   //if (!IsRealData) doBackground=False;
@@ -80,7 +85,7 @@ void BackgroundHists::Fill()
   {
     time_t timer;
     time(&timer);
-    float seed=calc->GetHT()+timer;
+    float seed=calc->GetHT()+timer;//cambia
     TRandom3 r((unsigned int)fabs(seed*sin(seed)));
     float rndm = r.Rndm();
     unsigned int tag_index;
@@ -117,21 +122,22 @@ void BackgroundHists::Fill()
       int nbtags=0;
       if (subJetBTag(bcc->toptagjets->at(tag_index),e_CSVM)>0) nbtags++;
       if (subJetBTag(bcc->toptagjets->at(mistag_index),e_CSVM)>0) nbtags++;
+      Hist("Mtt012")->Fill(mtt,mistag_value*weight);
       if (nbtags==0)
       {
-	Hist("Mtt0")->Fill(mtt,mistag_value);
+	Hist("Mtt0")->Fill(mtt,mistag_value*weight);
       }
       else
       {
 	if (nbtags==1)
 	{
-	  Hist("Mtt1")->Fill(mtt,mistag_value);
+	  Hist("Mtt1")->Fill(mtt,mistag_value*weight);
 	}
 	else
 	{
 	  if (nbtags==2)
 	  {
-	    Hist("Mtt2")->Fill(mtt,mistag_value);
+	    Hist("Mtt2")->Fill(mtt,mistag_value*weight);
 	  }
 	}
       }
@@ -171,7 +177,9 @@ void BackgroundHists::Fill()
 	// std::vector<float> csv;
 	// csv=bcc->toptagjets->at(probe_index).btagsub_combinedSecondaryVertex();
 	// float maxcsv = *max_element(std::begin(csv), std::end(csv));
+	float maxcsv = getMaxCSV(bcc->toptagjets->at(probe_index));
 	Hist("mass_shape")->Fill(TopJetMass(bcc->toptagjets->at(probe_index)),weight);
+	((TH2F*)Hist("mass_shape2D"))->Fill(TopJetMass(bcc->toptagjets->at(probe_index)),maxcsv,weight);
       }
     }
   }
@@ -233,6 +241,8 @@ void BackgroundHists::Finish()
   delete shape;
   f->Close();
   delete f;
+  delete f_pari;
+  delete f_dispari;
 
 }
 
