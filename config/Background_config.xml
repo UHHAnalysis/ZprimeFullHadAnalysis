@@ -23,7 +23,7 @@
 
 
 
-<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="DATA" Cacheable="True">
+<!--<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="DATA" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.DATA.RunA00.root" Lumi="0.0"/>
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.DATA.RunA01.root" Lumi="0.0"/>
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.DATA.RunA02.root" Lumi="0.0"/>
@@ -118,9 +118,9 @@
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.DATA.RunD28.root" Lumi="0.0"/>
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.DATA.RunD29.root" Lumi="0.0"/>
 <InputTree Name="AnalysisTree" />
-</InputData>
+</InputData>-->
 
-
+<!--
 <InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarHad" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.TTbarHad00.root" Lumi="0.0"/>
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.TTbarHad01.root" Lumi="0.0"/> 
@@ -163,12 +163,12 @@
 <InputData Lumi="461894.034276552" NEventsMax="-1" Type="MC" Version="TTbarLept" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.TTbarLept.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
-</InputData>
+</InputData>-->
 
-<InputData Lumi="4.834294305" NEventsMax="-1" Type="MC" Version="QCD_HT-100To250" Cacheable="True">
+<!--<InputData Lumi="4.834294305" NEventsMax="-1" Type="MC" Version="QCD_HT-100To250" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-100To250.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
-</InputData>
+</InputData>-->
 
 <InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCD_HT-250To500" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-250To50000.root" Lumi="0.0"/>

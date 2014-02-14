@@ -123,17 +123,17 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
   if (n>1)
   {
     BaseHistos->Fill();
-    if (!IsRealData)
-    {
-      if (bcc->event % 2 == 0)
-      {
-	PariHistos->Fill();
-      }
-      else
-      {
-	DispariHistos->Fill();
-      }
-    }
+//     if (!IsRealData)
+//     {
+//       if (bcc->event % 2 == 0)
+//       {
+// 	PariHistos->Fill();
+//       }
+//       else
+//       {
+// 	DispariHistos->Fill();
+//       }
+//     }
   }
   else throw SError( SError::SkipEvent );
   

@@ -207,7 +207,31 @@ float deltaY(TopJet j1,TopJet j2)
 
 float getMtt(TopJet j1,TopJet j2)
 {
-  return (j1.v4()+j2.v4()).M();
+//   return (j1.v4()+j2.v4()).M();
+  
+  
+  LorentzVector allsubjets(0,0,0,0);
+  
+  for(int j=0; j<j1.numberOfDaughters(); ++j)
+  {
+    allsubjets += j1.subjets()[j].v4();
+  }
+  
+  for(int j=0; j<j2.numberOfDaughters(); ++j)
+  {
+    allsubjets += j2.subjets()[j].v4();
+  }
+  
+  if(!allsubjets.isTimelike())
+  {
+    return 0.0;
+  }
+  
+  else
+  {
+    return allsubjets.M();
+  }
+  
 }
 
 bool rapidityCut(BaseCycleContainer * bcc,std::vector<int> index, double value)
@@ -334,19 +358,19 @@ bool MassHepTopTag(TopJet topjet, double minpt, double mlow, double mhigh)
 
 bool MassAndPtCut(TopJet topjet,double minpt, double mlow, double mhigh)
 { 
-  double mjet;
-  LorentzVector allsubjets(0,0,0,0);
-  
-  for(int j=0; j<topjet.numberOfDaughters(); ++j) {
-    allsubjets += topjet.subjets()[j].v4();
-  }
-  
-  if(!allsubjets.isTimelike()) {
-    mjet=0;
-    return false;
-  }
-  
-  mjet = allsubjets.M();
+  double mjet=TopJetMass(topjet);
+//   LorentzVector allsubjets(0,0,0,0);
+//   
+//   for(int j=0; j<topjet.numberOfDaughters(); ++j) {
+//     allsubjets += topjet.subjets()[j].v4();
+//   }
+//   
+//   if(!allsubjets.isTimelike()) {
+//     mjet=0;
+//     return false;
+//   }
+//   
+//   mjet = allsubjets.M();
   
   return topjet.pt()>minpt && mjet>mlow && mjet<mhigh;
 }
@@ -413,7 +437,7 @@ bool makeCMSCategories(BaseCycleContainer * bcc, ZprimeFullHadHists * inclusive_
 
 double TopJetMass(TopJet topjet)
 {
-//   double mjet;
+  double mjet;
   LorentzVector allsubjets(0,0,0,0);
   
   for(int j=0; j<topjet.numberOfDaughters(); ++j)
@@ -429,6 +453,17 @@ double TopJetMass(TopJet topjet)
   {
     return allsubjets.M();
   }
+
+//   if(!topjet.v4().isTimelike())
+//   {
+//     return 0.0;
+//   }
+//   else
+//   {
+//     return topjet.v4().M();
+//   }
+
+// return topjet.v4().M();
   
 }
 

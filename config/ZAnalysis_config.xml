@@ -388,7 +388,7 @@
 <InputTree Name="AnalysisTree" />
 </InputData>-->
 
-<!--<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCD_HT-250To500" Cacheable="True">
+<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCD_HT-250To500" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-250To50000.root" Lumi="0.0"/>
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-250To50001.root" Lumi="0.0"/> 
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-250To50002.root" Lumi="0.0"/> 
@@ -427,7 +427,7 @@
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-500To100018.root" Lumi="0.0"/> 
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-500To100019.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
-</InputData>-->
+</InputData>
 
 
 
@@ -559,7 +559,7 @@
 		   <Item Name="JECTopJetCollection" Value="AK7PFchs" />
 		   <Item Name="JECTopTagJetCollection" Value="AK7PFchs" />
 		   
-		   <Item Name="toppagptweight" Value="mean" />
+<!-- 		   <Item Name="toppagptweight" Value="mean" /> -->
 		   
 		   <!-- this would perform systematic variations of the jet energy corrections in the down direction:
 		   <Item Name="SystematicUncertainty" Value="JEC" />

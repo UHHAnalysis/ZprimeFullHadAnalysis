@@ -288,7 +288,7 @@ void ZAnalysisCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw(
   {
     heptoptag_list.push_back(HepTopTag(bcc->toptagjets->at(i)));
      btag_loose_list.push_back(subJetBTag(bcc->toptagjets->at(i),e_CSVL/*,"mean","/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/ZBTagEff.root"*/));
-    btag_medium_list.push_back(subJetBTag(bcc->toptagjets->at(i),e_CSVM,"mean","/nfs/dust/cms/user/usaiem/ZprimeFullHad/ZBTagEff.root"));
+    btag_medium_list.push_back(subJetBTag(bcc->toptagjets->at(i),e_CSVM/*,"mean","/nfs/dust/cms/user/usaiem/ZprimeFullHad/ZBTagEff.root"*/));
      nsubjettiness_list.push_back(getNsub(bcc,i));
     //cout<<subJetBTag(bcc->toptagjets->at(i),e_CSVM)<<" "<< HepTopTag(bcc->toptagjets->at(i))<<" "<< getNsub(bcc,i)<<"\n";
   }

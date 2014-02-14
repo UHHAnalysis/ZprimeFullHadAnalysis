@@ -3,7 +3,6 @@
 #include "SFrameTools/include/EventCalc.h"
 #include "TH2.h"
 #include <iostream>
-#include <ctime>
 #include "TLorentzVector.h"
 #include "TRandom3.h"
 
@@ -12,11 +11,12 @@ using namespace std;
 BackgroundHists::BackgroundHists(const char* name) : BaseHists(name)
 {
   f = new TFile("/afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis/bkg.root");
-  f_pari = new TFile("/afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis/bkg_pari.root");
-  f_dispari = new TFile("/afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis/bkg_dispari.root");
+//   f_pari = new TFile("/afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis/bkg_pari.root");
+//   f_dispari = new TFile("/afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis/bkg_dispari.root");
 //   mistag = (TH2F*)f_dispari->Get("HEPTagger/Mistag/qcd_htt/Mistag_qcd_htt");/////////////////////////////////////////////////////////////
 //   shape = (TH1F*)f_pari->Get("HEPTagger/MassShape/qcd_htt/mass_shape_qcd_htt");
-  mistag = (TH2F*)f->Get("HEPTagger/Mistag/data_htt/Mistag_data_htt");/////////////////////////////////////////////////////////////
+//   mistag = (TH2F*)f->Get("HEPTagger/Mistag/data_htt/Mistag_data_htt");
+    mistag = (TH2F*)f->Get("HEPTagger/Mistag/qcd_htt/Mistag_qcd_htt");/////////////////////////////////////////////////////////////
   shape = (TH1F*)f->Get("HEPTagger/MassShape/qcd_htt/mass_shape_qcd_htt");
 }
 
@@ -30,6 +30,7 @@ void BackgroundHists::Init()
   Book( TH1F( "Mtt1", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
   Book( TH1F( "Mtt2", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
   Book( TH1F( "Mtt012", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+  Book( TH1F( "fake_mass",";m;Events",110,140.0,250.0));
   double csv_bins[] = {-1.0,0.0,0.244,0.679,1.0};
   double mistag_pt_bins[] = {200.0,210.0,220.0,230.0,240.0,250.0,260.0,270.0,280.0,290.0,300.0,310.0,320.0,330.0,340.0,350.0,360.0,370.0,380.0,390.0,400.0,410.0,430.0,450.0,500.0,600.0,800.0,1000.0,2000.0};
   Book( TH2F( "num_mistag", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
@@ -83,14 +84,17 @@ void BackgroundHists::Fill()
   //mistag application
   if (doBackground)
   {
-    time_t timer;
-    time(&timer);
-    float seed=calc->GetHT()+timer;//cambia
-    TRandom3 r((unsigned int)fabs(seed*sin(seed)));
-    float rndm = r.Rndm();
+    
+    double etaseed = bcc->toptagjets->at(0).subjets().at(0).eta();
+    int seed = abs(static_cast<int>(sin(etaseed*1000000)*100000));
+    
+    TRandom3 rand(seed);
+    float coin = rand.Uniform(1.);
+    
     unsigned int tag_index;
     unsigned int mistag_index;
-    if (rndm<=0.5)
+//          cout<<coin<<endl;
+    if (coin<=0.5)
     {
       tag_index=0;
       mistag_index=1;
@@ -100,25 +104,59 @@ void BackgroundHists::Fill()
       tag_index=1;
       mistag_index=0;
     }
+//      cout<<tag_index<<endl;
     if(HepTopTag(bcc->toptagjets->at(tag_index)) && !HepTopTag(bcc->toptagjets->at(mistag_index)))
     {
       double maxcsv=getMaxCSV(bcc->toptagjets->at(mistag_index));
+//        cout<<bcc->toptagjets->at(mistag_index).pt()<<" "<<maxcsv<<endl;
       Int_t mistag_bin = mistag->FindFixBin(bcc->toptagjets->at(mistag_index).pt(),maxcsv);
+//        cout<<mistag_bin<<endl;
       double mistag_value=mistag->GetBinContent(mistag_bin);
       TLorentzVector TagVector;
       TLorentzVector MistagVector;
+//        cout<<gRandom->ClassName()<<endl;
+      
+      double etaseed2 = bcc->toptagjets->at(1).subjets().at(0).eta();
+      int seed2 = abs(static_cast<int>(sin(etaseed2*1000000)*100000));
+      gRandom->SetSeed(seed2);
       double RandomMass = shape->GetRandom();
-      TagVector.SetPtEtaPhiE(bcc->toptagjets->at(tag_index).pt(),
-			     bcc->toptagjets->at(tag_index).eta(),
-			     bcc->toptagjets->at(tag_index).phi(),
-			     bcc->toptagjets->at(tag_index).energy()
+      Hist("fake_mass")->Fill(RandomMass,weight);
+//       cout<<RandomMass<<endl;
+      
+      LorentzVector TagSumOfSubjets(0,0,0,0);
+      LorentzVector MistagSumOfSubjets(0,0,0,0);
+      for(int j=0; j<bcc->toptagjets->at(tag_index).numberOfDaughters(); ++j)
+      {
+	TagSumOfSubjets += bcc->toptagjets->at(tag_index).subjets()[j].v4();
+      }
+      for(int j=0; j<bcc->toptagjets->at(mistag_index).numberOfDaughters(); ++j)
+      {
+	MistagSumOfSubjets += bcc->toptagjets->at(mistag_index).subjets()[j].v4();
+      }
+      
+      TagVector.SetPtEtaPhiE(TagSumOfSubjets.Pt(),
+			     TagSumOfSubjets.Eta(),
+			     TagSumOfSubjets.Phi(),
+			     TagSumOfSubjets.E()
       );
-      MistagVector.SetPtEtaPhiM(bcc->toptagjets->at(mistag_index).pt(),
-				bcc->toptagjets->at(mistag_index).eta(),
-				bcc->toptagjets->at(mistag_index).phi(),
-				RandomMass
+      MistagVector.SetPtEtaPhiM(MistagSumOfSubjets.Pt(),
+			     MistagSumOfSubjets.Eta(),
+			     MistagSumOfSubjets.Phi(),
+			     RandomMass
       );
       double mtt = ( TagVector + MistagVector ).M();
+//       TagVector.SetPtEtaPhiE(bcc->toptagjets->at(tag_index).pt(),//old mass modification procedure
+// 			     bcc->toptagjets->at(tag_index).eta(),
+// 			     bcc->toptagjets->at(tag_index).phi(),
+// 			     bcc->toptagjets->at(tag_index).energy()
+//       );
+//       MistagVector.SetPtEtaPhiM(bcc->toptagjets->at(mistag_index).pt(),
+// 				bcc->toptagjets->at(mistag_index).eta(),
+// 				bcc->toptagjets->at(mistag_index).phi(),
+// 				RandomMass
+//       );
+//       double mtt = ( TagVector + MistagVector ).M();
+//       double mtt=getMtt(bcc->toptagjets->at(0),bcc->toptagjets->at(1));//NO random mass modification
       int nbtags=0;
       if (subJetBTag(bcc->toptagjets->at(tag_index),e_CSVM)>0) nbtags++;
       if (subJetBTag(bcc->toptagjets->at(mistag_index),e_CSVM)>0) nbtags++;
@@ -241,8 +279,8 @@ void BackgroundHists::Finish()
   delete shape;
   f->Close();
   delete f;
-  delete f_pari;
-  delete f_dispari;
+//   delete f_pari;
+//   delete f_dispari;
 
 }
 
