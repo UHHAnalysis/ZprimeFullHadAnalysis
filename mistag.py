@@ -21,6 +21,7 @@ def getMistag(path,cuttype,name):
   mistag.GetYaxis().SetTitle(name)
   mistag.GetXaxis().SetTitle('Pileup')
   #canvas=TCanvas(name+'_canvas')
+
   #mistag.Draw()
   mistag.Write()
   #canvas.Write()

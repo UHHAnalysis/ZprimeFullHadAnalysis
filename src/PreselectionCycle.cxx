@@ -124,10 +124,10 @@ void PreselectionCycle::ExecuteEvent( const SInputData& id, Double_t weight) thr
     if (bcc->toptagjets->at(i).pt()>=150.0) n++;//200
   }
   
-  for (unsigned int i=0; i<bcc->higgstagjets->size(); i++)
-  {
-    if (bcc->higgstagjets->at(i).pt()>=400.0) ncms++;
-  }
+   for (unsigned int i=0; i<bcc->higgstagjets->size(); i++)
+   {
+     if (bcc->higgstagjets->at(i).pt()>=400.0) ncms++;
+   }
   
   //if (n>1 || ncms>1) BaseHistos->Fill(); else throw SError( SError::SkipEvent );
   if ((n+ncms)>1) BaseHistos->Fill(); else throw SError( SError::SkipEvent );

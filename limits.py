@@ -11,7 +11,7 @@ doplots=True
 dolimitplot=False
 
 gROOT.SetBatch()
-postfix=''
+#postfix=''
 path_base='/nfs/dust/cms/user/usaiem/ZprimeFullHad/'
 process_list_signal_wide=['ZAnalysisCycle.MC.ZP750W75.root','ZAnalysisCycle.MC.ZP500W50.root','ZAnalysisCycle.MC.P4000W400.root','ZAnalysisCycle.MC.ZP3000W300.root','ZAnalysisCycle.MC.ZP1000W100.root','ZAnalysisCycle.MC.ZP1250W125.root','ZAnalysisCycle.MC.ZP1500W150.root','ZAnalysisCycle.MC.ZP2000W200.root']
 #process_list_signal_narrow=['ZAnalysisCycle.MC.ZP750W7p5.root','ZAnalysisCycle.MC.ZP500W5.root','ZAnalysisCycle.MC.ZP4000W40.root','ZAnalysisCycle.MC.ZP3000W30.root','ZAnalysisCycle.MC.ZP1000W10.root','ZAnalysisCycle.MC.ZP1250W12p5.root','ZAnalysisCycle.MC.ZP1500W15.root','ZAnalysisCycle.MC.ZP2000W20.root']
@@ -52,9 +52,11 @@ ttbar_filename=hadd(process_list_ttbar,'theta_ttbar')
 qcd_filename=hadd(process_list_qcd,'theta_qcd')
 ttbar_file=TFile(ttbar_filename,'READ')
 background_filename=path_base+'BackgroundCycle.DATA.DATA.root'
+backgroundtt_filename=path_base+'bkg_ttbar.root'
 data_filename=path_base+'ZAnalysisCycle.DATA.DATA.root'
 qcd_file=TFile(qcd_filename,'READ')
 backgound_file=TFile(background_filename,'READ')
+backgoundtt_file=TFile(backgroundtt_filename,'READ')
 data_file=TFile(data_filename,'READ')
 signal_files=[]
 for i in range(len(process_list_signal_narrow)):
@@ -82,6 +84,7 @@ if doplots:
     elif '_2btag_' in cut_name:
       bkg_histo_name='Mtt2'
     bkg_histo=backgound_file.Get('BaseHistos/'+bkg_histo_name).Clone('bkg'+us+histo_name+us+cut_name)
+    #bkg_histo.Add(backgoundtt_file.Get('BaseHistos/'+bkg_histo_name),-1.0)########################################
     sum_mc=ttbar_histo.Clone('sum_mc'+us+histo_name+us+cut_name)
     sum_mc.Add(bkg_histo)
     ratio_histo=data_histo.Clone('ratio'+us+histo_name+us+cut_name)
@@ -267,42 +270,45 @@ if dolimits:
   make_theta_rootfile(theta_input_name,cut_types)
     
   print 'theta'
+  
+  postfix='ca15jet'
+  
   model_strings=""
   for i in range(len(process_list_signal_narrow)):
     model_strings+="    model.add_lognormal_uncertainty('signal"+process_names_signal_narrow[i]+"_rate', 0.15, 'ZP"+process_names_signal_narrow[i]+"')\n"
   theta_config = open(path_base+theta_input_name+'.py', 'w')
+  theta_config.write("def get_model():\n\
+    model = build_model_from_rootfile('"+path_base+theta_input_name+'.root'+"')\n\
+    model.fill_histogram_zerobins()\n\
+    model.set_signal_processes('ZP*')\n\
+    model.add_lognormal_uncertainty('ttbar_rate', 0.15, 'ttbar')\n\
+    model.add_lognormal_uncertainty('qcd_rate', 0.15, 'qcd')\n\
+"+model_strings+"\
+    for p in model.processes:\n\
+        if p == 'qcd': continue\n\
+        model.add_lognormal_uncertainty('lumi', 0.026, p)\n\
+    return model\n\
+model = get_model()\n\
+model_summary(model)\n\
+plot_exp, plot_obs = asymptotic_cls_limits(model,use_data=False)\n\
+plot_exp.write_txt('"+path_base+theta_input_name+us+postfix+'.txt'+"')\n\
+report.write_html('"+path_base+"htmlout"+us+theta_input_name+us+postfix+"')")
   #theta_config.write("def get_model():\n\
-    #model = build_model_from_rootfile('"+path_base+theta_input_name+'.root'+"')\n\
+    #model = build_model_from_rootfile('"+path_base+theta_input_name+'.root'+"',include_mc_uncertainties=True)\n\
     #model.fill_histogram_zerobins()\n\
     #model.set_signal_processes('ZP*')\n\
-    #model.add_lognormal_uncertainty('ttbar_rate', 0.15, 'ttbar')\n\
-    #model.add_lognormal_uncertainty('qcd_rate', 0.15, 'qcd')\n\
+    #model.add_lognormal_uncertainty('xs_top', math.log(1.15), 'ttbar')\n\
+    #model.add_lognormal_uncertainty('qcd_norm', math.log(1.10), 'qcd')\n\
 #"+model_strings+"\
     #for p in model.processes:\n\
-        #if p == 'qcd': continue\n\
-        #model.add_lognormal_uncertainty('lumi', 0.026, p)\n\
+        #model.add_lognormal_uncertainty('lumi', math.log(1.045), p)\n\
+        #model.add_lognormal_uncertainty('btag', math.log(1.05), p)\n\
     #return model\n\
 #model = get_model()\n\
 #model_summary(model)\n\
 #plot_exp, plot_obs = asymptotic_cls_limits(model,use_data=False)\n\
 #plot_exp.write_txt('"+path_base+theta_input_name+'.txt'+"')\n\
 #report.write_html('"+path_base+"htmlout"+us+theta_input_name+"')")
-  theta_config.write("def get_model():\n\
-    model = build_model_from_rootfile('"+path_base+theta_input_name+'.root'+"',include_mc_uncertainties=True)\n\
-    model.fill_histogram_zerobins()\n\
-    model.set_signal_processes('ZP*')\n\
-    model.add_lognormal_uncertainty('xs_top', math.log(1.15), 'ttbar')\n\
-    model.add_lognormal_uncertainty('qcd_norm', math.log(1.10), 'qcd')\n\
-"+model_strings+"\
-    for p in model.processes:\n\
-        model.add_lognormal_uncertainty('lumi', math.log(1.045), p)\n\
-        model.add_lognormal_uncertainty('btag', math.log(1.05), p)\n\
-    return model\n\
-model = get_model()\n\
-model_summary(model)\n\
-plot_exp, plot_obs = asymptotic_cls_limits(model,use_data=False)\n\
-plot_exp.write_txt('"+path_base+theta_input_name+'.txt'+"')\n\
-report.write_html('"+path_base+"htmlout"+us+theta_input_name+"')")
   theta_config.close()
 
     #model.add_lognormal_uncertainty('signal1000_rate', 0.15, 'ZP1000')\n\

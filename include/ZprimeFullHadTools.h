@@ -67,8 +67,8 @@ public:
    void Fill();
    void Finish();
 private:
-  TFile* f,*f_pari,*f_dispari;
-  TH2F* mistag;
+  TFile* f;//,*f_pari,*f_dispari;
+  TH2F* mistag,*mistagmc;
   TH1F* shape;
 }; // class BackgroundHists
 
@@ -125,7 +125,16 @@ bool makeCMSCategories(BaseCycleContainer * bcc, ZprimeFullHadHists * inclusive_
 double TopJetMass(TopJet topjet);
 bool TopTag(TopJet t);
 float getMaxCSV(TopJet t);
+bool PtHepTopTag(TopJet t, float minimumpt);
+float getHT50(BaseCycleContainer * bcc);
 
+bool MassHepTopTagWithMatch(TopJet topjet, double mlow=140.0, double mhigh=250.0);
+bool MassHepTopTagWithMatch(TopJet topjet, double minpt, double mlow, double mhigh);
+bool BareHepTopTagWithMatch(TopJet topjet);
+bool HepTopTagNoMassCutWithMatch(TopJet topjet);
+bool MassAndPtCutWithMatch(TopJet topjet,double minpt=200.0, double mlow=140.0, double mhigh=250.0);
+bool variableMassHepTopTagWithMatch(TopJet topjet, double ptJetMin = 200., double massWindowLower = 0.85, double massWindowUpper = 1.15, double cutCondition2 = 0.35, double cutCondition3 = 0.35, double mlow=140.0, double mhigh=250.0);
+bool PtHepTopTagWithMatch(TopJet t, float minimumpt);
 
 //for HepTopTagger validation
 class NHadTopJetSelection2: public SelectionModule {

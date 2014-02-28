@@ -72,8 +72,8 @@ void BackgroundCycle::BeginInputData( const SInputData& id ) throw( SError )
 //   RegisterHistCollection( new ZprimeFullHadHists("NoCutsHistos"));
 //   RegisterHistCollection( new ZprimeFullHadHists("TriggerHistos"));
   RegisterHistCollection( new BackgroundHists("BaseHistos"));
-  RegisterHistCollection( new BackgroundHists("PariHistos"));
-  RegisterHistCollection( new BackgroundHists("DispariHistos"));
+//   RegisterHistCollection( new BackgroundHists("PariHistos"));
+//   RegisterHistCollection( new BackgroundHists("DispariHistos"));
 
   // important: initialise histogram collections after their definition
   InitHistos();
@@ -103,26 +103,27 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
 //   BaseHists* NoCutsHistos = GetHistCollection("NoCutsHistos");
 //   BaseHists* TriggerHistos = GetHistCollection("TriggerHistos");
   BaseHists* BaseHistos = GetHistCollection("BaseHistos");
-  BaseHists* PariHistos = GetHistCollection("PariHistos");
-  BaseHists* DispariHistos = GetHistCollection("DispariHistos");
+//   BaseHists* PariHistos = GetHistCollection("PariHistos");
+//   BaseHists* DispariHistos = GetHistCollection("DispariHistos");
 
   EventCalc* calc = EventCalc::Instance();
   BaseCycleContainer* bcc = calc->GetBaseCycleContainer();
   bool IsRealData = calc->IsRealData();
 //   NoCutsHistos->Fill();
   
-//   if(TriggerHT->passSelection() || TriggerQuad->passSelection() ) TriggerHistos->Fill(); else throw SError( SError::SkipEvent );
-  if(!TriggerHT->passSelection()) throw SError( SError::SkipEvent );
-  
+   if(!(TriggerHT->passSelection() || TriggerQuad->passSelection())) throw SError( SError::SkipEvent );
+//  if(!TriggerHT->passSelection()) throw SError( SError::SkipEvent );
+ // if(getHT50(bcc)<800.0) throw SError( SError::SkipEvent );
   int n=0;
   for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
   {
     if (bcc->toptagjets->at(i).pt()>=200.0) n++;//150
   }
   
-  if (n>1)
+  if (n>1 && bcc->topjets->size()>1)
   {
     BaseHistos->Fill();
+    
 //     if (!IsRealData)
 //     {
 //       if (bcc->event % 2 == 0)

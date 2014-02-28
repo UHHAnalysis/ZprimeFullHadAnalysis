@@ -15,8 +15,8 @@
 
 	<Package Name="ZprimeFullHadAnalysis.par" /> 
 
-<!--   <Cycle Name="BackgroundCycle" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19708" > -->
-   <Cycle Name="BackgroundCycle"  RunMode="PROOF" ProofServer="pod://"  ProofWorkDir="/nfs/dust/cms/user/usaiem/PROOF/" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19700" > 
+  <!-- <Cycle Name="BackgroundCycle" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19708" >-->
+   <Cycle Name="BackgroundCycle"  RunMode="PROOF" ProofServer="pod://"  ProofWorkDir="/nfs/dust/cms/user/usaiem/PROOF/" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19700" >
 
 
 
@@ -120,8 +120,9 @@
 <InputTree Name="AnalysisTree" />
 </InputData>-->
 
-<!--
-<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarHad" Cacheable="True">
+
+
+<!--<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarHad" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.TTbarHad00.root" Lumi="0.0"/>
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.TTbarHad01.root" Lumi="0.0"/> 
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.TTbarHad02.root" Lumi="0.0"/> 
@@ -146,6 +147,7 @@
 <InputTree Name="AnalysisTree" />
 </InputData>
 
+
 <InputData Lumi="233386.200014733" NEventsMax="-1" Type="MC" Version="TTbarSemi" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.TTbarSemi00.root" Lumi="0.0"/>
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.TTbarSemi01.root" Lumi="0.0"/> 
@@ -161,16 +163,18 @@
 </InputData>
 
 <InputData Lumi="461894.034276552" NEventsMax="-1" Type="MC" Version="TTbarLept" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.TTbarLept.root" Lumi="0.0"/> 
-<InputTree Name="AnalysisTree" />
-</InputData>-->
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.TTbarLept.root" Lumi="0.0"/>
+  <InputTree Name="AnalysisTree" />
+</InputData>
 
-<!--<InputData Lumi="4.834294305" NEventsMax="-1" Type="MC" Version="QCD_HT-100To250" Cacheable="True">
+<InputData Lumi="4.834294305" NEventsMax="-1" Type="MC" Version="QCD_HT-100To250" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-100To250.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
 </InputData>-->
 
-<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCD_HT-250To500" Cacheable="True">
+
+
+<!--<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCD_HT-250To500" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-250To50000.root" Lumi="0.0"/>
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-250To50001.root" Lumi="0.0"/> 
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-250To50002.root" Lumi="0.0"/> 
@@ -182,7 +186,7 @@
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-250To50008.root" Lumi="0.0"/> 
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-250To50009.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
-</InputData>
+</InputData>-->
 
 
 
@@ -211,77 +215,223 @@
 <InputTree Name="AnalysisTree" />
 </InputData>
 
+<!--<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf" Cacheable="True">
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf00.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf01.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf02.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf03.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf04.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf05.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf06.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf07.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf08.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf09.root" Lumi="0.0"/>
+  
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf10.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf11.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf12.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf13.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf14.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf15.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf16.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf17.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf18.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf19.root" Lumi="0.0"/>
+  
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf20.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf21.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf22.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf23.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf24.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf25.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf26.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf27.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf28.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf29.root" Lumi="0.0"/>
+  
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf30.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf31.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf32.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf33.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf34.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf35.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf36.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf37.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf38.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf39.root" Lumi="0.0"/>
+  
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf40.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf41.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf42.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf43.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf44.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf45.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf46.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf47.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf48.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf49.root" Lumi="0.0"/>
+  
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf50.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf51.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf52.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf53.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf54.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf55.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf56.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf57.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf58.root" Lumi="0.0"/>
+  <InputTree Name="AnalysisTree" />
+</InputData>-->
 
-
-<InputData Lumi="66508.416666667" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf00.root" Lumi="0.0"/>
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf01.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf02.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf03.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf04.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf05.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf06.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf07.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf08.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf09.root" Lumi="0.0"/> 
-
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf10.root" Lumi="0.0"/>
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf11.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf12.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf13.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf14.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf15.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf16.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf17.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf18.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf19.root" Lumi="0.0"/> 
-
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf20.root" Lumi="0.0"/>
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf21.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf22.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf23.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf24.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf25.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf26.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf27.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf28.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf29.root" Lumi="0.0"/> 
-
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf30.root" Lumi="0.0"/>
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf31.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf32.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf33.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf34.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf35.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf36.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf37.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf38.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf39.root" Lumi="0.0"/> 
-
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf40.root" Lumi="0.0"/>
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf41.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf42.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf43.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf44.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf45.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf46.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf47.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf48.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf49.root" Lumi="0.0"/> 
-
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf50.root" Lumi="0.0"/>
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf51.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf52.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf53.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf54.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf55.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf56.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf57.root" Lumi="0.0"/> 
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-1000ToInf58.root" Lumi="0.0"/> 
+<!--<InputData Lumi="238028" NEventsMax="-1" Type="MC" Version="ZP500W5" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP500W5.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
 </InputData>
 
+<InputData Lumi="229767" NEventsMax="-1" Type="MC" Version="ZP500W50" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP500W50.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
 
+<InputData Lumi="217629" NEventsMax="-1" Type="MC" Version="ZP750W7p5" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP750W7p5.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="216010" NEventsMax="-1" Type="MC" Version="ZP750W75" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP750W75.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="203984" NEventsMax="-1" Type="MC" Version="ZP1000W10" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP1000W10.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="207430" NEventsMax="-1" Type="MC" Version="ZP1000W100" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP1000W100.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="197422" NEventsMax="-1" Type="MC" Version="ZP1250W12p5" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP1250W12p5.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="201420" NEventsMax="-1" Type="MC" Version="ZP1250W125" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP1250W125.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="471449" NEventsMax="-1" Type="MC" Version="ZP1500W15" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP1500W15.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="196751" NEventsMax="-1" Type="MC" Version="ZP1500W150" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP1500W150.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="181494" NEventsMax="-1" Type="MC" Version="ZP2000W20" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP2000W20.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="485137" NEventsMax="-1" Type="MC" Version="ZP2000W200" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP2000W200.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="91209" NEventsMax="-1" Type="MC" Version="ZP3000W30" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP3000W30.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="200810" NEventsMax="-1" Type="MC" Version="ZP3000W300" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP3000W300.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="204582" NEventsMax="-1" Type="MC" Version="ZP4000W40" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP4000W40.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="103388" NEventsMax="-1" Type="MC" Version="ZP4000W400" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP4000W400.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>-->
+
+<!--<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarHad" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionsmall/PreselectionCycle.MC.TTbarHad00.root" Lumi="0.0"/>
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionsmall/PreselectionCycle.MC.TTbarHad01.root" Lumi="0.0"/> 
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionsmall/PreselectionCycle.MC.TTbarHad02.root" Lumi="0.0"/> 
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionsmall/PreselectionCycle.MC.TTbarHad03.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="233386.200014733" NEventsMax="-1" Type="MC" Version="TTbarSemi" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionsmall/PreselectionCycle.MC.TTbarSemi.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="461894.034276552" NEventsMax="-1" Type="MC" Version="TTbarLept" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionsmall/PreselectionCycle.MC.TTbarLept.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCD_HT-250To500" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionsmall/PreselectionCycle.MC.QCD_HT-250To500.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="3601.486707809" NEventsMax="-1" Type="MC" Version="QCD_HT-500To1000" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionsmall/PreselectionCycle.MC.QCD_HT-500To100000.root" Lumi="0.0"/>
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionsmall/PreselectionCycle.MC.QCD_HT-500To100001.root" Lumi="0.0"/> 
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionsmall/PreselectionCycle.MC.QCD_HT-500To100002.root" Lumi="0.0"/> 
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionsmall/PreselectionCycle.MC.QCD_HT-500To100003.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>-->
+
+
+
+<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCDFlat" Cacheable="True">
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat00.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat01.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat02.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat03.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat04.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat05.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat06.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat07.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat08.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat09.root" Lumi="0.0"/>
+  
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat10.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat11.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat12.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat13.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat14.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat15.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat16.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat17.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat18.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat19.root" Lumi="0.0"/>
+  
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat20.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat21.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat22.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat23.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat24.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat25.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat26.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat27.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat28.root" Lumi="0.0"/>
+  <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat29.root" Lumi="0.0"/>
+
+  <InputTree Name="AnalysisTree" />
+</InputData>
 
 		<UserConfig>
 
@@ -297,7 +447,7 @@
 		   <Item Name="TopTagJetCollection" Value="goodPatJetsCAHEPTopTagPFPacked" />
 		   <Item Name="TopJetCollectionGen" Value="caHEPTopTagGen" />
 		   <Item Name="GenParticleCollection" Value="GenParticles" /> 
-	           <Item Name="HiggsTagJetCollection" Value="goodPatJetsCATopTagPFPacked" />
+<!-- 	           <Item Name="HiggsTagJetCollection" Value="goodPatJetsCATopTagPFPacked" /> -->
 		      
 		   <!-- 		      <Item Name="PU_Filename_Data" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/PileUpHistos/MyDataPileupHistogram_206745.root" /> -->
 		      <Item Name="PU_Filename_MC" Value="/nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle" />

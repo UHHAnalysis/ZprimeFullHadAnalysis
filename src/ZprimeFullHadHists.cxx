@@ -67,6 +67,7 @@ void ZprimeFullHadHists::Init()
 
   // primary vertices
   Book( TH1F( "N_pv", "N^{PV}", 50, 0, 50 ) );
+  Book( TH1F( "HT50", "HT", 40, 0, 2000 ) );
 //   Book( TH1F( "N_events_perLumiBin", "N^{evt}", 24, 0, 24 ) );
 //   Book( TH1F( "N_pv_perLumiBin", "N^{PV}", 24, 0, 24 ) );
 
@@ -145,6 +146,7 @@ void ZprimeFullHadHists::Fill2(std::vector<int> Indices, string version, bool us
 
   double HT = calc->GetHT();
   Hist("HT_lx")->Fill(HT, weight);
+  Hist("HT50")->Fill(getHT50(bcc), weight);
 
 //   double HTlep = calc->GetHTlep();
 //   Hist("HTlep_lx")->Fill(HTlep, weight);
@@ -182,7 +184,7 @@ void ZprimeFullHadHists::Fill2(std::vector<int> Indices, string version, bool us
 //   }
 
   //std::vector<int> TopJetIndices = getTopJetsIndices(bcc,1,1,1,1,0,0,200.);
-  if (useCMSTT) collection=bcc->higgstagjets; else collection=bcc->toptagjets;
+  if (useCMSTT) collection=bcc->higgstagjets; else collection=bcc->topjets;
   
   Hist("Nevts")->Fill(0.5,weight);
   Hist("Ntopjets")->Fill(collection->size(),weight);
@@ -213,7 +215,7 @@ void ZprimeFullHadHists::Fill2(std::vector<int> Indices, string version, bool us
   {
     HEPTopTaggerReweight httr;
     double htt_weight=1.0;
-//      if (version=="TTbarLept" || version=="TTbarSemi" || version=="TTbarHad") htt_weight=httr.GetScaleWeight(TopJetIndices);
+    // if (version=="TTbarLept" || version=="TTbarSemi" || version=="TTbarHad") htt_weight=httr.GetScaleWeight(TopJetIndices);
     ((TH2F*)Hist("Njetsvspt"))->Fill(nj,collection->at(TopJetIndices[0]).pt(),weight*htt_weight);
     Hist("SumOfTopCandidatesPt")->Fill(collection->at(TopJetIndices[0]).pt()+collection->at(TopJetIndices[1]).pt(),weight*htt_weight);
     if ( collection->at(TopJetIndices[0]).pt() > collection->at(TopJetIndices[1]).pt() )
@@ -245,7 +247,7 @@ void ZprimeFullHadHists::Fill2(std::vector<int> Indices, string version, bool us
     }
     else
     {
-      Hist(  "Nsub"  )->Fill(getNsub(bcc,TopJetIndices[0]),weight*htt_weight);
+     // Hist(  "Nsub"  )->Fill(getNsub(bcc,TopJetIndices[0]),weight*htt_weight);
     }
     
     Hist( "DeltaEta" )->Fill(fabs(collection->at(TopJetIndices[0]).eta()-collection->at(TopJetIndices[1]).eta()),weight*htt_weight);

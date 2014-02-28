@@ -29,13 +29,20 @@ zero12TNsubDY = [xj,[ 0.293, 0.0466, 0.0177, 0.0153 ]]
 twoT = [xj,[0.359, 0.05528, 0.02544, 0.02167]]
 twoTNsub = [xj,[ 0.3272, 0.0521, 0.02204, 0.02042 ]]
 
-limit_legend_names=['B2G-12-006','B2G-12-005',"Justin's CMSTT","Emanuele's CMSTT","Emanuele's CMSTT+HTT","HTT"]
+#limit_legend_names=['B2G-12-006','B2G-12-005',"Justin's CMSTT","Emanuele's CMSTT","Emanuele's CMSTT+HTT","HTT"]
+limit_legend_names=['Combi HTT jets','Combi CA15Filtered']
 #limit_legend_names=["Justin's CMSTT","Emanuele's CMSTT","Emanuele's CMSTT+HTT","HTT"]
-limit_colors=[kGray,kBlack,kGreen,kRed,kViolet,kBlue]
+#limit_colors=[kGray,kBlack,kGreen,kRed,kViolet,kBlue]
+limit_colors=[kGreen,kRed,kBlue,kViolet]
 #limit_colors=[kRed,kBlue,kGreen,kViolet]
-limit_points=[semiapproved,approved]#,zero12TNsubDY]
+#limit_points=[semiapproved,approved]#,zero12TNsubDY]
+limit_points=[]
 #limit_points=[zero12TNsubDY]
-limit_paths=["/nfs/dust/cms/user/usaiem/ZprimeFullHad/justin.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_cms.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_cms_htt.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_m.txt"]
+#limit_paths=["/nfs/dust/cms/user/usaiem/ZprimeFullHad/justin.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_cms_Pt200HT750Quad50.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_cms_htt_Pt200HT750Quad50.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_m_Pt200HT750Quad50.txt"]
+#limit_paths=["/nfs/dust/cms/user/usaiem/ZprimeFullHad/justin.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_cms_Pt200HT750.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_cms_htt_Pt200HT750.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_m_Pt200HT750.txt"]
+#limit_paths=["/nfs/dust/cms/user/usaiem/ZprimeFullHad/justin.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_cms_Pt150HT750Quad50.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_cms_htt_Pt150HT750Quad50.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_m_Pt150HT750Quad50.txt"]
+
+limit_paths=["/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_m_hepjet.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_m_ca15jet.txt"]#,"/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_cms_htt_Pt200HT750Quad50.txt","/nfs/dust/cms/user/usaiem/ZprimeFullHad/zphad_012btag_cms_htt_Pt150HT750Quad50.txt"]
 for i in range(len(limit_paths)):
   limit_points.append(getPoints(limit_paths[i]))
 
