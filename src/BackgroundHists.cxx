@@ -17,7 +17,8 @@ BackgroundHists::BackgroundHists(const char* name) : BaseHists(name)
   //   mistag = (TH2F*)f_dispari->Get("HEPTagger/Mistag/qcd_htt/Mistag_qcd_htt");/////////////////////////////////////////////////////////////
   //   shape = (TH1F*)f_pari->Get("HEPTagger/MassShape/qcd_htt/mass_shape_qcd_htt");
   mistag = (TH2F*)f->Get("HEPTagger/Mistag/data_htt/Mistag_data_htt");
-  mistagmc = (TH2F*)f->Get("HEPTagger/Mistag/qcd500to1000/Mistag_qcd500to1000");/////////////////////////////////////////////////////////////
+  //mistagmc = (TH2F*)f->Get("HEPTagger/Mistag/qcd500to1000/Mistag_qcd500to1000");/////////////////////////////////////////////////////////////
+  mistagmc = (TH2F*)f->Get("HEPTagger/Mistag/qcd_htt/Mistag_qcd_htt");
   shape = (TH1F*)f->Get("HEPTagger/MassShape/qcd_htt/mass_shape_qcd_htt");
 }
 
@@ -63,9 +64,9 @@ void BackgroundHists::Init()
   Book( TH1F( "MeasuredAK5Mtt012", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
   
   Book( TH1F( "Mtt012NoWeight", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
-  Book( TH1F( "CSV012", ";CSV;Events", 260, -11, 2 ) );
-  Book( TH1F( "HT012", ";HT;Events", 300, 0, 6000 ) );
-  Book( TH1F( "pT012", ";pT;Events", 100, 0, 2000 ) );
+  Book( TH1F( "CSV012NoWeight", ";CSV;Events", 260, -11, 2 ) );
+  Book( TH1F( "HT012NoWeight", ";HT;Events", 300, 0, 6000 ) );
+  Book( TH1F( "pT012NoWeight", ";pT;Events", 100, 0, 2000 ) );
   
   Book( TH1F( "CSV012", ";CSV;Events", 260, -11, 2 ) );
   Book( TH1F( "MeasuredCSV012", ";CSV;Events", 260, -11, 2 ) );
@@ -134,8 +135,9 @@ void BackgroundHists::Init()
   Book( TH1F( "MeasuredHTTpT2", ";pT;Events", 100, 0, 2000 ) );
   
   //   Book( TH1F( "fake_mass",";m;Events",110,140.0,250.0));
-  double csv_bins[] = {-100.0,0.0,0.244,0.679,10.0};
-  double mistag_pt_bins[] = {150.0,160.0,170.0,180.0,190.0,200.0,210.0,220.0,230.0,240.0,250.0,260.0,270.0,280.0,290.0,300.0,310.0,320.0,330.0,340.0,350.0,360.0,370.0,380.0,390.0,400.0,410.0,430.0,450.0,500.0,600.0,800.0,1000.0,2000.0};
+  //double csv_bins[] = {-100.0,0.0,0.244,0.679,10.0};
+  double csv_bins[] = {-100.0,0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,10.0};
+  double mistag_pt_bins[] = {150.0,175.0,200.0,210.0,220.0,230.0,240.0,250.0,260.0,270.0,280.0,290.0,300.0,310.0,320.0,330.0,340.0,350.0,360.0,370.0,380.0,390.0,400.0,410.0,430.0,450.0,500.0,600.0,800.0,1000.0,2000.0};
   Book( TH2F( "num_mistag", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
   Book( TH2F( "den_mistag", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
   Book( TProfile2D( "mistag_crosscheck", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
@@ -289,6 +291,12 @@ void BackgroundHists::Fill()
       Hist("HT012")->Fill(getHT50(bcc),mistag_value*weight);
       Hist("pT012")->Fill(bcc->topjets->at(mistag_index).pt(),mistag_value*weight);
       Hist("CSV012")->Fill(getMaxCSV(bcc->topjets->at(mistag_index)),mistag_value*weight);
+      
+      Hist("Mtt012NoWeight")->Fill(mtt,weight);
+      //Hist("MttNoMass012NoWeight")->Fill(mttNoMass,weight);
+      Hist("HT012NoWeight")->Fill(getHT50(bcc),weight);
+      Hist("pT012NoWeight")->Fill(bcc->topjets->at(mistag_index).pt(),weight);
+      Hist("CSV012NoWeight")->Fill(getMaxCSV(bcc->topjets->at(mistag_index)),weight);
       if (nbtags==0)
       {
         Hist("Mtt0")->Fill(mtt,mistag_value*weight);
@@ -416,25 +424,24 @@ void BackgroundHists::Fill()
     unsigned int probe_index=0;
     bool isantitagged=false;
     
-    //
-    
-    if ( ( !BareHepTopTagWithMatch(bcc->topjets->at(0)) ) && ( MassAndPtCutWithMatch(bcc->topjets->at(0)) ) )
+    //random coin
+    TRandom3 rand(abs(static_cast<int>(sin(bcc->topjets->at(0).subjets().at(0).eta()*1000000)*100000)));
+    unsigned int histo_index;
+    if (rand.Uniform(1.)<=0.5)
     {
       antitag_index=0;
       probe_index=1;
-      isantitagged=true;
     }
     else
     {
-      if ( ( !BareHepTopTagWithMatch(bcc->topjets->at(1)) ) && ( MassAndPtCutWithMatch(bcc->topjets->at(1)) ) )
-      {
-        antitag_index=1;
-        probe_index=0;
-        isantitagged=true;
-      }
+      antitag_index=1;
+      probe_index=0;
     }
-    if(isantitagged)
+    
+    if ( ( !BareHepTopTagWithMatch(bcc->topjets->at(antitag_index)) ) && ( MassAndPtCutWithMatch(bcc->topjets->at(antitag_index)) ) )
     {
+
+
       //       cout<<probe_index<<bcc->topjets->size()<<endl;
       //       cout<<bcc->topjets->at(probe_index).pt()<<endl;
       float maxcsv = getMaxCSV(bcc->topjets->at(probe_index));

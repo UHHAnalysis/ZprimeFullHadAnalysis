@@ -396,7 +396,7 @@
 
 
 
-<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCDFlat" Cacheable="True">
+<!--<InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCDFlat" Cacheable="True">
   <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat00.root" Lumi="0.0"/>
   <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat01.root" Lumi="0.0"/>
   <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat02.root" Lumi="0.0"/>
@@ -431,7 +431,7 @@
   <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCDFlat29.root" Lumi="0.0"/>
 
   <InputTree Name="AnalysisTree" />
-</InputData>
+</InputData>-->
 
 		<UserConfig>
 
@@ -447,7 +447,7 @@
 		   <Item Name="TopTagJetCollection" Value="goodPatJetsCAHEPTopTagPFPacked" />
 		   <Item Name="TopJetCollectionGen" Value="caHEPTopTagGen" />
 		   <Item Name="GenParticleCollection" Value="GenParticles" /> 
-<!-- 	           <Item Name="HiggsTagJetCollection" Value="goodPatJetsCATopTagPFPacked" /> -->
+ 	           <Item Name="HiggsTagJetCollection" Value="goodPatJetsCATopTagPFPacked" />
 		      
 		   <!-- 		      <Item Name="PU_Filename_Data" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/PileUpHistos/MyDataPileupHistogram_206745.root" /> -->
 		      <Item Name="PU_Filename_MC" Value="/nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle" />
