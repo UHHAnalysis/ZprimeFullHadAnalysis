@@ -15,7 +15,7 @@
 
 	<Package Name="ZprimeFullHadAnalysis.par" /> 
 
-  <!-- <Cycle Name="BackgroundCycle" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19708" >-->
+<!--   <Cycle Name="BackgroundCycle" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19708" > -->
    <Cycle Name="BackgroundCycle"  RunMode="PROOF" ProofServer="pod://"  ProofWorkDir="/nfs/dust/cms/user/usaiem/PROOF/" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19700" >
 
 

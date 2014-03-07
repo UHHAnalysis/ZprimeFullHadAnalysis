@@ -114,13 +114,25 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
    if(!(TriggerHT->passSelection() || TriggerQuad->passSelection())) throw SError( SError::SkipEvent );
 //  if(!TriggerHT->passSelection()) throw SError( SError::SkipEvent );
  // if(getHT50(bcc)<800.0) throw SError( SError::SkipEvent );
+  bool two_matched_pt=false;
   int n=0;
+  int nfilt=0;
   for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
   {
     if (bcc->toptagjets->at(i).pt()>=200.0) n++;//150
   }
   
-  if (n>1 && bcc->topjets->size()>1)
+  for (unsigned int i=0; i<bcc->topjets->size(); i++)
+  {
+    if ( HepTopTagMatchPt(bcc->topjets->at(i))>=200.0 ) nfilt++;//150
+  }
+  
+  if (bcc->topjets->size()>1)
+  {
+    if ( ( HepTopTagMatchPt(bcc->topjets->at(0))>=200.0 ) && ( HepTopTagMatchPt(bcc->topjets->at(1))>=200.0 ) ) two_matched_pt=true;
+  }
+  
+  if ( (n>1) && (nfilt==2) && (two_matched_pt) )
   {
     BaseHistos->Fill();
     

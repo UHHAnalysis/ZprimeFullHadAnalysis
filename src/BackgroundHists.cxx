@@ -2,6 +2,7 @@
 #include "include/HEPTopTaggerReweight.h"
 #include "SFrameTools/include/EventCalc.h"
 #include "TH2.h"
+#include "TH3.h"
 #include "TProfile2D.h"
 #include <iostream>
 #include "TLorentzVector.h"
@@ -12,14 +13,11 @@ using namespace std;
 BackgroundHists::BackgroundHists(const char* name) : BaseHists(name)
 {
   f = new TFile("/afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis/bkg.root");
-  //   f_pari = new TFile("/afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis/bkg_pari.root");
-  //   f_dispari = new TFile("/afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis/bkg_dispari.root");
-  //   mistag = (TH2F*)f_dispari->Get("HEPTagger/Mistag/qcd_htt/Mistag_qcd_htt");/////////////////////////////////////////////////////////////
-  //   shape = (TH1F*)f_pari->Get("HEPTagger/MassShape/qcd_htt/mass_shape_qcd_htt");
   mistag = (TH2F*)f->Get("HEPTagger/Mistag/data_htt/Mistag_data_htt");
-  //mistagmc = (TH2F*)f->Get("HEPTagger/Mistag/qcd500to1000/Mistag_qcd500to1000");/////////////////////////////////////////////////////////////
-  mistagmc = (TH2F*)f->Get("HEPTagger/Mistag/qcd_htt/Mistag_qcd_htt");
-  shape = (TH1F*)f->Get("HEPTagger/MassShape/qcd_htt/mass_shape_qcd_htt");
+  mistagmc = (TH2F*)f->Get("HEPTagger/Mistag/qcd500to1000/Mistag_qcd500to1000");/////////////////////////////////////////////////////////////
+//   mistagmc = (TH2F*)f->Get("HEPTagger/Mistag/qcd_htt/Mistag_qcd_htt");
+//   shape = (TH1F*)f->Get("HEPTagger/MassShape/qcd_htt/mass_shape_qcd_htt");
+  shape = (TH1F*)f->Get("HEPTagger/MassShape/qcd500to1000/mass_shape_qcd500to1000");/////////////////////////
 }
 
 BackgroundHists::~BackgroundHists(){
@@ -135,15 +133,22 @@ void BackgroundHists::Init()
   Book( TH1F( "MeasuredHTTpT2", ";pT;Events", 100, 0, 2000 ) );
   
   //   Book( TH1F( "fake_mass",";m;Events",110,140.0,250.0));
-  //double csv_bins[] = {-100.0,0.0,0.244,0.679,10.0};
-  double csv_bins[] = {-100.0,0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,10.0};
+  double csv_bins[] = {-100.0,0.0,0.244,0.679,10.0};
+//   double csv_bins[] = {-100.0,0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,10.0};
   double mistag_pt_bins[] = {150.0,175.0,200.0,210.0,220.0,230.0,240.0,250.0,260.0,270.0,280.0,290.0,300.0,310.0,320.0,330.0,340.0,350.0,360.0,370.0,380.0,390.0,400.0,410.0,430.0,450.0,500.0,600.0,800.0,1000.0,2000.0};
+  double mistag_ht_bins[] = {0,300,400,450,500,550,600,650,700,800,1000,6000};
   Book( TH2F( "num_mistag", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
   Book( TH2F( "den_mistag", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
   Book( TProfile2D( "mistag_crosscheck", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
   //   Book( TH2F( "mass_shape2D",";m;CSV",110,140.0,250.0,sizeof(csv_bins)/sizeof(double)-1, csv_bins));
-  Book( TH1F( "mass_shape",";m;Events",110,140.0,250.0));
+  Book( TH1F( "mass_shape",";m;Events",200,0.0,400.0));
   //   Book( TH1F( "mass_shapeJEC",";m;Events",110,140.0,250.0));
+  
+  Book( TH2F( "num_mistagMeasured", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
+  Book( TH2F( "den_mistagMeasured", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
+
+  Book( TH2F( "num_mistagTag", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
+  Book( TH2F( "den_mistagTag", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
   
 }
 
@@ -160,34 +165,6 @@ void BackgroundHists::Fill()
   bool doMassShape=true;
   bool doBackground=true;
   bool doMeasured=true;
-  
-  //if (!IsRealData) doBackground=False;
-  
-  //   if (HepTopTagWithMatch(bcc->topjets->at(0)))//tag
-  //   {
-  //
-  //     //bcc->topjets->at(1)
-  //
-  //   }
-  //
-  //   for (unsigned int i=0; i<bcc->topjets->size(); i++)
-  //   {
-  //     //Hist("Mtt")->Fill(getMtt(collection->at(TopJetIndices[0]),collection->at(TopJetIndices[1])),weight*htt_weight);
-  //   }
-  //
-  //   for (unsigned int i=0;i<collection->size();i++)
-  //   {
-  //     std::vector<float> csv;
-  //     csv=collection->at(i).btagsub_combinedSecondaryVertex();
-  //     float maxcsv = *max_element(std::begin(csv), std::end(csv));
-  //     ((TH2F*)Hist("mass_shape"))->Fill(TopJetMass(collection->at(i)),maxcsv,weight);
-  //   }
-  //
-  //   std::vector<float> csv;
-  //   csv=collection->at(TopJetIndices[0]).btagsub_combinedSecondaryVertex();
-  //   float maxcsv = *max_element(std::begin(csv), std::end(csv));
-  //
-  //   ((TH2F*)Hist("mistag"))->Fill(collection->at(TopJetIndices[1]).pt(),maxcsv,weight);//no htt reweight!!!
   
   //mistag application
   if (doBackground)
@@ -332,101 +309,76 @@ void BackgroundHists::Fill()
   //mass shape
   if (doMassShape)
   {
-    int tag_index=-1;
-    double max_tag_pt=-1;
-    for (unsigned int i=0; i<bcc->topjets->size(); i++)
+    
+    unsigned int tag_index;
+    unsigned int probe_index;
+    TRandom3 rand(abs(static_cast<int>(sin(bcc->topjets->at(1).subjets().at(0).eta()*1000000)*100000)));
+    if (rand.Uniform(1.)<=0.5)
     {
-      if ( HepTopTagWithMatch(bcc->topjets->at(i)) )
-      {
-        if (bcc->topjets->at(i).pt()>max_tag_pt)
-        {
-          tag_index=i;
-          max_tag_pt=bcc->topjets->at(i).pt();
-        }
-      }
+      tag_index=0;
+      probe_index=1;
     }
-    if (tag_index>-1)
+    else
     {
-      int probe_index=-1;
-      double max_probe_pt=-1;
-      for (unsigned int i=0; i<bcc->topjets->size(); i++)
-      {
-        if (bcc->topjets->at(i).pt()>max_probe_pt && i!=tag_index)
-        {
-          probe_index=i;
-          max_probe_pt=bcc->topjets->at(i).pt();
-        }
-      }
-      if (probe_index>-1)
-      {
-        //Indices={antitag_index,probe_index};
-        // std::vector<float> csv;
-        // csv=bcc->topjets->at(probe_index).btagsub_combinedSecondaryVertex();
-        // float maxcsv = *max_element(std::begin(csv), std::end(csv));
-        // 	float maxcsv = getMaxCSV(bcc->topjets->at(probe_index));
-        Hist("mass_shape")->Fill(TopJetMass(bcc->topjets->at(probe_index)),weight);
-        // 	Hist("mass_shapeJEC")->Fill(bcc->topjets->at(probe_index).v4().M(),weight);
-        // 	((TH2F*)Hist("mass_shape2D"))->Fill(TopJetMass(bcc->topjets->at(probe_index)),maxcsv,weight);
-      }
+      tag_index=1;
+      probe_index=0;
+    } 
+    if ( HepTopTagWithMatch(bcc->topjets->at(tag_index)) && MassAndPtCutWithMatch(bcc->topjets->at(probe_index)) )
+    {
+      Hist("mass_shape")->Fill(TopJetMass(bcc->topjets->at(probe_index)),weight);
     }
+    
+    
+//     int tag_index=-1;
+//     double max_tag_pt=-1;
+//     for (unsigned int i=0; i<bcc->topjets->size(); i++)
+//     {
+//       if ( HepTopTagWithMatch(bcc->topjets->at(i)) )
+//       {
+//         if (bcc->topjets->at(i).pt()>max_tag_pt)
+//         {
+//           tag_index=i;
+//           max_tag_pt=bcc->topjets->at(i).pt();
+//         }
+//       }
+//     }
+//     if (tag_index>-1)
+//     {
+//       int probe_index=-1;
+//       double max_probe_pt=-1;
+//       for (unsigned int i=0; i<bcc->topjets->size(); i++)
+//       {
+//         if (bcc->topjets->at(i).pt()>max_probe_pt && i!=tag_index)
+//         {
+//           probe_index=i;
+//           max_probe_pt=bcc->topjets->at(i).pt();
+//         }
+//       }
+//       if (probe_index>-1)
+//       {
+//         //Indices={antitag_index,probe_index};
+//         // std::vector<float> csv;
+//         // csv=bcc->topjets->at(probe_index).btagsub_combinedSecondaryVertex();
+//         // float maxcsv = *max_element(std::begin(csv), std::end(csv));
+//         // 	float maxcsv = getMaxCSV(bcc->topjets->at(probe_index));
+//         Hist("mass_shape")->Fill(TopJetMass(bcc->topjets->at(probe_index)),weight);
+//         // 	Hist("mass_shapeJEC")->Fill(bcc->topjets->at(probe_index).v4().M(),weight);
+//         // 	((TH2F*)Hist("mass_shape2D"))->Fill(TopJetMass(bcc->topjets->at(probe_index)),maxcsv,weight);
+//       }
+//     }
   }
-  
-  //mistag computation OLD
-  //   if (doMistag)
-  //   {
-  //     int antitag_index=-1;
-  //     double max_antitag_pt=-1;
-  //     for (unsigned int i=0; i<bcc->topjets->size(); i++)
-  //     {
-  //       if ( ( !BareHepTopTagWithMatch(bcc->topjets->at(i)) ) && ( MassAndPtCut(bcc->topjets->at(i)) ) )
-  //       {
-  // 	if (bcc->topjets->at(i).pt()>max_antitag_pt)
-  // 	{
-  // 	  antitag_index=i;
-  // 	  max_antitag_pt=bcc->topjets->at(i).pt();
-  // 	}
-  //       }
-  //     }
-  //     if (antitag_index>-1)
-  //     {
-  //       int probe_index=-1;
-  //       double max_probe_pt=-1;
-  //       for (unsigned int i=0; i<bcc->topjets->size(); i++)
-  //       {
-  // 	if (bcc->topjets->at(i).pt()>max_probe_pt && i!=antitag_index)
-  // 	{
-  // 	  probe_index=i;
-  // 	  max_probe_pt=bcc->topjets->at(i).pt();
-  // 	}
-  //       }
-  //       if (probe_index>-1)
-  //       {
-  // 	//Indices={antitag_index,probe_index};
-  // 	// std::vector<float> csv;
-  // 	// csv=bcc->topjets->at(probe_index).btagsub_combinedSecondaryVertex();
-  // 	// float maxcsv = *max_element(std::begin(csv), std::end(csv));
-  // 	float maxcsv = getMaxCSV(bcc->topjets->at(probe_index));
-  // 	((TH2F*)Hist("den_mistag"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,weight);
-  // 	//((ZprimeFullHadHists*)antitag_den)->Fill2(Indices);
-  // 	if (HepTopTagWithMatch(bcc->topjets->at(probe_index)))
-  // 	{
-  // 	  ((TH2F*)Hist("num_mistag"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,weight);
-  // 	  //((ZprimeFullHadHists*)antitag_num)->Fill2(Indices);
-  // 	}
-  //       }
-  //     }
-  //   }
   
   //mistag computation
   if (doMistag)
   {
+    
+    
     unsigned int antitag_index=0;
     unsigned int probe_index=0;
     bool isantitagged=false;
     
     //random coin
     TRandom3 rand(abs(static_cast<int>(sin(bcc->topjets->at(0).subjets().at(0).eta()*1000000)*100000)));
-    unsigned int histo_index;
     if (rand.Uniform(1.)<=0.5)
     {
       antitag_index=0;
@@ -438,7 +390,28 @@ void BackgroundHists::Fill()
       probe_index=0;
     }
     
-    if ( ( !BareHepTopTagWithMatch(bcc->topjets->at(antitag_index)) ) && ( MassAndPtCutWithMatch(bcc->topjets->at(antitag_index)) ) )
+    ////measured mistag
+    float maxcsv = getMaxCSV(bcc->topjets->at(probe_index));
+    ((TH2F*)Hist("den_mistagMeasured"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,weight);
+    if (HepTopTagWithMatch(bcc->topjets->at(probe_index)))
+    {
+      ((TH2F*)Hist("num_mistagMeasured"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,weight);
+    }
+    ////
+    
+    ////tagged mistag
+    if(HepTopTagWithMatch(bcc->topjets->at(antitag_index)))
+    {
+      float maxcsv = getMaxCSV(bcc->topjets->at(probe_index));
+      ((TH2F*)Hist("den_mistagTag"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,weight);
+      if (HepTopTagWithMatch(bcc->topjets->at(probe_index)))
+      {
+	((TH2F*)Hist("num_mistagTag"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,weight);
+      }
+    }
+    ////
+    
+    if ( ( !BareHepTopTagWithMatch(bcc->topjets->at(antitag_index)) ) && ( MassAndPtCutWithMatch(bcc->topjets->at(antitag_index)) ) && ( subJetBTag(bcc->topjets->at(antitag_index),e_CSVM)>0 ) )
     {
 
 
@@ -451,48 +424,6 @@ void BackgroundHists::Fill()
         ((TH2F*)Hist("num_mistag"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,weight);
       }
     }
-    
-    //     int antitag_index=-1;
-    //     double max_antitag_pt=-1;
-    //     for (unsigned int i=0; i<bcc->topjets->size(); i++)
-    //     {
-    //       if ( ( !BareHepTopTagWithMatch(bcc->topjets->at(i)) ) && ( MassAndPtCut(bcc->topjets->at(i)) ) )
-    //       {
-    // 	if (bcc->topjets->at(i).pt()>max_antitag_pt)
-    // 	{
-    // 	  antitag_index=i;
-    // 	  max_antitag_pt=bcc->topjets->at(i).pt();
-    // 	}
-    //       }
-    //     }
-    //     if (antitag_index>-1)
-    //     {
-    //       int probe_index=-1;
-    //       double max_probe_pt=-1;
-    //       for (unsigned int i=0; i<bcc->topjets->size(); i++)
-    //       {
-    // 	if (bcc->topjets->at(i).pt()>max_probe_pt && i!=antitag_index)
-    // 	{
-    // 	  probe_index=i;
-    // 	  max_probe_pt=bcc->topjets->at(i).pt();
-    // 	}
-    //       }
-    //       if (probe_index>-1)
-    //       {
-    // 	//Indices={antitag_index,probe_index};
-    // 	// std::vector<float> csv;
-    // 	// csv=bcc->topjets->at(probe_index).btagsub_combinedSecondaryVertex();
-    // 	// float maxcsv = *max_element(std::begin(csv), std::end(csv));
-    // 	float maxcsv = getMaxCSV(bcc->topjets->at(probe_index));
-    // 	((TH2F*)Hist("den_mistag"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,weight);
-    // 	//((ZprimeFullHadHists*)antitag_den)->Fill2(Indices);
-    // 	if (HepTopTagWithMatch(bcc->topjets->at(probe_index)))
-    // 	{
-    // 	  ((TH2F*)Hist("num_mistag"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,weight);
-    // 	  //((ZprimeFullHadHists*)antitag_num)->Fill2(Indices);
-    // 	}
-    //       }
-    //     }
   }
   
   if(doMeasured && !IsRealData)
@@ -592,71 +523,71 @@ void BackgroundHists::Fill()
       }
       
       //AK5 code
-      vector<unsigned int> ak5indices;
-      LorentzVector ak5v4(0,0,0,0);
-      int topjet0ak5count=0;
-      int topjet1ak5count=0;
-      int nak5btag=0;
-      bool istopjet0ak5btag=false;
-      bool istopjet1ak5btag=false;
-      bool isgood=true;
-      for(unsigned int iak5=0; iak5<bcc->jets->size(); iak5++)
-      {
-        if (topjet0ak5count<=3)
-        {
-          if (bcc->toptagjets->at(0).deltaR(bcc->jets->at(iak5))<1.5)
-          {
-            ak5v4=ak5v4+bcc->jets->at(iak5).v4();
-            topjet0ak5count++;
-            ak5indices.push_back(iak5);
-          }
-        }
-        if (topjet1ak5count<=3)
-        {
-          if (bcc->toptagjets->at(1).deltaR(bcc->jets->at(iak5))<1.5)
-          {
-            ak5v4=ak5v4+bcc->jets->at(iak5).v4();
-            topjet1ak5count++;
-            ak5indices.push_back(iak5);
-          }
-        }
-      }
-      if (istopjet0ak5btag) nak5btag++;
-      if (istopjet1ak5btag) nak5btag++;
-      for(unsigned int ch1=0; ch1<ak5indices.size()-1; ch1++)
-      {
-        for(unsigned int ch2=ch1+1; ch2<ak5indices.size(); ch2++)
-        {
-          if (ak5indices[ch1]==ak5indices[ch2])
-          {
-            isgood=false;
-            cout<<ak5indices[ch1]<<" not good\n";
-          }
-        }
-      }
-      if (isgood)
-      {
-        double mttAK5=ak5v4.M();
-        Hist("MeasuredAK5Mtt012")->Fill(mttAK5,weight);
-        if (nak5btag==0)
-        {
-          Hist("MeasuredAK5Mtt0")->Fill(mttAK5,weight);
-        }
-        else
-        {
-          if (nak5btag==1)
-          {
-            Hist("MeasuredAK5Mtt1")->Fill(mttAK5,weight);
-          }
-          else
-          {
-            if (nak5btag==2)
-            {
-              Hist("MeasuredAK5Mtt2")->Fill(mttAK5,weight);
-            }
-          }
-        }
-      }
+//       vector<unsigned int> ak5indices;
+//       LorentzVector ak5v4(0,0,0,0);
+//       int topjet0ak5count=0;
+//       int topjet1ak5count=0;
+//       int nak5btag=0;
+//       bool istopjet0ak5btag=false;
+//       bool istopjet1ak5btag=false;
+//       bool isgood=true;
+//       for(unsigned int iak5=0; iak5<bcc->jets->size(); iak5++)
+//       {
+//         if (topjet0ak5count<=3)
+//         {
+//           if (bcc->toptagjets->at(0).deltaR(bcc->jets->at(iak5))<1.5)
+//           {
+//             ak5v4=ak5v4+bcc->jets->at(iak5).v4();
+//             topjet0ak5count++;
+//             ak5indices.push_back(iak5);
+//           }
+//         }
+//         if (topjet1ak5count<=3)
+//         {
+//           if (bcc->toptagjets->at(1).deltaR(bcc->jets->at(iak5))<1.5)
+//           {
+//             ak5v4=ak5v4+bcc->jets->at(iak5).v4();
+//             topjet1ak5count++;
+//             ak5indices.push_back(iak5);
+//           }
+//         }
+//       }
+//       if (istopjet0ak5btag) nak5btag++;
+//       if (istopjet1ak5btag) nak5btag++;
+//       for(unsigned int ch1=0; ch1<ak5indices.size()-1; ch1++)
+//       {
+//         for(unsigned int ch2=ch1+1; ch2<ak5indices.size(); ch2++)
+//         {
+//           if (ak5indices[ch1]==ak5indices[ch2])
+//           {
+//             isgood=false;
+//             cout<<ak5indices[ch1]<<" not good\n";
+//           }
+//         }
+//       }
+//       if (isgood)
+//       {
+//         double mttAK5=ak5v4.M();
+//         Hist("MeasuredAK5Mtt012")->Fill(mttAK5,weight);
+//         if (nak5btag==0)
+//         {
+//           Hist("MeasuredAK5Mtt0")->Fill(mttAK5,weight);
+//         }
+//         else
+//         {
+//           if (nak5btag==1)
+//           {
+//             Hist("MeasuredAK5Mtt1")->Fill(mttAK5,weight);
+//           }
+//           else
+//           {
+//             if (nak5btag==2)
+//             {
+//               Hist("MeasuredAK5Mtt2")->Fill(mttAK5,weight);
+//             }
+//           }
+//         }
+//       }
     }
     
   }
@@ -671,8 +602,5 @@ void BackgroundHists::Finish()
   delete shape;
   f->Close();
   delete f;
-  //   delete f_pari;
-  //   delete f_dispari;
-  
 }
 

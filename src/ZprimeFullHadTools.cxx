@@ -439,7 +439,7 @@ bool MassAndPtCutWithMatch(TopJet topjet,double minpt, double mlow, double mhigh
   
     double mjet=TopJetMass(nextjet);
   
-  return nextjet.pt()>minpt && mjet>mlow && mjet<mhigh;
+  return (nextjet.pt()>minpt && mjet>mlow && mjet<mhigh) ;
   
 }
 bool variableMassHepTopTagWithMatch(TopJet topjet, double ptJetMin, double massWindowLower, double massWindowUpper, double cutCondition2, double cutCondition3, double mlow, double mhigh)

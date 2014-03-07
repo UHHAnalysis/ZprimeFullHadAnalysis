@@ -55,9 +55,9 @@ def slice_and_save(sample,histo):
     obj.Write(obj.GetName()+'_'+sample)
     obj=nextinlist()
 
-def getMistag(sample,sample_file,useCMS=False,isData=False):
-  num_histo=sample_file.Get(folder+"/"+num_name).Clone('Numerator')#.Clone('Numerator_'+sample)
-  den_histo=sample_file.Get(folder+"/"+den_name).Clone('Denominator')#.Clone('Denominator_'+sample)
+def getMistag(sample,sample_file,useCMS=False,isData=False,namepostfix=''):
+  num_histo=sample_file.Get(folder+"/"+num_name+namepostfix).Clone('Numerator')#.Clone('Numerator_'+sample)
+  den_histo=sample_file.Get(folder+"/"+den_name+namepostfix).Clone('Denominator')#.Clone('Denominator_'+sample)
   if isData:
     num_histo.Add(ttbar_file.Get(folder+"/"+num_name),-1.0)
     den_histo.Add(ttbar_file.Get(folder+"/"+den_name),-1.0)
@@ -79,6 +79,29 @@ def getMistag(sample,sample_file,useCMS=False,isData=False):
     #obj.Write(folder+obj.GetName()+'_'+sample)
     #obj=nextinlist()
   
+#def getMistag2(sample,sample_file,useCMS=False,isData=False):
+  #num_histo=sample_file.Get(folder+"/num_mistagMeasured").Clone('Numerator')#.Clone('Numerator_'+sample)
+  #den_histo=sample_file.Get(folder+"/den_mistagMeasured").Clone('Denominator')#.Clone('Denominator_'+sample)
+  #if isData:
+    #num_histo.Add(ttbar_file.Get(folder+"/"+num_name),-1.0)
+    #den_histo.Add(ttbar_file.Get(folder+"/"+den_name),-1.0)
+  #mistag_histo=num_histo.Clone('Mistag')#.Clone('Mistag_'+sample)
+  #mistag_histo.Divide(num_histo,den_histo,1,1,'B')
+  #outfolder='HEPTagger/Mistag'
+  #if useCMS:
+    #outfolder='CMSTagger/Mistag'
+  #outfile.mkdir(outfolder+'/'+sample)
+  #outfile.cd(outfolder+'/'+sample)
+  #slice_and_save(sample,num_histo)
+  #slice_and_save(sample,den_histo)
+  #slice_and_save(sample,mistag_histo)
+  ##mass_shape2D.Write(folder+mass_shape2D.GetName()+'_'+sample)
+  ##mass_shapeStack.Write(folder+mass_shapeStack.GetName()+'_'+sample)
+  ##nextinlist=TList(GetListOfPrimitives())
+  ##obj=nextinlist()
+  ##while obj:
+    ##obj.Write(folder+obj.GetName()+'_'+sample)
+    ##obj=nextinlist()
   
 def getMassShape(sample,sample_file,useCMS=False,isData=False,histoname=''):
   histomassshapename=histo_massshape_name
@@ -136,6 +159,8 @@ getMistag('data_htt_nosub', data_file,  use_htt, no_ttbar_subtraction)
 getMistag('qcdflat',        qcdflat_file, use_htt, no_ttbar_subtraction)
 getMistag('qcd250to500',    qcd250to500_file, use_htt, no_ttbar_subtraction)
 getMistag('qcd500to1000',   qcd500to1000_file, use_htt, no_ttbar_subtraction)
+getMistag('qcd500to1000Measured',   qcd500to1000_file, use_htt, no_ttbar_subtraction,'Measured')
+getMistag('qcd500to1000Tag',   qcd500to1000_file, use_htt, no_ttbar_subtraction,'Tag')
 getMistag('qcd1000toInf',   qcd1000toInf_file, use_htt, no_ttbar_subtraction)
 #getMistag('ttbar_cms',      ttbar_file, use_cms, no_ttbar_subtraction)
 #getMistag('qcd_cms',        qcd_file,   use_cms, no_ttbar_subtraction)
@@ -144,6 +169,7 @@ getMistag('qcd1000toInf',   qcd1000toInf_file, use_htt, no_ttbar_subtraction)
 
 getMassShape('ttbar_htt',      ttbar_file, use_htt, no_ttbar_subtraction)
 getMassShape('qcd_htt',        qcd_file,   use_htt, no_ttbar_subtraction)
+getMassShape('qcd500to1000',   qcd500to1000_file,   use_htt, no_ttbar_subtraction)
 getMassShape('data_htt',       data_file,  use_htt, ttbar_subtraction)
 getMassShape('data_htt_nosub', data_file,  use_htt, no_ttbar_subtraction)
 #getMassShape('qcd_htt_jec',        qcd_file,   use_htt, no_ttbar_subtraction, "mass_shapeJEC")
@@ -226,6 +252,12 @@ make_plot('comp_sgn_4000',['BaseHistos/MeasuredMtt012','BaseHistos/MeasuredJECMt
 thisfile.Close()
 
 make_plot('comp_mistag',['HEPTagger/Mistag/qcd_htt/Mistag_px4_qcd_htt','HEPTagger/Mistag/qcd_htt/Mistag_px3_qcd_htt','HEPTagger/Mistag/qcd_htt/Mistag_px2_qcd_htt','HEPTagger/Mistag/qcd_htt/Mistag_px1_qcd_htt'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])
+
+make_plot('comp_mistag500To1000',['HEPTagger/Mistag/qcd500to1000/Mistag_px4_qcd500to1000','HEPTagger/Mistag/qcd500to1000/Mistag_px3_qcd500to1000','HEPTagger/Mistag/qcd500to1000/Mistag_px2_qcd500to1000','HEPTagger/Mistag/qcd500to1000/Mistag_px1_qcd500to1000'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])
+
+make_plot('comp_mistag500To1000Measured',['HEPTagger/Mistag/qcd500to1000Measured/Mistag_px4_qcd500to1000Measured','HEPTagger/Mistag/qcd500to1000Measured/Mistag_px3_qcd500to1000Measured','HEPTagger/Mistag/qcd500to1000Measured/Mistag_px2_qcd500to1000Measured','HEPTagger/Mistag/qcd500to1000Measured/Mistag_px1_qcd500to1000Measured'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])
+
+make_plot('comp_mistag500To1000Tag',['HEPTagger/Mistag/qcd500to1000Tag/Mistag_px4_qcd500to1000Tag','HEPTagger/Mistag/qcd500to1000Tag/Mistag_px3_qcd500to1000Tag','HEPTagger/Mistag/qcd500to1000Tag/Mistag_px2_qcd500to1000Tag','HEPTagger/Mistag/qcd500to1000Tag/Mistag_px1_qcd500to1000Tag'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])
   
 #make_plot('comp_data_nosub_mistag',['HEPTagger/Mistag/data_htt_nosub/Mistag_px4_data_htt_nosub','HEPTagger/Mistag/data_htt_nosub/Mistag_px3_data_htt_nosub','HEPTagger/Mistag/data_htt_nosub/Mistag_px2_data_htt_nosub','HEPTagger/Mistag/data_htt_nosub/Mistag_px1_data_htt_nosub'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])
 
