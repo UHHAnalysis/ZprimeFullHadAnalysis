@@ -53,6 +53,52 @@
 <!ENTITY TTbarLept SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/TTJets_FullLeptMGDecays_8TeV-madgraph.xml">
 <!ENTITY TTbar SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/TT_Powheg.xml">
 
+<!ENTITY TTbarScaleUp00 SYSTEM "TTbarScaleUp00">
+<!ENTITY TTbarScaleUp01 SYSTEM "TTbarScaleUp01">
+<!ENTITY TTbarScaleUp02 SYSTEM "TTbarScaleUp02">
+<!ENTITY TTbarScaleUp03 SYSTEM "TTbarScaleUp03">
+<!ENTITY TTbarScaleUp04 SYSTEM "TTbarScaleUp04">
+<!ENTITY TTbarScaleUp05 SYSTEM "TTbarScaleUp05">
+<!ENTITY TTbarScaleUp06 SYSTEM "TTbarScaleUp06">
+<!ENTITY TTbarScaleUp07 SYSTEM "TTbarScaleUp07">
+<!ENTITY TTbarScaleUp08 SYSTEM "TTbarScaleUp08">
+<!ENTITY TTbarScaleUp09 SYSTEM "TTbarScaleUp09">
+
+<!ENTITY TTbarScaleDown00 SYSTEM "TTbarScaleDown00">
+<!ENTITY TTbarScaleDown01 SYSTEM "TTbarScaleDown01">
+<!ENTITY TTbarScaleDown02 SYSTEM "TTbarScaleDown02">
+<!ENTITY TTbarScaleDown03 SYSTEM "TTbarScaleDown03">
+<!ENTITY TTbarScaleDown04 SYSTEM "TTbarScaleDown04">
+<!ENTITY TTbarScaleDown05 SYSTEM "TTbarScaleDown05">
+<!ENTITY TTbarScaleDown06 SYSTEM "TTbarScaleDown06">
+<!ENTITY TTbarScaleDown07 SYSTEM "TTbarScaleDown07">
+<!ENTITY TTbarScaleDown08 SYSTEM "TTbarScaleDown08">
+<!ENTITY TTbarScaleDown09 SYSTEM "TTbarScaleDown09">
+
+<!ENTITY TTbarMatchUp00 SYSTEM "TTbarMatchUp00">
+<!ENTITY TTbarMatchUp01 SYSTEM "TTbarMatchUp01">
+<!ENTITY TTbarMatchUp02 SYSTEM "TTbarMatchUp02">
+<!ENTITY TTbarMatchUp03 SYSTEM "TTbarMatchUp03">
+<!ENTITY TTbarMatchUp04 SYSTEM "TTbarMatchUp04">
+<!ENTITY TTbarMatchUp05 SYSTEM "TTbarMatchUp05">
+<!ENTITY TTbarMatchUp06 SYSTEM "TTbarMatchUp06">
+<!ENTITY TTbarMatchUp07 SYSTEM "TTbarMatchUp07">
+<!ENTITY TTbarMatchUp08 SYSTEM "TTbarMatchUp08">
+<!ENTITY TTbarMatchUp09 SYSTEM "TTbarMatchUp09">
+
+<!ENTITY TTbarMatchDown00 SYSTEM "TTbarMatchDown00">
+<!ENTITY TTbarMatchDown01 SYSTEM "TTbarMatchDown01">
+<!ENTITY TTbarMatchDown02 SYSTEM "TTbarMatchDown02">
+<!ENTITY TTbarMatchDown03 SYSTEM "TTbarMatchDown03">
+<!ENTITY TTbarMatchDown04 SYSTEM "TTbarMatchDown04">
+<!ENTITY TTbarMatchDown05 SYSTEM "TTbarMatchDown05">
+<!ENTITY TTbarMatchDown06 SYSTEM "TTbarMatchDown06">
+<!ENTITY TTbarMatchDown07 SYSTEM "TTbarMatchDown07">
+<!ENTITY TTbarMatchDown08 SYSTEM "TTbarMatchDown08">
+<!ENTITY TTbarMatchDown09 SYSTEM "TTbarMatchDown09">
+
+
+
 <!ENTITY QCD_HT-100To250 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-100To250_TuneZ2star_8TeV-madgraph-pythia.xml">
 <!ENTITY QCD_HT-250To500 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-250To500_TuneZ2star_8TeV-madgraph-pythia6.xml">
 <!ENTITY QCD_HT-250To50000 SYSTEM "QCD_HT-250To50000">
@@ -301,7 +347,7 @@
 	<Package Name="ZprimeFullHadAnalysis.par" /> 
 
 <!--   <Cycle Name="PreselectionCycle" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/" PostFix="" TargetLumi="19708" >-->
-   <Cycle Name="PreselectionCycle"  RunMode="PROOF" ProofServer="pod://"  ProofWorkDir="/nfs/dust/cms/user/usaiem/PROOF/" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/" PostFix="" TargetLumi="19708" >
+   <Cycle Name="PreselectionCycle" RunMode="PROOF" ProofServer="pod://"  ProofWorkDir="/nfs/dust/cms/user/usaiem/PROOF/"  OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection" PostFix="" TargetLumi="19708" >
    <!-- <Cycle Name="ZprimeFullHadCycle" OutputDirectory="./" PostFix="" TargetLumi="1.0"> -->
 
 <!--		<InputData Lumi="1.0" NEventsMax="-1" Type="DATA" Version="DATA" Cacheable="False">
@@ -1559,7 +1605,7 @@
 
 
 
-<InputData Lumi="6650.8416666667" NEventsMax="-1" Type="MC" Version="QCDFlat00" Cacheable="True">
+<!--<InputData Lumi="6650.8416666667" NEventsMax="-1" Type="MC" Version="QCDFlat00" Cacheable="True">
   &QCDFlat00;
   <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -1684,7 +1730,7 @@
 <InputData Lumi="6650.8416666667" NEventsMax="-1" Type="MC" Version="QCDFlat29" Cacheable="True">
   &QCDFlat29;
   <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>
+</InputData>-->
 
 
 
@@ -2014,6 +2060,208 @@
 
 
 
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleUp00" Cacheable="True">
+&TTbarScaleUp00;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleUp01" Cacheable="True">
+&TTbarScaleUp01;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleUp02" Cacheable="True">
+&TTbarScaleUp02;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleUp03" Cacheable="True">
+&TTbarScaleUp03;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleUp04" Cacheable="True">
+&TTbarScaleUp04;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleUp05" Cacheable="True">
+&TTbarScaleUp05;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleUp06" Cacheable="True">
+&TTbarScaleUp06;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleUp07" Cacheable="True">
+&TTbarScaleUp07;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleUp08" Cacheable="True">
+&TTbarScaleUp08;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleUp09" Cacheable="True">
+&TTbarScaleUp09;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleDown00" Cacheable="True">
+&TTbarScaleDown00;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleDown01" Cacheable="True">
+&TTbarScaleDown01;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleDown02" Cacheable="True">
+&TTbarScaleDown02;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleDown03" Cacheable="True">
+&TTbarScaleDown03;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleDown04" Cacheable="True">
+&TTbarScaleDown04;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleDown05" Cacheable="True">
+&TTbarScaleDown05;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleDown06" Cacheable="True">
+&TTbarScaleDown06;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleDown07" Cacheable="True">
+&TTbarScaleDown07;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleDown08" Cacheable="True">
+&TTbarScaleDown08;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarScaleDown09" Cacheable="True">
+&TTbarScaleDown09;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchUp00" Cacheable="True">
+&TTbarMatchUp00;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchUp01" Cacheable="True">
+&TTbarMatchUp01;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchUp02" Cacheable="True">
+&TTbarMatchUp02;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchUp03" Cacheable="True">
+&TTbarMatchUp03;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchUp04" Cacheable="True">
+&TTbarMatchUp04;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchUp05" Cacheable="True">
+&TTbarMatchUp05;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchUp06" Cacheable="True">
+&TTbarMatchUp06;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchUp07" Cacheable="True">
+&TTbarMatchUp07;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchUp08" Cacheable="True">
+&TTbarMatchUp08;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchUp09" Cacheable="True">
+&TTbarMatchUp09;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchDown00" Cacheable="True">
+&TTbarMatchDown00;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchDown01" Cacheable="True">
+&TTbarMatchDown01;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchDown02" Cacheable="True">
+&TTbarMatchDown02;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchDown03" Cacheable="True">
+&TTbarMatchDown03;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchDown04" Cacheable="True">
+&TTbarMatchDown04;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchDown05" Cacheable="True">
+&TTbarMatchDown05;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchDown06" Cacheable="True">
+&TTbarMatchDown06;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchDown07" Cacheable="True">
+&TTbarMatchDown07;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchDown08" Cacheable="True">
+&TTbarMatchDown08;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarMatchDown09" Cacheable="True">
+&TTbarMatchDown09;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
 
 
 
@@ -2036,7 +2284,7 @@
  		   <Item Name="HiggsTagJetCollection" Value="goodPatJetsCATopTagPFPacked" />
 		      
 		   <!-- 		      <Item Name="PU_Filename_Data" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/PileUpHistos/MyDataPileupHistogram_206745.root" /> -->
-		      <Item Name="PU_Filename_MC" Value="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PileUpHistoCycle" />
+		      <Item Name="PU_Filename_MC" Value="/nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle" />
                        <Item Name="PU_Filename_Data" Value="/nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root" />
 		      <Item Name="PU_Histname_Data" Value="pileup" />
 		      <Item Name="PU_Histname_MC" Value="N_pileup_hist" />

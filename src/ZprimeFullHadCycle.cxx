@@ -409,34 +409,61 @@ std::vector<int> Indices;
 */
   //Indices = getTopJetsIndices(bcc,1,1,1,1,0,0,0,e_CSVM,e_CSVM,0.6,0.6,1.0,200.0,200.0);
   //if (!checkIndices(Indices)) return;//{throw SError( SError::SkipEvent ); return;}
-  int Index1=-1;int Index2=-1;double Maxpt1=-1;double Maxpt2=-1;
+//   int Index1=-1;int Index2=-1;double Maxpt1=-1;double Maxpt2=-1;
+//   for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
+//   {
+//     TopJet tj=bcc->toptagjets->at(i);
+//     if (variableHepTopTag(tj,150.0) && subJetBTag(tj,e_CSVM)>0 && tj.pt()>150.0 && tj.pt()>Maxpt1)
+//     {
+//      Index1=i;
+//      Maxpt1=tj.pt();
+//     }
+//   }
+//   for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
+//   {
+//     TopJet tj=bcc->toptagjets->at(i);
+//     if (variableHepTopTag(tj,150.0) && subJetBTag(tj,e_CSVM)>0 && tj.pt()>150.0 && tj.pt()>Maxpt2 && i!=Index1)
+//     {
+//      Index2=i;
+//      Maxpt2=tj.pt();
+//     }
+//   }
+//   if (!(Index1!=-1 && Index2!=-1 && Index1!=Index2)) return;
+
+  bool two_matched_pt=false;
+  int n=0;
+  int nfilt=0;
   for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
   {
-    TopJet tj=bcc->toptagjets->at(i);
-    if (variableHepTopTag(tj,150.0) && subJetBTag(tj,e_CSVM)>0 && tj.pt()>150.0 && tj.pt()>Maxpt1)
-    {
-     Index1=i;
-     Maxpt1=tj.pt();
-    }
+    if (bcc->toptagjets->at(i).pt()>=200.0) n++;//150
   }
-  for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
-  {
-    TopJet tj=bcc->toptagjets->at(i);
-    if (variableHepTopTag(tj,150.0) && subJetBTag(tj,e_CSVM)>0 && tj.pt()>150.0 && tj.pt()>Maxpt2 && i!=Index1)
-    {
-     Index2=i;
-     Maxpt2=tj.pt();
-    }
-  }
-  if (!(Index1!=-1 && Index2!=-1 && Index1!=Index2)) return;
-  Indices={Index1,Index2};
-  ((ZprimeFullHadHists*)BaseHistos)->Fill2(Indices);
-  if (Trigger1Sel->passSelection()) ((ZprimeFullHadHists*)Trigger1Histos)->Fill2(Indices);
-  if (Trigger2Sel->passSelection()) ((ZprimeFullHadHists*)Trigger2Histos)->Fill2(Indices);    
-  if (Trigger1Sel->passSelection() || Trigger2Sel->passSelection()) ((ZprimeFullHadHists*)Trigger3Histos)->Fill2(Indices);
-  if (Trigger4Sel->passSelection()/*Trigger5Sel->passSelection() || Trigger2Sel->passSelection()*/) ((ZprimeFullHadHists*)Trigger4Histos)->Fill2(Indices);
-  if (Trigger5Sel->passSelection()) ((ZprimeFullHadHists*)Trigger5Histos)->Fill2(Indices);
   
+  for (unsigned int i=0; i<bcc->topjets->size(); i++)
+  {
+    if ( HepTopTagMatchPt(bcc->topjets->at(i))>=200.0 ) nfilt++;//150
+  }
+  
+  if (bcc->topjets->size()>1)
+  {
+    if ( ( HepTopTagMatchPt(bcc->topjets->at(0))>=200.0 ) && ( HepTopTagMatchPt(bcc->topjets->at(1))>=200.0 ) ) two_matched_pt=true;
+  }
+  
+  if ( (n>1) && (nfilt==2) && (two_matched_pt) )
+  {
+    if(HepTopTagWithMatch(bcc->topjets->at(0))&&HepTopTagWithMatch(bcc->topjets->at(1)))
+    {
+
+
+      Indices={0,1};
+      ((ZprimeFullHadHists*)BaseHistos)->Fill2(Indices);
+      if (Trigger1Sel->passSelection()) ((ZprimeFullHadHists*)Trigger1Histos)->Fill2(Indices);
+      if (Trigger2Sel->passSelection()) ((ZprimeFullHadHists*)Trigger2Histos)->Fill2(Indices);    
+      if (Trigger1Sel->passSelection() || Trigger2Sel->passSelection()) ((ZprimeFullHadHists*)Trigger3Histos)->Fill2(Indices);
+      if (Trigger4Sel->passSelection()/*Trigger5Sel->passSelection() || Trigger2Sel->passSelection()*/) ((ZprimeFullHadHists*)Trigger4Histos)->Fill2(Indices);
+      if (Trigger5Sel->passSelection()) ((ZprimeFullHadHists*)Trigger5Histos)->Fill2(Indices);
+    }
+  
+  }
  /* if(calc->GetJets()->size()>=12){
     std::cout << "run: " << calc->GetRunNum() << "   lb: " << calc->GetLumiBlock() << "  event: " << calc->GetEventNum() << "   N(jets): " << calc->GetJets()->size() << std::endl;
   }

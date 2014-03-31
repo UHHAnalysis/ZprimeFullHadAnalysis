@@ -8,6 +8,7 @@
 #include "SFrameTools/include/EventCalc.h"
 #include "SFrameTools/include/BaseHists.h"
 #include "TH2.h"
+#include "TH3.h"
 
 class ZprimeFullHadSelection: public SelectionModule {
 public:
@@ -66,10 +67,15 @@ public:
    void Init();
    void Fill();
    void Finish();
+   
+   void setVersion(string s);
+   void setEventNumber(unsigned int evt);
 private:
   TFile* f;//,*f_pari,*f_dispari;
   TH2F* mistag,*mistagmc;
   TH1F* shape;
+  string version;
+  unsigned int event_number;
 }; // class BackgroundHists
 
 // class RapidityCutSelection: public SelectionModule {
@@ -135,6 +141,7 @@ bool HepTopTagNoMassCutWithMatch(TopJet topjet);
 bool MassAndPtCutWithMatch(TopJet topjet,double minpt=200.0, double mlow=140.0, double mhigh=250.0);
 bool variableMassHepTopTagWithMatch(TopJet topjet, double ptJetMin = 200., double massWindowLower = 0.85, double massWindowUpper = 1.15, double cutCondition2 = 0.35, double cutCondition3 = 0.35, double mlow=140.0, double mhigh=250.0);
 bool PtHepTopTagWithMatch(TopJet t, float minimumpt);
+bool HepTopTagInverted_mw(TopJet topjet);
 
 //for HepTopTagger validation
 class NHadTopJetSelection2: public SelectionModule {

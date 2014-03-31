@@ -318,22 +318,22 @@ void ZAnalysisCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw(
     if ((bcc->higgstagjets->at(i).pt()>=400.0)&&TopTag(bcc->higgstagjets->at(i))) ncmstag++;
   }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  if (! (nhtt>1 || ncms>1) ) throw SError( SError::SkipEvent );
+  if (! (nhtt>1 /*|| ncms>1*/) ) throw SError( SError::SkipEvent );
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //getTopJetsIndices(bcc,0,0,0,0,0,0,0,e_CSVM,e_CSVM,0,0,0,200,200,heptoptag_list,btag_medium_list,nsubjettiness_list);
   
-   if ((ncms>1)&&(TriggerHT->passSelection()))
-   {
-     makeCMSCategories(bcc, (ZprimeFullHadHists*)had_012btag_cms, (ZprimeFullHadHists*)had_0btag_cms, (ZprimeFullHadHists*)had_1btag_cms, (ZprimeFullHadHists*)had_2btag_cms,CMStoptag_list,CMSbtag_medium_list,CMSnsubjettiness_list);
-     makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_httcms, (ZprimeFullHadHists*)had_0btag_httcms, (ZprimeFullHadHists*)had_1btag_httcms, (ZprimeFullHadHists*)had_2btag_httcms, e_CSVM, 0, 0,heptoptag_list,btag_medium_list,nsubjettiness_list);
-   }
-   else
-   {
-     if(nhtt>1)
-     {
-       makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_htt, (ZprimeFullHadHists*)had_0btag_htt, (ZprimeFullHadHists*)had_1btag_htt, (ZprimeFullHadHists*)had_2btag_htt, e_CSVM, 0, 0,heptoptag_list,btag_medium_list,nsubjettiness_list);
-     }
-   }
+//    if ((ncms>1)&&(TriggerHT->passSelection()))
+//    {
+//      makeCMSCategories(bcc, (ZprimeFullHadHists*)had_012btag_cms, (ZprimeFullHadHists*)had_0btag_cms, (ZprimeFullHadHists*)had_1btag_cms, (ZprimeFullHadHists*)had_2btag_cms,CMStoptag_list,CMSbtag_medium_list,CMSnsubjettiness_list);
+//      makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_httcms, (ZprimeFullHadHists*)had_0btag_httcms, (ZprimeFullHadHists*)had_1btag_httcms, (ZprimeFullHadHists*)had_2btag_httcms, e_CSVM, 0, 0,heptoptag_list,btag_medium_list,nsubjettiness_list);
+//    }
+//    else
+//    {
+//      if(nhtt>1)
+//      {
+//        makeCategories(bcc, (ZprimeFullHadHists*)had_012btag_htt, (ZprimeFullHadHists*)had_0btag_htt, (ZprimeFullHadHists*)had_1btag_htt, (ZprimeFullHadHists*)had_2btag_htt, e_CSVM, 0, 0,heptoptag_list,btag_medium_list,nsubjettiness_list);
+//      }
+//    }
 
 //   if (!IsRealData)
 //   {

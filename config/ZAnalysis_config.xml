@@ -142,7 +142,7 @@
 
 	<Package Name="ZprimeFullHadAnalysis.par" /> 
 
-<!--   <Cycle Name="ZAnalysisCycle" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19708" >-->
+<!--   <Cycle Name="ZAnalysisCycle" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19708" > -->
    <Cycle Name="ZAnalysisCycle"  RunMode="PROOF" ProofServer="pod://"  ProofWorkDir="/nfs/dust/cms/user/usaiem/PROOF/" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19700" >
    <!-- <Cycle Name="ZprimeFullHadCycle" OutputDirectory="./" PostFix="" TargetLumi="1.0"> -->
 
@@ -257,7 +257,7 @@
 
 
 
-<InputData Lumi="238028" NEventsMax="-1" Type="MC" Version="ZP500W5" Cacheable="True">
+<!--<InputData Lumi="238028" NEventsMax="-1" Type="MC" Version="ZP500W5" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP500W5.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
 </InputData>
@@ -275,14 +275,14 @@
 <InputData Lumi="216010" NEventsMax="-1" Type="MC" Version="ZP750W75" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP750W75.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
-</InputData>
+</InputData>-->
 
 <InputData Lumi="203984" NEventsMax="-1" Type="MC" Version="ZP1000W10" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP1000W10.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
 </InputData>
 
-<InputData Lumi="207430" NEventsMax="-1" Type="MC" Version="ZP1000W100" Cacheable="True">
+<!--<InputData Lumi="207430" NEventsMax="-1" Type="MC" Version="ZP1000W100" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP1000W100.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
 </InputData>
@@ -305,24 +305,24 @@
 <InputData Lumi="196751" NEventsMax="-1" Type="MC" Version="ZP1500W150" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP1500W150.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
-</InputData>
+</InputData>-->
 
 <InputData Lumi="181494" NEventsMax="-1" Type="MC" Version="ZP2000W20" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP2000W20.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
 </InputData>
 
-<InputData Lumi="485137" NEventsMax="-1" Type="MC" Version="ZP2000W200" Cacheable="True">
+<!--<InputData Lumi="485137" NEventsMax="-1" Type="MC" Version="ZP2000W200" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP2000W200.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
-</InputData>
+</InputData>-->
 
 <InputData Lumi="91209" NEventsMax="-1" Type="MC" Version="ZP3000W30" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP3000W30.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
 </InputData>
 
-<InputData Lumi="200810" NEventsMax="-1" Type="MC" Version="ZP3000W300" Cacheable="True">
+<!--<InputData Lumi="200810" NEventsMax="-1" Type="MC" Version="ZP3000W300" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP3000W300.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
 </InputData>
@@ -335,7 +335,7 @@
 <InputData Lumi="103388" NEventsMax="-1" Type="MC" Version="ZP4000W400" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.ZP4000W400.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
-</InputData>
+</InputData>-->
 
 
 
@@ -383,10 +383,10 @@
 <InputTree Name="AnalysisTree" />
 </InputData>
 
-<InputData Lumi="4.834294305" NEventsMax="-1" Type="MC" Version="QCD_HT-100To250" Cacheable="True">
+<!--<InputData Lumi="4.834294305" NEventsMax="-1" Type="MC" Version="QCD_HT-100To250" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-100To250.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
-</InputData>
+</InputData>-->
 
 <InputData Lumi="97.75942029" NEventsMax="-1" Type="MC" Version="QCD_HT-250To500" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/PreselectionCycle.MC.QCD_HT-250To50000.root" Lumi="0.0"/>

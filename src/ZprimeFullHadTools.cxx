@@ -549,7 +549,96 @@ bool PtHepTopTagWithMatch(TopJet t, float minimumpt)
   return variableHepTopTagWithMatch(t, minimumpt, 0.85, 1.15, 0.35, 0.35);
 }
 
+bool HepTopTagInverted_mw(TopJet topjet)
+{
+  //Taking the top tag from the proper jet collection
 
+  EventCalc* calc = EventCalc::Instance();
+  
+  BaseCycleContainer* bcc = calc->GetBaseCycleContainer();
+  
+  double deltarmin = double_infinity();
+  
+  TopJet nextjet;
+  
+  for(unsigned int it=0; it<bcc->toptagjets->size();++it){
+
+    TopJet top4jet=bcc->toptagjets->at(it);
+    
+    if(top4jet.deltaR(topjet) < deltarmin){
+      deltarmin = top4jet.deltaR(topjet);
+      nextjet = top4jet;
+    }
+    
+  }
+  
+  if(deltarmin>=0.3) return 0;
+
+
+    double mjet;
+    double ptjet;
+    int nsubjets;
+
+    double topmass=172.3;
+    double wmass=80.4;
+
+    nsubjets=nextjet.numberOfDaughters();
+
+    LorentzVector allsubjets(0,0,0,0);
+
+    for(int j=0; j<nextjet.numberOfDaughters(); ++j) {
+        allsubjets += nextjet.subjets()[j].v4();
+    }
+    if(!allsubjets.isTimelike()) {
+        mjet=0;
+        return false;
+    }
+
+    mjet = allsubjets.M();
+    ptjet= nextjet.pt();
+
+    double m12, m13, m23;
+
+    //The subjetcs have to be three
+    if(nsubjets==3) {
+
+        std::vector<Particle> subjets = nextjet.subjets();
+        sort(subjets.begin(), subjets.end(), HigherPt());
+
+        m12 = 0;
+        if( (subjets[0].v4()+subjets[1].v4()).isTimelike())
+            m12=(subjets[0].v4()+subjets[1].v4()).M();
+        m13 = 0;
+        if( (subjets[0].v4()+subjets[2].v4()).isTimelike() )
+            m13=(subjets[0].v4()+subjets[2].v4()).M();
+        m23 = 0;
+        if( (subjets[1].v4()+subjets[2].v4()).isTimelike()  )
+            m23 = (subjets[1].v4()+subjets[2].v4()).M();
+
+    } else {
+        return false;
+    }
+
+    double rmin=0.85*wmass/topmass;
+    double rmax=1.15*wmass/topmass;
+
+    int keep=0;
+
+
+    if (m23/mjet <= 0.35) keep = 1; 
+
+    //invert top mass window
+    if( mjet < 140. || mjet > 250.) keep=0;
+
+
+    //Final requirement: at least one of the three subjets conditions and total pt
+    if(keep==1 && ptjet>200.) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
 
 
 

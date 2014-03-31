@@ -10,8 +10,8 @@ gROOT.SetBatch()
 path_base='/nfs/dust/cms/user/usaiem/ZprimeFullHad/ZprimeFullHadCycle.MC.'
 sample_list=['ZP500W5','ZP750W7p5','ZP1000W10','ZP1250W12p5','ZP1500W15','ZP2000W20']
 #sample_list=['ZP2000W20']
-colors=[kRed,kBlue,kGreen,kBlack,kOrange,kGray]
-histo_list=['SumOfTopCandidatesPt','LeadingTopCandidatePt','SubLeadingTopCandidatePt','HT50']
+colors=[kRed,kBlue,kGreen,kBlack,kOrange,6]
+histo_list=['SumOfTopCandidatesPt2','SumOfTopCandidatesPt','LeadingTopCandidatePt','SubLeadingTopCandidatePt','HT50']
 cut_list=["Trigger1Histos","Trigger2Histos","Trigger3Histos","Trigger4Histos","Trigger5Histos"]
 #trigger_names=["HLT_SixJet50","HLT_QuadJet50","HLT_QuadJet70","HLT_QuadJet80","HLT_QuadJet90"]
 trigger_names=["HLT_HT750","HLT_QuadJet50","HLT_HT750||HLT_QuadJet50","a","a"]
@@ -56,7 +56,7 @@ def getEff2(histo_index,cut_index):
     eff_histos.append(trigger_hist.Clone(sample_list[sample_index]+'_'+cut_list[cut_index]+'_'+histo_list[histo_index]))
     eff_histos[-1].Divide(trigger_hist,base_hist,1,1,'B')
     eff_histos[-1].SetStats(kFALSE)
-    eff_histos[-1].SetLineWidth(3)
+    eff_histos[-1].SetLineWidth(1)
     eff_histos[-1].SetLineColor(colors[sample_index])
     eff_histos[-1].SetMaximum(1.01)
     eff_histos[-1].SetMinimum(0.)
@@ -64,12 +64,23 @@ def getEff2(histo_index,cut_index):
     eff_histos[-1].SetTitle(trigger_names[cut_index])
     legend.AddEntry(eff_histos[-1],sample_list[sample_index],'l')
     if len(eff_histos)==1:
+      c.cd()
       eff_histos[-1].Draw()
     else:
+      c.cd()
       eff_histos[-1].Draw('SAME')
-
+    c2=TCanvas(cut_list[cut_index]+'_'+histo_list[histo_index]+'_'+sample_list[sample_index]+'_Canvas')
+    eff_histos[-1].Draw()
+    legend2=TLegend(0.8,0.2,0.999,0.93)
+    legend2.AddEntry(eff_histos[-1],sample_list[sample_index],'l')
+    legend2.Draw()
+    c2.SaveAs("pdf/"+cut_list[cut_index]+'_'+histo_list[histo_index]+'_'+sample_list[sample_index]+".pdf")
+    outfile.cd()
+    c2.Write()
+  
+  c.cd()
   legend.Draw()
-  c.SaveAs("pdf/"+cut_list[cut_index]+'_'+histo_list[histo_index]+".png")
+  c.SaveAs("pdf/"+cut_list[cut_index]+'_'+histo_list[histo_index]+".pdf")
   outfile.cd()
   c.Write()
 

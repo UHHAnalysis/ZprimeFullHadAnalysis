@@ -111,46 +111,71 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
   bool IsRealData = calc->IsRealData();
 //   NoCutsHistos->Fill();
   
-   if(!(TriggerHT->passSelection() || TriggerQuad->passSelection())) throw SError( SError::SkipEvent );
+   if(!(TriggerHT->passSelection() /*|| TriggerQuad->passSelection()*/)) throw SError( SError::SkipEvent );
 //  if(!TriggerHT->passSelection()) throw SError( SError::SkipEvent );
- // if(getHT50(bcc)<800.0) throw SError( SError::SkipEvent );
-  bool two_matched_pt=false;
-  int n=0;
-  int nfilt=0;
-  for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
-  {
-    if (bcc->toptagjets->at(i).pt()>=200.0) n++;//150
-  }
+   
+   double mjet1=0; int nsubjets1=0; double mmin1=0;
+   double mjet2=0; int nsubjets2=0; double mmin2=0;
+   
+   if (bcc->higgstagjets->size()>1)
+   {
+     if(TopTag(bcc->higgstagjets->at(0),mjet1,nsubjets1,mmin1)&&TopTag(bcc->higgstagjets->at(1),mjet2,nsubjets2,mmin2)&&(bcc->higgstagjets->at(0).deltaPhi(bcc->higgstagjets->at(1))>2.1))
+     {
+       throw SError( SError::SkipEvent );
+     }
+   }
+   
+   if(bcc->higgstagjets->size()>1)
+   cout<<"iniziaqui "<<bcc->run<<" "<<bcc->luminosityBlock<<" "<<bcc->event<<" "<<mjet1<<" "<<nsubjets1<<" "<<mmin1<<" "<<bcc->higgstagjets->at(0).pt()<<" "<<mjet2<<" "<<nsubjets2<<" "<<mmin2<<" "<<bcc->higgstagjets->at(1).pt()<<" "<<bcc->higgstagjets->at(0).deltaPhi(bcc->higgstagjets->at(1))<<"\n";
+   
+   if(bcc->higgstagjets->size()==1)
+   cout<<"iniziaqui "<<bcc->run<<" "<<bcc->luminosityBlock<<" "<<bcc->event<<" "<<mjet1<<" "<<nsubjets1<<" "<<mmin1<<" "<<bcc->higgstagjets->at(0).pt()<<" "<<mjet2<<" "<<nsubjets2<<" "<<mmin2<<" "<<0<<" "<<0<<"\n";
+   
+   if(bcc->higgstagjets->size()==0)
+   cout<<"iniziaqui "<<bcc->run<<" "<<bcc->luminosityBlock<<" "<<bcc->event<<" "<<mjet1<<" "<<nsubjets1<<" "<<mmin1<<" "<<0<<" "<<mjet2<<" "<<nsubjets2<<" "<<mmin2<<" "<<0<<" "<<0<<"\n";
+     
+//   if(getHT50(bcc)<800.0) throw SError( SError::SkipEvent );///////////////////////////
+//   bool two_matched_pt=false;
+//   int n=0;
+//   int nfilt=0;
+//   for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
+//   {
+//     if (bcc->toptagjets->at(i).pt()>=200.0) n++;//150
+//   }
+//   
+//   for (unsigned int i=0; i<bcc->topjets->size(); i++)
+//   {
+//     if ( HepTopTagMatchPt(bcc->topjets->at(i))>=200.0 ) nfilt++;//150
+//   }
+//   
+//   if (bcc->topjets->size()>1)
+//   {
+//     if ( ( HepTopTagMatchPt(bcc->topjets->at(0))>=200.0 ) && ( HepTopTagMatchPt(bcc->topjets->at(1))>=200.0 ) ) two_matched_pt=true;
+//   }
+//   
+//   if ( (n>1) && (nfilt==2) && (two_matched_pt) )
+//   {
+//     ((BackgroundHists*)BaseHistos)->setVersion(id.GetVersion().Data());
+//     BaseHistos->Fill();
+//     
+// //     if (!IsRealData)
+// //     {
+// //       if (bcc->event % 2 == 0)
+// //       {
+// // 	PariHistos->Fill();
+// //       }
+// //       else
+// //       {
+// // 	DispariHistos->Fill();
+// //       }
+// //     }
+//   }
   
-  for (unsigned int i=0; i<bcc->topjets->size(); i++)
-  {
-    if ( HepTopTagMatchPt(bcc->topjets->at(i))>=200.0 ) nfilt++;//150
-  }
   
-  if (bcc->topjets->size()>1)
-  {
-    if ( ( HepTopTagMatchPt(bcc->topjets->at(0))>=200.0 ) && ( HepTopTagMatchPt(bcc->topjets->at(1))>=200.0 ) ) two_matched_pt=true;
-  }
   
-  if ( (n>1) && (nfilt==2) && (two_matched_pt) )
-  {
-    BaseHistos->Fill();
-    
-//     if (!IsRealData)
-//     {
-//       if (bcc->event % 2 == 0)
-//       {
-// 	PariHistos->Fill();
-//       }
-//       else
-//       {
-// 	DispariHistos->Fill();
-//       }
-//     }
-  }
-  else throw SError( SError::SkipEvent );
+//   else throw SError( SError::SkipEvent );
   
-  //WriteOutputTree();
+//   WriteOutputTree();
   
   return;
   

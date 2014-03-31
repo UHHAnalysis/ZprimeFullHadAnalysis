@@ -62,10 +62,13 @@ double PT_bins[] = {0,40,80,120,160,200,240,280,320,360,400,500,600,1000};
   Book( TH1D( "Nsub_tagged", ";#tau_{3}/#tau_{2};Events", 100, 0., 1.));
   
   Book( TH1D( "Jetmass", ";Jet mass (GeV/c^{2});Events", 100, 0., 400.));
+  Book( TH1D( "JetmassW", ";Jet mass (GeV/c^{2});Events", 100, 0., 400.));
   Book( TH1D( "Jetmass_m", ";Jet mass (GeV/c^{2});Events", 100, 0., 400.));
   Book( TH1D( "JetmassCA15", ";Jet mass (GeV/c^{2});Events", 100, 0., 400.));
   Book( TH1D( "JetmassCA15_m", ";Jet mass (GeV/c^{2});Events", 100, 0., 400.));
   Book( TH1D( "Jetmass_tagged", ";Jet mass (GeV/c^{2});Events", 100, 0., 400.));
+  Book( TH1D( "Jetmass_taggedW", ";Jet mass (GeV/c^{2});Events", 100, 0., 400.));
+  Book( TH1D( "weight", ";weight;Events", 400, 0., 2.));
   
   //double roc_ptbins[] = {150,200,400,600,800,1000,10000};
   double roc_ptbins[] = {200,400,600,800,1000,10000};
@@ -757,6 +760,7 @@ void RocHists::Fill()
 	{
 	  Hist("Nsub")->Fill(nsubjettiness,1);
 	  Hist("Jetmass")->Fill(TopJetMass(bcc->toptagjets->at(i)),1);
+	  Hist("JetmassW")->Fill(TopJetMass(bcc->toptagjets->at(i)),weight);
 	  double m_m=0.0;
 	  if (bcc->toptagjets->at(i).v4().isTimelike()) m_m=bcc->toptagjets->at(i).v4().M();
 	  Hist("Jetmass_m")->Fill(m_m,1);
@@ -770,8 +774,10 @@ void RocHists::Fill()
 	  }
 	  if (is_httagged)
 	  {
-	    Hist("Nsub_tagged")->Fill(nsubjettiness,1);
+	    Hist("Nsub_tagged")->Fill(nsubjettiness,weight);
 	    Hist("Jetmass_tagged")->Fill(TopJetMass(bcc->toptagjets->at(i)),1);
+	    Hist("Jetmass_taggedW")->Fill(TopJetMass(bcc->toptagjets->at(i)),weight);
+	    Hist("weight")->Fill(weight);
 	  }
 	}
 // 	if (bcc->toptagjets->at(i).pt()>200.0)

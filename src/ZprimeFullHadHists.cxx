@@ -75,6 +75,7 @@ void ZprimeFullHadHists::Init()
   Book( TH1F( "Njets", "Njets", 20, 0, 20 ) );
   Book( TH2F( "Njetsvspt", "Njetsvspt", 20, 0, 20 ,50,0,1000) );
   Book( TH1F( "SumOfTopCandidatesPt", "Sum of Jet pT (Top Tag candidates) [GeV];Sum of Jet pT (Top Tag candidates) [GeV];Events", 15, 0, 1500 ) );
+  Book( TH1F( "SumOfTopCandidatesPt2", "Sum of Jet pT (Top Tag candidates) [GeV];Sum of Jet pT (Top Tag candidates) [GeV];Events", 100, 0, 2000 ) );
   Book( TH1F( "LeadingTopCandidatePt", "Leading Jet pT (Top Tag candidate) [GeV];Leading Jet pT (Top Tag candidate) [GeV];Events", 15, 0, 1500 ) );
   Book( TH1F( "SubLeadingTopCandidatePt", "Subleading Jet pT (Top Tag candidate) [GeV];Subleading Jet pT (Top Tag candidate) [GeV];Events", 15, 0, 1500 ) );
   Book( TH1F( "TopCandidate1Pt", "Jet 1 pT (Top Tag candidate) [GeV];Jet 1 pT (Top Tag candidate) [GeV];Events", 30, 0, 1500 ) );
@@ -215,9 +216,12 @@ void ZprimeFullHadHists::Fill2(std::vector<int> Indices, string version, bool us
   {
     HEPTopTaggerReweight httr;
     double htt_weight=1.0;
-    // if (version=="TTbarLept" || version=="TTbarSemi" || version=="TTbarHad") htt_weight=httr.GetScaleWeight(TopJetIndices);
+//     if (version=="TTbarLept" || version=="TTbarSemi" || version=="TTbarHad") htt_weight=httr.GetScaleWeight(TopJetIndices);
     ((TH2F*)Hist("Njetsvspt"))->Fill(nj,collection->at(TopJetIndices[0]).pt(),weight*htt_weight);
     Hist("SumOfTopCandidatesPt")->Fill(collection->at(TopJetIndices[0]).pt()+collection->at(TopJetIndices[1]).pt(),weight*htt_weight);
+    
+    Hist("SumOfTopCandidatesPt2")->Fill(bcc->topjets->at(TopJetIndices[0]).pt()+bcc->topjets->at(TopJetIndices[1]).pt(),weight*htt_weight);
+    
     if ( collection->at(TopJetIndices[0]).pt() > collection->at(TopJetIndices[1]).pt() )
     {
       Hist("LeadingTopCandidatePt")->Fill(collection->at(TopJetIndices[0]).pt(),weight*htt_weight);

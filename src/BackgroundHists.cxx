@@ -4,6 +4,7 @@
 #include "TH2.h"
 #include "TH3.h"
 #include "TProfile2D.h"
+#include "TProfile3D.h"
 #include <iostream>
 #include "TLorentzVector.h"
 #include "TRandom3.h"
@@ -14,13 +15,23 @@ BackgroundHists::BackgroundHists(const char* name) : BaseHists(name)
 {
   f = new TFile("/afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis/bkg.root");
   mistag = (TH2F*)f->Get("HEPTagger/Mistag/data_htt/Mistag_data_htt");
-  mistagmc = (TH2F*)f->Get("HEPTagger/Mistag/qcd500to1000/Mistag_qcd500to1000");/////////////////////////////////////////////////////////////
-//   mistagmc = (TH2F*)f->Get("HEPTagger/Mistag/qcd_htt/Mistag_qcd_htt");
-//   shape = (TH1F*)f->Get("HEPTagger/MassShape/qcd_htt/mass_shape_qcd_htt");
-  shape = (TH1F*)f->Get("HEPTagger/MassShape/qcd500to1000/mass_shape_qcd500to1000");/////////////////////////
+//   mistagmc = (TH3F*)f->Get("HEPTagger/Mistag/qcd500to1000/Mistag_qcd500to1000");/////////////////////////////////////////////////////////////
+  mistagmc = (TH2F*)f->Get("HEPTagger/Mistag/qcd_htt/Mistag_qcd_htt");
+  shape = (TH1F*)f->Get("HEPTagger/MassShape/qcd_htt/mass_shape_qcd_htt");
+//   shape = (TH1F*)f->Get("HEPTagger/MassShape/qcd500to1000/mass_shape_qcd500to1000");/////////////////////////
 }
 
 BackgroundHists::~BackgroundHists(){
+}
+
+void BackgroundHists::setVersion(string s)
+{
+  version=s;
+}
+
+void BackgroundHists::setEventNumber(unsigned int evt)
+{
+  event_number=evt;
 }
 
 void BackgroundHists::Init()
@@ -31,124 +42,211 @@ void BackgroundHists::Init()
   Book( TH1F( "Mtt2", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
   Book( TH1F( "Mtt012", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
   
-  Book( TH1F( "MttNoMass0", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
-  Book( TH1F( "MttNoMass1", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
-  Book( TH1F( "MttNoMass2", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
-  Book( TH1F( "MttNoMass012", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   Book( TH1F( "MttNoMass0", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   Book( TH1F( "MttNoMass1", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   Book( TH1F( "MttNoMass2", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   Book( TH1F( "MttNoMass012", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
   
   Book( TH1F( "MeasuredMtt0", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
   Book( TH1F( "MeasuredMtt1", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
   Book( TH1F( "MeasuredMtt2", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
   Book( TH1F( "MeasuredMtt012", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+ 
+  Book( TH1F( "MeasuredJet1pT0", ";p_{T} [GeV];Events", 50, 0, 1500 ) );
+  Book( TH1F( "MeasuredJet1pT1", ";p_{T} [GeV];Events", 50, 0, 1500 ) );
+  Book( TH1F( "MeasuredJet1pT2", ";p_{T} [GeV];Events", 50, 0, 1500 ) );
+  Book( TH1F( "MeasuredJet1pT012", ";p_{T} [GeV];Events", 50, 0, 1500 ) );
   
-  Book( TH1F( "MeasuredJECMtt0", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
-  Book( TH1F( "MeasuredJECMtt1", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
-  Book( TH1F( "MeasuredJECMtt2", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
-  Book( TH1F( "MeasuredJECMtt012", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+  Book( TH1F( "MeasuredJet2pT0", ";p_{T} [GeV];Events", 50, 0, 1500 ) );
+  Book( TH1F( "MeasuredJet2pT1", ";p_{T} [GeV];Events", 50, 0, 1500 ) );
+  Book( TH1F( "MeasuredJet2pT2", ";p_{T} [GeV];Events", 50, 0, 1500 ) );
+  Book( TH1F( "MeasuredJet2pT012", ";p_{T} [GeV];Events", 50, 0, 1500 ) );
   
-  Book( TH1F( "MeasuredHTTMtt0", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
-  Book( TH1F( "MeasuredHTTMtt1", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
-  Book( TH1F( "MeasuredHTTMtt2", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
-  Book( TH1F( "MeasuredHTTMtt012", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+  Book( TH1F( "MeasuredJet1eta0", ";#eta;Events", 50, -2.5, 2.5 ) );
+  Book( TH1F( "MeasuredJet1eta1", ";#eta;Events", 50, -2.5, 2.5 ) );
+  Book( TH1F( "MeasuredJet1eta2", ";#eta;Events", 50, -2.5, 2.5 ) );
+  Book( TH1F( "MeasuredJet1eta012", ";#eta;Events", 50, -2.5, 2.5 ) );
   
-  Book( TH1F( "MeasuredHTTJECMtt0", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
-  Book( TH1F( "MeasuredHTTJECMtt1", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
-  Book( TH1F( "MeasuredHTTJECMtt2", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
-  Book( TH1F( "MeasuredHTTJECMtt012", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+  Book( TH1F( "MeasuredJet2eta0", ";#eta;Events", 50, -2.5, 2.5 ) );
+  Book( TH1F( "MeasuredJet2eta1", ";#eta;Events", 50, -2.5, 2.5 ) );
+  Book( TH1F( "MeasuredJet2eta2", ";#eta;Events", 50, -2.5, 2.5 ) );
+  Book( TH1F( "MeasuredJet2eta012", ";#eta;Events", 50, -2.5, 2.5 ) );
   
-  Book( TH1F( "MeasuredAK5Mtt0", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
-  Book( TH1F( "MeasuredAK5Mtt1", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
-  Book( TH1F( "MeasuredAK5Mtt2", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
-  Book( TH1F( "MeasuredAK5Mtt012", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+  Book( TH1F( "MeasuredJet1csv0", ";#beta_{max};Events", 50, 0, 1.01 ) );
+  Book( TH1F( "MeasuredJet1csv1", ";#beta_{max};Events", 50, 0, 1.01 ) );
+  Book( TH1F( "MeasuredJet1csv2", ";#beta_{max};Events", 50, 0, 1.01 ) );
+  Book( TH1F( "MeasuredJet1csv012", ";#beta_{max};Events", 50, 0, 1.01 ) );
   
-  Book( TH1F( "Mtt012NoWeight", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
-  Book( TH1F( "CSV012NoWeight", ";CSV;Events", 260, -11, 2 ) );
-  Book( TH1F( "HT012NoWeight", ";HT;Events", 300, 0, 6000 ) );
-  Book( TH1F( "pT012NoWeight", ";pT;Events", 100, 0, 2000 ) );
-  
-  Book( TH1F( "CSV012", ";CSV;Events", 260, -11, 2 ) );
-  Book( TH1F( "MeasuredCSV012", ";CSV;Events", 260, -11, 2 ) );
-  Book( TH1F( "HTTCSV012", ";CSV;Events", 260, -11, 2 ) );
-  Book( TH1F( "MeasuredHTTCSV012", ";CSV;Events", 260, -11, 2 ) );
-  
-  Book( TH1F( "HT012", ";HT;Events", 300, 0, 6000 ) );
-  Book( TH1F( "MeasuredHT012", ";HT;Events", 300, 0, 6000 ) );
-  Book( TH1F( "HTTHT012", ";HT;Events", 300, 0, 6000 ) );
-  Book( TH1F( "MeasuredHTTHT012", ";HT;Events", 300, 0, 6000 ) );
-  
-  Book( TH1F( "pT012", ";pT;Events", 100, 0, 2000 ) );
-  Book( TH1F( "MeasuredpT012", ";pT;Events", 100, 0, 2000 ) );
-  Book( TH1F( "HTTpT012", ";pT;Events", 100, 0, 2000 ) );
-  Book( TH1F( "MeasuredHTTpT012", ";pT;Events", 100, 0, 2000 ) );
+  Book( TH1F( "MeasuredJet2csv0", ";#beta_{max};Events", 50, 0, 1.01 ) );
+  Book( TH1F( "MeasuredJet2csv1", ";#beta_{max};Events", 50, 0, 1.01 ) );
+  Book( TH1F( "MeasuredJet2csv2", ";#beta_{max};Events", 50, 0, 1.01 ) );
+  Book( TH1F( "MeasuredJet2csv012", ";#beta_{max};Events", 50, 0, 1.01 ) );
   
   
   
-  Book( TH1F( "CSV0", ";CSV;Events", 260, -11, 2 ) );
-  Book( TH1F( "MeasuredCSV0", ";CSV;Events", 260, -11, 2 ) );
-  Book( TH1F( "HTTCSV0", ";CSV;Events", 260, -11, 2 ) );
-  Book( TH1F( "MeasuredHTTCSV0", ";CSV;Events", 260, -11, 2 ) );
+  Book( TH1F( "Jet1pT0", ";p_{T} [GeV];Events", 50, 0, 1500 ) );
+  Book( TH1F( "Jet1pT1", ";p_{T} [GeV];Events", 50, 0, 1500 ) );
+  Book( TH1F( "Jet1pT2", ";p_{T} [GeV];Events", 50, 0, 1500 ) );
+  Book( TH1F( "Jet1pT012", ";p_{T} [GeV];Events", 50, 0, 1500 ) );
   
-  Book( TH1F( "HT0", ";HT;Events", 300, 0, 6000 ) );
-  Book( TH1F( "MeasuredHT0", ";HT;Events", 300, 0, 6000 ) );
-  Book( TH1F( "HTTHT0", ";HT;Events", 300, 0, 6000 ) );
-  Book( TH1F( "MeasuredHTTHT0", ";HT;Events", 300, 0, 6000 ) );
+  Book( TH1F( "Jet2pT0", ";p_{T} [GeV];Events", 50, 0, 1500 ) );
+  Book( TH1F( "Jet2pT1", ";p_{T} [GeV];Events", 50, 0, 1500 ) );
+  Book( TH1F( "Jet2pT2", ";p_{T} [GeV];Events", 50, 0, 1500 ) );
+  Book( TH1F( "Jet2pT012", ";p_{T} [GeV];Events", 50, 0, 1500 ) );
   
-  Book( TH1F( "pT0", ";pT;Events", 100, 0, 2000 ) );
-  Book( TH1F( "MeasuredpT0", ";pT;Events", 100, 0, 2000 ) );
-  Book( TH1F( "HTTpT0", ";pT;Events", 100, 0, 2000 ) );
-  Book( TH1F( "MeasuredHTTpT0", ";pT;Events", 100, 0, 2000 ) );
+  Book( TH1F( "Jet1eta0", ";#eta;Events", 50, -2.5, 2.5 ) );
+  Book( TH1F( "Jet1eta1", ";#eta;Events", 50, -2.5, 2.5 ) );
+  Book( TH1F( "Jet1eta2", ";#eta;Events", 50, -2.5, 2.5 ) );
+  Book( TH1F( "Jet1eta012", ";#eta;Events", 50, -2.5, 2.5 ) );
   
+  Book( TH1F( "Jet2eta0", ";#eta;Events", 50, -2.5, 2.5 ) );
+  Book( TH1F( "Jet2eta1", ";#eta;Events", 50, -2.5, 2.5 ) );
+  Book( TH1F( "Jet2eta2", ";#eta;Events", 50, -2.5, 2.5 ) );
+  Book( TH1F( "Jet2eta012", ";#eta;Events", 50, -2.5, 2.5 ) );
   
+  Book( TH1F( "Jet1csv0", ";#beta_{max};Events", 50, 0, 1.01 ) );
+  Book( TH1F( "Jet1csv1", ";#beta_{max};Events", 50, 0, 1.01 ) );
+  Book( TH1F( "Jet1csv2", ";#beta_{max};Events", 50, 0, 1.01 ) );
+  Book( TH1F( "Jet1csv012", ";#beta_{max};Events", 50, 0, 1.01 ) );
   
-  Book( TH1F( "CSV1", ";CSV;Events", 260, -11, 2 ) );
-  Book( TH1F( "MeasuredCSV1", ";CSV;Events", 260, -11, 2 ) );
-  Book( TH1F( "HTTCSV1", ";CSV;Events", 260, -11, 2 ) );
-  Book( TH1F( "MeasuredHTTCSV1", ";CSV;Events", 260, -11, 2 ) );
+  Book( TH1F( "Jet2csv0", ";#beta_{max};Events", 50, 0, 1.01 ) );
+  Book( TH1F( "Jet2csv1", ";#beta_{max};Events", 50, 0, 1.01 ) );
+  Book( TH1F( "Jet2csv2", ";#beta_{max};Events", 50, 0, 1.01 ) );
+  Book( TH1F( "Jet2csv012", ";#beta_{max};Events", 50, 0, 1.01 ) );
+
   
-  Book( TH1F( "HT1", ";HT;Events", 300, 0, 6000 ) );
-  Book( TH1F( "MeasuredHT1", ";HT;Events", 300, 0, 6000 ) );
-  Book( TH1F( "HTTHT1", ";HT;Events", 300, 0, 6000 ) );
-  Book( TH1F( "MeasuredHTTHT1", ";HT;Events", 300, 0, 6000 ) );
+//   Book( TH1F( "MeasuredJECMtt0", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   Book( TH1F( "MeasuredJECMtt1", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   Book( TH1F( "MeasuredJECMtt2", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   Book( TH1F( "MeasuredJECMtt012", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   
+//   Book( TH1F( "MeasuredHTTMtt0", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   Book( TH1F( "MeasuredHTTMtt1", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   Book( TH1F( "MeasuredHTTMtt2", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   Book( TH1F( "MeasuredHTTMtt012", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   
+//   Book( TH1F( "MeasuredHTTJECMtt0", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   Book( TH1F( "MeasuredHTTJECMtt1", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   Book( TH1F( "MeasuredHTTJECMtt2", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   Book( TH1F( "MeasuredHTTJECMtt012", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   
+//   Book( TH1F( "MeasuredAK5Mtt0", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   Book( TH1F( "MeasuredAK5Mtt1", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   Book( TH1F( "MeasuredAK5Mtt2", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   Book( TH1F( "MeasuredAK5Mtt012", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
   
-  Book( TH1F( "pT1", ";pT;Events", 100, 0, 2000 ) );
-  Book( TH1F( "MeasuredpT1", ";pT;Events", 100, 0, 2000 ) );
-  Book( TH1F( "HTTpT1", ";pT;Events", 100, 0, 2000 ) );
-  Book( TH1F( "MeasuredHTTpT1", ";pT;Events", 100, 0, 2000 ) );
+//   Book( TH1F( "Mtt012NoWeight", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
+//   Book( TH1F( "CSV012NoWeight", ";CSV;Events", 260, -11, 2 ) );
+//   Book( TH1F( "HT012NoWeight", ";HT;Events", 300, 0, 6000 ) );
+//   Book( TH1F( "pT012NoWeight", ";pT;Events", 100, 0, 2000 ) );
   
-  
-  
-  Book( TH1F( "CSV2", ";CSV;Events", 260, -11, 2 ) );
-  Book( TH1F( "MeasuredCSV2", ";CSV;Events", 260, -11, 2 ) );
-  Book( TH1F( "HTTCSV2", ";CSV;Events", 260, -11, 2 ) );
-  Book( TH1F( "MeasuredHTTCSV2", ";CSV;Events", 260, -11, 2 ) );
-  
-  Book( TH1F( "HT2", ";HT;Events", 300, 0, 6000 ) );
-  Book( TH1F( "MeasuredHT2", ";HT;Events", 300, 0, 6000 ) );
-  Book( TH1F( "HTTHT2", ";HT;Events", 300, 0, 6000 ) );
-  Book( TH1F( "MeasuredHTTHT2", ";HT;Events", 300, 0, 6000 ) );
-  
-  Book( TH1F( "pT2", ";pT;Events", 100, 0, 2000 ) );
-  Book( TH1F( "MeasuredpT2", ";pT;Events", 100, 0, 2000 ) );
-  Book( TH1F( "HTTpT2", ";pT;Events", 100, 0, 2000 ) );
-  Book( TH1F( "MeasuredHTTpT2", ";pT;Events", 100, 0, 2000 ) );
+//   Book( TH1F( "CSV012", ";CSV;Events", 260, -11, 2 ) );
+// //   Book( TH1F( "MeasuredCSV012", ";CSV;Events", 260, -11, 2 ) );
+//   Book( TH1F( "HTTCSV012", ";CSV;Events", 260, -11, 2 ) );
+// //   Book( TH1F( "MeasuredHTTCSV012", ";CSV;Events", 260, -11, 2 ) );
+//   
+//   Book( TH1F( "HT012", ";HT;Events", 300, 0, 6000 ) );
+// //   Book( TH1F( "MeasuredHT012", ";HT;Events", 300, 0, 6000 ) );
+//   Book( TH1F( "HTTHT012", ";HT;Events", 300, 0, 6000 ) );
+// //   Book( TH1F( "MeasuredHTTHT012", ";HT;Events", 300, 0, 6000 ) );
+//   
+//   Book( TH1F( "pT012", ";pT;Events", 100, 0, 2000 ) );
+// //   Book( TH1F( "MeasuredpT012", ";pT;Events", 100, 0, 2000 ) );
+//   Book( TH1F( "HTTpT012", ";pT;Events", 100, 0, 2000 ) );
+// //   Book( TH1F( "MeasuredHTTpT012", ";pT;Events", 100, 0, 2000 ) );
+//   
+//   
+//   
+//   Book( TH1F( "CSV0", ";CSV;Events", 260, -11, 2 ) );
+// //   Book( TH1F( "MeasuredCSV0", ";CSV;Events", 260, -11, 2 ) );
+//   Book( TH1F( "HTTCSV0", ";CSV;Events", 260, -11, 2 ) );
+// //   Book( TH1F( "MeasuredHTTCSV0", ";CSV;Events", 260, -11, 2 ) );
+//   
+//   Book( TH1F( "HT0", ";HT;Events", 300, 0, 6000 ) );
+// //   Book( TH1F( "MeasuredHT0", ";HT;Events", 300, 0, 6000 ) );
+//   Book( TH1F( "HTTHT0", ";HT;Events", 300, 0, 6000 ) );
+// //   Book( TH1F( "MeasuredHTTHT0", ";HT;Events", 300, 0, 6000 ) );
+//   
+//   Book( TH1F( "pT0", ";pT;Events", 100, 0, 2000 ) );
+// //   Book( TH1F( "MeasuredpT0", ";pT;Events", 100, 0, 2000 ) );
+//   Book( TH1F( "HTTpT0", ";pT;Events", 100, 0, 2000 ) );
+// //   Book( TH1F( "MeasuredHTTpT0", ";pT;Events", 100, 0, 2000 ) );
+//   
+//   
+//   
+//   Book( TH1F( "CSV1", ";CSV;Events", 260, -11, 2 ) );
+// //   Book( TH1F( "MeasuredCSV1", ";CSV;Events", 260, -11, 2 ) );
+//   Book( TH1F( "HTTCSV1", ";CSV;Events", 260, -11, 2 ) );
+// //   Book( TH1F( "MeasuredHTTCSV1", ";CSV;Events", 260, -11, 2 ) );
+//   
+//   Book( TH1F( "HT1", ";HT;Events", 300, 0, 6000 ) );
+// //   Book( TH1F( "MeasuredHT1", ";HT;Events", 300, 0, 6000 ) );
+//   Book( TH1F( "HTTHT1", ";HT;Events", 300, 0, 6000 ) );
+// //   Book( TH1F( "MeasuredHTTHT1", ";HT;Events", 300, 0, 6000 ) );
+//   
+//   Book( TH1F( "pT1", ";pT;Events", 100, 0, 2000 ) );
+// //   Book( TH1F( "MeasuredpT1", ";pT;Events", 100, 0, 2000 ) );
+//   Book( TH1F( "HTTpT1", ";pT;Events", 100, 0, 2000 ) );
+// //   Book( TH1F( "MeasuredHTTpT1", ";pT;Events", 100, 0, 2000 ) );
+//   
+//   
+//   
+//   Book( TH1F( "CSV2", ";CSV;Events", 260, -11, 2 ) );
+// //   Book( TH1F( "MeasuredCSV2", ";CSV;Events", 260, -11, 2 ) );
+//   Book( TH1F( "HTTCSV2", ";CSV;Events", 260, -11, 2 ) );
+// //   Book( TH1F( "MeasuredHTTCSV2", ";CSV;Events", 260, -11, 2 ) );
+//   
+//   Book( TH1F( "HT2", ";HT;Events", 300, 0, 6000 ) );
+// //   Book( TH1F( "MeasuredHT2", ";HT;Events", 300, 0, 6000 ) );
+//   Book( TH1F( "HTTHT2", ";HT;Events", 300, 0, 6000 ) );
+// //   Book( TH1F( "MeasuredHTTHT2", ";HT;Events", 300, 0, 6000 ) );
+//   
+//   Book( TH1F( "pT2", ";pT;Events", 100, 0, 2000 ) );
+// //   Book( TH1F( "MeasuredpT2", ";pT;Events", 100, 0, 2000 ) );
+//   Book( TH1F( "HTTpT2", ";pT;Events", 100, 0, 2000 ) );
+// //   Book( TH1F( "MeasuredHTTpT2", ";pT;Events", 100, 0, 2000 ) );
   
   //   Book( TH1F( "fake_mass",";m;Events",110,140.0,250.0));
   double csv_bins[] = {-100.0,0.0,0.244,0.679,10.0};
 //   double csv_bins[] = {-100.0,0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,10.0};
-  double mistag_pt_bins[] = {150.0,175.0,200.0,210.0,220.0,230.0,240.0,250.0,260.0,270.0,280.0,290.0,300.0,310.0,320.0,330.0,340.0,350.0,360.0,370.0,380.0,390.0,400.0,410.0,430.0,450.0,500.0,600.0,800.0,1000.0,2000.0};
-  double mistag_ht_bins[] = {0,300,400,450,500,550,600,650,700,800,1000,6000};
-  Book( TH2F( "num_mistag", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
-  Book( TH2F( "den_mistag", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
-  Book( TProfile2D( "mistag_crosscheck", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
+  double mistag_pt_bins[] = {150.0,200.0,220.0,240.0,260.0,280.0,300.0,320.0,340.0,360.0,380.0,400.0,450.0,500.0,600.0,800.0,2000.0};
+  //{150.0,175.0,200.0,210.0,220.0,230.0,240.0,250.0,260.0,270.0,280.0,290.0,300.0,310.0,320.0,330.0,340.0,350.0,360.0,370.0,380.0,390.0,400.0,410.0,430.0,450.0,500.0,600.0,800.0,1000.0,2000.0};
+  //double mistag_ht_bins[] = {0/*,300,400,450,500,550,600,650,700,800,1000*/,10000};
+  //Book( TH3F( "num_mistag", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );
+  //Book( TH3F( "den_mistag", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );
+  
+  Book( TH2F( "num_mistag", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins) );
+  Book( TH2F( "den_mistag", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins) );
+  
+  double mtt_bins[]={0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800,1850, 1900, 1950, 2000, 2050, 2100, 2150, 2200, 2250, 2300, 2350, 2400, 2450, 2500, 2550, 2600, 2650, 2700, 2750, 2800, 2850, 2900, 2950, 3000, 3050, 3100, 3150, 3200, 3250, 3300, 3350, 3400, 3450,3500, 3550, 3600, 3650, 3700, 3750, 3800, 3850, 3900, 3950,4000};
+  
+  Book( TH3F( "ErrMtt0", ";Mtt;pT;CSV", sizeof(mtt_bins)/sizeof(double)-1 , mtt_bins, sizeof(mistag_pt_bins)/sizeof(double)-1 , mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1 , csv_bins ) );
+  Book( TH3F( "ErrMtt1", ";Mtt;pT;CSV", sizeof(mtt_bins)/sizeof(double)-1 , mtt_bins, sizeof(mistag_pt_bins)/sizeof(double)-1 , mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1 , csv_bins ) );
+  Book( TH3F( "ErrMtt2", ";Mtt;pT;CSV", sizeof(mtt_bins)/sizeof(double)-1 , mtt_bins, sizeof(mistag_pt_bins)/sizeof(double)-1 , mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1 , csv_bins ) );
+  
+//   Book( TProfile3D( "mistag_crosscheck", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );
   //   Book( TH2F( "mass_shape2D",";m;CSV",110,140.0,250.0,sizeof(csv_bins)/sizeof(double)-1, csv_bins));
   Book( TH1F( "mass_shape",";m;Events",200,0.0,400.0));
   //   Book( TH1F( "mass_shapeJEC",";m;Events",110,140.0,250.0));
   
-  Book( TH2F( "num_mistagMeasured", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
-  Book( TH2F( "den_mistagMeasured", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
-
-  Book( TH2F( "num_mistagTag", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
-  Book( TH2F( "den_mistagTag", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins ) );
+//   Book( TH3F( "num_mistagMeasured", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );
+//   Book( TH3F( "den_mistagMeasured", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );
+// 
+//   Book( TH3F( "num_mistagTag", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );
+//   Book( TH3F( "den_mistagTag", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );
+  
+/*  
+  Book( TH3F( "num_mistagR", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );
+  Book( TH3F( "den_mistagR", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );
+  
+  Book( TH3F( "num_mistagRmw", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );
+  Book( TH3F( "den_mistagRmw", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );
+  
+  Book( TH3F( "num_mistagInvmw", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );
+  Book( TH3F( "den_mistagInvmw", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );
+  
+  Book( TH3F( "num_mistagNomw", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );
+  Book( TH3F( "den_mistagNomw", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );*/
   
 }
 
@@ -166,8 +264,11 @@ void BackgroundHists::Fill()
   bool doBackground=true;
   bool doMeasured=true;
   
+  bool isQCD = (version.find("QCD")!=string::npos);
+  bool isEven = (event_number%2==0);
+  
   //mistag application
-  if (doBackground)
+  if (doBackground && !(isQCD && isEven) )
   {
     
     double etaseed = bcc->topjets->at(0).subjets().at(0).eta();
@@ -193,10 +294,11 @@ void BackgroundHists::Fill()
     if(HepTopTagWithMatch(bcc->topjets->at(tag_index)) /*&& !HepTopTagWithMatch(bcc->topjets->at(mistag_index))*/)
     {
       double maxcsv=getMaxCSV(bcc->topjets->at(mistag_index));
+      //double ht50=getHT50(bcc);
       //        cout<<bcc->topjets->at(mistag_index).pt()<<" "<<maxcsv<<endl;
       Int_t mistag_bin = 0;
       double mistag_value = 0;
-      if (IsRealData)
+      if (IsRealData||version=="TTbarHad"||version=="TTbarLept"||version=="TTbarSemi")
       {
         mistag_bin = mistag->FindFixBin(bcc->topjets->at(mistag_index).pt(),maxcsv);
         mistag_value=mistag->GetBinContent(mistag_bin);
@@ -204,12 +306,12 @@ void BackgroundHists::Fill()
       else
       {
         mistag_bin = mistagmc->FindFixBin(bcc->topjets->at(mistag_index).pt(),maxcsv);
-        Int_t binx=0;
-        Int_t biny=0;
-        Int_t binz=0;
-        mistagmc->GetBinXYZ(mistag_bin, binx, biny, binz);
-        mistag_value=mistagmc->GetBinContent(mistag_bin);
-        Int_t aa=((TProfile2D*)Hist("mistag_crosscheck"))->Fill(bcc->topjets->at(mistag_index).pt(),maxcsv,mistag_value);
+	mistag_value=mistagmc->GetBinContent(mistag_bin);
+//         Int_t binx=0;
+//         Int_t biny=0;
+//         Int_t binz=0;
+//         mistagmc->GetBinXYZ(mistag_bin, binx, biny, binz);
+//         Int_t aa=((TProfile3D*)Hist("mistag_crosscheck"))->Fill(bcc->topjets->at(mistag_index).pt(),maxcsv,ht50,mistag_value);
         //cout<<maxcsv<<" "<<mistag_bin<<" "<<binx<<" "<<biny<<" "<<binz<<" "<<bcc->topjets->at(mistag_index).pt()<<" "<<aa<<"\n";
         
         
@@ -259,48 +361,86 @@ void BackgroundHists::Fill()
       // 				RandomMass
       //       );
       double mtt = ( TagVector + MistagVector ).M();
-      double mttNoMass=getMtt(bcc->topjets->at(0),bcc->topjets->at(1));//NO random mass modification
+//       double mttNoMass=getMtt(bcc->topjets->at(0),bcc->topjets->at(1));//NO random mass modification
+      unsigned int ileading = 0;
+      unsigned int isubleading = 1;
+      if (bcc->topjets->at(1).pt()>bcc->topjets->at(0).pt())
+      {
+	ileading = 1;
+	isubleading = 0;
+      }
+      float leadingcsv=getMaxCSV(bcc->topjets->at(ileading));
+      float subleadingcsv=getMaxCSV(bcc->topjets->at(isubleading));
+      
       int nbtags=0;
       if (subJetBTag(bcc->topjets->at(tag_index),e_CSVM)>0) nbtags++;
       if (subJetBTag(bcc->topjets->at(mistag_index),e_CSVM)>0) nbtags++;
       Hist("Mtt012")->Fill(mtt,mistag_value*weight);
-      Hist("MttNoMass012")->Fill(mttNoMass,mistag_value*weight);
-      Hist("HT012")->Fill(getHT50(bcc),mistag_value*weight);
-      Hist("pT012")->Fill(bcc->topjets->at(mistag_index).pt(),mistag_value*weight);
-      Hist("CSV012")->Fill(getMaxCSV(bcc->topjets->at(mistag_index)),mistag_value*weight);
+      Hist("Jet1pT012")->Fill(bcc->topjets->at(ileading).pt(),weight*mistag_value);
+      Hist("Jet2pT012")->Fill(bcc->topjets->at(isubleading).pt(),weight*mistag_value);
+      Hist("Jet1eta012")->Fill(bcc->topjets->at(ileading).eta(),weight*mistag_value);
+      Hist("Jet2eta012")->Fill(bcc->topjets->at(isubleading).eta(),weight*mistag_value);
+      Hist("Jet1csv012")->Fill(leadingcsv,weight*mistag_value);
+      Hist("Jet2csv012")->Fill(subleadingcsv,weight*mistag_value);
       
-      Hist("Mtt012NoWeight")->Fill(mtt,weight);
-      //Hist("MttNoMass012NoWeight")->Fill(mttNoMass,weight);
-      Hist("HT012NoWeight")->Fill(getHT50(bcc),weight);
-      Hist("pT012NoWeight")->Fill(bcc->topjets->at(mistag_index).pt(),weight);
-      Hist("CSV012NoWeight")->Fill(getMaxCSV(bcc->topjets->at(mistag_index)),weight);
+//       Hist("MttNoMass012")->Fill(mttNoMass,mistag_value*weight);
+//       Hist("HT012")->Fill(ht50,mistag_value*weight);
+//       Hist("pT012")->Fill(bcc->topjets->at(mistag_index).pt(),mistag_value*weight);
+//       Hist("CSV012")->Fill(maxcsv,mistag_value*weight);
+      
+//       Hist("Mtt012NoWeight")->Fill(mtt,weight);
+//       //Hist("MttNoMass012NoWeight")->Fill(mttNoMass,weight);
+//       Hist("HT012NoWeight")->Fill(ht50,weight);
+//       Hist("pT012NoWeight")->Fill(bcc->topjets->at(mistag_index).pt(),weight);
+//       Hist("CSV012NoWeight")->Fill(maxcsv,weight);
       if (nbtags==0)
       {
         Hist("Mtt0")->Fill(mtt,mistag_value*weight);
-        Hist("MttNoMass0")->Fill(mttNoMass,mistag_value*weight);
-        Hist("HT0")->Fill(getHT50(bcc),mistag_value*weight);
-        Hist("pT0")->Fill(bcc->topjets->at(mistag_index).pt(),mistag_value*weight);
-        Hist("CSV0")->Fill(getMaxCSV(bcc->topjets->at(mistag_index)),mistag_value*weight);
+        ((TH3F*)Hist("ErrMtt0"))->Fill(mtt,bcc->topjets->at(mistag_index).pt(),maxcsv,weight);
+	Hist("Jet1pT0")->Fill(bcc->topjets->at(ileading).pt(),weight*mistag_value);
+	Hist("Jet2pT0")->Fill(bcc->topjets->at(isubleading).pt(),weight*mistag_value);
+	Hist("Jet1eta0")->Fill(bcc->topjets->at(ileading).eta(),weight*mistag_value);
+	Hist("Jet2eta0")->Fill(bcc->topjets->at(isubleading).eta(),weight*mistag_value);
+	Hist("Jet1csv0")->Fill(leadingcsv,weight*mistag_value);
+	Hist("Jet2csv0")->Fill(subleadingcsv,weight*mistag_value);
+//         Hist("MttNoMass0")->Fill(mttNoMass,mistag_value*weight);
+//         Hist("HT0")->Fill(ht50,mistag_value*weight);
+//         Hist("pT0")->Fill(bcc->topjets->at(mistag_index).pt(),mistag_value*weight);
+//         Hist("CSV0")->Fill(maxcsv,mistag_value*weight);
       }
       else
       {
         if (nbtags==1)
         {
           Hist("Mtt1")->Fill(mtt,mistag_value*weight);
-          Hist("MttNoMass1")->Fill(mttNoMass,mistag_value*weight);
-          Hist("HT1")->Fill(getHT50(bcc),mistag_value*weight);
-          Hist("pT1")->Fill(bcc->topjets->at(mistag_index).pt(),mistag_value*weight);
-          Hist("CSV1")->Fill(getMaxCSV(bcc->topjets->at(mistag_index)),mistag_value*weight);
+          ((TH3F*)Hist("ErrMtt1"))->Fill(mtt,bcc->topjets->at(mistag_index).pt(),maxcsv,weight);
+	  Hist("Jet1pT1")->Fill(bcc->topjets->at(ileading).pt(),weight*mistag_value);
+	  Hist("Jet2pT1")->Fill(bcc->topjets->at(isubleading).pt(),weight*mistag_value);
+	  Hist("Jet1eta1")->Fill(bcc->topjets->at(ileading).eta(),weight*mistag_value);
+	  Hist("Jet2eta1")->Fill(bcc->topjets->at(isubleading).eta(),weight*mistag_value);
+	  Hist("Jet1csv1")->Fill(leadingcsv,weight*mistag_value);
+	  Hist("Jet2csv1")->Fill(subleadingcsv,weight*mistag_value);
+//           Hist("MttNoMass1")->Fill(mttNoMass,mistag_value*weight);
+//           Hist("HT1")->Fill(ht50,mistag_value*weight);
+//           Hist("pT1")->Fill(bcc->topjets->at(mistag_index).pt(),mistag_value*weight);
+//           Hist("CSV1")->Fill(maxcsv,mistag_value*weight);
         }
         else
         {
           if (nbtags==2)
           {
             Hist("Mtt2")->Fill(mtt,mistag_value*weight);
-            Hist("MttNoMass2")->Fill(mttNoMass,mistag_value*weight);
-            Hist("HT2")->Fill(getHT50(bcc),mistag_value*weight);
-            Hist("pT2")->Fill(bcc->topjets->at(mistag_index).pt(),mistag_value*weight);
-            Hist("CSV2")->Fill(getMaxCSV(bcc->topjets->at(mistag_index)),mistag_value*weight);
+            ((TH3F*)Hist("ErrMtt2"))->Fill(mtt,bcc->topjets->at(mistag_index).pt(),maxcsv,weight);
+	    Hist("Jet1pT2")->Fill(bcc->topjets->at(ileading).pt(),weight*mistag_value);
+	    Hist("Jet2pT2")->Fill(bcc->topjets->at(isubleading).pt(),weight*mistag_value);
+	    Hist("Jet1eta2")->Fill(bcc->topjets->at(ileading).eta(),weight*mistag_value);
+	    Hist("Jet2eta2")->Fill(bcc->topjets->at(isubleading).eta(),weight*mistag_value);
+	    Hist("Jet1csv2")->Fill(leadingcsv,weight*mistag_value);
+	    Hist("Jet2csv2")->Fill(subleadingcsv,weight*mistag_value);
+//             Hist("MttNoMass2")->Fill(mttNoMass,mistag_value*weight);
+//             Hist("HT2")->Fill(ht50,mistag_value*weight);
+//             Hist("pT2")->Fill(bcc->topjets->at(mistag_index).pt(),mistag_value*weight);
+//             Hist("CSV2")->Fill(maxcsv,mistag_value*weight);
           }
         }
       }
@@ -369,7 +509,7 @@ void BackgroundHists::Fill()
   }
   
   //mistag computation
-  if (doMistag)
+  if (doMistag && !(isQCD && !isEven) )
   {
     
     
@@ -390,137 +530,264 @@ void BackgroundHists::Fill()
       probe_index=0;
     }
     
-    ////measured mistag
+    //double ht50=getHT50(bcc);
     float maxcsv = getMaxCSV(bcc->topjets->at(probe_index));
-    ((TH2F*)Hist("den_mistagMeasured"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,weight);
-    if (HepTopTagWithMatch(bcc->topjets->at(probe_index)))
-    {
-      ((TH2F*)Hist("num_mistagMeasured"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,weight);
-    }
-    ////
     
-    ////tagged mistag
-    if(HepTopTagWithMatch(bcc->topjets->at(antitag_index)))
+//     ////measured mistag
+// //     float maxcsv = getMaxCSV(bcc->topjets->at(probe_index));
+//     ((TH3F*)Hist("den_mistagMeasured"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,ht50,weight);
+//     if (HepTopTagWithMatch(bcc->topjets->at(probe_index)))
+//     {
+//       ((TH3F*)Hist("num_mistagMeasured"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,ht50,weight);
+//     }
+//     ////
+//     
+//     ////tagged mistag
+//     if(HepTopTagWithMatch(bcc->topjets->at(antitag_index)))
+//     {
+// //       float maxcsv = getMaxCSV(bcc->topjets->at(probe_index));
+//       ((TH3F*)Hist("den_mistagTag"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,ht50,weight);
+//       if (HepTopTagWithMatch(bcc->topjets->at(probe_index)))
+//       {
+// 	((TH3F*)Hist("num_mistagTag"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,ht50,weight);
+//       }
+//     }
+//     ////
+  
+    ////minimal inversion mistag
+    if( ( !BareHepTopTagWithMatch(bcc->topjets->at(antitag_index)) ) && 
+        ( MassAndPtCutWithMatch(bcc->topjets->at(antitag_index)) ) && 
+        ( HepTopTagPairwiseMassWithMatch2(bcc->topjets->at(antitag_index))>0.39 ) )
     {
-      float maxcsv = getMaxCSV(bcc->topjets->at(probe_index));
-      ((TH2F*)Hist("den_mistagTag"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,weight);
-      if (HepTopTagWithMatch(bcc->topjets->at(probe_index)))
-      {
-	((TH2F*)Hist("num_mistagTag"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,weight);
-      }
-    }
-    ////
-    
-    if ( ( !BareHepTopTagWithMatch(bcc->topjets->at(antitag_index)) ) && ( MassAndPtCutWithMatch(bcc->topjets->at(antitag_index)) ) && ( subJetBTag(bcc->topjets->at(antitag_index),e_CSVM)>0 ) )
-    {
-
-
-      //       cout<<probe_index<<bcc->topjets->size()<<endl;
-      //       cout<<bcc->topjets->at(probe_index).pt()<<endl;
-      float maxcsv = getMaxCSV(bcc->topjets->at(probe_index));
+//       float maxcsv = getMaxCSV(bcc->topjets->at(probe_index));
       ((TH2F*)Hist("den_mistag"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,weight);
       if (HepTopTagWithMatch(bcc->topjets->at(probe_index)))
       {
-        ((TH2F*)Hist("num_mistag"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,weight);
+	((TH2F*)Hist("num_mistag"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,weight);
       }
     }
+    ////
+    
+
+  
+  
+    
+//     ////R mistag
+//     if(HepTopTagInverted(bcc->topjets->at(antitag_index)))
+//     {
+// //       float maxcsv = getMaxCSV(bcc->topjets->at(probe_index));
+//       ((TH3F*)Hist("den_mistagR"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,ht50,weight);
+//       if (HepTopTagWithMatch(bcc->topjets->at(probe_index)))
+//       {
+// 	((TH3F*)Hist("num_mistagR"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,ht50,weight);
+//       }
+//     }
+//     ////
+//     
+//     ////Rmw mistag
+//     if(HepTopTagInverted_mw(bcc->topjets->at(antitag_index)))
+//     {
+// //       float maxcsv = getMaxCSV(bcc->topjets->at(probe_index));
+//       ((TH3F*)Hist("den_mistagRmw"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,ht50,weight);
+//       if (HepTopTagWithMatch(bcc->topjets->at(probe_index)))
+//       {
+// 	((TH3F*)Hist("num_mistagRmw"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,ht50,weight);
+//       }
+//     }
+//     ////
+//     
+//     
+//     ////Invmw mistag
+//      if ( ( !BareHepTopTagWithMatch(bcc->topjets->at(antitag_index)) ) && ( !MassAndPtCutWithMatch(bcc->topjets->at(antitag_index)) ))
+//     {
+// //       float maxcsv = getMaxCSV(bcc->topjets->at(probe_index));
+//       ((TH3F*)Hist("den_mistagInvmw"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,ht50,weight);
+//       if (HepTopTagWithMatch(bcc->topjets->at(probe_index)))
+//       {
+//         ((TH3F*)Hist("num_mistagInvmw"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,ht50,weight);
+//       }
+//     }  
+//     ////
+//     
+//     ////Nomw mistag
+//      if ( ( !BareHepTopTagWithMatch(bcc->topjets->at(antitag_index)) ) )
+//     {
+// //       float maxcsv = getMaxCSV(bcc->topjets->at(probe_index));
+//       ((TH3F*)Hist("den_mistagNomw"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,ht50,weight);
+//       if (HepTopTagWithMatch(bcc->topjets->at(probe_index)))
+//       {
+//         ((TH3F*)Hist("num_mistagNomw"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,ht50,weight);
+//       }
+//     }  
+//     ////
+    
+//     if ( ( !BareHepTopTagWithMatch(bcc->topjets->at(antitag_index)) ) && ( MassAndPtCutWithMatch(bcc->topjets->at(antitag_index)) ) /*&& ( subJetBTag(bcc->topjets->at(antitag_index),e_CSVM)>0 )*/ )
+//     {
+// 
+// 
+//       //       cout<<probe_index<<bcc->topjets->size()<<endl;
+//       //       cout<<bcc->topjets->at(probe_index).pt()<<endl;
+// //       float maxcsv = getMaxCSV(bcc->topjets->at(probe_index));
+//       ((TH3F*)Hist("den_mistagR"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,ht50,weight);
+//       if (HepTopTagWithMatch(bcc->topjets->at(probe_index)))
+//       {
+//         ((TH3F*)Hist("num_mistagR"))->Fill(bcc->topjets->at(probe_index).pt(),maxcsv,ht50,weight);
+//       }
+//     }
   }
   
-  if(doMeasured && !IsRealData)
+  if(doMeasured && !(isQCD && !isEven))
   {
     if(HepTopTagWithMatch(bcc->topjets->at(0))&&HepTopTagWithMatch(bcc->topjets->at(1)))
     {
-      int nbtags=0;
-      if (subJetBTag(bcc->topjets->at(0),e_CSVM)>0) nbtags++;
-      if (subJetBTag(bcc->topjets->at(1),e_CSVM)>0) nbtags++;
-      double mtt=getMtt(bcc->topjets->at(0),bcc->topjets->at(1));
-      double mttJEC=(bcc->topjets->at(0).v4()+bcc->topjets->at(1).v4()).M();
-      Hist("MeasuredMtt012")->Fill(mtt,weight);
-      Hist("MeasuredJECMtt012")->Fill(mttJEC,weight);
+      //double ht50=getHT50(bcc);
       
-      TRandom3 rand(abs(static_cast<int>(sin(bcc->topjets->at(0).subjets().at(0).eta()*1000000)*100000)));
-      unsigned int histo_index;
-      if (rand.Uniform(1.)<=0.5) histo_index=0; else histo_index=1;
-      Hist("MeasuredHT012")->Fill(getHT50(bcc),weight);
-      Hist("MeasuredpT012")->Fill(bcc->topjets->at(histo_index).pt(),weight);
-      Hist("MeasuredCSV012")->Fill(getMaxCSV(bcc->topjets->at(histo_index)),weight);
+          HEPTopTaggerReweight httr;
+	  double htt_weight=1.0;
+	  vector<int> TopJetIndices={0,1};
+     /*if (version=="TTbarLept" || version=="TTbarSemi" || version=="TTbarHad")*/ 
+     if ((!IsRealData)&&(version.find("QCD")==string::npos))htt_weight=httr.GetScaleWeight(TopJetIndices);
+      
+      int nbtags=0;
+     if (IsRealData)
+     {
+       if (subJetBTag(bcc->topjets->at(0),e_CSVM)>0) nbtags++;
+       if (subJetBTag(bcc->topjets->at(1),e_CSVM)>0) nbtags++;
+     }
+     else
+     {
+       if (subJetBTag(bcc->topjets->at(0),e_CSVM,"mean","/nfs/dust/cms/user/usaiem/ZprimeFullHad/ZBTagEff.root")>0) nbtags++;
+       if (subJetBTag(bcc->topjets->at(1),e_CSVM,"mean","/nfs/dust/cms/user/usaiem/ZprimeFullHad/ZBTagEff.root")>0) nbtags++;
+     }
+
+      double mtt=getMtt(bcc->topjets->at(0),bcc->topjets->at(1));
+//       double mttJEC=(bcc->topjets->at(0).v4()+bcc->topjets->at(1).v4()).M();
+      
+//       Hist("MeasuredJECMtt012")->Fill(mttJEC,weight);
+      
+//       TRandom3 rand(abs(static_cast<int>(sin(bcc->topjets->at(0).subjets().at(0).eta()*1000000)*100000)));
+//       unsigned int histo_index;
+//       if (rand.Uniform(1.)<=0.5) histo_index=0; else histo_index=1;
+//       float maxcsv = getMaxCSV(bcc->topjets->at(histo_index));
+      unsigned int ileading = 0;
+      unsigned int isubleading = 1;
+      if (bcc->topjets->at(1).pt()>bcc->topjets->at(0).pt())
+      {
+	ileading = 1;
+	isubleading = 0;
+      }
+      float leadingcsv=getMaxCSV(bcc->topjets->at(ileading));
+      float subleadingcsv=getMaxCSV(bcc->topjets->at(isubleading));
+      
+      Hist("MeasuredMtt012")->Fill(mtt,weight*htt_weight);
+      Hist("MeasuredJet1pT012")->Fill(bcc->topjets->at(ileading).pt(),weight*htt_weight);
+      Hist("MeasuredJet2pT012")->Fill(bcc->topjets->at(isubleading).pt(),weight*htt_weight);
+      Hist("MeasuredJet1eta012")->Fill(bcc->topjets->at(ileading).eta(),weight*htt_weight);
+      Hist("MeasuredJet2eta012")->Fill(bcc->topjets->at(isubleading).eta(),weight*htt_weight);
+      Hist("MeasuredJet1csv012")->Fill(leadingcsv,weight*htt_weight);
+      Hist("MeasuredJet2csv012")->Fill(subleadingcsv,weight*htt_weight);
+      
+//       Hist("MeasuredHT012")->Fill(ht50,weight);
+//       Hist("MeasuredpT012")->Fill(bcc->topjets->at(histo_index).pt(),weight);
+//       Hist("MeasuredCSV012")->Fill(maxcsv,weight);
       if (nbtags==0)
       {
-        Hist("MeasuredMtt0")->Fill(mtt,weight);
-        Hist("MeasuredJECMtt0")->Fill(mttJEC,weight);
-        Hist("MeasuredHT0")->Fill(getHT50(bcc),weight);
-        Hist("MeasuredpT0")->Fill(bcc->topjets->at(histo_index).pt(),weight);
-        Hist("MeasuredCSV0")->Fill(getMaxCSV(bcc->topjets->at(histo_index)),weight);
+        Hist("MeasuredMtt0")->Fill(mtt,weight*htt_weight);
+	Hist("MeasuredJet1pT0")->Fill(bcc->topjets->at(ileading).pt(),weight*htt_weight);
+	Hist("MeasuredJet2pT0")->Fill(bcc->topjets->at(isubleading).pt(),weight*htt_weight);
+	Hist("MeasuredJet1eta0")->Fill(bcc->topjets->at(ileading).eta(),weight*htt_weight);
+	Hist("MeasuredJet2eta0")->Fill(bcc->topjets->at(isubleading).eta(),weight*htt_weight);
+	Hist("MeasuredJet1csv0")->Fill(leadingcsv,weight*htt_weight);
+	Hist("MeasuredJet2csv0")->Fill(subleadingcsv,weight*htt_weight);
+	
+//         Hist("MeasuredJECMtt0")->Fill(mttJEC,weight);
+//         Hist("MeasuredHT0")->Fill(ht50,weight);
+//         Hist("MeasuredpT0")->Fill(bcc->topjets->at(histo_index).pt(),weight);
+//         Hist("MeasuredCSV0")->Fill(maxcsv,weight);
       }
       else
       {
         if (nbtags==1)
         {
-          Hist("MeasuredMtt1")->Fill(mtt,weight);
-          Hist("MeasuredJECMtt1")->Fill(mttJEC,weight);
-          Hist("MeasuredHT1")->Fill(getHT50(bcc),weight);
-          Hist("MeasuredpT1")->Fill(bcc->topjets->at(histo_index).pt(),weight);
-          Hist("MeasuredCSV1")->Fill(getMaxCSV(bcc->topjets->at(histo_index)),weight);
+          Hist("MeasuredMtt1")->Fill(mtt,weight*htt_weight);
+	  Hist("MeasuredJet1pT1")->Fill(bcc->topjets->at(ileading).pt(),weight*htt_weight);
+	  Hist("MeasuredJet2pT1")->Fill(bcc->topjets->at(isubleading).pt(),weight*htt_weight);
+	  Hist("MeasuredJet1eta1")->Fill(bcc->topjets->at(ileading).eta(),weight*htt_weight);
+	  Hist("MeasuredJet2eta1")->Fill(bcc->topjets->at(isubleading).eta(),weight*htt_weight);
+	  Hist("MeasuredJet1csv1")->Fill(leadingcsv,weight*htt_weight);
+	  Hist("MeasuredJet2csv1")->Fill(subleadingcsv,weight*htt_weight);
+	  
+//           Hist("MeasuredJECMtt1")->Fill(mttJEC,weight);
+//           Hist("MeasuredHT1")->Fill(ht50,weight);
+//           Hist("MeasuredpT1")->Fill(bcc->topjets->at(histo_index).pt(),weight);
+//           Hist("MeasuredCSV1")->Fill(maxcsv,weight);
         }
         else
         {
           if (nbtags==2)
           {
-            Hist("MeasuredMtt2")->Fill(mtt,weight);
-            Hist("MeasuredJECMtt2")->Fill(mttJEC,weight);
-            Hist("MeasuredHT2")->Fill(getHT50(bcc),weight);
-            Hist("MeasuredpT2")->Fill(bcc->topjets->at(histo_index).pt(),weight);
-            Hist("MeasuredCSV2")->Fill(getMaxCSV(bcc->topjets->at(histo_index)),weight);
+            Hist("MeasuredMtt2")->Fill(mtt,weight*htt_weight);
+	    Hist("MeasuredJet1pT2")->Fill(bcc->topjets->at(ileading).pt(),weight*htt_weight);
+	    Hist("MeasuredJet2pT2")->Fill(bcc->topjets->at(isubleading).pt(),weight*htt_weight);
+	    Hist("MeasuredJet1eta2")->Fill(bcc->topjets->at(ileading).eta(),weight*htt_weight);
+	    Hist("MeasuredJet2eta2")->Fill(bcc->topjets->at(isubleading).eta(),weight*htt_weight);
+	    Hist("MeasuredJet1csv2")->Fill(leadingcsv,weight*htt_weight);
+	    Hist("MeasuredJet2csv2")->Fill(subleadingcsv,weight*htt_weight);
+	    
+//             Hist("MeasuredJECMtt2")->Fill(mttJEC,weight);
+//             Hist("MeasuredHT2")->Fill(ht50,weight);
+//             Hist("MeasuredpT2")->Fill(bcc->topjets->at(histo_index).pt(),weight);
+//             Hist("MeasuredCSV2")->Fill(maxcsv,weight);
           }
         }
       }
     }
     
-    if(HepTopTag(bcc->toptagjets->at(0))&&HepTopTag(bcc->toptagjets->at(1)))
-    {
-      int nbtags=0;
-      if (subJetBTag(bcc->toptagjets->at(0),e_CSVM)>0) nbtags++;
-      if (subJetBTag(bcc->toptagjets->at(1),e_CSVM)>0) nbtags++;
-      double mtt=getMtt(bcc->toptagjets->at(0),bcc->toptagjets->at(1));
-      double mttJEC=(bcc->toptagjets->at(0).v4()+bcc->toptagjets->at(1).v4()).M();
-      Hist("MeasuredHTTMtt012")->Fill(mtt,weight);
-      Hist("MeasuredHTTJECMtt012")->Fill(mttJEC,weight);
-      TRandom3 rand(abs(static_cast<int>(sin(bcc->topjets->at(0).subjets().at(0).eta()*1000000)*100000)));
-      unsigned int histo_index;
-      if (rand.Uniform(1.)<=0.5) histo_index=0; else histo_index=1;
-      Hist("MeasuredHTTHT012")->Fill(getHT50(bcc),weight);
-      Hist("MeasuredHTTpT012")->Fill(bcc->toptagjets->at(histo_index).pt(),weight);
-      Hist("MeasuredHTTCSV012")->Fill(getMaxCSV(bcc->toptagjets->at(histo_index)),weight);
-      if (nbtags==0)
-      {
-        Hist("MeasuredHTTMtt0")->Fill(mtt,weight);
-        Hist("MeasuredHTTJECMtt0")->Fill(mttJEC,weight);
-        Hist("MeasuredHTTHT0")->Fill(getHT50(bcc),weight);
-        Hist("MeasuredHTTpT0")->Fill(bcc->toptagjets->at(histo_index).pt(),weight);
-        Hist("MeasuredHTTCSV0")->Fill(getMaxCSV(bcc->toptagjets->at(histo_index)),weight);
-      }
-      else
-      {
-        if (nbtags==1)
-        {
-          Hist("MeasuredHTTMtt1")->Fill(mtt,weight);
-          Hist("MeasuredHTTJECMtt1")->Fill(mttJEC,weight);
-          Hist("MeasuredHTTHT1")->Fill(getHT50(bcc),weight);
-          Hist("MeasuredHTTpT1")->Fill(bcc->toptagjets->at(histo_index).pt(),weight);
-          Hist("MeasuredHTTCSV1")->Fill(getMaxCSV(bcc->toptagjets->at(histo_index)),weight);
-        }
-        else
-        {
-          if (nbtags==2)
-          {
-            Hist("MeasuredHTTMtt2")->Fill(mtt,weight);
-            Hist("MeasuredHTTJECMtt2")->Fill(mttJEC,weight);
-            Hist("MeasuredHTTHT2")->Fill(getHT50(bcc),weight);
-            Hist("MeasuredHTTpT2")->Fill(bcc->toptagjets->at(histo_index).pt(),weight);
-            Hist("MeasuredHTTCSV2")->Fill(getMaxCSV(bcc->toptagjets->at(histo_index)),weight);
-          }
-        }
-      }
+//     if(HepTopTag(bcc->toptagjets->at(0))&&HepTopTag(bcc->toptagjets->at(1)))
+//     {
+//       int nbtags=0;
+//       if (subJetBTag(bcc->toptagjets->at(0),e_CSVM)>0) nbtags++;
+//       if (subJetBTag(bcc->toptagjets->at(1),e_CSVM)>0) nbtags++;
+//       double mtt=getMtt(bcc->toptagjets->at(0),bcc->toptagjets->at(1));
+//       double mttJEC=(bcc->toptagjets->at(0).v4()+bcc->toptagjets->at(1).v4()).M();
+//       Hist("MeasuredHTTMtt012")->Fill(mtt,weight);
+//       Hist("MeasuredHTTJECMtt012")->Fill(mttJEC,weight);
+//       TRandom3 rand(abs(static_cast<int>(sin(bcc->topjets->at(0).subjets().at(0).eta()*1000000)*100000)));
+//       unsigned int histo_index;
+//       if (rand.Uniform(1.)<=0.5) histo_index=0; else histo_index=1;
+//       Hist("MeasuredHTTHT012")->Fill(getHT50(bcc),weight);
+//       Hist("MeasuredHTTpT012")->Fill(bcc->toptagjets->at(histo_index).pt(),weight);
+//       Hist("MeasuredHTTCSV012")->Fill(getMaxCSV(bcc->toptagjets->at(histo_index)),weight);
+//       if (nbtags==0)
+//       {
+//         Hist("MeasuredHTTMtt0")->Fill(mtt,weight);
+//         Hist("MeasuredHTTJECMtt0")->Fill(mttJEC,weight);
+//         Hist("MeasuredHTTHT0")->Fill(getHT50(bcc),weight);
+//         Hist("MeasuredHTTpT0")->Fill(bcc->toptagjets->at(histo_index).pt(),weight);
+//         Hist("MeasuredHTTCSV0")->Fill(getMaxCSV(bcc->toptagjets->at(histo_index)),weight);
+//       }
+//       else
+//       {
+//         if (nbtags==1)
+//         {
+//           Hist("MeasuredHTTMtt1")->Fill(mtt,weight);
+//           Hist("MeasuredHTTJECMtt1")->Fill(mttJEC,weight);
+//           Hist("MeasuredHTTHT1")->Fill(getHT50(bcc),weight);
+//           Hist("MeasuredHTTpT1")->Fill(bcc->toptagjets->at(histo_index).pt(),weight);
+//           Hist("MeasuredHTTCSV1")->Fill(getMaxCSV(bcc->toptagjets->at(histo_index)),weight);
+//         }
+//         else
+//         {
+//           if (nbtags==2)
+//           {
+//             Hist("MeasuredHTTMtt2")->Fill(mtt,weight);
+//             Hist("MeasuredHTTJECMtt2")->Fill(mttJEC,weight);
+//             Hist("MeasuredHTTHT2")->Fill(getHT50(bcc),weight);
+//             Hist("MeasuredHTTpT2")->Fill(bcc->toptagjets->at(histo_index).pt(),weight);
+//             Hist("MeasuredHTTCSV2")->Fill(getMaxCSV(bcc->toptagjets->at(histo_index)),weight);
+//           }
+//         }
+//       }
       
       //AK5 code
 //       vector<unsigned int> ak5indices;
@@ -588,7 +855,7 @@ void BackgroundHists::Fill()
 //           }
 //         }
 //       }
-    }
+//    }
     
   }
   

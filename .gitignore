@@ -3,5 +3,7 @@ src/ZprimeFullHadAnalysis_Dict.cxx
 src/ZprimeFullHadAnalysis_Dict.h
 *~
 *.pdf
+*.png
 *.root
 *.txt
+._*
