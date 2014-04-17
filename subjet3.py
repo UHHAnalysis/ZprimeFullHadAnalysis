@@ -877,6 +877,10 @@ sf_cutflow3_eta1p0to2p4=scalefactor2(
 )[5]
 
 
+print 'sf_eta2p4'
+for i in range(2,len(SF_bins)):
+  print ScaleFactorsNames[i-1],"%.2f" % sf_eta[3].GetBinContent(i),"%.2f" % sf_eta[3].GetBinError(i)
+  
 print 'sf_eta1p0'
 for i in range(2,len(SF_bins)):
   print ScaleFactorsNames[i-1],"%.2f" % sf_eta1p0.GetBinContent(i),"%.2f" % sf_eta1p0.GetBinError(i)

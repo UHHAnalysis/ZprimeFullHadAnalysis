@@ -8,13 +8,14 @@ print 'setup'
 gROOT.SetBatch()
 
 path_base='/nfs/dust/cms/user/usaiem/ZprimeFullHad/ZprimeFullHadCycle.MC.'
-sample_list=['ZP500W5','ZP750W7p5','ZP1000W10','ZP1250W12p5','ZP1500W15','ZP2000W20']
+sample_list=['ZP750W7p5','ZP1000W10','ZP1250W12p5','ZP1500W15','ZP2000W20']#'ZP500W5',
 #sample_list=['ZP2000W20']
 colors=[kRed,kBlue,kGreen,kBlack,kOrange,6]
-histo_list=['SumOfTopCandidatesPt2','SumOfTopCandidatesPt','LeadingTopCandidatePt','SubLeadingTopCandidatePt','HT50']
-cut_list=["Trigger1Histos","Trigger2Histos","Trigger3Histos","Trigger4Histos","Trigger5Histos"]
+histo_list=['SumOfTopCandidatesPt2','SubLeadingTopCandidatePt2','HT50','pT4']#,'SumOfTopCandidatesPt','LeadingTopCandidatePt','SubLeadingTopCandidatePt','HT50'
+histo_list2=['SumOfTopCandidatesPt2','SubLeadingTopCandidatePt2','HT_{50} [GeV]','pT4']
+cut_list=["Trigger1Histos","Trigger2Histos","Trigger3Histos"]#,"Trigger4Histos","Trigger5Histos"
 #trigger_names=["HLT_SixJet50","HLT_QuadJet50","HLT_QuadJet70","HLT_QuadJet80","HLT_QuadJet90"]
-trigger_names=["HLT_HT750","HLT_QuadJet50","HLT_HT750||HLT_QuadJet50","a","a"]
+trigger_names=["HLT_HT750","HLT_QuadJet50","HLT_HT750||HLT_QuadJet50"]#,"a","a"
   #["HLT_DiJet80_DiJet60_DiJet20","HLT_QuadJet90","HLT_SixJet50","HLT_DiPFJet80_DiPFJet30_BTagCSVd07d05d03","HLT_DiJet80Eta2p6_BTagIP3DFastPVLoose_v4"]
 #cut_list#["HLT_HT750_v3","HLT_BTagMu_Jet300_Mu5_v3","HLT_Jet160Eta2p4_Jet120Eta2p4_DiBTagIP3DFastPVLoose_v4","HLT_DiPFJet80_DiPFJet30_BTagCSVd07d05_v1","HLT_DiJet80Eta2p6_BTagIP3DFastPVLoose_v4"]
 base_cut="BaseHistos"
@@ -57,6 +58,7 @@ def getEff2(histo_index,cut_index):
     eff_histos[-1].Divide(trigger_hist,base_hist,1,1,'B')
     eff_histos[-1].SetStats(kFALSE)
     eff_histos[-1].SetLineWidth(1)
+    eff_histos[-1].GetXaxis().SetTitle(histo_list2[histo_index])
     eff_histos[-1].SetLineColor(colors[sample_index])
     eff_histos[-1].SetMaximum(1.01)
     eff_histos[-1].SetMinimum(0.)

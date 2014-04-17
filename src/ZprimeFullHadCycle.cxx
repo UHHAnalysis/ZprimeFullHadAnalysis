@@ -347,6 +347,7 @@ void ZprimeFullHadCycle::ExecuteEvent( const SInputData& id, Double_t weight) th
   //if (bcc->topjets->size()>=2){std::cout<<"p "<<std::endl;}
 
 std::vector<int> Indices;  
+Indices={0,1};
 /*
   Indices=getTopJetsIndices(bcc,0,0,0,0,0,0,e_CSVM,e_CSVM,0.6,200.0);
   if (checkIndices(Indices)){
@@ -430,17 +431,67 @@ std::vector<int> Indices;
 //   }
 //   if (!(Index1!=-1 && Index2!=-1 && Index1!=Index2)) return;
 
+//   bool two_matched_pt=false;
+//   int n=0;
+//   int nfilt=0;
+//   for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
+//   {
+//     if (bcc->toptagjets->at(i).pt()>=150.0) n++;//150
+//   }
+//   
+//   for (unsigned int i=0; i<bcc->topjets->size(); i++)
+//   {
+//     if ( HepTopTagMatchPt(bcc->topjets->at(i))>=150.0 ) nfilt++;//150
+//   }
+//   
+//   if (bcc->topjets->size()>1)
+//   {
+//     if ( ( HepTopTagMatchPt(bcc->topjets->at(0))>=150.0 ) && ( HepTopTagMatchPt(bcc->topjets->at(1))>=150.0 ) ) two_matched_pt=true;
+//   }
+//   
+
+
+
+
+
+
+
+  bool HT750_trigger = Trigger1Sel->passSelection();
+  bool QuadJet50_trigger = Trigger2Sel->passSelection();
+//   
+//    
+// 
+   bool cms_signal_region = false;
+   bool cms_analysis_region = false;
+   if (bcc->higgstagjets->size()>1)
+   {
+    if (bcc->higgstagjets->at(0).pt()>=400 && bcc->higgstagjets->at(1).pt()>=400 && TopTag(bcc->higgstagjets->at(0)) && TopTag(bcc->higgstagjets->at(1)) && bcc->higgstagjets->at(0).deltaPhi(bcc->higgstagjets->at(1))>2.1) cms_signal_region=true;
+    if (bcc->higgstagjets->at(0).pt()>=400 && bcc->higgstagjets->at(1).pt()>=400) cms_analysis_region=true;
+   }
+   cms_analysis_region = cms_analysis_region && HT750_trigger;
+   cms_signal_region = cms_signal_region && HT750_trigger;
+   
+
+   
+   bool HT_cut = getHT50(bcc)>=800;
+   bool QuadJet_cut = false;
+    QuadJet_cut = true;
+//    if (bcc->jets->size()>3)
+//    {
+//      if (bcc->jets->at(4).pt()>=60) QuadJet_cut=true;
+//    }
+   
   bool two_matched_pt=false;
   int n=0;
   int nfilt=0;
   for (unsigned int i=0; i<bcc->toptagjets->size(); i++)
   {
-    if (bcc->toptagjets->at(i).pt()>=200.0) n++;//150
+    if (bcc->toptagjets->at(i).pt()>=200.0) n++;
   }
   
   for (unsigned int i=0; i<bcc->topjets->size(); i++)
   {
-    if ( HepTopTagMatchPt(bcc->topjets->at(i))>=200.0 ) nfilt++;//150
+    if ( HepTopTagMatchPt(bcc->topjets->at(i))>=200.0 ) nfilt++;
   }
   
   if (bcc->topjets->size()>1)
@@ -448,22 +499,57 @@ std::vector<int> Indices;
     if ( ( HepTopTagMatchPt(bcc->topjets->at(0))>=200.0 ) && ( HepTopTagMatchPt(bcc->topjets->at(1))>=200.0 ) ) two_matched_pt=true;
   }
   
-  if ( (n>1) && (nfilt==2) && (two_matched_pt) )
+  bool good_number_of_jets = (n>1) && (nfilt==2) && (two_matched_pt);
+  
+  
+  bool HT_region = /*HT750_trigger &&*/ (!cms_analysis_region) /*&& HT_cut*/ && good_number_of_jets;
+  
+  bool Quad_region =/* QuadJet50_trigger &&*/ ( !HT_region ) && ( !cms_analysis_region ) /*&& QuadJet_cut*/ && good_number_of_jets;
+
+
+   bool htt_analysis_sel = good_number_of_jets;
+   bool htt_signal_sel = false; 
+   if (htt_analysis_sel)
+   {
+    if  (HepTopTagWithMatch(bcc->topjets->at(0))&&HepTopTagWithMatch(bcc->topjets->at(1)))
+    {
+      htt_signal_sel = true;
+    }
+   }
+
+
+
+
+
+  if (bcc->topjets->size()>1 /*(n>1) && (nfilt==2) && (two_matched_pt)*/ )
   {
-    if(HepTopTagWithMatch(bcc->topjets->at(0))&&HepTopTagWithMatch(bcc->topjets->at(1)))
+    if(HepTopTagWithMatch(bcc->topjets->at(0))&&HepTopTagWithMatch(bcc->topjets->at(1))&&HT_region)
+// if (HT_region)
     {
 
 
-      Indices={0,1};
+      
       ((ZprimeFullHadHists*)BaseHistos)->Fill2(Indices);
       if (Trigger1Sel->passSelection()) ((ZprimeFullHadHists*)Trigger1Histos)->Fill2(Indices);
       if (Trigger2Sel->passSelection()) ((ZprimeFullHadHists*)Trigger2Histos)->Fill2(Indices);    
       if (Trigger1Sel->passSelection() || Trigger2Sel->passSelection()) ((ZprimeFullHadHists*)Trigger3Histos)->Fill2(Indices);
-      if (Trigger4Sel->passSelection()/*Trigger5Sel->passSelection() || Trigger2Sel->passSelection()*/) ((ZprimeFullHadHists*)Trigger4Histos)->Fill2(Indices);
-      if (Trigger5Sel->passSelection()) ((ZprimeFullHadHists*)Trigger5Histos)->Fill2(Indices);
+    //  if (Trigger4Sel->passSelection()/*Trigger5Sel->passSelection() || Trigger2Sel->passSelection()*/) ((ZprimeFullHadHists*)Trigger4Histos)->Fill2(Indices);
+    //  if (Trigger5Sel->passSelection()) ((ZprimeFullHadHists*)Trigger5Histos)->Fill2(Indices);
     }
   
+ }
+  
+  
+  if (Quad_region && htt_analysis_sel)
+  {
+    ((ZprimeFullHadHists*)Trigger4Histos)->Fill2(Indices);
   }
+  
+  if (Quad_region && htt_signal_sel)
+  {
+    ((ZprimeFullHadHists*)Trigger5Histos)->Fill2(Indices);
+  }
+  
  /* if(calc->GetJets()->size()>=12){
     std::cout << "run: " << calc->GetRunNum() << "   lb: " << calc->GetLumiBlock() << "  event: " << calc->GetEventNum() << "   N(jets): " << calc->GetJets()->size() << std::endl;
   }

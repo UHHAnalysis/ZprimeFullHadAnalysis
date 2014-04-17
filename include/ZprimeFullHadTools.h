@@ -70,12 +70,14 @@ public:
    
    void setVersion(string s);
    void setEventNumber(unsigned int evt);
+   void setRegion(string r);
 private:
-  TFile* f;//,*f_pari,*f_dispari;
-  TH2F* mistag,*mistagmc;
-  TH1F* shape;
+  TFile *f;//,*f_pari,*f_dispari;
+  TH2F *mistag,*mistagmc,*mjmistag,*mjmistagmc;
+  TH1F *shape,*mjshape;
   string version;
   unsigned int event_number;
+  string region;
 }; // class BackgroundHists
 
 // class RapidityCutSelection: public SelectionModule {

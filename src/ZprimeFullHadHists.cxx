@@ -67,17 +67,20 @@ void ZprimeFullHadHists::Init()
 
   // primary vertices
   Book( TH1F( "N_pv", "N^{PV}", 50, 0, 50 ) );
-  Book( TH1F( "HT50", "HT", 40, 0, 2000 ) );
+  Book( TH1F( "HT50", "HT", 100, 0, 2000 ) );
+  Book( TH1F( "pT4", "pT4", 100, 0, 500 ) );
 //   Book( TH1F( "N_events_perLumiBin", "N^{evt}", 24, 0, 24 ) );
 //   Book( TH1F( "N_pv_perLumiBin", "N^{PV}", 24, 0, 24 ) );
 
   Book( TH1F( "Ntopjets", "Ntopjets", 10, 0, 10 ) );
+  Book( TH1F( "Njets50", "Njets", 20, 0, 20 ) );
   Book( TH1F( "Njets", "Njets", 20, 0, 20 ) );
   Book( TH2F( "Njetsvspt", "Njetsvspt", 20, 0, 20 ,50,0,1000) );
   Book( TH1F( "SumOfTopCandidatesPt", "Sum of Jet pT (Top Tag candidates) [GeV];Sum of Jet pT (Top Tag candidates) [GeV];Events", 15, 0, 1500 ) );
   Book( TH1F( "SumOfTopCandidatesPt2", "Sum of Jet pT (Top Tag candidates) [GeV];Sum of Jet pT (Top Tag candidates) [GeV];Events", 100, 0, 2000 ) );
   Book( TH1F( "LeadingTopCandidatePt", "Leading Jet pT (Top Tag candidate) [GeV];Leading Jet pT (Top Tag candidate) [GeV];Events", 15, 0, 1500 ) );
   Book( TH1F( "SubLeadingTopCandidatePt", "Subleading Jet pT (Top Tag candidate) [GeV];Subleading Jet pT (Top Tag candidate) [GeV];Events", 15, 0, 1500 ) );
+  Book( TH1F( "SubLeadingTopCandidatePt2", "Subleading Jet pT (Top Tag candidate) [GeV];Subleading Jet pT (Top Tag candidate) [GeV];Events", 150, 0, 1500 ) );
   Book( TH1F( "TopCandidate1Pt", "Jet 1 pT (Top Tag candidate) [GeV];Jet 1 pT (Top Tag candidate) [GeV];Events", 30, 0, 1500 ) );
   Book( TH1F( "TopCandidate2Pt", "Jet 2 pT (Top Tag candidate) [GeV];Jet 2 pT (Top Tag candidate) [GeV];Events", 30, 0, 1500 ) );
   Book( TH1F( "Mtt", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
@@ -194,7 +197,12 @@ void ZprimeFullHadHists::Fill2(std::vector<int> Indices, string version, bool us
   {
     if (bcc->jets->at(ii).pt()>50.0) nj++;
   }
-  Hist("Njets")->Fill(nj,weight);
+  Hist("Njets50")->Fill(nj,weight);
+  Hist("Njets")->Fill(bcc->jets->size(),weight);
+  if (bcc->jets->size()>3)
+  {
+    Hist("pT4")->Fill(bcc->jets->at(3).pt(),weight);
+  }
   if(TopJetIndices[0]>=0)
   {
     Hist("ptNevts")->Fill(collection->at(TopJetIndices[0]).pt(),weight);
@@ -221,6 +229,7 @@ void ZprimeFullHadHists::Fill2(std::vector<int> Indices, string version, bool us
     Hist("SumOfTopCandidatesPt")->Fill(collection->at(TopJetIndices[0]).pt()+collection->at(TopJetIndices[1]).pt(),weight*htt_weight);
     
     Hist("SumOfTopCandidatesPt2")->Fill(bcc->topjets->at(TopJetIndices[0]).pt()+bcc->topjets->at(TopJetIndices[1]).pt(),weight*htt_weight);
+    Hist("SubLeadingTopCandidatePt2")->Fill(bcc->topjets->at(TopJetIndices[1]).pt(),weight*htt_weight);
     
     if ( collection->at(TopJetIndices[0]).pt() > collection->at(TopJetIndices[1]).pt() )
     {

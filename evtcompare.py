@@ -37,6 +37,9 @@ for i in range(len(intersection_sorted)):
   for j in range(last_index,len(slist1)):
     if intersection_sorted[i][0]==slist1[j][0] and intersection_sorted[i][1]==slist1[j][1] and intersection_sorted[i][2]==slist1[j][2]:
       print slist3[j]
+      #print slist1[j]
+      #print intersection_sorted[i]
+      #print 'bla'
       last_index=j
       break
 #cnt=0

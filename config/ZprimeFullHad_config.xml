@@ -71,10 +71,10 @@
 <InputTree Name="AnalysisTree" /> 
 </InputData>-->
 		    
-<InputData Lumi="238028" NEventsMax="-1" Type="MC" Version="ZP500W5" Cacheable="True">
+<!--<InputData Lumi="238028" NEventsMax="-1" Type="MC" Version="ZP500W5" Cacheable="True">
 &ZP500W5;
 <InputTree Name="AnalysisTree" /> 
-</InputData>
+</InputData>-->
 
 <!--<InputData Lumi="229767" NEventsMax="-1" Type="MC" Version="ZP500W50" Cacheable="True">
 &ZP500W50;
@@ -131,10 +131,10 @@
 <InputTree Name="AnalysisTree" /> 
 </InputData>-->
 
-<InputData Lumi="96371" NEventsMax="-1" Type="MC" Version="ZP3000W30" Cacheable="True">
+<!--<InputData Lumi="96371" NEventsMax="-1" Type="MC" Version="ZP3000W30" Cacheable="True">
 &ZP3000W30;
 <InputTree Name="AnalysisTree" /> 
-</InputData>
+</InputData>-->
 
 <!--<InputData Lumi="200810" NEventsMax="-1" Type="MC" Version="ZP3000W300" Cacheable="True">
 &ZP3000W300;
@@ -205,6 +205,7 @@
 		   <Item Name="TopTagJetCollection" Value="goodPatJetsCAHEPTopTagPFPacked" />
 		   <Item Name="TopJetCollectionGen" Value="caHEPTopTagGen" />
 		   <Item Name="GenParticleCollection" Value="GenParticles" /> 
+		   <Item Name="HiggsTagJetCollection" Value="goodPatJetsCATopTagPFPacked" />
 		      
 <!--		      <Item Name="PU_Filename_MC" Value="/scratch/hh/dust/naf/cms/user/usai/ZprimeFullHad/PileUpHistoCycle" />
 		      <Item Name="PU_Filename_Data" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/PileUpHistos/MyDataPileupHistogram_206745.root" />
@@ -228,6 +229,7 @@
 		   <Item Name="JECJetCollection" Value="AK5PFchs" />
 		   <Item Name="JECTopJetCollection" Value="AK7PFchs" />
 		   <Item Name="JECTopTagJetCollection" Value="AK7PFchs" />
+		   <Item Name="JECHiggsTagJetCollection" Value="AK7PFchs" />
 		   
 		   <!-- this would perform systematic variations of the jet energy corrections in the down direction:
 		   <Item Name="SystematicUncertainty" Value="JEC" />
