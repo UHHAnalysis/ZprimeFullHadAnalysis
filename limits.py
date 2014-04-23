@@ -37,11 +37,11 @@ process_list_qcd=['BackgroundCycle.MC.QCD_HT-1000ToInf.root','BackgroundCycle.MC
 process_list_data=['BackgroundCycle.DATA.MJDATAB.root','BackgroundCycle.DATA.MJDATAC.root','BackgroundCycle.DATA.MJDATAD.root']
 #process_list_data=['BackgroundCycle.DATA.MJDATAD.root']
 systematics=['','_bcup','_bcdown','_lightup','_lightdown','PScaleUp','PScaleDown','_httup','_httdown','_jecup','_jecdown']#,'_jerup','_jerdown']#]
-theta_sys=['','__btagbc__plus','__btagbc__minus','__btaglight__plus','__btaglight__minus','__q2__plus','__q2__minus','__htt__plus','__htt__minus','__jec__up','__jec__down']#,'__jer__up','__jer__down']
+theta_sys=['','__btagbc__plus','__btagbc__minus','__btaglight__plus','__btaglight__minus','__q2__plus','__q2__minus','__htt__plus','__htt__minus','__jec__plus','__jec__minus']#,'__jer__plus','__jer__minus']
 ttbar_only_sys=['PScaleUp','PScaleDown']
-theta_signal=['Zprime500','Zprime500w','Zprime750','Zprime750w','Zprime1000','Zprime1000w','Zprime1250','Zprime1250w','Zprime1500','Zprime1500w','Zprime2000','Zprime2000w','Zprime3000','Zprime3000w','Zprime4000','Zprime4000w',"RSG700","RSG1000","RSG1200","RSG1400","RSG1500","RSG1600","RSG1800","RSG2000","RSG2500","RSG3000","RSG3500","RSG4000"]
+theta_signal=['Zprime500','Zprime500w','Zprime750','Zprime750w','Zprime1000','Zprime1000w','Zprime1500','Zprime1500w','Zprime2000','Zprime2000w','Zprime3000','Zprime3000w','Zprime4000','Zprime4000w',"RSG700","RSG1000","RSG1200","RSG1400","RSG1500","RSG1600","RSG1800","RSG2000","RSG2500","RSG3000","RSG3500","RSG4000"]#,'Zprime1250','Zprime1250w'
 cyclename="BackgroundCycle.MC."
-process_namelist=["ZP500W5","ZP500W50","ZP750W7p5","ZP750W75","ZP1000W10","ZP1000W100","ZP1250W12p5","ZP1250W125","ZP1500W15","ZP1500W150","ZP2000W20","ZP2000W200","ZP3000W30","ZP3000W300","ZP4000W40","ZP4000W400","RSG700","RSG1000","RSG1200","RSG1400","RSG1500","RSG1600","RSG1800","RSG2000","RSG2500","RSG3000","RSG3500","RSG4000"]
+process_namelist=["ZP500W5","ZP500W50","ZP750W7p5","ZP750W75","ZP1000W10","ZP1000W100","ZP1500W15","ZP1500W150","ZP2000W20","ZP2000W200","ZP3000W30","ZP3000W300","ZP4000W40","ZP4000W400","RSG700","RSG1000","RSG1200","RSG1400","RSG1500","RSG1600","RSG1800","RSG2000","RSG2500","RSG3000","RSG3500","RSG4000"]#,"ZP1250W12p5","ZP1250W125"
 
 histo_name='Mtt'
 categories=['0btag','1btag','2btag']
@@ -495,19 +495,19 @@ if dothetafile:
     htdata_file.Get(htfolder+measuredmtt+bt).Clone(htnamebase+bt+uu+'DATA').Write()
     a=mjdata_file.Get(mjfolder+measuredmtt+bt).Clone(mjnamebase+bt+uu+'DATA')
     a.Scale(16.4/13.8)
-    a.Write()
+    #a.Write()
     bkg_histos[int(bt)][0].Clone(htnamebase+bt+uu+'qcd').Write()
     bkg_histos[int(bt)][1].Clone(htnamebase+bt+uu+'qcd'+uu+'misErr__plus').Write()
     bkg_histos[int(bt)][2].Clone(htnamebase+bt+uu+'qcd'+uu+'misErr__minus').Write()
     b=bkg_histos[int(bt)+3][0].Clone(mjnamebase+bt+uu+'qcd')
     b.Scale(16.4/13.8)
-    b.Write()
+    #b.Write()
     c=bkg_histos[int(bt)+3][1].Clone(mjnamebase+bt+uu+'qcd'+uu+'misErr__plus')
     c.Scale(16.4/13.8)
-    c.Write()
+    #c.Write()
     d=bkg_histos[int(bt)+3][2].Clone(mjnamebase+bt+uu+'qcd'+uu+'misErr__minus')
     d.Scale(16.4/13.8)
-    d.Write()
+    #d.Write()
     for isys in range(len(systematics)):
       ttf=TFile(path_base+cyclename+'TTbar'+systematics[isys]+'.root','READ')
       limitfile.cd()
@@ -515,7 +515,7 @@ if dothetafile:
       ee=ttf.Get(mjfolder+measuredmtt+bt).Clone(mjnamebase+bt+uu+'ttbar'+theta_sys[isys])
       ee.Scale(16.4/13.8)
       limitfile.cd()
-      ee.Write()
+      #ee.Write()
       if systematics[isys] in ttbar_only_sys:
 	continue
       for isgn in range(len(process_namelist)):
@@ -524,7 +524,7 @@ if dothetafile:
 	tmpf.Get(htfolder+measuredmtt+bt).Clone(htnamebase+bt+uu+theta_signal[isgn]+theta_sys[isys]).Write()
 	ff=tmpf.Get(mjfolder+measuredmtt+bt).Clone(mjnamebase+bt+uu+theta_signal[isgn]+theta_sys[isys])
 	ff.Scale(16.4/13.8)
-	ff.Write()
+	#ff.Write()
   
 if dolimits:
   print 'make theta root file'
