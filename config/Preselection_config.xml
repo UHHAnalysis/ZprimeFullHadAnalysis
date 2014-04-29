@@ -2044,9 +2044,9 @@
 <InputData Lumi="201420" NEventsMax="-1" Type="MC" Version="ZP1250W125" Cacheable="True">
 &ZP1250W125;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>-->
+</InputData>
 
-<!--<InputData Lumi="486109" NEventsMax="-1" Type="MC" Version="ZP1500W15" Cacheable="True">
+<InputData Lumi="486109" NEventsMax="-1" Type="MC" Version="ZP1500W15" Cacheable="True">
 &ZP1500W15;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -3464,7 +3464,7 @@
 <InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbar05" Cacheable="True">
 &TTbar05;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>
+</InputData>-->
 
 <InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbar06" Cacheable="True">
 &TTbar06;
@@ -3591,7 +3591,7 @@
 
 
 
-
+<!--
 <InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarPScaleUp00" Cacheable="True">
 &TTbarPScaleUp00;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
@@ -3693,7 +3693,7 @@
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>-->
 
- <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="RSG700" Cacheable="True">
+<!-- <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="RSG700" Cacheable="True">
 &RSG700;
 <InputTree Name="AnalysisTree" />
 <OutputTree Name="AnalysisTree" />
@@ -3753,7 +3753,7 @@
 &RSG4000;
 <InputTree Name="AnalysisTree" />
 <OutputTree Name="AnalysisTree" />
-</InputData>
+</InputData>-->
 
 
 		<UserConfig>
@@ -3770,9 +3770,11 @@
 		   <Item Name="TopTagJetCollection" Value="goodPatJetsCA15FilteredPFPacked"/>-->
 		   <Item Name="TopJetCollection" Value="goodPatJetsCA15FilteredPFPacked" />
 		   <Item Name="TopTagJetCollection" Value="goodPatJetsCAHEPTopTagPFPacked" />
-		   <Item Name="TopJetCollectionGen" Value="caHEPTopTagGen" />
+		   <!--<Item Name="TopJetCollectionGen" Value="caHEPTopTagGen" />-->
 		   <Item Name="GenParticleCollection" Value="GenParticles" />
  		   <Item Name="HiggsTagJetCollection" Value="goodPatJetsCATopTagPFPacked" />
+		   
+		   <Item Name="TopJetCollectionGen" Value="caFilteredGenJetsNoNu"/>
 		      
 		   <!-- 		      <Item Name="PU_Filename_Data" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/PileUpHistos/MyDataPileupHistogram_206745.root" /> -->
 		      <Item Name="PU_Filename_MC" Value="/nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle" />

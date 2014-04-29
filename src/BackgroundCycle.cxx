@@ -114,19 +114,19 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
   EventCalc* calc = EventCalc::Instance();
   BaseCycleContainer* bcc = calc->GetBaseCycleContainer();
   
-  Cleaner cleaner;
-    std::vector<TopJet> uncleaned_topjets;
-  for(unsigned int i=0; i<bcc->topjets->size(); ++i) {
-    uncleaned_topjets.push_back(bcc->topjets->at(i));
-  }
- 
-  if (m_sys_unc==e_subJER){
-    if (m_sys_var==e_Up) cleaner.ApplysubJERVariationUp();
-    if (m_sys_var==e_Down) cleaner.ApplysubJERVariationDown();
-  }
- 
-  if(!bcc->isRealData && bcc->topjets)
-cleaner.JetEnergyResolutionShifterSubjets();
+//   Cleaner cleaner;
+//     std::vector<TopJet> uncleaned_topjets;
+//   for(unsigned int i=0; i<bcc->topjets->size(); ++i) {
+//     uncleaned_topjets.push_back(bcc->topjets->at(i));
+//   }
+//  
+//   if (m_sys_unc==e_subJER){
+//     if (m_sys_var==e_Up) cleaner.ApplysubJERVariationUp();
+//     if (m_sys_var==e_Down) cleaner.ApplysubJERVariationDown();
+//   }
+//  
+//   if(!bcc->isRealData && bcc->topjets)
+// cleaner.JetEnergyResolutionShifterSubjets();
   
   
   bool IsRealData = calc->IsRealData();
@@ -179,8 +179,15 @@ cleaner.JetEnergyResolutionShifterSubjets();
   bool HT_region = HT750_trigger && (!cms_analysis_region) && HT_cut && good_number_of_jets;
   
   bool Quad_region = QuadJet50_trigger && ( !HT_region ) && ( !cms_analysis_region ) && QuadJet_cut && good_number_of_jets;
-  
+    
   string version(id.GetVersion().Data());
+  
+  ///////////
+  if ( version.find("TTbarPScaleUp")!=string::npos ) {calc->ProduceWeight( 0.992089 );}
+  if ( version.find("TTbarPScaleDown")!=string::npos ) {calc->ProduceWeight( 0.938204 );}
+  ///////////
+  
+  
   if (HT_region)
   {
     ((BackgroundHists*)HTDatasetHistos)->setVersion(id.GetVersion().Data());
@@ -206,8 +213,8 @@ cleaner.JetEnergyResolutionShifterSubjets();
   
   if ( version.find("TTbar")!=string::npos || version.find("ZP")!=string::npos || version.find("RSG")!=string::npos/*|| version.find("DATA")!=string::npos*/)
   {
-    if(HepTopTagWithMatch(bcc->topjets->at(0))&&HepTopTagWithMatch(bcc->topjets->at(1))) WriteOutputTree();
-    else throw SError( SError::SkipEvent ); 
+    if(HepTopTagWithMatch(bcc->topjets->at(0))&&HepTopTagWithMatch(bcc->topjets->at(1))) {WriteOutputTree();}
+    else {throw SError( SError::SkipEvent ); } 
   }
   else throw SError( SError::SkipEvent ); 
   
