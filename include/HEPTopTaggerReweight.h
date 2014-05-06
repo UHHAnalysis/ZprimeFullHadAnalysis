@@ -1,8 +1,9 @@
 #ifndef HEPTopTaggerReweight_H
 #define HEPTopTaggerReweight_H
 #include<vector>
+#include<string>
 
-
+using namespace std;
 
 /**
  *  @module to apply data-MC scale factors for b tagging
@@ -20,7 +21,7 @@ public:
     ~HEPTopTaggerReweight() {};
 
     ///return the weighted correction factor
-    double GetScaleWeight(std::vector<int> Indices);
+    double GetScaleWeight(std::vector<int> Indices, string type="");
 
 private:
                  

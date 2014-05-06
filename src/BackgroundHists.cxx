@@ -742,7 +742,21 @@ void BackgroundHists::Fill()
 	  double htt_weight=1.0;
 	  vector<int> TopJetIndices={0,1};
      /*if (version=="TTbarLept" || version=="TTbarSemi" || version=="TTbarHad")*/ 
-     if ((!IsRealData)&&(version.find("QCD")==string::npos))htt_weight=httr.GetScaleWeight(TopJetIndices);
+     if ((!IsRealData)&&(version.find("QCD")==string::npos))
+     {
+       if ( (!contains(version,"_httup")) && (!contains(version,"_httdown")) )
+       {
+	 htt_weight=httr.GetScaleWeight(TopJetIndices);
+       }
+       if (contains(version,"_httup"))
+       {
+	 htt_weight=httr.GetScaleWeight(TopJetIndices,"up");
+       }
+       if (contains(version,"_httdown"))
+       {
+	 htt_weight=httr.GetScaleWeight(TopJetIndices,"down");
+       }
+     }
       
       int nbtags=0;
      if (IsRealData)
@@ -752,8 +766,20 @@ void BackgroundHists::Fill()
      }
      else
      {
-       if (subJetBTag(bcc->topjets->at(0),e_CSVM,"mean","/nfs/dust/cms/user/usaiem/ZprimeFullHad/ZBTagEff.root")>0) nbtags++;
-       if (subJetBTag(bcc->topjets->at(1),e_CSVM,"mean","/nfs/dust/cms/user/usaiem/ZprimeFullHad/ZBTagEff.root")>0) nbtags++;
+       if( (!contains(version,"_bcup")) && (!contains(version,"_bcdown")) && (!contains(version,"_lightup")) && (!contains(version,"_lightdown")) )
+       {
+	 if (subJetBTag(bcc->topjets->at(0),e_CSVM,"mean","/nfs/dust/cms/user/usaiem/ZprimeFullHad/ZBTagEff.root")>0) nbtags++;
+	 if (subJetBTag(bcc->topjets->at(1),e_CSVM,"mean","/nfs/dust/cms/user/usaiem/ZprimeFullHad/ZBTagEff.root")>0) nbtags++;
+       }
+       else
+       {
+	 int pos=version.rfind("_");
+	 string btag_systematic=version.substr(pos+1);
+	 btag_systematic+="delta";
+	 if (subJetBTag(bcc->topjets->at(0),e_CSVM,btag_systematic,"/nfs/dust/cms/user/usaiem/ZprimeFullHad/ZBTagEff.root")>0) nbtags++;
+	 if (subJetBTag(bcc->topjets->at(1),e_CSVM,btag_systematic,"/nfs/dust/cms/user/usaiem/ZprimeFullHad/ZBTagEff.root")>0) nbtags++;
+	 
+       }
      }
 
       double mtt=getMtt(bcc->topjets->at(0),bcc->topjets->at(1));

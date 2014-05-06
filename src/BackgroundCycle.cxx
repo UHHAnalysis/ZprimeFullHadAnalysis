@@ -128,6 +128,26 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
 //   if(!bcc->isRealData && bcc->topjets)
 // cleaner.JetEnergyResolutionShifterSubjets();
   
+  string version(id.GetVersion().Data());
+  
+  std::vector<TopJet> uncleaned_topjets;
+  Cleaner cleaner;
+  if (contains(version,"_subjer"))
+  {
+    
+    for(unsigned int i=0; i<bcc->topjets->size(); ++i) {
+      uncleaned_topjets.push_back(bcc->topjets->at(i));
+    }
+    
+    if (m_sys_unc==e_subJER){
+      if (m_sys_var==e_Up) cleaner.ApplysubJERVariationUp();
+      if (m_sys_var==e_Down) cleaner.ApplysubJERVariationDown();
+    }
+    
+    if(!bcc->isRealData && bcc->topjets)
+      cleaner.JetEnergyResolutionShifterSubjets();
+  }
+  
   
   bool IsRealData = calc->IsRealData();
 
@@ -180,7 +200,6 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
   
   bool Quad_region = QuadJet50_trigger && ( !HT_region ) && ( !cms_analysis_region ) && QuadJet_cut && good_number_of_jets;
     
-  string version(id.GetVersion().Data());
   
   ///////////
   if ( version.find("TTbarPScaleUp")!=string::npos ) {calc->ProduceWeight( 0.992089 );}
@@ -210,10 +229,21 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
   
 
   
-  
   if ( version.find("TTbar")!=string::npos || version.find("ZP")!=string::npos || version.find("RSG")!=string::npos/*|| version.find("DATA")!=string::npos*/)
   {
-    if(HepTopTagWithMatch(bcc->topjets->at(0))&&HepTopTagWithMatch(bcc->topjets->at(1))) {WriteOutputTree();}
+    if(HepTopTagWithMatch(bcc->topjets->at(0))&&HepTopTagWithMatch(bcc->topjets->at(1))) 
+    {
+      if (contains(version,"_subjer"))
+      {
+	bcc->topjets->clear();
+	for(unsigned int i=0; i<uncleaned_topjets.size(); ++i) 
+	{
+	  bcc->topjets->push_back(uncleaned_topjets.at(i));
+	}
+      }
+      WriteOutputTree();
+      
+    }
     else {throw SError( SError::SkipEvent ); } 
   }
   else throw SError( SError::SkipEvent ); 

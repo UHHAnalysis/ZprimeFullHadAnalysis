@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #from subprocess import check_output,call
 from os import system
-from ROOT import TFile,gROOT,THStack,TCanvas,TLegend,kRed,kYellow,kWhite,TLatex,kBlue,TLine,TGraphAsymmErrors,kOrange,kGray
+from ROOT import TFile,gROOT,THStack,TCanvas,TLegend,kRed,kYellow,kWhite,TLatex,kBlue,TLine,TGraphAsymmErrors,kOrange,kGray,kBlack
 from sys import argv
 from math import sqrt
 
@@ -36,8 +36,8 @@ process_list_ttbar_lightdown=['BackgroundCycle.MC.TTbarHad_lightdown.root','Back
 process_list_qcd=['BackgroundCycle.MC.QCD_HT-1000ToInf.root','BackgroundCycle.MC.QCD_HT-250To500.root','BackgroundCycle.MC.QCD_HT-500To1000.root']#,'BackgroundCycle.MC.QCD_HT-100To250.root'
 process_list_data=['BackgroundCycle.DATA.MJDATAB.root','BackgroundCycle.DATA.MJDATAC.root','BackgroundCycle.DATA.MJDATAD.root']
 #process_list_data=['BackgroundCycle.DATA.MJDATAD.root']
-systematics=['','_bcup','_bcdown','_lightup','_lightdown','PScaleUp','PScaleDown','_httup','_httdown','_jecup','_jecdown']#,'_jerup','_jerdown']#]
-theta_sys=['','__btagbc__plus','__btagbc__minus','__btaglight__plus','__btaglight__minus','__q2__plus','__q2__minus','__htt__plus','__htt__minus','__jec__plus','__jec__minus']#,'__jer__plus','__jer__minus']
+systematics=['','_bcup','_bcdown','_lightup','_lightdown','PScaleUp','PScaleDown','_httup','_httdown','_subjecup','_subjecdown','_subjerup','_subjerdown','_topjecup','_topjecdown']#]
+theta_sys=['','__btagbc__plus','__btagbc__minus','__btaglight__plus','__btaglight__minus','__q2__plus','__q2__minus','__htt__plus','__htt__minus','__jec__plus','__jec__minus','__jer__plus','__jer__minus','__topjec__plus','__topjec__minus']
 ttbar_only_sys=['PScaleUp','PScaleDown']
 theta_signal=['Zprime500','Zprime500w','Zprime750','Zprime750w','Zprime1000','Zprime1000w','Zprime1250','Zprime1250w','Zprime1500','Zprime1500w','Zprime2000','Zprime2000w','Zprime3000','Zprime3000w','Zprime4000','Zprime4000w',"RSG700","RSG1000","RSG1200","RSG1400","RSG1500","RSG1600","RSG1800","RSG2000","RSG2500","RSG3000","RSG3500","RSG4000"]#
 cyclename="BackgroundCycle.MC."
@@ -512,6 +512,89 @@ if dothetafile:
       ttf=TFile(path_base+cyclename+'TTbar'+systematics[isys]+'.root','READ')
       limitfile.cd()
       ttf.Get(htfolder+measuredmtt+bt).Clone(htnamebase+bt+uu+'ttbar'+theta_sys[isys]).Write()
+      if isys%2==1:
+	ttf_mean=TFile(path_base+cyclename+'TTbar'+systematics[0]+'.root','READ')
+	ttf_up=TFile(path_base+cyclename+'TTbar'+systematics[isys]+'.root','READ')
+	ttf_down=TFile(path_base+cyclename+'TTbar'+systematics[isys+1]+'.root','READ')
+	mean_histo=ttf_mean.Get(htfolder+measuredmtt+bt).Clone(htnamebase+bt+uu+'ttbar'+theta_sys[isys]+'_mean')
+	up_histo=ttf_up.Get(htfolder+measuredmtt+bt).Clone(htnamebase+bt+uu+'ttbar'+theta_sys[isys]+'_up')
+	down_histo=ttf_down.Get(htfolder+measuredmtt+bt).Clone(htnamebase+bt+uu+'ttbar'+theta_sys[isys]+'_down')
+	legend=TLegend(0.65,0.5,0.945,0.895,"HEPTopTagger HT750")
+	legend.SetFillColor(kWhite)
+	legend.SetBorderSize(0)
+	legend.SetFillStyle(0)
+	canvas=TCanvas(htnamebase+bt+uu+'ttbar'+theta_sys[isys]+us+'canvas','',0,0,600,600)#,'',100,100)
+	canvas.Divide(1,2)
+	top_pad=canvas.GetPad(1)
+	bottom_pad=canvas.GetPad(2)
+	top_pad.SetPad( 0.0, 0.30, 1.0, 1.0 )
+	bottom_pad.SetPad( 0.0, 0.0, 1.0, 0.30 )
+	#top_pad.SetLeftMargin(0.18)#0.15
+	#top_pad.SetRightMargin(0.05)#0.01
+	#top_pad.SetTopMargin(0.13)#0.10
+	#top_pad.SetBottomMargin(0.15)#0.0
+	top_pad.SetLeftMargin(0.15)#
+	top_pad.SetRightMargin(0.05)#
+	top_pad.SetTopMargin(0.10)#
+	top_pad.SetBottomMargin(0.0)#
+	bottom_pad.SetLeftMargin(0.15)
+	bottom_pad.SetRightMargin(0.05)
+	bottom_pad.SetTopMargin(0.0)
+	bottom_pad.SetBottomMargin(0.45)
+	top_pad.cd()
+	up_histo.SetLineWidth(3)
+	down_histo.SetLineWidth(3)
+	mean_histo.SetLineWidth(3)
+	mean_histo.SetLineColor(kBlack)
+	up_histo.SetLineColor(kRed)
+	down_histo.SetLineColor(kBlue)
+	up_histo.GetYaxis().SetTitle('Events')
+	up_histo.GetYaxis().SetLabelSize(0.07)
+	up_histo.GetYaxis().SetTitleSize(0.07)
+	up_histo.GetYaxis().SetTitleOffset(1.15)
+	up_histo.GetXaxis().SetLabelSize(0.07)
+	up_histo.GetXaxis().SetTitleSize(0.07)
+	up_histo.GetXaxis().SetTitleOffset(1.0)
+	up_histo.SetStats(0)
+	up_histo.SetMinimum(0.1)
+	down_histo.SetStats(0)
+	mean_histo.SetStats(0)
+	up_histo.Draw('histo')
+	down_histo.Draw('histoSAME')
+	mean_histo.Draw('histoSAME')
+	legend.AddEntry(mean_histo,'normal','l')
+	legend.AddEntry(up_histo,'up','l')
+	legend.AddEntry(down_histo,'down','l')
+	legend.Draw()
+	bottom_pad.cd()
+	upratio_histo=up_histo.Clone(up_histo.GetName()+'ratio')
+	downratio_histo=down_histo.Clone(down_histo.GetName()+'ratio')
+	upratio_histo.Divide(mean_histo)
+	downratio_histo.Divide(mean_histo)
+	upratio_histo.SetStats(0)
+	downratio_histo.SetStats(0)
+	line1=TLine(upratio_histo.GetXaxis().GetXmin(),1.0,upratio_histo.GetXaxis().GetXmax(),1.0)
+	upratio_histo.GetYaxis().SetRangeUser(0.,2.3)
+	upratio_histo.GetYaxis().SetNdivisions(3,2,0)
+	#downratio_histo.GetYaxis().SetRangeUser(-0.25,2.25)
+	#downratio_histo.GetYaxis().SetNdivisions(3,2,0)
+	upratio_histo.SetTitle('') 
+	upratio_histo.GetYaxis().SetLabelSize(0.16333)
+	upratio_histo.GetYaxis().SetTitleSize(0.16333)
+	upratio_histo.GetYaxis().SetTitleOffset(0.4928)
+	upratio_histo.GetXaxis().SetLabelSize(0.16333)
+	upratio_histo.GetXaxis().SetTitleSize(0.16333)
+	upratio_histo.GetXaxis().SetTitleOffset(1.3)
+	upratio_histo.GetYaxis().SetTitle('Var/Nor')
+	upratio_histo.Draw('histo')
+	downratio_histo.Draw('histoSAME')
+	line1.SetLineStyle(2)
+	line1.Draw()
+	canvas.SaveAs('pdf/'+htnamebase+bt+uu+'ttbar'+theta_sys[isys]+'_comp.pdf')
+	ttf_mean.Close()
+	ttf_up.Close()
+	ttf_down.Close()
+	
       ee=ttf.Get(mjfolder+measuredmtt+bt).Clone(mjnamebase+bt+uu+'ttbar'+theta_sys[isys])
       ee.Scale(16.4/13.8)
       limitfile.cd()

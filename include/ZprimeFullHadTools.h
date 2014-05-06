@@ -145,6 +145,8 @@ bool variableMassHepTopTagWithMatch(TopJet topjet, double ptJetMin = 200., doubl
 bool PtHepTopTagWithMatch(TopJet t, float minimumpt);
 bool HepTopTagInverted_mw(TopJet topjet);
 
+bool contains(string s, string substring);
+
 //for HepTopTagger validation
 class NHadTopJetSelection2: public SelectionModule {
 public:

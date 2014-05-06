@@ -224,7 +224,7 @@ float getMtt(TopJet j1,TopJet j2)
   
   if(!allsubjets.isTimelike())
   {
-    return 0.0;
+    return -0.1;
   }
   
   else
@@ -395,7 +395,10 @@ bool MassAndPtCut(TopJet topjet,double minpt, double mlow, double mhigh)
 
 
 
-
+bool contains(string s, string substring)
+{
+ return s.find(substring)!=string::npos; 
+}
 
 
 bool MassHepTopTagWithMatch(TopJet topjet, double mlow, double mhigh)

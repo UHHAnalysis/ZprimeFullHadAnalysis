@@ -14,17 +14,17 @@
 
 	<Package Name="ZprimeFullHadAnalysis.par" /> 
 <!--   <Cycle Name="SemileptonicHepTopTagValSelCycle" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19708" > -->
-  <Cycle Name="SemileptonicHepTopTagValSelCycle"  RunMode="PROOF" ProofServer="pod://"  ProofWorkDir="/nfs/dust/cms/user/usaiem/PROOF/" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19700" >
+  <Cycle Name="SemileptonicHepTopTagValSelCycle"  RunMode="PROOF" ProofServer="lite://"  ProofWorkDir="/nfs/dust/cms/user/usaiem/PROOF/" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19700" >
  
      
 
-                 <InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="DATA" Cacheable="True">
+<!--                 <InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="DATA" Cacheable="True">
 		        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.DATA.DATAA.root"  Lumi="0.0"/>
 			<In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.DATA.DATAB.root"  Lumi="0.0"/>
 			<In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.DATA.DATAC.root"  Lumi="0.0"/>
 			<In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.DATA.DATAD.root"  Lumi="0.0"/>
 		        <InputTree Name="AnalysisTree" /> 
-		</InputData>
+		</InputData>-->
   
 
 	        <InputData Lumi="3593.1" NEventsMax="-1" Type="MC" Version="WJets1" Cacheable="True">
@@ -129,7 +129,7 @@
                 </InputData>
 		
 
-                 <InputData Lumi="466809.88372093" NEventsMax="-1" Type="MC" Version="TTbarlept" Cacheable="True">
+<!--                 <InputData Lumi="466809.88372093" NEventsMax="-1" Type="MC" Version="TTbarlept" Cacheable="True">
                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.TTbarlept.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
 
@@ -140,7 +140,7 @@
                        <In FileName="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle.MC.TTbarsemi.root"  Lumi="0.0"/>
                         <InputTree Name="AnalysisTree" /> 
 
-                </InputData>
+                </InputData>-->
 		
 <!--		<InputData Lumi="87714.031733116" NEventsMax="-1" Type="MC" Version="TTbarsemi_powheg" Cacheable="True">
                        <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/SemileptonicPreselectionCycle.MC.TTbar.root"  Lumi="0.0"/>
@@ -225,11 +225,12 @@
 		   <Item Name="JECTopTagJetCollection" Value="AK7PFchs" />
 		   
 		   <!--<Item Name="toppagptweight" Value="" />-->
-		   <Item Name="CSVOperatingPoint" Value="0.679" />
 		   <!--<Item Name="BTagEffi_Filename_MC" Value="/nfs/dust/cms/user/usaiem/preselection/SemileptonicPreselectionCycle" />-->
-		     <Item Name="BTagEffi_Filename_MC" Value="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle" />
-
-		   <Item Name="BTaggingMode" Value="default" />
+		   
+<!-- 		   <Item Name="CSVOperatingPoint" Value="0.679" /> questi-->
+<!-- 		     <Item Name="BTagEffi_Filename_MC" Value="/nfs/dust/cms/user/marchesi/gitSFrame/SemileptPre/SemileptonicPreselectionCycle" /> -->
+		     <Item Name="BTagEffi_Filename_MC" Value="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/SemileptonicPreselectionCycle" />
+<!-- 		   <Item Name="BTaggingMode" Value="default" /> -->
 		   
 		   <Item Name="LeptonScaleFactors" Value="MuonRunABCD 1" />
 		   <Item Name="LumiFilePath" Value="/nfs/dust/cms/user/peiffer/Analysis53X_v3/LumiFiles/" />
