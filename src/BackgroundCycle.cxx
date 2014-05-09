@@ -132,13 +132,12 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
   
   std::vector<TopJet> uncleaned_topjets;
   Cleaner cleaner;
+  for(unsigned int i=0; i<bcc->topjets->size(); ++i) {
+    uncleaned_topjets.push_back(bcc->topjets->at(i));
+  }
+    
   if (contains(version,"_subjer"))
   {
-    
-    for(unsigned int i=0; i<bcc->topjets->size(); ++i) {
-      uncleaned_topjets.push_back(bcc->topjets->at(i));
-    }
-    
     if (m_sys_unc==e_subJER){
       if (m_sys_var==e_Up) cleaner.ApplysubJERVariationUp();
       if (m_sys_var==e_Down) cleaner.ApplysubJERVariationDown();
@@ -146,6 +145,24 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
     
     if(!bcc->isRealData && bcc->topjets)
       cleaner.JetEnergyResolutionShifterSubjets();
+  }
+  
+  if (contains(version,"_topjer"))
+  { 
+    if (m_sys_unc==e_fatJER){
+      if (m_sys_var==e_Up) cleaner.ApplyfatJERVariationUp();
+      if (m_sys_var==e_Down) cleaner.ApplyfatJERVariationDown();
+    }
+    
+    if(!bcc->isRealData && bcc->topjets)
+      cleaner.JetEnergyResolutionShifterFat();
+  }
+  
+  if (contains(version,"_") && !contains(version,"QCD"))
+  {   
+     cleaner.NofatJERVariation();
+      if(!bcc->isRealData && bcc->topjets)
+	cleaner.JetEnergyResolutionShifterFat();  
   }
   
   
@@ -202,8 +219,8 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
     
   
   ///////////
-//   if ( version.find("TTbarPScaleUp")!=string::npos ) {calc->ProduceWeight( 0.992089 );}
-//   if ( version.find("TTbarPScaleDown")!=string::npos ) {calc->ProduceWeight( 0.938204 );}
+  if ( version.find("_scaleup")!=string::npos ) {calc->ProduceWeight( 0.992089 );}
+  if ( version.find("_scaledown")!=string::npos ) {calc->ProduceWeight( 0.938204 );}
   ///////////
   
   
@@ -233,14 +250,14 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
   {
     if(HepTopTagWithMatch(bcc->topjets->at(0))&&HepTopTagWithMatch(bcc->topjets->at(1))) 
     {
-      if (contains(version,"_subjer"))
-      {
+      //if (contains(version,"_subjer") || contains(version,"_topjer") )
+      //{
 	bcc->topjets->clear();
 	for(unsigned int i=0; i<uncleaned_topjets.size(); ++i) 
 	{
 	  bcc->topjets->push_back(uncleaned_topjets.at(i));
 	}
-      }
+      //}
       WriteOutputTree();
       
     }

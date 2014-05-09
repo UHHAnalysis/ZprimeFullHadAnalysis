@@ -69,12 +69,12 @@
 
 
 
-<!--
-	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP500w5" Cacheable="True">
+
+	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP500W5" Cacheable="True">
                         &ZP500W5;
 			<InputTree Name="AnalysisTree" /> 
 		</InputData> 
-	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP500w50" Cacheable="True">
+<!--	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP500w50" Cacheable="True">
                         &ZP500W50;
 			<InputTree Name="AnalysisTree" /> 
 		</InputData> 
@@ -180,11 +180,11 @@
  	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="RSG3500" Cacheable="True">
                         &RSG3500;
 			<InputTree Name="AnalysisTree" /> 
-		</InputData>-->
+		</InputData>
  	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="RSG4000" Cacheable="True">
                         &RSG4000;
 			<InputTree Name="AnalysisTree" /> 
-		</InputData>
+		</InputData>-->
 
 
 		<UserConfig>

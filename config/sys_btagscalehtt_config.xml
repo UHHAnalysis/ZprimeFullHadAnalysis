@@ -850,7 +850,7 @@
 
 <!--scale-->
 
-<InputData Lumi="64071.8" NEventsMax="-1" Type="MC" Version="TTbarPScaleUp" Cacheable="True">
+<InputData Lumi="64071.8" NEventsMax="-1" Type="MC" Version="TTbar_scaleup" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.TTbarPScaleUp00.root" Lumi="0.0"/>
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.TTbarPScaleUp01.root" Lumi="0.0"/> 
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.TTbarPScaleUp02.root" Lumi="0.0"/> 
@@ -864,7 +864,7 @@
 <InputTree Name="AnalysisTree" />
 </InputData>
 
-<InputData Lumi="64096.9" NEventsMax="-1" Type="MC" Version="TTbarPScaleDown" Cacheable="True">
+<InputData Lumi="64096.9" NEventsMax="-1" Type="MC" Version="TTbar_scaledown" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.TTbarPScaleDown00.root" Lumi="0.0"/>
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.TTbarPScaleDown01.root" Lumi="0.0"/> 
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.TTbarPScaleDown02.root" Lumi="0.0"/> 
