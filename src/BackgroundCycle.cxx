@@ -202,8 +202,8 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
     
   
   ///////////
-  if ( version.find("TTbarPScaleUp")!=string::npos ) {calc->ProduceWeight( 0.992089 );}
-  if ( version.find("TTbarPScaleDown")!=string::npos ) {calc->ProduceWeight( 0.938204 );}
+//   if ( version.find("TTbarPScaleUp")!=string::npos ) {calc->ProduceWeight( 0.992089 );}
+//   if ( version.find("TTbarPScaleDown")!=string::npos ) {calc->ProduceWeight( 0.938204 );}
   ///////////
   
   

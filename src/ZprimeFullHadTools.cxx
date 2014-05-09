@@ -224,7 +224,7 @@ float getMtt(TopJet j1,TopJet j2)
   
   if(!allsubjets.isTimelike())
   {
-    return -0.1;
+    return 0.0;
   }
   
   else

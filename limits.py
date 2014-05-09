@@ -574,7 +574,7 @@ if dothetafile:
 	upratio_histo.SetStats(0)
 	downratio_histo.SetStats(0)
 	line1=TLine(upratio_histo.GetXaxis().GetXmin(),1.0,upratio_histo.GetXaxis().GetXmax(),1.0)
-	upratio_histo.GetYaxis().SetRangeUser(0.,2.3)
+	upratio_histo.GetYaxis().SetRangeUser(0.4,1.65)
 	upratio_histo.GetYaxis().SetNdivisions(3,2,0)
 	#downratio_histo.GetYaxis().SetRangeUser(-0.25,2.25)
 	#downratio_histo.GetYaxis().SetNdivisions(3,2,0)

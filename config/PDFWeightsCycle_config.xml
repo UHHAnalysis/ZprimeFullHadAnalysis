@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JobConfiguration PUBLIC "" "JobConfig.dtd" [
+
+<!ENTITY ZP500W5 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP500W5.xml">
+<!ENTITY ZP500W50 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP500W50.xml">
+<!ENTITY ZP750W7p5 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP750W7p5.xml">
+<!ENTITY ZP750W75 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP750W75.xml">
+<!ENTITY ZP1000W10 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP1000W10.xml">
+<!ENTITY ZP1000W100 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP1000W100.xml">
+<!ENTITY ZP1250W12p5 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP1250W12p5.xml">
+<!ENTITY ZP1250W125 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP1250W125.xml">
+<!ENTITY ZP1500W15 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP1500W15.xml">
+<!ENTITY ZP1500W150 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP1500W150.xml">
+<!ENTITY ZP2000W20 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP2000W20.xml">
+<!ENTITY ZP2000W200 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP2000W200.xml">
+<!ENTITY ZP3000W30 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP3000W30.xml">
+<!ENTITY ZP3000W300 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP3000W300.xml">
+<!ENTITY ZP4000W40 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP4000W40.xml">
+<!ENTITY ZP4000W400 SYSTEM "/afs/desy.de/user/u/usaiem/code/SFrameAnalysis/config/Samples_TTBSM53/ZP4000W400.xml">
+
+<!ENTITY RSG700 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/RSG700.xml">
+<!ENTITY RSG1000 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/RSG1000.xml">
+<!ENTITY RSG1200 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/RSG1200.xml">
+<!ENTITY RSG1400 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/RSG1400.xml">
+<!ENTITY RSG1500 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/RSG1500.xml">
+<!ENTITY RSG1600 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/RSG1600.xml">
+<!ENTITY RSG1800 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/RSG1800.xml">
+<!ENTITY RSG2000 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/RSG2000.xml">
+<!ENTITY RSG2500 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/RSG2500.xml">
+<!ENTITY RSG3000 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/RSG3000.xml">
+<!ENTITY RSG3500 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/RSG3500.xml">
+<!ENTITY RSG4000 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/RSG4000.xml">
+
+<!ENTITY LQ200 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/LQToTTau_M200.xml">
+<!ENTITY LQ250 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/LQToTTau_M250.xml">
+<!ENTITY LQ300 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/LQToTTau_M300.xml">
+<!ENTITY LQ350 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/LQToTTau_M350.xml">
+<!ENTITY LQ400 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/LQToTTau_M400.xml">
+<!ENTITY LQ450 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/LQToTTau_M450.xml">
+<!ENTITY LQ500 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/LQToTTau_M500.xml">
+<!ENTITY LQ550 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/LQToTTau_M550.xml">
+<!ENTITY LQ600 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/LQToTTau_M600.xml">
+<!ENTITY LQ650 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/LQToTTau_M650.xml">
+<!ENTITY LQ700 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/LQToTTau_M700.xml">
+<!ENTITY LQ750 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/LQToTTau_M750.xml">
+<!ENTITY LQ800 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/LQToTTau_M800.xml">
+<!ENTITY LQ850 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/LQToTTau_M850.xml">
+<!ENTITY LQ900 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/LQToTTau_M900.xml">
+<!ENTITY LQ950 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/LQToTTau_M950.xml">
+<!ENTITY LQ1000 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/LQToTTau_M1000.xml">
+]>
+
+<JobConfiguration JobName="PDFWeightsCycleJob" OutputLevel="DEBUG">
+	<Library Name="libfastjet" />
+	<Library Name="libfastjettools" />
+	<Library Name="libSFrameTools" />
+        <Library Name="libJetMETObjects" />
+
+	<Library Name="libAnalysis" />
+        <Library Name="libNtuple" />
+
+
+	<Package Name="SFrameCore.par" />
+	<Package Name="SFramePlugIns.par" />
+	<Package Name="SFrameTools.par" />
+	<Package Name="Analysis.par" />
+
+	<Cycle Name="PDFWeightsCycle"  OutputDirectory="/afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis/" PostFix="" TargetLumi="1" > 
+
+
+
+<!--
+	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP500w5" Cacheable="True">
+                        &ZP500W5;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData> 
+	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP500w50" Cacheable="True">
+                        &ZP500W50;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData> 
+	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP750w7p5" Cacheable="True">
+                        &ZP750W7p5;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData> 
+	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP750w75" Cacheable="True">
+                        &ZP750W75;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData> 
+	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP1000w10" Cacheable="True">
+                        &ZP1000W10;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData> 
+	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP1000w100" Cacheable="True">
+                        &ZP1000W100;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData>  
+	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP1250w12p5" Cacheable="True">
+                        &ZP1250W12p5;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData> 
+	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP1250w125" Cacheable="True">
+                        &ZP1250W125;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData> 
+	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP1500w15" Cacheable="True">
+                        &ZP1500W15;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData> 
+	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP1500w150" Cacheable="True">
+                        &ZP1500W150;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData> 
+	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP2000w20" Cacheable="True">
+                        &ZP2000W20;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData> 
+	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP2000w200" Cacheable="True">
+                        &ZP2000W200;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData>  
+	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP3000w30" Cacheable="True">
+                        &ZP3000W30;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData> 
+	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP3000w300" Cacheable="True">
+                        &ZP3000W300;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData> 
+	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP4000w40" Cacheable="True">
+                        &ZP4000W40;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData> 
+	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="ZP4000w400" Cacheable="True">
+                        &ZP4000W400;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData> 
+
+
+
+ 	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="RSG700" Cacheable="True">
+                        &RSG700;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData>
+ 	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="RSG1000" Cacheable="True">
+                        &RSG1000;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData>
+		<InputData Lumi="1" NEventsMax="-1" Type="MC" Version="RSG1200" Cacheable="True">
+                        &RSG1200;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData>
+		<InputData Lumi="1" NEventsMax="-1" Type="MC" Version="RSG1400" Cacheable="True">
+                        &RSG1400;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData>
+ 	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="RSG1500" Cacheable="True">
+                        &RSG1500;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData>
+		<InputData Lumi="1" NEventsMax="-1" Type="MC" Version="RSG1600" Cacheable="True">
+                        &RSG1600;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData>
+		<InputData Lumi="1" NEventsMax="-1" Type="MC" Version="RSG1800" Cacheable="True">
+                        &RSG1800;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData>
+ 	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="RSG2000" Cacheable="True">
+                        &RSG2000;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData>
+ 	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="RSG2500" Cacheable="True">
+                        &RSG2500;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData>
+ 	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="RSG3000" Cacheable="True">
+                        &RSG3000;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData>
+ 	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="RSG3500" Cacheable="True">
+                        &RSG3500;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData>-->
+ 	        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="RSG4000" Cacheable="True">
+                        &RSG4000;
+			<InputTree Name="AnalysisTree" /> 
+		</InputData>
+
+
+		<UserConfig>
+		<Item Name="addGenInfo" Value="True" />
+		<Item Name="PDFName" Value="cteq66" /> 		
+
+		</UserConfig>
+	</Cycle>
+</JobConfiguration>
