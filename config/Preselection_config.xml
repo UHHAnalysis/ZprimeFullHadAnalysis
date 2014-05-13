@@ -2024,13 +2024,13 @@
 <InputData Lumi="216010" NEventsMax="-1" Type="MC" Version="ZP750W75" Cacheable="True">
 &ZP750W75;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>
+</InputData>-->
 
 <InputData Lumi="206846" NEventsMax="-1" Type="MC" Version="ZP1000W10" Cacheable="True">
 &ZP1000W10;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
-
+<!--
 <InputData Lumi="207430" NEventsMax="-1" Type="MC" Version="ZP1000W100" Cacheable="True">
 &ZP1000W100;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
@@ -3466,7 +3466,7 @@
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>-->
 
-<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbar06" Cacheable="True">
+<!--<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbar06" Cacheable="True">
 &TTbar06;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -3587,12 +3587,12 @@
 <InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbar29" Cacheable="True">
 &TTbar29;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>
+</InputData>-->
 
 
 
-<!--
-<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarPScaleUp00" Cacheable="True">
+
+<!--<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarPScaleUp00" Cacheable="True">
 &TTbarPScaleUp00;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -3774,7 +3774,8 @@
 		   <Item Name="GenParticleCollection" Value="GenParticles" />
  		   <Item Name="HiggsTagJetCollection" Value="goodPatJetsCATopTagPFPacked" />
 		   
-		   <Item Name="TopJetCollectionGen" Value="caFilteredGenJetsNoNu"/>
+<!-- 		   <Item Name="TopJetCollectionGen" Value="caFilteredGenJetsNoNu"/> -->
+		   <Item Name="TopJetCollectionGen" Value="caHEPTopTagGen"/>
 		      
 		   <!-- 		      <Item Name="PU_Filename_Data" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/PileUpHistos/MyDataPileupHistogram_206745.root" /> -->
 		      <Item Name="PU_Filename_MC" Value="/nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle" />

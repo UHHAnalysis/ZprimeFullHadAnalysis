@@ -130,8 +130,14 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
   
   string version(id.GetVersion().Data());
   
+  
+  
   std::vector<TopJet> uncleaned_topjets;
+  std::vector<TopJet> uncleaned_toptagjets;
   Cleaner cleaner;
+  for(unsigned int i=0; i<bcc->toptagjets->size(); ++i) {
+    uncleaned_toptagjets.push_back(bcc->toptagjets->at(i));
+  }
   for(unsigned int i=0; i<bcc->topjets->size(); ++i) {
     uncleaned_topjets.push_back(bcc->topjets->at(i));
   }
@@ -152,19 +158,29 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
     if (m_sys_unc==e_fatJER){
       if (m_sys_var==e_Up) cleaner.ApplyfatJERVariationUp();
       if (m_sys_var==e_Down) cleaner.ApplyfatJERVariationDown();
+      
     }
     
     if(!bcc->isRealData && bcc->topjets)
       cleaner.JetEnergyResolutionShifterFat();
   }
+  else
+  {
   
-  if (contains(version,"_") && !contains(version,"QCD"))
-  {   
-     cleaner.NofatJERVariation();
+//     if (contains(version,"_") && !contains(version,"QCD"))
+//     {   
+      cleaner.NofatJERVariation();
       if(!bcc->isRealData && bcc->topjets)
 	cleaner.JetEnergyResolutionShifterFat();  
+//     }
+  
   }
   
+//   for(int i=0; i<bcc->topjets->size(); i++)
+//   {
+//    cout<<bcc->topjets->at(i).pt()<<" "<<bcc->topjets->at(i).energy()<<" - ";
+//   }
+//   cout<<endl;
   
   bool IsRealData = calc->IsRealData();
 
@@ -252,7 +268,12 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
     {
       //if (contains(version,"_subjer") || contains(version,"_topjer") )
       //{
+	bcc->toptagjets->clear();
 	bcc->topjets->clear();
+	for(unsigned int i=0; i<uncleaned_toptagjets.size(); ++i) 
+	{
+	  bcc->toptagjets->push_back(uncleaned_toptagjets.at(i));
+	}
 	for(unsigned int i=0; i<uncleaned_topjets.size(); ++i) 
 	{
 	  bcc->topjets->push_back(uncleaned_topjets.at(i));

@@ -15,7 +15,7 @@
 
 	<Package Name="ZprimeFullHadAnalysis.par" /> 
 
-  <Cycle Name="BackgroundCycle" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="_PDFINDEX" TargetLumi="19708" >
+  <Cycle Name="BackgroundCycle" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/" PostFix="_PDFINDEX" TargetLumi="19708" >
 <!--    <Cycle Name="BackgroundCycle"  RunMode="PROOF" ProofServer="lite://" ProofWorkDir="/nfs/dust/cms/user/usaiem/PROOF/" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19700" > -->
 
 <!-- ProofNodes="6" -->
@@ -23,7 +23,7 @@
 
 
 
-<InputData Lumi="88185" NEventsMax="-1" Type="MC" Version="TTbar_pdf" Cacheable="True">
+<InputData Lumi="88185" NEventsMax="-1" Type="MC" Version="TTbar" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.TTbar.root" Lumi="0.0"/>
 <InputTree Name="AnalysisTree" /> 
 </InputData>
@@ -92,9 +92,11 @@
 		   <!--<Item Name="PDFName" Value="cteq66" />-->
 		   <Item Name="PDFName" Value="CT10" />
 		   <Item Name="PDFIndex" Value="PDFINDEX" />
-		   <Item Name="PDFWeightFilesDirectory" Value="/afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis/" />
-		   <Item Name="" Value="" />
+		   <!--<Item Name="PDFWeightFilesDirectory" Value="/afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis/" />-->
+		   <!--<Item Name="" Value="" />-->
 		   
+		   
+		   <Item Name="TopJetCollectionGen" Value="caFilteredGenJetsNoNu"/>
 		   
  		   
 <!-- 		   <Item Name="JECSubJetCollection" Value="AK5PFchs" />

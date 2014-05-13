@@ -212,7 +212,7 @@
 		   
  		   <Item Name="toppagptweight" Value="up" /> 
  		
-		   
+		   <Item Name="TopJetCollectionGen" Value="caFilteredGenJetsNoNu"/>
 
 		   
 		   

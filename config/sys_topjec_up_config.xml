@@ -212,6 +212,7 @@
 		   
  		   <Item Name="toppagptweight" Value="mean" /> 
  		
+		   <Item Name="TopJetCollectionGen" Value="caFilteredGenJetsNoNu"/>
 		   
 		   <Item Name="SystematicUncertainty" Value="JEC" />
 		   <Item Name="SystematicVariation" Value="up" />

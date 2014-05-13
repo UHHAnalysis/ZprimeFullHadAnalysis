@@ -28,7 +28,7 @@
 <InputTree Name="AnalysisTree" /> 
 </InputData>
 
-<InputData Lumi="238028" NEventsMax="-1" Type="MC" Version="ZP500W5_mean" Cacheable="True">
+<!--<InputData Lumi="238028" NEventsMax="-1" Type="MC" Version="ZP500W5_mean" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP500W5.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
 </InputData>
@@ -155,7 +155,7 @@
 <InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG4000_mean" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG4000.root" Lumi="0.0"/>
 <InputTree Name="AnalysisTree" />
-</InputData>
+</InputData>-->
 
 
 
@@ -212,7 +212,7 @@
 		   
  		   <Item Name="toppagptweight" Value="mean" /> 
  		
-		   
+		   <Item Name="TopJetCollectionGen" Value="caFilteredGenJetsNoNu"/>
 
 		   
 		   

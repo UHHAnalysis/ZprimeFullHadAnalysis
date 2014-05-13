@@ -356,7 +356,7 @@
 </InputData>-->
 
 
-<InputData Lumi="88185" NEventsMax="-1" Type="MC" Version="TTbar" Cacheable="True">
+<!--<InputData Lumi="88185" NEventsMax="-1" Type="MC" Version="TTbar" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.TTbar00.root" Lumi="0.0"/>
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.TTbar01.root" Lumi="0.0"/> 
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.TTbar02.root" Lumi="0.0"/> 
@@ -390,7 +390,10 @@
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.TTbar28.root" Lumi="0.0"/> 
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.TTbar29.root" Lumi="0.0"/>
 <InputTree Name="AnalysisTree" /><OutputTree Name="AnalysisTree"/>
-</InputData> 
+</InputData> -->
+
+
+
 <!--
 <InputData Lumi="4.834294305" NEventsMax="-1" Type="MC" Version="QCD_HT-100To250" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.QCD_HT-100To250.root" Lumi="0.0"/> 
@@ -510,13 +513,15 @@
 
 
 
-<InputData Lumi="217629" NEventsMax="-1" Type="MC" Version="ZP750W7p5" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP750W7p5.root" Lumi="0.0"/> 
-<InputTree Name="AnalysisTree" /><OutputTree Name="AnalysisTree"/>
-</InputData>
+
 
 <InputData Lumi="203984" NEventsMax="-1" Type="MC" Version="ZP1000W10" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP1000W10.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" /><OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<!--<InputData Lumi="217629" NEventsMax="-1" Type="MC" Version="ZP750W7p5" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP750W7p5.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" /><OutputTree Name="AnalysisTree"/>
 </InputData>
 
@@ -637,7 +642,7 @@
 <InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG4000" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.RSG4000.root" Lumi="0.0"/>
 <InputTree Name="AnalysisTree" /><OutputTree Name="AnalysisTree"/>
-</InputData>
+</InputData>-->
 
 <!--<InputData Lumi="276616.147460951" NEventsMax="-1" Type="MC" Version="TTbarHad" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionsmall/PreselectionCycle.MC.TTbarHad00.root" Lumi="0.0"/>
@@ -940,7 +945,9 @@
 		   
  		   <Item Name="toppagptweight" Value="mean" /> 
  		   
- 		    <Item Name="TopJetCollectionGen" Value="caFilteredGenJetsNoNu"/>
+<!--  		    <Item Name="TopJetCollectionGen" Value="caFilteredGenJetsNoNu"/> -->
+		    <Item Name="TopJetCollectionGen" Value="caHEPTopTagGen"/>
+		    
 <!-- 		   <Item Name="JECSubJetCollection" Value="AK5PFchs" />
  <Item Name="SystematicUncertainty" Value="SUBJEC" />
  <Item Name="SystematicVariation" Value="up" />            

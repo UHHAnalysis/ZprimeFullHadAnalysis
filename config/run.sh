@@ -22,12 +22,18 @@ cd /afs/desy.de/user/u/usaiem/xxl-af-cms/CMSSW_6_2_5/src
 eval `scramv1 runtime -sh`
 cd /afs/desy.de/user/u/usaiem/code/
 source /afs/desy.de/user/u/usaiem/code/fullsetup.sh
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/nfs/dust/cms/user/marchesi/LHAPDF/install/lib/
+
+# export LHAPATH=/nfs/dust/cms/user/marchesi/LHAPDF/install/share/lhapdf/PDFsets/
+export LHAPATH=/nfs/dust/cms/user/mameyer/lhapdf/share/lhapdf/PDFsets/
+
 cd /afs/desy.de/user/u/usaiem/xxl-af-cms/PoD
 source /afs/desy.de/user/u/usaiem/xxl-af-cms/PoD/PoD_env.sh 
 cd -
 cd ZprimeFullHadAnalysis/
 cd config
-cp sys_pdf_config.xml temp_${MYNUM}.xml
+cp sys_pdftop_config.xml temp_${MYNUM}.xml
 sed -i "s|PDFINDEX|${MYNUM}|g" temp_${MYNUM}.xml
 cat temp_${MYNUM}.xml
 sframe_main temp_${MYNUM}.xml

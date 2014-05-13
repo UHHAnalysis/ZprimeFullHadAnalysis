@@ -211,6 +211,8 @@
 		   <Item Name="JECTopTagJetCollection" Value="AK7PFchs" />
 		   
  		   <Item Name="toppagptweight" Value="mean" /> 
+		   
+		   <Item Name="TopJetCollectionGen" Value="caFilteredGenJetsNoNu"/>
  		
 		   
 		   <Item Name="JECSubJetCollection" Value="AK5PFchs" />
