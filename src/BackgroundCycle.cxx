@@ -167,12 +167,12 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
   else
   {
   
-//     if (contains(version,"_") && !contains(version,"QCD"))
-//     {   
+    if (/*contains(version,"_") &&*/ !contains(version,"QCD"))
+    {  
       cleaner.NofatJERVariation();
       if(!bcc->isRealData && bcc->topjets)
 	cleaner.JetEnergyResolutionShifterFat();  
-//     }
+    }
   
   }
   
@@ -228,10 +228,21 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
   
   bool good_number_of_jets = (n>1) && (nfilt==2) && (two_matched_pt);//bcc->topjets->size()==2 && bcc->toptagjets->size()==2 && two_matched_pt;//
   
+  bool filtered_200_cut= false;
+  if (bcc->topjets->size()>1)
+  {
+    if ( (bcc->topjets->at(0).pt()>=220.0) && (bcc->topjets->at(1).pt()>=220.0) ) filtered_200_cut=true;
+  }
   
-  bool HT_region = HT750_trigger && (!cms_analysis_region) && HT_cut && good_number_of_jets;
+  bool spt5_cut=false;
+  if (bcc->jets->size()>4)
+  {
+    if(bcc->jets->at(4).pt()+bcc->jets->at(3).pt()+bcc->jets->at(2).pt()+bcc->jets->at(1).pt()+bcc->jets->at(0).pt()>500) spt5_cut=true;
+  }
   
-  bool Quad_region = QuadJet50_trigger && ( !HT_region ) && ( !cms_analysis_region ) && QuadJet_cut && good_number_of_jets;
+  bool HT_region = HT750_trigger && (!cms_analysis_region) && HT_cut && good_number_of_jets;// && filtered_200_cut && spt5_cut;
+  
+  bool Quad_region = QuadJet50_trigger && ( !HT_region ) && ( !cms_analysis_region ) && QuadJet_cut && good_number_of_jets;// && filtered_200_cut && spt5_cut;
     
   
   ///////////
@@ -262,7 +273,7 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
   
 
   
-  if ( version.find("TTbar")!=string::npos || version.find("ZP")!=string::npos || version.find("RSG")!=string::npos/*|| version.find("DATA")!=string::npos*/)
+  if ( /*version.find("TTbar")!=string::npos ||*/ version.find("ZP")!=string::npos || version.find("RSG")!=string::npos/*|| version.find("DATA")!=string::npos*/)
   {
     if(HepTopTagWithMatch(bcc->topjets->at(0))&&HepTopTagWithMatch(bcc->topjets->at(1))) 
     {

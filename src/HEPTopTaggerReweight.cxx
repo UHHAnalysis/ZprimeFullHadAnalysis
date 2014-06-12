@@ -144,6 +144,10 @@ double HEPTopTaggerReweight::GetScaleWeight(std::vector<int> Indices, string typ
 	  if(jetpt>400.) scale_factor *= 1.3639708055;//1.36
 	  
 	  jetpt=bcc->toptagjets->at(Indices[1]).pt();
+      
+      if(jetpt>200. && jetpt<=250.) scale_factor *= 0.9579394176;//0.95
+	  if(jetpt>250. && jetpt<=400.) scale_factor *= 0.9723688746;//0.98
+	  if(jetpt>400.) scale_factor *= 1.3639708055;//1.36
 	  
 // 	double jetpt=bcc->toptagjets->at(Indices[0]).pt();
 // 	double jeteta=fabs(bcc->toptagjets->at(Indices[0]).eta());

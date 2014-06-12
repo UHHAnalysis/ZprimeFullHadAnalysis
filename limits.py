@@ -37,8 +37,8 @@ process_list_ttbar_lightdown=['BackgroundCycle.MC.TTbarHad_lightdown.root','Back
 process_list_qcd=['BackgroundCycle.MC.QCD_HT-1000ToInf.root','BackgroundCycle.MC.QCD_HT-250To500.root','BackgroundCycle.MC.QCD_HT-500To1000.root']#,'BackgroundCycle.MC.QCD_HT-100To250.root'
 process_list_data=['BackgroundCycle.DATA.MJDATAB.root','BackgroundCycle.DATA.MJDATAC.root','BackgroundCycle.DATA.MJDATAD.root']
 #process_list_data=['BackgroundCycle.DATA.MJDATAD.root']
-systematics=['','_bcup','_bcdown','_lightup','_lightdown','_scaleup','_scaledown','_httup','_httdown','_subjecup','_subjecdown','_topjerup','_topjerdown','_topjecup','_topjecdown','_topptup','_topptdown','_puup','_pudown']#],'_subjerup','_subjerdown'
-theta_sys=['','__btagbc__plus','__btagbc__minus','__btaglight__plus','__btaglight__minus','__q2__plus','__q2__minus','__htt__plus','__htt__minus','__subjec__plus','__subjec__minus','__jer__plus','__jer__minus','__jec__plus','__jec__minus','__toppt__plus','__toppt__minus','__pu__plus','__pu__minus']
+systematics=['','_bcup','_bcdown','_lightup','_lightdown','_scaleup','_scaledown','_httup','_httdown','_subjecup','_subjecdown','_topjerup','_topjerdown','_topjecup','_topjecdown','_topptup','_topptdown']#,'_puup','_pudown']#],'_subjerup','_subjerdown'
+theta_sys=['','__btagbc__plus','__btagbc__minus','__btaglight__plus','__btaglight__minus','__q2__plus','__q2__minus','__htt__plus','__htt__minus','__subjec__plus','__subjec__minus','__jer__plus','__jer__minus','__jec__plus','__jec__minus','__toppt__plus','__toppt__minus']#,'__pu__plus','__pu__minus']
 ttbar_only_sys=['_scaleup','_scaledown']
 #theta_signal=['Zprime500','Zprime500w','Zprime750','Zprime750w','Zprime1000','Zprime1000w','Zprime1250','Zprime1250w','Zprime1500','Zprime1500w','Zprime2000','Zprime2000w','Zprime3000','Zprime3000w','Zprime4000','Zprime4000w',"RSG700","RSG1000","RSG1200","RSG1400","RSG1500","RSG1600","RSG1800","RSG2000","RSG2500","RSG3000","RSG3500","RSG4000"]#
 theta_signal=['Zprime500','Zprime750','Zprime1000','Zprime1250','Zprime1500','Zprime2000','Zprime3000','Zprime4000']#
@@ -115,7 +115,10 @@ if doplots:
   
   def make_plot(histo_name,folder=htfolder): 
     zf=1
-    legend=TLegend(0.7,0.5,0.945,0.895,"HEPTopTagger HT750")
+    legendstring="HEPTopTagger HT750"
+    if folder==mjfolder:
+      legendstring="HEPTopTagger QuadJet50"
+    legend=TLegend(0.7,0.5,0.945,0.895,legendstring)
     legend.SetFillColor(kWhite)
     legend.SetBorderSize(0)
     legend.SetFillStyle(0)
@@ -152,36 +155,52 @@ if doplots:
     sys_diff=[]
     if histo_name=='Mtt0' or histo_name=='Mtt1' or histo_name=='Mtt2':
       for imtt in range(1,ttbar_histo.GetNbinsX()+1):
-	sys_diff.append([])
+        sys_diff.append([])
       for isys in range(1,len(systematics)):
-	ttf=TFile(path_base+cyclename+'TTbar'+systematics[isys]+'.root','READ')
-	outfile.cd()
-	ttbar_tmp=ttf.Get(folder+measured_histo_name).Clone('ttbar'+theta_sys[isys])
-	ttbar_tmp.Add(ttbar_histo,-1)
-	for imtt in range(1,ttbar_histo.GetNbinsX()+1):
-	  sys_diff[imtt-1].append(ttbar_tmp.GetBinContent(imtt))
-      print sys_diff
+        ttf=TFile(path_base+cyclename+'TTbar'+systematics[isys]+'.root','READ')
+        outfile.cd()
+        ttbar_tmp=ttf.Get(folder+measured_histo_name).Clone('ttbar'+theta_sys[isys])
+        ttbar_tmp.Add(ttbar_histo,-1)
+        for imtt in range(1,ttbar_histo.GetNbinsX()+1):
+          sys_diff[imtt-1].append(ttbar_tmp.GetBinContent(imtt))
+      
+      the_pdfsysfilename='thetapdf.root'
+      if folder==mjfolder:
+        the_pdfsysfilename='mjthetapdf.root'
+      pdffile=TFile(the_pdfsysfilename,"READ")
+      the_namebase='httbtag'
+      if folder==mjfolder:
+        the_namebase='mjhttbtag'
+      uu='__'
+      pdfttbarup=pdffile.Get(the_namebase+histo_name[3]+uu+'ttbar'+uu+'pdf__plus').Clone('pdfup'+the_namebase+histo_name[3])
+      pdfttbardown=pdffile.Get(the_namebase+histo_name[3]+uu+'ttbar'+uu+'pdf__minus').Clone('pdfdown'+the_namebase+histo_name[3])
+      pdfttbarup.Add(ttbar_histo,-1)
+      pdfttbardown.Add(ttbar_histo,-1)
+      for imtt in range(1,ttbar_histo.GetNbinsX()+1):
+        sys_diff[imtt-1].append(pdfttbarup.GetBinContent(imtt))
+        sys_diff[imtt-1].append(pdfttbardown.GetBinContent(imtt))
+      #print sys_diff
       mistag_matrix=bkg_file.Get(folder+"Mistag/data_htt/Mistag_data_htt")
       errmtt=data_file.Get(folder+'Err'+histo_name)
       for mtt_bin in range(1,errmtt.GetNbinsX()+1):
-	a1 = 0.0
-	a2 = 0.0
-	den = 0.0
+        a1 = 0.0
+        a2 = 0.0
+        den = 0.0
         for pt_bin in range(1,errmtt.GetNbinsY()+1):
-	  for csv_bin in range(1,errmtt.GetNbinsZ()+1):
-	    #print errmtt.GetBinContent(mtt_bin,pt_bin,csv_bin)
-	    a1 += mistag_matrix.GetBinContent(pt_bin,csv_bin) * sqrt(errmtt.GetBinContent(mtt_bin,pt_bin,csv_bin))
-	    a2 += mistag_matrix.GetBinError(pt_bin,csv_bin) * errmtt.GetBinContent(mtt_bin,pt_bin,csv_bin)
-	    den += mistag_matrix.GetBinContent(pt_bin,csv_bin) * errmtt.GetBinContent(mtt_bin,pt_bin,csv_bin)
-        dx=0.0
-        if  den>0.0:
-	  dx = sqrt(a1*a1+a2*a2)/ den;
-	  bkg_histo.SetBinError(mtt_bin, dx * bkg_histo.GetBinContent(mtt_bin))
-	  bkg_histo_up.SetBinContent(mtt_bin, bkg_histo.GetBinContent(mtt_bin) + dx * bkg_histo.GetBinContent(mtt_bin))
-	  bkg_histo_down.SetBinContent(mtt_bin, bkg_histo.GetBinContent(mtt_bin) - dx * bkg_histo.GetBinContent(mtt_bin))
+          for csv_bin in range(1,errmtt.GetNbinsZ()+1):
+            #print errmtt.GetBinContent(mtt_bin,pt_bin,csv_bin)
+            a1 += mistag_matrix.GetBinContent(pt_bin,csv_bin) * sqrt(errmtt.GetBinContent(mtt_bin,pt_bin,csv_bin))
+            a2 += mistag_matrix.GetBinError(pt_bin,csv_bin) * errmtt.GetBinContent(mtt_bin,pt_bin,csv_bin)
+            den += mistag_matrix.GetBinContent(pt_bin,csv_bin) * errmtt.GetBinContent(mtt_bin,pt_bin,csv_bin)
+            dx=0.0
+            if  den>0.0:
+              dx = sqrt(a1*a1+a2*a2)/ den
+                #print mtt_bin,dx
+        bkg_histo.SetBinError(mtt_bin, dx * bkg_histo.GetBinContent(mtt_bin))
+        bkg_histo_up.SetBinContent(mtt_bin, bkg_histo.GetBinContent(mtt_bin) + dx * bkg_histo.GetBinContent(mtt_bin))
+        bkg_histo_down.SetBinContent(mtt_bin, bkg_histo.GetBinContent(mtt_bin) - dx * bkg_histo.GetBinContent(mtt_bin))
     ###
     
-
     
     bkg_histo.Add(ttbkg_histo,-1.0)########################################
     bkg_histo_up.Add(ttbkg_histo,-1.0)########################################
@@ -189,19 +208,29 @@ if doplots:
     sum_mc=ttbar_histo.Clone('sum_mc'+us+histo_name)
     sum_mc.Add(bkg_histo)
     err=TGraphAsymmErrors(sum_mc)
+    sysup=[]
+    relsysup=[]
+    sysdown=[]
     if histo_name=='Mtt0' or histo_name=='Mtt1' or histo_name=='Mtt2':
       for ierr in range(1,err.GetN()+1):
         eup=0.
         edown=0.
         for i in sys_diff[ierr-1]:
-	  #print i
-	  if i<0:
-	    edown=edown+i*i
-	  else:
-	    eup=eup+i*i
-	#print eup,err.GetErrorYhigh(ierr)
-        err.SetPointEYhigh(ierr,sqrt(err.GetErrorYhigh(ierr)*err.GetErrorYhigh(ierr)+eup))
-        err.SetPointEYlow(ierr,sqrt(err.GetErrorYlow(ierr)*err.GetErrorYlow(ierr)+edown))
+          #print i
+          if i<0:
+            edown=edown+i*i
+          else:
+            eup=eup+i*i
+        sysup.append(sqrt(eup))
+        relsysup.append(sqrt(eup)/(ttbar_histo.GetBinContent(ierr)+0.00000001))
+        sysdown.append(sqrt(edown))
+        #print eup,err.GetErrorYhigh(ierr)
+        lumierr=0.0263*ttbar_histo.GetBinContent(ierr)
+        trigerr=0.0202*ttbar_histo.GetBinContent(ierr)
+        xserr=0.1618*ttbar_histo.GetBinContent(ierr)
+        err.SetPointEYhigh(ierr-1,sqrt(lumierr*lumierr+trigerr*trigerr+xserr*xserr+err.GetErrorYhigh(ierr-1)*err.GetErrorYhigh(ierr-1)+eup))
+        err.SetPointEYlow(ierr-1,sqrt(lumierr*lumierr+trigerr*trigerr+xserr*xserr+err.GetErrorYlow(ierr-1)*err.GetErrorYlow(ierr-1)+edown))
+      print relsysup
     sum_mc_noerr=sum_mc.Clone('sum_mc_noerr'+us+histo_name)
     for i in range(1,sum_mc_noerr.GetNbinsX()+1):
       sum_mc_noerr.SetBinError(i,0)
@@ -214,14 +243,20 @@ if doplots:
     ratio_histo_nodataerr2=ratio_histo_nodataerr.Clone('ratio_nodataerr2'+us+histo_name)
     for i in range(1,ratio_histo_nodataerr.GetNbinsX()+1):
       ratio_histo_nodataerr.SetBinContent(i,1)
-      if ratio_histo_nodataerr.GetBinError(i)==0:
-	ratio_histo_nodataerr.SetBinError(i,1.25)
+      #if ratio_histo_nodataerr.GetBinError(i)==0:
+	#ratio_histo_nodataerr.SetBinError(i,1.25)
     err_ratio=TGraphAsymmErrors(ratio_histo_nodataerr)
     if histo_name=='Mtt0' or histo_name=='Mtt1' or histo_name=='Mtt2':
       for ierr in range(1,err.GetN()+1):
-	if sum_mc.GetBinContent(ierr)>0 and ratio_histo_nodataerr2.GetBinError(ierr)>0:
-	  err_ratio.SetPointEYhigh(ierr,ratio_histo_nodataerr2.GetBinContent(ierr)*err.GetErrorYhigh(ierr)/sum_mc.GetBinContent(ierr))
-	  err_ratio.SetPointEYlow(ierr,ratio_histo_nodataerr2.GetBinContent(ierr)*err.GetErrorYlow(ierr)/sum_mc.GetBinContent(ierr))
+        if sum_mc.GetBinContent(ierr)>0:
+          val=sum_mc.GetBinContent(ierr)
+          staterr=sum_mc.GetBinError(ierr)
+          #err_ratio.SetPointEYhigh(ierr,sqrt(staterr*staterr/(val*val)+sysup[ierr-1]*sysup[ierr-1]/(val*val)))
+          #err_ratio.SetPointEYlow(ierr,sqrt(staterr*staterr/(val*val)+sysdown[ierr-1]*sysdown[ierr-1]/(val*val)))
+          print err.GetErrorYhigh(ierr-1),sqrt(staterr*staterr+sysup[ierr-1]*sysup[ierr-1])
+          err_ratio.SetPointEYhigh(ierr-1,err.GetErrorYhigh(ierr-1)/val)
+          err_ratio.SetPointEYlow(ierr-1,err.GetErrorYlow(ierr-1)/val)
+
     
     
     ratio_histo=data_histo.Clone('ratio'+us+histo_name)
@@ -244,8 +279,8 @@ if doplots:
     #ratio_histo.GetXaxis().SetTitle('m_{t#bar{t}} [GeV]')
     ratio_histo.GetYaxis().SetRangeUser(-0.25,2.25)
     ratio_histo.GetYaxis().SetNdivisions(3,2,0)
-    ratio_histo.GetXaxis().SetRangeUser(ratio_histo.GetXaxis().GetXmin(),ratio_histo.GetXaxis().GetXmax()*zf)
-    line1=TLine(ratio_histo.GetXaxis().GetXmin(),1.0,ratio_histo.GetXaxis().GetXmax()*zf,1.0)
+    #ratio_histo.GetXaxis().SetRangeUser(ratio_histo.GetXaxis().GetXmin(),ratio_histo.GetXaxis().GetXmax()*zf)
+    line1=TLine(ratio_histo.GetXaxis().GetXmin(),1.0,ratio_histo.GetXaxis().GetXmax(),1.0)#*zf
     line1.SetLineStyle(2)
     ttbar_histo.SetFillColor(kRed)
     qcd_histo.SetFillColor(kYellow)
@@ -270,7 +305,10 @@ if doplots:
     stack.Add(ttbar_histo)
     #stack.Add(qcd_histo)
     stack.Add(bkg_histo)
-    cmslabel=TLatex(0.15,0.925,"CMS Preliminary #sqrt{s} = 8TeV  19.7 fb^{-1}")
+    cmslabelstring="CMS Preliminary #sqrt{s} = 8TeV  19.7 fb^{-1}"
+    if folder==mjfolder:
+      cmslabelstring="CMS Preliminary #sqrt{s} = 8TeV  13.8 fb^{-1}"
+    cmslabel=TLatex(0.15,0.925,cmslabelstring)
     #cmslabel=TLatex(0.15,0.925,"Private work")
     cmslabel.SetTextSize(0.07)
     cmslabel.SetNDC()
@@ -296,7 +334,10 @@ if doplots:
     legend.AddEntry(signal2000,"Z' 1.0 TeV 3pb",'l')
     legend.AddEntry(signal3000,"Z' 1.25 TeV 3pb",'l')
     
-    canvas=TCanvas(histo_name+us+'canvas','',0,0,600,600)#,'',100,100)
+    mjpostfix=''
+    if folder==mjfolder:
+      mjpostfix='mj'
+    canvas=TCanvas(histo_name+mjpostfix+us+'canvas','',0,0,600,600)#,'',100,100)
     canvas.Divide(1,2)
     top_pad=canvas.GetPad(1)
     bottom_pad=canvas.GetPad(2)
@@ -321,6 +362,7 @@ if doplots:
     err.Draw('2')
     data_histo.Draw("sameEX0")
     stack.SetMinimum(0.1)
+    stack.SetMaximum(stack.GetMaximum()*1.2)
     stack.GetXaxis().SetTitle("a")#ttbar_histo.GetXaxis().GetTitle())
     stack.GetYaxis().SetTitle('Events')
     stack.GetYaxis().SetLabelSize(0.07)
@@ -329,6 +371,7 @@ if doplots:
     stack.GetXaxis().SetLabelSize(0.07)
     stack.GetXaxis().SetTitleSize(0.07)
     stack.GetXaxis().SetTitleOffset(1.0)
+#stack.GetYaxis().SetRangeUser(stack.GetYaxis().GetXmin(),stack.GetYaxis().GetXmax()*1.5)
     
     #stack.GetYaxis().SetLabelSize(0.045)
     #stack.GetYaxis().SetTitleSize(0.045)
@@ -337,7 +380,7 @@ if doplots:
     #stack.GetXaxis().SetTitleSize(0.045)
     #stack.GetXaxis().SetTitleOffset(1.5)
     
-    stack.GetXaxis().SetRangeUser(stack.GetXaxis().GetXmin(),stack.GetXaxis().GetXmax()*zf)
+    #stack.GetXaxis().SetRangeUser(stack.GetXaxis().GetXmin(),stack.GetXaxis().GetXmax()*zf)
     signal1000.Draw('samehisto')
     signal2000.Draw('samehisto')
     signal3000.Draw('samehisto')
@@ -361,6 +404,9 @@ if doplots:
     
   #for i in range(len(histo_name_list)):
   #  for j in range(len(histo_folder_list)):
+  
+  
+  
   bkg_histos=[]
   make_plot('Mtt012',htfolder)
   bkg_histos.append(make_plot('Mtt0',htfolder))
@@ -371,43 +417,43 @@ if doplots:
   bkg_histos.append(make_plot('Mtt1',mjfolder))
   bkg_histos.append(make_plot('Mtt2',mjfolder))
   
-  make_plot('Jet1pT012')
-  make_plot('Jet1pT0')
-  make_plot('Jet1pT1')
-  make_plot('Jet1pT2')
-  make_plot('Jet2pT012')
-  make_plot('Jet2pT0')
-  make_plot('Jet2pT1')
-  make_plot('Jet2pT2')
+  #make_plot('Jet1pT012')
+  #make_plot('Jet1pT0')
+  #make_plot('Jet1pT1')
+  #make_plot('Jet1pT2')
+  #make_plot('Jet2pT012')
+  #make_plot('Jet2pT0')
+  #make_plot('Jet2pT1')
+  #make_plot('Jet2pT2')
 
-  make_plot('Jet1eta012')
-  make_plot('Jet1eta0')
-  make_plot('Jet1eta1')
-  make_plot('Jet1eta2')
-  make_plot('Jet2eta012')
-  make_plot('Jet2eta0')
-  make_plot('Jet2eta1')
-  make_plot('Jet2eta2')
+  #make_plot('Jet1eta012')
+  #make_plot('Jet1eta0')
+  #make_plot('Jet1eta1')
+  #make_plot('Jet1eta2')
+  #make_plot('Jet2eta012')
+  #make_plot('Jet2eta0')
+  #make_plot('Jet2eta1')
+  #make_plot('Jet2eta2')
 
-  make_plot('Jet1csv012')
-  make_plot('Jet1csv0')
-  make_plot('Jet1csv1')
-  make_plot('Jet1csv2')
-  make_plot('Jet2csv012')
-  make_plot('Jet2csv0')
-  make_plot('Jet2csv1')
-  make_plot('Jet2csv2')
+  #make_plot('Jet1csv012')
+  #make_plot('Jet1csv0')
+  #make_plot('Jet1csv1')
+  #make_plot('Jet1csv2')
+  #make_plot('Jet2csv012')
+  #make_plot('Jet2csv0')
+  #make_plot('Jet2csv1')
+  #make_plot('Jet2csv2')
   
-  make_plot("m1")
-  make_plot("m2")
-  make_plot("Njets")
-  make_plot("Njets50")
-  make_plot("pT4")
-  make_plot("spT4")
-  #make_plot("sToppT")
-  make_plot("HT50")
-  #make_plot("HTT2D1")
-  #make_plot("HTT2D2")
+  #make_plot("m1")
+  #make_plot("m2")
+  #make_plot("Njets")
+  #make_plot("Njets50")
+  #make_plot("pT4")
+  #make_plot("spT4")
+  ##make_plot("sToppT")
+  #make_plot("HT50")
+  ##make_plot("HTT2D1")
+  ##make_plot("HTT2D2")
   
   
   
@@ -445,7 +491,9 @@ if doplots:
   make_plot("Njets50",mjfolder)
   make_plot("pT4",mjfolder)
   make_plot("spT4",mjfolder)
-  #make_plot("sToppT")
+  #make_plot("pT5",mjfolder)
+  #make_plot("spT5",mjfolder)
+  make_plot("sToppT",mjfolder)
   make_plot("HT50",mjfolder)
   #make_plot("HTT2D1")
   #make_plot("HTT2D2")
@@ -500,8 +548,8 @@ if dothetafile:
   limitfile=TFile("htt"+".root","RECREATE")
   limitfile.cd()
   
-  def make_comp(mean_histo,up_histo,down_histo,cname):
-    legend=TLegend(0.65,0.5,0.945,0.895,"HEPTopTagger HT750")
+  def make_comp(mean_histo,up_histo,down_histo,cname,title,trigger='HT750'):
+    legend=TLegend(0.65,0.5,0.945,0.895,"HEPTopTagger "+trigger+" "+title)
     legend.SetFillColor(kWhite)
     legend.SetBorderSize(0)
     legend.SetFillStyle(0)
@@ -528,6 +576,7 @@ if dothetafile:
     down_histo.SetLineWidth(3)
     mean_histo.SetLineWidth(3)
     mean_histo.SetLineColor(kBlack)
+    mean_histo.SetFillColor(0)
     up_histo.SetLineColor(kRed)
     down_histo.SetLineColor(kBlue)
     up_histo.GetYaxis().SetTitle('Events')
@@ -574,14 +623,23 @@ if dothetafile:
     line1.Draw()
     canvas.SaveAs('pdf/'+cname+'_comp.pdf')
   
+  
+  disable_mj= False
+  removebins= False
+  
   def removebin_save(h):
     #hdummy=TH1F( "Mtt0", "Mtt [GeV];Mtt [GeV];Events", 69, 550, 4000 )
     #binlist=hdummy.GetXaxis().GetXbins()
     #print binlist,binlist.GetSize()
-    binlist=range(550,4050,50)
-    hnew=h.Rebin(len(binlist)-1,h.GetName(),array('d',binlist))
-    #h.Write(h.GetName()+'old')
-    hnew.Write()
+    if removebins:
+      binlist=range(550,4050,50)
+      hnew=h.Rebin(len(binlist)-1,h.GetName(),array('d',binlist))
+      #h.Write(h.GetName()+'old')
+      if not disable_mj:
+	hnew.Write()
+    else:
+      if not disable_mj:
+	h.Write()
    
 
   for bt in bt_cat:
@@ -600,7 +658,9 @@ if dothetafile:
     removebin_save(mjpdfttbardown)
     ttf_mean=TFile(path_base+cyclename+'TTbar'+systematics[0]+'.root','READ')
     mean_histo=ttf_mean.Get(htfolder+measuredmtt+bt).Clone(htnamebase+bt+uu+'ttbar'+'pdf'+'_mean')
-    make_comp(mean_histo,pdfttbarup,pdfttbardown,htnamebase+bt+uu+'ttbar'+'__pdf')
+    meanmj_histo=ttf_mean.Get(mjfolder+measuredmtt+bt).Clone(mjnamebase+bt+uu+'ttbar'+'pdf'+'_mean')
+    make_comp(mean_histo,pdfttbarup,pdfttbardown,htnamebase+bt+uu+'ttbar'+'__pdf',bt+'btag')
+    make_comp(meanmj_histo,mjpdfttbarup,mjpdfttbardown,mjnamebase+bt+uu+'ttbar'+'__pdf',bt+'btag','QuadJet50')
     for isgn in range(len(process_namelist)):
       pdftmpup=pdffile.Get(htnamebase+bt+uu+theta_signal[isgn]+uu+'pdf__plus')
       pdftmpdown=pdffile.Get(htnamebase+bt+uu+theta_signal[isgn]+uu+'pdf__minus')
@@ -618,9 +678,14 @@ if dothetafile:
     #a.Scale(16.4/13.8)
     #a.Write()
     
-    bkg_histos[int(bt)][0].Clone(htnamebase+bt+uu+'qcd').Write()
-    bkg_histos[int(bt)][1].Clone(htnamebase+bt+uu+'qcd'+uu+'misErr__plus').Write()
-    bkg_histos[int(bt)][2].Clone(htnamebase+bt+uu+'qcd'+uu+'misErr__minus').Write()
+    qcdmean=bkg_histos[int(bt)][0].Clone(htnamebase+bt+uu+'qcd')
+    qcdmean.Write()
+    qcdmisup=bkg_histos[int(bt)][1].Clone(htnamebase+bt+uu+'qcd'+uu+'misErr__plus')
+    qcdmisup.Write()
+    qcdmisdown=bkg_histos[int(bt)][2].Clone(htnamebase+bt+uu+'qcd'+uu+'misErr__minus')
+    qcdmisdown.Write()
+    make_comp(qcdmean,qcdmisup,qcdmisdown,htnamebase+bt+uu+'qcd'+uu+'misErr',bt+'btag')
+    
     b=bkg_histos[int(bt)+3][0].Clone(mjnamebase+bt+uu+'qcd')
     removebin_save(b)
     #b.Scale(16.4/13.8)
@@ -633,6 +698,8 @@ if dothetafile:
     removebin_save(d)
     #d.Scale(16.4/13.8)
     #d.Write()
+    make_comp(b,c,d,mjnamebase+bt+uu+'qcd'+uu+'misErr',bt+'btag','QuadJet50')
+    
     for isys in range(len(systematics)):
       ttf=TFile(path_base+cyclename+'TTbar'+systematics[isys]+'.root','READ')
       limitfile.cd()
@@ -644,7 +711,13 @@ if dothetafile:
 	mean_histo=ttf_mean.Get(htfolder+measuredmtt+bt).Clone(htnamebase+bt+uu+'ttbar'+theta_sys[isys]+'_mean')
 	up_histo=ttf_up.Get(htfolder+measuredmtt+bt).Clone(htnamebase+bt+uu+'ttbar'+theta_sys[isys]+'_up')
 	down_histo=ttf_down.Get(htfolder+measuredmtt+bt).Clone(htnamebase+bt+uu+'ttbar'+theta_sys[isys]+'_down')
-	make_comp(mean_histo,up_histo,down_histo,htnamebase+bt+uu+'ttbar'+theta_sys[isys])
+	make_comp(mean_histo,up_histo,down_histo,htnamebase+bt+uu+'ttbar'+theta_sys[isys],bt+'btag')
+	
+	meanmj_histo=ttf_mean.Get(mjfolder+measuredmtt+bt).Clone(mjnamebase+bt+uu+'ttbar'+theta_sys[isys]+'_mean')
+	upmj_histo=ttf_up.Get(mjfolder+measuredmtt+bt).Clone(mjnamebase+bt+uu+'ttbar'+theta_sys[isys]+'_up')
+	downmj_histo=ttf_down.Get(mjfolder+measuredmtt+bt).Clone(mjnamebase+bt+uu+'ttbar'+theta_sys[isys]+'_down')
+	make_comp(meanmj_histo,upmj_histo,downmj_histo,mjnamebase+bt+uu+'ttbar'+theta_sys[isys],bt+'btag','QuadJet50')
+	
 	ttf_mean.Close()
 	ttf_up.Close()
 	ttf_down.Close()

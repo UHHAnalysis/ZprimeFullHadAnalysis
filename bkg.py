@@ -129,13 +129,17 @@ def getMistag(sample,sample_file,useCMS=False,isData=False,namepostfix='',folder
     ##obj.Write(folder+obj.GetName()+'_'+sample)
     ##obj=nextinlist()
   
-def getMassShape(sample,sample_file,useCMS=False,isData=False,histoname='', folder=folder_old):
+def getMassShape(sample,sample_file,useCMS=False,isData=False,histoname='', folder=folder_old,rebin=0):
   histomassshapename=histo_massshape_name
   if histoname!='':
     histomassshapename=histoname
-  mass_shape=sample_file.Get(folder+'/'+histomassshapename)
+  mass_shape=sample_file.Get(folder+'/'+histomassshapename).Clone('mass_shape')
+  mass_shape_high=sample_file.Get(folder+'/'+histomassshapename+'_high').Clone('mass_shape_high')
+  mass_shape_low =sample_file.Get(folder+'/'+histomassshapename+'_low' ).Clone('mass_shape_low' )
   if isData:
     mass_shape.Add(ttbar_file.Get(folder+"/"+histomassshapename),-1.0)
+    mass_shape_high.Add(ttbar_file.Get(folder+"/"+histomassshapename+'_high'),-1.0)
+    mass_shape_low.Add(ttbar_file.Get(folder+"/"+histomassshapename+'_low'),-1.0)
   #mass_shapeStack=THStack(mass_shape2D,'x','Stack','')
   #mass_shape1D=mass_shapeStack.GetHists()
   outfolder=folder+'/MassShape'
@@ -144,7 +148,13 @@ def getMassShape(sample,sample_file,useCMS=False,isData=False,histoname='', fold
   outfile.mkdir(outfolder+'/'+sample)
   outfile.cd(outfolder+'/'+sample)
   #slice_and_save(sample,mass_shape2D,folder)
-  mass_shape.Write(mass_shape.GetName()+'_'+sample)
+  if rebin!=0:
+    mass_shape_high.Rebin(rebin)
+    mass_shape_low.Rebin(rebin)
+    mass_shape.Rebin(rebin)
+  mass_shape.Write(mass_shape.GetName())
+  mass_shape_high.Write(mass_shape_high.GetName())#+'_'+sample)
+  mass_shape_low.Write(mass_shape_low.GetName())
   #mass_shape2D.Write(folder+mass_shape2D.GetName()+'_'+sample)
   #mass_shapeStack.Write(folder+mass_shapeStack.GetName()+'_'+sample)
   #nextinlist=TList(GetListOfPrimitives())
@@ -206,17 +216,17 @@ getMistag('qcd500to1000',   qcd500to1000_file, use_htt, no_ttbar_subtraction, ''
 #getMistag('data_cms',       data_file,  use_cms, ttbar_subtraction)
 #getMistag('data_cms_nosub', data_file,  use_cms, no_ttbar_subtraction)
 
-getMassShape('ttbar_htt',      ttbar_file, use_htt, no_ttbar_subtraction,   '', folder_ht)
-getMassShape('qcd_htt',        qcd_file,   use_htt, no_ttbar_subtraction,   '', folder_ht)
-getMassShape('data_htt',       data_file,  use_htt, ttbar_subtraction,      '', folder_ht)
-getMassShape('data_htt_nosub', data_file,  use_htt, no_ttbar_subtraction,   '', folder_ht)
+#getMassShape('ttbar_htt',      ttbar_file, use_htt, no_ttbar_subtraction,   '', folder_ht)
+getMassShape('qcd_htt',        qcd_file,   use_htt, no_ttbar_subtraction,   '', folder_ht,4)
+#getMassShape('data_htt',       data_file,  use_htt, ttbar_subtraction,      '', folder_ht)
+#getMassShape('data_htt_nosub', data_file,  use_htt, no_ttbar_subtraction,   '', folder_ht)
 
-getMassShape('ttbar_htt',      ttbar_file, use_htt, no_ttbar_subtraction,   '', folder_quad)
-getMassShape('qcd_htt',        qcd_file,   use_htt, no_ttbar_subtraction,   '', folder_quad)
-getMassShape('data_htt',       mjdata_file,  use_htt, ttbar_subtraction,    '', folder_quad)
-getMassShape('data_htt_nosub', mjdata_file,  use_htt, no_ttbar_subtraction, '', folder_quad)
+#getMassShape('ttbar_htt',      ttbar_file, use_htt, no_ttbar_subtraction,   '', folder_quad)
+getMassShape('qcd_htt',        qcd_file,   use_htt, no_ttbar_subtraction,   '', folder_quad,4)
+#getMassShape('data_htt',       mjdata_file,  use_htt, ttbar_subtraction,    '', folder_quad)
+#getMassShape('data_htt_nosub', mjdata_file,  use_htt, no_ttbar_subtraction, '', folder_quad)
 
-getMassShape('qcd500to1000',   qcd500to1000_file,   use_htt, no_ttbar_subtraction, '', folder_quad)
+#getMassShape('qcd500to1000',   qcd500to1000_file,   use_htt, no_ttbar_subtraction, '', folder_quad)
 #getMassShape('qcd1000toInf',   qcd1000toInf_file,   use_htt, no_ttbar_subtraction)
 #getMassShape('qcd_htt_jec',        qcd_file,   use_htt, no_ttbar_subtraction, "mass_shapeJEC")
 #getMassShape('ttbar_cms',      ttbar_file, use_cms, no_ttbar_subtraction)
@@ -228,6 +238,20 @@ getMassShape('qcd500to1000',   qcd500to1000_file,   use_htt, no_ttbar_subtractio
 #getMassShape2D('qcd_htt',        qcd_file,   use_htt, no_ttbar_subtraction)
 #getMassShape2D('data_htt',       data_file,  use_htt, ttbar_subtraction)
 #getMassShape2D('data_htt_nosub', data_file,  use_htt, no_ttbar_subtraction)
+
+
+#nmsfile=TFile('/nfs/dust/cms/user/usaiem/ZprimeFullHad/binmass/theta_qcd.root','READ')
+#nmslow=nmsfile.Get('QuadJetDatasetHistos/mass_shape_low').Clone('mass_shape_low')
+#nmshigh=nmsfile.Get('QuadJetDatasetHistos/mass_shape_high').Clone('mass_shape_high')
+#nmslow2=nmsfile.Get('QuadJetDatasetHistos/mass_shape_lowpt').Clone('mass_shape_lowpt')
+#nmshigh2=nmsfile.Get('QuadJetDatasetHistos/mass_shape_highpt').Clone('mass_shape_highpt')
+##outfile.mkdir('HEPTagger/MassShape')
+#outfile.cd('QuadJetDatasetHistos/MassShape')
+#nmslow.Write()
+#nmshigh.Write()
+##nmslow2.Write()
+##nmshigh2.Write()
+
 outfile.cd()
 #ckhisto=qcd500to1000_file.Get('BaseHistos/mistag_crosscheck')
 #slice_and_save('ck',ckhisto)

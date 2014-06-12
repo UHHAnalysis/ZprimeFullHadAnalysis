@@ -1,0 +1,3 @@
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+/scratch/sge/default/spool/bird397/job_scripts/452508: line 33: 26646 Aborted                 sframe_main temp_${MYNUM}.xml

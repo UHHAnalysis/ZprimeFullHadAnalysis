@@ -20,8 +20,18 @@ BackgroundHists::BackgroundHists(const char* name) : BaseHists(name)
   mistagmc = (TH2F*)f->Get("HTDatasetHistos/Mistag/qcd_htt/Mistag_qcd_htt");
   mjmistagmc = (TH2F*)f->Get("QuadJetDatasetHistos/Mistag/qcd_htt/Mistag_qcd_htt");
 //   mjmistagmc = (TH2F*)f->Get("QuadJetDatasetHistos/Mistag/qcd500to1000/Mistag_qcd500to1000");
-  shape = (TH1F*)f->Get("HTDatasetHistos/MassShape/qcd_htt/mass_shape_qcd_htt");
-mjshape = (TH1F*)f->Get("QuadJetDatasetHistos/MassShape/qcd_htt/mass_shape_qcd_htt");
+//   shape = (TH1F*)f->Get("HTDatasetHistos/MassShape/qcd_htt/mass_shape_qcd_htt");
+// mjshape = (TH1F*)f->Get("QuadJetDatasetHistos/MassShape/qcd_htt/mass_shape_qcd_htt");//should be MC!!!!!!!!!!
+  
+shapehigh = (TH1F*)f->Get("HTDatasetHistos/MassShape/qcd_htt/mass_shape_high");
+shapelow = (TH1F*)f->Get("HTDatasetHistos/MassShape/qcd_htt/mass_shape_low");
+mjshapehigh = (TH1F*)f->Get("QuadJetDatasetHistos/MassShape/qcd_htt/mass_shape_high");
+mjshapelow = (TH1F*)f->Get("QuadJetDatasetHistos/MassShape/qcd_htt/mass_shape_low");
+
+mjshape = (TH1F*)f->Get("QuadJetDatasetHistos/MassShape/qcd_htt/mass_shape");
+shape = (TH1F*)f->Get("HTDatasetHistos/MassShape/qcd_htt/mass_shape");
+
+  
   //   mjshape = (TH1F*)f->Get("QuadJetDatasetHistos/MassShape/qcd500to1000/mass_shape_qcd500to1000");
 //   shape = (TH1F*)f->Get("HEPTagger/MassShape/qcd500to1000/mass_shape_qcd500to1000");/////////////////////////
 }
@@ -46,6 +56,13 @@ void BackgroundHists::setRegion(string r)
 
 void BackgroundHists::Init()
 {
+  
+  double csv_bins[] = {-100.0,0.0,0.244,0.679,10.0};
+  double mistag_pt_bins[] = {150.0,200.0,220.0,240.0,260.0,280.0,300.0,320.0,340.0,360.0,380.0,400.0,450.0,500.0,600.0,800.0,2000.0};
+  
+  double ht_shape_bins[] = {0,500,600,700,1200};
+  double pt_shape_bins[] = {150,175,200,220,250,1000};
+  double mass_shape_bins[]= {0, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 264, 272, 280, 288, 296, 304, 312, 320, 328, 336, 344, 352, 360, 368, 376, 384, 392, 400};
   
   Book( TH1F( "Mtt0", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
   Book( TH1F( "Mtt1", "Mtt [GeV];Mtt [GeV];Events", 80, 0, 4000 ) );
@@ -126,6 +143,7 @@ void BackgroundHists::Init()
   
   Book( TH1F( "m1",";m;Events",200,0.0,400.0));
   Book( TH1F( "m2",";m;Events",200,0.0,400.0));
+  Book( TH1F( "mchanged",";m;Events",200,0.0,400.0));
   Book( TH1F( "Njets", "Njets", 20, 0, 20 ) );
   Book( TH1F( "Njets50", "Njets", 20, 0, 20 ) );
   Book( TH1F( "pT4", "pT4", 100, 0, 500 ) );
@@ -134,6 +152,14 @@ void BackgroundHists::Init()
   Book( TH1F( "HT50", "HT", 100, 0, 2000 ) );
   Book( TH2F( "HTT2D1", ";atan(m_{13}/m_{12});m_{23}/m_{123}",200 ,0. ,3., 200,0. ,2.));
   Book( TH2F( "HTT2D2", ";atan(m_{13}/m_{12});m_{23}/m_{123}",200 ,0. ,3., 200,0. ,2.));
+  
+  Book( TH1F( "pT5", "pT5", 100, 0, 500 ) );
+  Book( TH1F( "spT5", ";spT5;Events", 100, 0, 1000 ) );
+  Book( TH2F( "Whichmistag", ";pT;CSV", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins) );
+  Book( TH2F( "HTT2Dtag", ";atan(m_{13}/m_{12});m_{23}/m_{123}",200 ,0. ,3., 200,0. ,2.));
+  Book( TH2F( "HTT2Dmistag", ";atan(m_{13}/m_{12});m_{23}/m_{123}",200 ,0. ,3., 200,0. ,2.));
+  Book( TH1F( "MeasuredpT5", "pT5", 100, 0, 500 ) );
+  Book( TH1F( "MeasuredspT5", ";spT5;Events", 100, 0, 1000 ) );
   
   Book( TH1F( "Measuredm1",";m;Events",200,0.0,400.0));
   Book( TH1F( "Measuredm2",";m;Events",200,0.0,400.0));
@@ -239,9 +265,9 @@ void BackgroundHists::Init()
 // //   Book( TH1F( "MeasuredHTTpT2", ";pT;Events", 100, 0, 2000 ) );
   
   //   Book( TH1F( "fake_mass",";m;Events",110,140.0,250.0));
-  double csv_bins[] = {-100.0,0.0,0.244,0.679,10.0};
-//   double csv_bins[] = {-100.0,0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,10.0};
-  double mistag_pt_bins[] = {150.0,200.0,220.0,240.0,260.0,280.0,300.0,320.0,340.0,360.0,380.0,400.0,450.0,500.0,600.0,800.0,2000.0};
+//   double csv_bins[] = {-100.0,0.0,0.244,0.679,10.0};
+// //   double csv_bins[] = {-100.0,0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,10.0};
+//   double mistag_pt_bins[] = {150.0,200.0,220.0,240.0,260.0,280.0,300.0,320.0,340.0,360.0,380.0,400.0,450.0,500.0,600.0,800.0,2000.0};
   //{150.0,175.0,200.0,210.0,220.0,230.0,240.0,250.0,260.0,270.0,280.0,290.0,300.0,310.0,320.0,330.0,340.0,350.0,360.0,370.0,380.0,390.0,400.0,410.0,430.0,450.0,500.0,600.0,800.0,1000.0,2000.0};
   //double mistag_ht_bins[] = {0/*,300,400,450,500,550,600,650,700,800,1000*/,10000};
   //Book( TH3F( "num_mistag", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );
@@ -258,7 +284,15 @@ void BackgroundHists::Init()
   
 //   Book( TProfile3D( "mistag_crosscheck", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );
   //   Book( TH2F( "mass_shape2D",";m;CSV",110,140.0,250.0,sizeof(csv_bins)/sizeof(double)-1, csv_bins));
+  //Book( TH1F( "mass_shape",";m;Events",200,0.0,400.0));
   Book( TH1F( "mass_shape",";m;Events",200,0.0,400.0));
+  Book( TH1F( "mass_shape_low",";m;Events",200,0.0,400.0));
+  Book( TH1F( "mass_shape_high",";m;Events",200,0.0,400.0));
+  //Book( TH1F( "mass_shape_lowpt",";m;Events",200,0.0,400.0));
+  //Book( TH1F( "mass_shape_highpt",";m;Events",200,0.0,400.0));
+  
+  //Book( TH2F( "mass_shape_ht",";ht;m;Events",sizeof(ht_shape_bins)/sizeof(double)-1,ht_shape_bins,sizeof(mass_shape_bins)/sizeof(double)-1,mass_shape_bins));
+  //Book( TH2F( "mass_shape_pt",";pt;m;Events",sizeof(pt_shape_bins)/sizeof(double)-1,pt_shape_bins,sizeof(mass_shape_bins)/sizeof(double)-1,mass_shape_bins));
   //   Book( TH1F( "mass_shapeJEC",";m;Events",110,140.0,250.0));
   
 //   Book( TH3F( "num_mistagMeasured", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );
@@ -303,7 +337,7 @@ void BackgroundHists::Fill()
   
   bool isQCD = (version.find("QCD")!=string::npos);
   bool isEven = (event_number%2==0);
-  float mttcut= 50000000;
+  float mttcut= -1;
   
   //mistag application
   if (doBackground && !(isQCD && isEven) )
@@ -383,9 +417,14 @@ void BackgroundHists::Fill()
       {
 	RandomMass = shape->GetRandom();
       }
-      else
+      else//QuadJetDatasetHistos
       {
-	RandomMass = mjshape->GetRandom();
+// 	if (getMtt(bcc->topjets->at(tag_index),bcc->topjets->at(mistag_index))<500)
+       if (bcc->topjets->at(mistag_index).pt()<220)
+	  RandomMass = mjshapelow->GetRandom();
+	else
+	  RandomMass = mjshapehigh->GetRandom();
+// 	  RandomMass = mjshape->GetRandom();
       }
       //       Hist("fake_mass")->Fill(RandomMass,weight);
       //       cout<<RandomMass<<endl;
@@ -423,6 +462,7 @@ void BackgroundHists::Fill()
       // 				RandomMass
       //       );
       double mtt = ( TagVector + MistagVector ).M();
+//       double mtt=getMtt(bcc->topjets->at(0),bcc->topjets->at(1));//NO random mass modification
 //       double mttNoMass=getMtt(bcc->topjets->at(0),bcc->topjets->at(1));//NO random mass modification
       unsigned int ileading = 0;
       unsigned int isubleading = 1;
@@ -437,7 +477,7 @@ void BackgroundHists::Fill()
       int nbtags=0;
       if (subJetBTag(bcc->topjets->at(tag_index),e_CSVM)>0) nbtags++;
       if (subJetBTag(bcc->topjets->at(mistag_index),e_CSVM)>0) nbtags++;
-      if (mtt<mttcut)
+      if (mtt>mttcut)
       {
       Hist("Mtt012")->Fill(mtt,mistag_value*weight);
       Hist("Jet1pT012")->Fill(bcc->topjets->at(ileading).pt(),weight*mistag_value);
@@ -468,7 +508,7 @@ void BackgroundHists::Fill()
 	Hist("Jet1csv0")->Fill(leadingcsv,weight*mistag_value);
 	Hist("Jet2csv0")->Fill(subleadingcsv,weight*mistag_value);
 	
-	
+	Hist("mchanged")->Fill(TopJetMass(bcc->topjets->at(mistag_index)),weight*mistag_value);
 	if (tag_index==ileading)
 	{
 	  Hist("m1")->Fill(TopJetMass(bcc->topjets->at(ileading)),weight*mistag_value);
@@ -496,6 +536,14 @@ void BackgroundHists::Fill()
 	((TH2F*)Hist("HTT2D1"))->Fill(HepTopTagPairwiseMassWithMatch1(bcc->topjets->at(ileading)),HepTopTagPairwiseMassWithMatch2(bcc->topjets->at(ileading)),weight*mistag_value);
 	((TH2F*)Hist("HTT2D2"))->Fill(HepTopTagPairwiseMassWithMatch1(bcc->topjets->at(isubleading)),HepTopTagPairwiseMassWithMatch2(bcc->topjets->at(isubleading)),weight*mistag_value);
 	
+	if (bcc->jets->size()>4)
+	{
+	  Hist("pT5")->Fill(bcc->jets->at(4).pt(),weight*mistag_value);
+	  Hist("spT5")->Fill(bcc->jets->at(4).pt()+bcc->jets->at(3).pt()+bcc->jets->at(2).pt()+bcc->jets->at(1).pt()+bcc->jets->at(0).pt(),weight*mistag_value);
+	}
+	((TH2F*)Hist("Whichmistag"))->Fill(bcc->topjets->at(mistag_index).pt(),maxcsv,weight*mistag_value);
+	((TH2F*)Hist("HTT2Dtag"))->Fill(HepTopTagPairwiseMassWithMatch1(bcc->topjets->at(tag_index)),HepTopTagPairwiseMassWithMatch2(bcc->topjets->at(tag_index)),weight*mistag_value);
+	((TH2F*)Hist("HTT2Dmistag"))->Fill(HepTopTagPairwiseMassWithMatch1(bcc->topjets->at(mistag_index)),HepTopTagPairwiseMassWithMatch2(bcc->topjets->at(mistag_index)),weight*mistag_value);
 	
 	
 //         Hist("MttNoMass0")->Fill(mttNoMass,mistag_value*weight);
@@ -559,9 +607,27 @@ void BackgroundHists::Fill()
       tag_index=1;
       probe_index=0;
     } 
-    if ( HepTopTagWithMatch(bcc->topjets->at(tag_index)) && MassAndPtCutWithMatch(bcc->topjets->at(probe_index)) )
+    
+    double the_mass_shape=TopJetMass(bcc->topjets->at(probe_index));
+    //double the_mtt=getMtt(bcc->topjets->at(tag_index),bcc->topjets->at(probe_index));
+    double the_pt=bcc->topjets->at(probe_index).pt();
+    //double the_ht=getHT50(bcc);
+    //if ( HepTopTagWithMatch(bcc->topjets->at(tag_index)) && MassAndPtCutWithMatch(bcc->topjets->at(probe_index)) )
+    //{
+      
+//       if (the_mtt>550) Hist("mass_shape_high")->Fill(the_mass_shape,weight);
+//       if (the_mtt<500) Hist("mass_shape_low")->Fill(the_mass_shape,weight);
+      //((TH2F*)Hist("mass_shape_ht"))->Fill(the_ht,the_mass_shape,weight);
+      //((TH2F*)Hist("mass_shape_pt"))->Fill(the_pt,the_mass_shape,weight);
+      //if (the_pt>220) Hist("mass_shape_highpt")->Fill(the_mass_shape,weight);
+      //if (the_pt<220) Hist("mass_shape_lowpt")->Fill(the_mass_shape,weight);
+    //}
+    if ( HepTopTagWithMatch(bcc->topjets->at(tag_index)) && HepTopTagWithMatch(bcc->topjets->at(probe_index)) )
     {
-      Hist("mass_shape")->Fill(TopJetMass(bcc->topjets->at(probe_index)),weight);
+      //Hist("mass_shape")->Fill(TopJetMass(bcc->topjets->at(probe_index)),weight);
+      Hist("mass_shape")->Fill(the_mass_shape,weight);
+      if (the_pt>220) Hist("mass_shape_high")->Fill(the_mass_shape,weight);
+      if (the_pt<220) Hist("mass_shape_low")->Fill(the_mass_shape,weight);
     }
     
     
@@ -801,7 +867,7 @@ void BackgroundHists::Fill()
       float leadingcsv=getMaxCSV(bcc->topjets->at(ileading));
       float subleadingcsv=getMaxCSV(bcc->topjets->at(isubleading));
       
-      if (mtt<mttcut)
+      if (mtt>mttcut)
       {
       Hist("MeasuredMtt012")->Fill(mtt,weight*htt_weight);
       Hist("MeasuredJet1pT012")->Fill(bcc->topjets->at(ileading).pt(),weight*htt_weight);
@@ -843,6 +909,13 @@ void BackgroundHists::Fill()
 	Hist("MeasuredHT50")->Fill(getHT50(bcc),weight*htt_weight);
 	((TH2F*)Hist("MeasuredHTT2D1"))->Fill(HepTopTagPairwiseMassWithMatch1(bcc->topjets->at(ileading)),HepTopTagPairwiseMassWithMatch2(bcc->topjets->at(ileading)),weight*htt_weight);
 	((TH2F*)Hist("MeasuredHTT2D2"))->Fill(HepTopTagPairwiseMassWithMatch1(bcc->topjets->at(isubleading)),HepTopTagPairwiseMassWithMatch2(bcc->topjets->at(isubleading)),weight*htt_weight);
+	
+	if (bcc->jets->size()>4)
+	{
+	  Hist("MeasuredpT5")->Fill(bcc->jets->at(4).pt(),weight*htt_weight);
+	  Hist("MeasuredspT5")->Fill(bcc->jets->at(4).pt()+bcc->jets->at(3).pt()+bcc->jets->at(2).pt()+bcc->jets->at(1).pt()+bcc->jets->at(0).pt(),weight*htt_weight);
+	}
+
 //         Hist("MeasuredJECMtt0")->Fill(mttJEC,weight);
 //         Hist("MeasuredHT0")->Fill(ht50,weight);
 //         Hist("MeasuredpT0")->Fill(bcc->topjets->at(histo_index).pt(),weight);

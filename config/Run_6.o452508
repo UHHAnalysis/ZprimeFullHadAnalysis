@@ -1,0 +1,696 @@
+Setting up environment for compiling/running SFrame
+/afs/desy.de/user/u/usaiem/code
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JobConfiguration PUBLIC "" "JobConfig.dtd">
+
+<!-- OutputLevel="VERBOSE" -->
+<JobConfiguration JobName="BackgroundCycleJob" OutputLevel="INFO">
+    
+	<Library Name="libfastjet"/>
+	<Library Name="libfastjettools"/>
+	<Library Name="libSFramePlugIns"/>
+	<Library Name="libSFrameTools"/>
+	<Library Name="libAnalysis"/>
+	<Library Name="libNtuple"/>
+	<Library Name="libJetMETObjects"/>
+	<Library Name="libZprimeFullHadAnalysis"/>
+
+	<Package Name="ZprimeFullHadAnalysis.par" /> 
+
+  <Cycle Name="BackgroundCycle" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/" PostFix="_6" TargetLumi="19708" >
+<!--    <Cycle Name="BackgroundCycle"  RunMode="PROOF" ProofServer="lite://" ProofWorkDir="/nfs/dust/cms/user/usaiem/PROOF/" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19700" > -->
+
+<!-- ProofNodes="6" -->
+
+
+<!--bcup-->
+
+<!--<InputData Lumi="88185" NEventsMax="-1" Type="MC" Version="TTbar_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.TTbar.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" /> 
+</InputData>-->
+
+<InputData Lumi="238028" NEventsMax="-1" Type="MC" Version="ZP500W5" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP500W5.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="229767" NEventsMax="-1" Type="MC" Version="ZP500W50_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP500W50.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="217629" NEventsMax="-1" Type="MC" Version="ZP750W7p5_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP750W7p5.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="216010" NEventsMax="-1" Type="MC" Version="ZP750W75_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP750W75.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="203984" NEventsMax="-1" Type="MC" Version="ZP1000W10_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1000W10.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="207430" NEventsMax="-1" Type="MC" Version="ZP1000W100_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1000W100.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="197422" NEventsMax="-1" Type="MC" Version="ZP1250W12p5_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1250W12p5.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="201420" NEventsMax="-1" Type="MC" Version="ZP1250W125_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1250W125.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="471449" NEventsMax="-1" Type="MC" Version="ZP1500W15_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1500W15.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="196751" NEventsMax="-1" Type="MC" Version="ZP1500W150_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1500W150.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="181494" NEventsMax="-1" Type="MC" Version="ZP2000W20_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP2000W20.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="485137" NEventsMax="-1" Type="MC" Version="ZP2000W200_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP2000W200.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="91209" NEventsMax="-1" Type="MC" Version="ZP3000W30_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP3000W30.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="200810" NEventsMax="-1" Type="MC" Version="ZP3000W300_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP3000W300.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="204582" NEventsMax="-1" Type="MC" Version="ZP4000W40_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP4000W40.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="103388" NEventsMax="-1" Type="MC" Version="ZP4000W400_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP4000W400.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="92960" NEventsMax="-1" Type="MC" Version="RSG700_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG700.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG1000_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1000.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG1200_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1200.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="97440" NEventsMax="-1" Type="MC" Version="RSG1400_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1400.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG1500_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1500.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="99840" NEventsMax="-1" Type="MC" Version="RSG1600_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1600.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG1800_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1800.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG2000_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG2000.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG2500_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG2500.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG3000_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG3000.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG3500_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG3500.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG4000_pdf" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG4000.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+
+
+
+
+<!--<InputData Lumi="238028" NEventsMax="-1" Type="DATA" Version="DATA2" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.DATA.DATA.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>-->
+
+
+
+		<UserConfig>
+
+		   <Item Name="JetCollection" Value="goodPatJetsPFlow" />
+		   <Item Name="ElectronCollection" Value="selectedPatElectronsPFlowLoose" />
+		   <Item Name="MuonCollection" Value="selectedPatMuonsPFlowLoose" /> 
+		   <Item Name="TauCollection" Value="selectedPatTausPFlow" />
+		   <Item Name="GenJetCollection" Value="ak5GenJetsNoNu" />
+<!--		   <Item Name="PhotonCollection" Value="patPhotons" /> -->
+		   <Item Name="PrimaryVertexCollection" Value="goodOfflinePrimaryVertices" /> 
+		   <Item Name="METName" Value="patMETsPFlow" />  
+		   <Item Name="TopJetCollection" Value="goodPatJetsCA15FilteredPFPacked" />
+		   <Item Name="TopTagJetCollection" Value="goodPatJetsCAHEPTopTagPFPacked" />
+		   <!--<Item Name="TopJetCollectionGen" Value="caHEPTopTagGen" />-->
+		   <Item Name="GenParticleCollection" Value="GenParticles" /> 
+ 	           <Item Name="HiggsTagJetCollection" Value="goodPatJetsCATopTagPFPacked" />
+		     
+<!-- 		   <Item Name="TopJetCollectionGen" Value="caFilteredGenJetsNoNu"/> -->
+		   
+		   <!-- 		      <Item Name="PU_Filename_Data" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/PileUpHistos/MyDataPileupHistogram_206745.root" /> -->
+		      <Item Name="PU_Filename_MC" Value="/nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle" />
+                       <Item Name="PU_Filename_Data" Value="/nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root" />
+		      <Item Name="PU_Histname_Data" Value="pileup" />
+		      <Item Name="PU_Histname_MC" Value="N_pileup_hist" />
+                      <Item Name="JECHiggsTagJetCollection" Value="AK7PFchs" />
+<!--		      <Item Name="writeTTbarReco" Value="True" />  
+		      <Item Name="readTTbarReco" Value="True" /> -->
+		      
+		   
+		   <!-- to apply jet energy (re-)corrections (esp. updated ones since the gridding), use these lines: -->
+<!--		   <Item Name="JECFileLocation" Value="/scratch/hh/dust/naf/cms/user/peiffer/CMSSW_5_3_10/src" />
+		   <Item Name="JECDataGlobalTag" Value="FT_53_V21_AN6" />
+		   <Item Name="JECMCGlobalTag" Value="START53_V27" />
+		   <Item Name="JECJetCollection" Value="AK5PFchs" />-->
+		   
+		   
+		   <Item Name="JECFileLocation" Value="/nfs/dust/cms/user/marchesi/JECfiles" />
+		   <Item Name="JECDataGlobalTag" Value="FT_53_V21_AN6" />
+		   <Item Name="JECMCGlobalTag" Value="START53_V27" />
+		   <Item Name="JECJetCollection" Value="AK5PFchs" />
+		   <Item Name="JECTopJetCollection" Value="AK7PFchs" />
+		   <Item Name="JECTopTagJetCollection" Value="AK7PFchs" />
+		   
+ 		   <Item Name="toppagptweight" Value="mean" /> 
+ 		
+		   
+		   <Item Name="SystematicUncertainty" Value="PDF" />
+		   <Item Name="SystematicVariation" Value="up" />
+		   
+		   <Item Name="PDFName" Value="cteq66" />
+		   <!--<Item Name="PDFName" Value="CT10" />-->
+		   <Item Name="PDFIndex" Value="6" />
+		   <Item Name="PDFWeightFilesDirectory" Value="/afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis/" />
+		   <Item Name="" Value="" />
+		   
+		   <Item Name="TopJetCollectionGen" Value="caFilteredGenJetsNoNu"/>
+		   
+ 		   
+<!-- 		   <Item Name="JECSubJetCollection" Value="AK5PFchs" />
+ <Item Name="SystematicUncertainty" Value="SUBJEC" />
+ <Item Name="SystematicVariation" Value="up" />            
+ <Item Name="OnlyUNCSubjetJEC" Value="1" />-->
+
+<!--  <Item Name="SystematicUncertainty" Value="SUBJER" />
+                  <Item Name="SystematicVariation" Value="down" />-->
+		   
+		   <!-- this would perform systematic variations of the jet energy corrections in the down direction:
+		   <Item Name="SystematicUncertainty" Value="JEC" />
+		   <Item Name="SystematicVariation" Value="down" /> -->
+
+<!--		   <Item Name="LumiFilePath" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/LumiFiles/" /> 
+		   <Item Name="LumiFileName" Value="Mu40.root" /> 
+		   <Item Name="LumiTrigger" Value="HLT_Mu40_eta2p1_v" /> -->
+
+		   <!--<Item Name="BTaggingScaleFactors" Value="true" />-->
+
+		    <!--<Item Name="LeptonScaleFactors" Value="MuonRunA 1051.4 MuonRunB 4778 MuonRunC 11946" /> -->
+		      
+                </UserConfig>
+	</Cycle>
+</JobConfiguration>
+ ( INFO  )  SCycleController   : Initializing
+ ( INFO  )  SCycleController   : Deleting all analysis cycle algorithms from memory
+ ( INFO  )  SCycleController   : Reading xml file: 'temp_6.xml'
+ (WARNING)  TClassTable::Add   : class PileUpHistoCycle already in TClassTable
+ ( INFO  )  SCycleController   : Created cycle 'BackgroundCycle'
+ ( INFO  )  AnalysisCycle      : Initializing from configuration
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP500W5
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP500W50_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP750W7p5_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP750W75_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP1000W10_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP1000W100_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP1250W12p5_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP1250W125_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP1500W15_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP1500W150_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP2000W20_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP2000W200_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP3000W30_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP3000W300_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP4000W40_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP4000W400_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG700_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG1000_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG1200_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG1400_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG1500_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG1600_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG1800_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG2000_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG2500_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG3000_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG3500_pdf
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG4000_pdf
+ (WARNING)  AnalysisCycle      : User property not found: 
+ (WARNING)  AnalysisCycle      :   Value not set!
+ ( INFO  )  SCycleConfig       : ===========================================================
+ ( INFO  )  SCycleConfig       :                     Cycle configuration
+ ( INFO  )  SCycleConfig       :   - Running mode: LOCAL
+ ( INFO  )  SCycleConfig       :   - Target luminosity: 19708
+ ( INFO  )  SCycleConfig       :   - Output directory: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/
+ ( INFO  )  SCycleConfig       :   - Post-fix: _6
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP500W5
+ ( INFO  )  SInputData         :  Total luminosity   : 238028pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP500W5.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP500W50_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 229767pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP500W50.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP750W7p5_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 217629pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP750W7p5.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP750W75_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 216010pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP750W75.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP1000W10_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 203984pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1000W10.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP1000W100_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 207430pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1000W100.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP1250W12p5_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 197422pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1250W12p5.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP1250W125_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 201420pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1250W125.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP1500W15_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 471449pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1500W15.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP1500W150_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 196751pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1500W150.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP2000W20_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 181494pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP2000W20.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP2000W200_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 485137pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP2000W200.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP3000W30_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 91209pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP3000W30.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP3000W300_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 200810pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP3000W300.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP4000W40_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 204582pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP4000W40.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP4000W400_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 103388pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP4000W400.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG700_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 92960pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG700.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG1000_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 100000pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1000.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG1200_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 100000pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1200.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG1400_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 97440pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1400.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG1500_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 100000pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1500.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG1600_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 99840pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1600.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG1800_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 100000pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1800.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG2000_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 100000pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG2000.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG2500_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 100000pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG2500.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG3000_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 100000pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG3000.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG3500_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 100000pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG3500.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG4000_pdf
+ ( INFO  )  SInputData         :  Total luminosity   : 100000pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG4000.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SCycleConfig       : ===========================================================
+ ( INFO  )  SCycleController   : Job 'BackgroundCycleJob' configured
+ ( INFO  )  SCycleController   : Time needed for initialisation:   0.36 s
+ ( INFO  )  SCycleController   : Entering ExecuteAllCycles()
+ ( INFO  )  SInputData         : Input type "MC" version "ZP500W5" : 145 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP500W50_pdf" : 360 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP750W7p5_pdf" : 4376 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP750W75_pdf" : 4204 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP1000W10_pdf" : 6100 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP1000W100_pdf" : 5622 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP1250W12p5_pdf" : 3526 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP1250W125_pdf" : 3827 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP1500W15_pdf" : 5893 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP1500W150_pdf" : 2763 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP2000W20_pdf" : 1380 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP2000W200_pdf" : 4906 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP3000W30_pdf" : 466 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP3000W300_pdf" : 2251 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP4000W40_pdf" : 2207 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP4000W400_pdf" : 1502 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG700_pdf" : 1140 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG1000_pdf" : 2199 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG1200_pdf" : 1835 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG1400_pdf" : 1414 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG1500_pdf" : 1359 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG1600_pdf" : 1273 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG1800_pdf" : 1209 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG2000_pdf" : 1133 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG2500_pdf" : 987 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG3000_pdf" : 1159 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG3500_pdf" : 1110 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG4000_pdf" : 1157 events (cached)
+ ( INFO  )  SCycleController   : Executing Cycle #0 ('BackgroundCycle') locally
+ ( INFO  )  LuminosityHandler  :  <GetLumiPerLumiBinHist> IntLumiPerLumiBin histogram is empty!
+ (WARNING)  LuminosityHandler  : No Lumi File specified ==> No lumi calculation
+ ( INFO  )  SCycleController   : Processing input data type: MC version: ZP500W5
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.ZP500W5.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//ZP500W5_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:ZP500W5) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP500W5.root
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:ZP500W5) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 145; NEventsMax: 18446744073709551615; nskip: 0; expecting 145)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.ZP500W5_6.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: ZP500W50_pdf
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.ZP500W50_pdf.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//ZP500W50_pdf_cteq66_weights.txt

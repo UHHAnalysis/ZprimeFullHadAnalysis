@@ -196,16 +196,28 @@ void ZprimeFullHadCycle::BeginInputData( const SInputData& id ) throw( SError )
   Trigger3Sel = new Selection("Trigger3Sel");
   Trigger4Sel = new Selection("Trigger4Sel");
   Trigger5Sel = new Selection("Trigger5Sel");
+  TriggerMu = new Selection("TriggerMu");
+  TriggerHT = new Selection("TriggerHT");
+  TriggerQuad = new Selection("TriggerQuad");
+  Trigger650 = new Selection("Trigger650");
   Trigger1Sel->addSelectionModule(new TriggerSelection("HLT_HT750"));
   Trigger2Sel->addSelectionModule(new TriggerSelection("HLT_QuadJet50"));
   Trigger3Sel->addSelectionModule(new TriggerSelection("HLT_QuadJet50"));
   Trigger4Sel->addSelectionModule(new TriggerSelection("HLT_QuadJet50"));
   Trigger5Sel->addSelectionModule(new TriggerSelection("HLT_QuadJet50"));
+  TriggerMu->addSelectionModule(new TriggerSelection("HLT_Mu40"));
+  TriggerHT->addSelectionModule(new TriggerSelection("HLT_HT750"));
+  TriggerQuad->addSelectionModule(new TriggerSelection("HLT_QuadJet50"));
+  Trigger650->addSelectionModule(new TriggerSelection("HLT_HT650"));
   RegisterSelection(Trigger1Sel);
   RegisterSelection(Trigger2Sel);
   RegisterSelection(Trigger3Sel);
   RegisterSelection(Trigger4Sel);
   RegisterSelection(Trigger5Sel);
+  RegisterSelection(TriggerMu);
+  RegisterSelection(TriggerHT);
+  RegisterSelection(TriggerQuad);
+  RegisterSelection(Trigger650);
 /*
   BSel = new Selection( "BSelection");
   // addSelectionModule transfers memory release responsibility to the Selection instance.
@@ -256,6 +268,12 @@ void ZprimeFullHadCycle::BeginInputData( const SInputData& id ) throw( SError )
   RegisterHistCollection( new ZprimeFullHadHists("Trigger3Histos"));
   RegisterHistCollection( new ZprimeFullHadHists("Trigger4Histos"));
   RegisterHistCollection( new ZprimeFullHadHists("Trigger5Histos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFbaseHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFHTHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFQuadHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFMuHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFbase650Histos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFHT650Histos"));
 /*  
   RegisterHistCollection( new ZprimeFullHadHists("Cat_2jet"));
   RegisterHistCollection( new ZprimeFullHadHists("Cat_2htt"));
@@ -320,6 +338,12 @@ void ZprimeFullHadCycle::ExecuteEvent( const SInputData& id, Double_t weight) th
   BaseHists* Trigger3Histos = GetHistCollection("Trigger3Histos");
   BaseHists* Trigger4Histos = GetHistCollection("Trigger4Histos");
   BaseHists* Trigger5Histos = GetHistCollection("Trigger5Histos");
+  BaseHists* SFbaseHistos = GetHistCollection("SFbaseHistos");
+  BaseHists* SFHTHistos = GetHistCollection("SFHTHistos");
+  BaseHists* SFQuadHistos = GetHistCollection("SFQuadHistos");
+  BaseHists* SFMuHistos = GetHistCollection("SFMuHistos");
+  BaseHists* SFbase650Histos = GetHistCollection("SFbase650Histos");
+  BaseHists* SFHT650Histos = GetHistCollection("SFHT650Histos");
   
 //   BaseHists* Cat_2jetHistos = GetHistCollection("Cat_2jet");
 //   BaseHists* Cat_2httHistos = GetHistCollection("Cat_2htt");
@@ -456,11 +480,47 @@ Indices={0,1};
 
 
 
-  bool HT750_trigger = Trigger1Sel->passSelection();
-  bool QuadJet50_trigger = Trigger2Sel->passSelection();
+  bool HT_trigger = TriggerHT->passSelection();
+  bool Quad_trigger = TriggerQuad->passSelection();
+  bool Mu_trigger = TriggerMu->passSelection();
+  bool HT650_trigger = Trigger650->passSelection();
+  
+  bool signal_region = false;
+  if (bcc->topjets->size()>1)
+  {
+    if(HepTopTagWithMatch(bcc->topjets->at(0))&&HepTopTagWithMatch(bcc->topjets->at(1))) signal_region=true;
+  }
+  
+  if (Mu_trigger && bcc->topjets->size()>1)
+  {
+    ((ZprimeFullHadHists*)SFMuHistos)->Fill2(Indices);
+    if (signal_region)
+    {
+      ((ZprimeFullHadHists*)SFbaseHistos)->Fill2(Indices);
+      if (HT_trigger)
+      {
+        ((ZprimeFullHadHists*)SFHTHistos)->Fill2(Indices);
+      }
+      if (Quad_trigger)
+      {
+        ((ZprimeFullHadHists*)SFQuadHistos)->Fill2(Indices);
+      }
+    }
+  }
+  
+  if (HT650_trigger && signal_region)
+  {
+    ((ZprimeFullHadHists*)SFbase650Histos)->Fill2(Indices);
+    if (HT_trigger)
+    {
+      ((ZprimeFullHadHists*)SFHT650Histos)->Fill2(Indices);
+    }
+  }
+  
 //   
 //    
-// 
+//
+   bool HT750_trigger = Trigger1Sel->passSelection();
    bool cms_signal_region = false;
    bool cms_analysis_region = false;
    if (bcc->higgstagjets->size()>1)
@@ -502,7 +562,7 @@ Indices={0,1};
   bool good_number_of_jets = (n>1) && (nfilt==2) && (two_matched_pt);
   
   
-  bool HT_region = /*HT750_trigger &&*/ (!cms_analysis_region) /*&& HT_cut*/ && good_number_of_jets;
+  bool HT_region = HT750_trigger && (!cms_analysis_region) && HT_cut && good_number_of_jets;
   
   bool Quad_region =/* QuadJet50_trigger &&*/ ( !HT_region ) && ( !cms_analysis_region ) /*&& QuadJet_cut*/ && good_number_of_jets;
 
@@ -523,7 +583,7 @@ Indices={0,1};
 
   if (bcc->topjets->size()>1 /*(n>1) && (nfilt==2) && (two_matched_pt)*/ )
   {
-    if(HepTopTagWithMatch(bcc->topjets->at(0))&&HepTopTagWithMatch(bcc->topjets->at(1))&&HT_region)
+    if(HepTopTagWithMatch(bcc->topjets->at(0))&&HepTopTagWithMatch(bcc->topjets->at(1))&&Quad_region)
 // if (HT_region)
     {
 

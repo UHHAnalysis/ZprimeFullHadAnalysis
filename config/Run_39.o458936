@@ -1,0 +1,1244 @@
+Setting up environment for compiling/running SFrame
+/afs/desy.de/user/u/usaiem/code
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JobConfiguration PUBLIC "" "JobConfig.dtd">
+
+<!-- OutputLevel="VERBOSE" -->
+<JobConfiguration JobName="BackgroundCycleJob" OutputLevel="INFO">
+    
+	<Library Name="libfastjet"/>
+	<Library Name="libfastjettools"/>
+	<Library Name="libSFramePlugIns"/>
+	<Library Name="libSFrameTools"/>
+	<Library Name="libAnalysis"/>
+	<Library Name="libNtuple"/>
+	<Library Name="libJetMETObjects"/>
+	<Library Name="libZprimeFullHadAnalysis"/>
+
+	<Package Name="ZprimeFullHadAnalysis.par" /> 
+
+  <Cycle Name="BackgroundCycle" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/" PostFix="_39" TargetLumi="19708" >
+<!--    <Cycle Name="BackgroundCycle"  RunMode="PROOF" ProofServer="lite://" ProofWorkDir="/nfs/dust/cms/user/usaiem/PROOF/" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19700" > -->
+
+<!-- ProofNodes="6" -->
+
+
+<!--bcup-->
+
+<!--<InputData Lumi="88185" NEventsMax="-1" Type="MC" Version="TTbar" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.TTbar.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" /> 
+</InputData>-->
+
+<InputData Lumi="238028" NEventsMax="-1" Type="MC" Version="ZP500W5" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP500W5.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="229767" NEventsMax="-1" Type="MC" Version="ZP500W50" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP500W50.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="217629" NEventsMax="-1" Type="MC" Version="ZP750W7p5" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP750W7p5.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="216010" NEventsMax="-1" Type="MC" Version="ZP750W75" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP750W75.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="203984" NEventsMax="-1" Type="MC" Version="ZP1000W10" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1000W10.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="207430" NEventsMax="-1" Type="MC" Version="ZP1000W100" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1000W100.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="197422" NEventsMax="-1" Type="MC" Version="ZP1250W12p5" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1250W12p5.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="201420" NEventsMax="-1" Type="MC" Version="ZP1250W125" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1250W125.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="471449" NEventsMax="-1" Type="MC" Version="ZP1500W15" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1500W15.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="196751" NEventsMax="-1" Type="MC" Version="ZP1500W150" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1500W150.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="181494" NEventsMax="-1" Type="MC" Version="ZP2000W20" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP2000W20.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="485137" NEventsMax="-1" Type="MC" Version="ZP2000W200" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP2000W200.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="91209" NEventsMax="-1" Type="MC" Version="ZP3000W30" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP3000W30.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="200810" NEventsMax="-1" Type="MC" Version="ZP3000W300" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP3000W300.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="204582" NEventsMax="-1" Type="MC" Version="ZP4000W40" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP4000W40.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="103388" NEventsMax="-1" Type="MC" Version="ZP4000W400" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP4000W400.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+<InputData Lumi="92960" NEventsMax="-1" Type="MC" Version="RSG700" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG700.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG1000" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1000.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG1200" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1200.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="97440" NEventsMax="-1" Type="MC" Version="RSG1400" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1400.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG1500" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1500.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="99840" NEventsMax="-1" Type="MC" Version="RSG1600" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1600.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG1800" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1800.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG2000" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG2000.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG2500" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG2500.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG3000" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG3000.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG3500" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG3500.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG4000" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG4000.root" Lumi="0.0"/>
+<InputTree Name="AnalysisTree" />
+</InputData>
+
+
+
+
+
+<!--<InputData Lumi="238028" NEventsMax="-1" Type="DATA" Version="DATA2" Cacheable="True">
+<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.DATA.DATA.root" Lumi="0.0"/> 
+<InputTree Name="AnalysisTree" />
+</InputData>-->
+
+
+
+		<UserConfig>
+
+		   <Item Name="JetCollection" Value="goodPatJetsPFlow" />
+		   <Item Name="ElectronCollection" Value="selectedPatElectronsPFlowLoose" />
+		   <Item Name="MuonCollection" Value="selectedPatMuonsPFlowLoose" /> 
+		   <Item Name="TauCollection" Value="selectedPatTausPFlow" />
+		   <Item Name="GenJetCollection" Value="ak5GenJetsNoNu" />
+<!--		   <Item Name="PhotonCollection" Value="patPhotons" /> -->
+		   <Item Name="PrimaryVertexCollection" Value="goodOfflinePrimaryVertices" /> 
+		   <Item Name="METName" Value="patMETsPFlow" />  
+		   <Item Name="TopJetCollection" Value="goodPatJetsCA15FilteredPFPacked" />
+		   <Item Name="TopTagJetCollection" Value="goodPatJetsCAHEPTopTagPFPacked" />
+		   <!--<Item Name="TopJetCollectionGen" Value="caHEPTopTagGen" />-->
+		   <Item Name="GenParticleCollection" Value="GenParticles" /> 
+ 	           <Item Name="HiggsTagJetCollection" Value="goodPatJetsCATopTagPFPacked" />
+		     
+<!-- 		   <Item Name="TopJetCollectionGen" Value="caFilteredGenJetsNoNu"/> -->
+		   
+		   <!-- 		      <Item Name="PU_Filename_Data" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/PileUpHistos/MyDataPileupHistogram_206745.root" /> -->
+		      <Item Name="PU_Filename_MC" Value="/nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle" />
+                       <Item Name="PU_Filename_Data" Value="/nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root" />
+		      <Item Name="PU_Histname_Data" Value="pileup" />
+		      <Item Name="PU_Histname_MC" Value="N_pileup_hist" />
+                      <Item Name="JECHiggsTagJetCollection" Value="AK7PFchs" />
+<!--		      <Item Name="writeTTbarReco" Value="True" />  
+		      <Item Name="readTTbarReco" Value="True" /> -->
+		      
+		   
+		   <!-- to apply jet energy (re-)corrections (esp. updated ones since the gridding), use these lines: -->
+<!--		   <Item Name="JECFileLocation" Value="/scratch/hh/dust/naf/cms/user/peiffer/CMSSW_5_3_10/src" />
+		   <Item Name="JECDataGlobalTag" Value="FT_53_V21_AN6" />
+		   <Item Name="JECMCGlobalTag" Value="START53_V27" />
+		   <Item Name="JECJetCollection" Value="AK5PFchs" />-->
+		   
+		   
+		   <Item Name="JECFileLocation" Value="/nfs/dust/cms/user/marchesi/JECfiles" />
+		   <Item Name="JECDataGlobalTag" Value="FT_53_V21_AN6" />
+		   <Item Name="JECMCGlobalTag" Value="START53_V27" />
+		   <Item Name="JECJetCollection" Value="AK5PFchs" />
+		   <Item Name="JECTopJetCollection" Value="AK7PFchs" />
+		   <Item Name="JECTopTagJetCollection" Value="AK7PFchs" />
+		   
+ 		   <Item Name="toppagptweight" Value="mean" /> 
+ 		
+		   
+		   <Item Name="SystematicUncertainty" Value="PDF" />
+		   <Item Name="SystematicVariation" Value="up" />
+		   
+		   <Item Name="PDFName" Value="cteq66" />
+		   <!--<Item Name="PDFName" Value="CT10" />-->
+		   <Item Name="PDFIndex" Value="39" />
+		   <Item Name="PDFWeightFilesDirectory" Value="/afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis/" />
+		   <!--<Item Name="" Value="" />-->
+		   
+		   <Item Name="TopJetCollectionGen" Value="caFilteredGenJetsNoNu"/>
+		   
+ 		   
+<!-- 		   <Item Name="JECSubJetCollection" Value="AK5PFchs" />
+ <Item Name="SystematicUncertainty" Value="SUBJEC" />
+ <Item Name="SystematicVariation" Value="up" />            
+ <Item Name="OnlyUNCSubjetJEC" Value="1" />-->
+
+<!--  <Item Name="SystematicUncertainty" Value="SUBJER" />
+                  <Item Name="SystematicVariation" Value="down" />-->
+		   
+		   <!-- this would perform systematic variations of the jet energy corrections in the down direction:
+		   <Item Name="SystematicUncertainty" Value="JEC" />
+		   <Item Name="SystematicVariation" Value="down" /> -->
+
+<!--		   <Item Name="LumiFilePath" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/LumiFiles/" /> 
+		   <Item Name="LumiFileName" Value="Mu40.root" /> 
+		   <Item Name="LumiTrigger" Value="HLT_Mu40_eta2p1_v" /> -->
+
+		   <!--<Item Name="BTaggingScaleFactors" Value="true" />-->
+
+		    <!--<Item Name="LeptonScaleFactors" Value="MuonRunA 1051.4 MuonRunB 4778 MuonRunC 11946" /> -->
+		      
+                </UserConfig>
+	</Cycle>
+</JobConfiguration>
+ ( INFO  )  SCycleController   : Initializing
+ ( INFO  )  SCycleController   : Deleting all analysis cycle algorithms from memory
+ ( INFO  )  SCycleController   : Reading xml file: 'temp_39.xml'
+ (WARNING)  TClassTable::Add   : class PileUpHistoCycle already in TClassTable
+ ( INFO  )  SCycleController   : Created cycle 'BackgroundCycle'
+ ( INFO  )  AnalysisCycle      : Initializing from configuration
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP500W5
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP500W50
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP750W7p5
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP750W75
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP1000W10
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP1000W100
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP1250W12p5
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP1250W125
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP1500W15
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP1500W150
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP2000W20
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP2000W200
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP3000W30
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP3000W300
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP4000W40
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - ZP4000W400
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG700
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG1000
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG1200
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG1400
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG1500
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG1600
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG1800
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG2000
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG2500
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG3000
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG3500
+ ( INFO  )  AnalysisCycle      : Reading SInputData: MC - RSG4000
+ ( INFO  )  SCycleConfig       : ===========================================================
+ ( INFO  )  SCycleConfig       :                     Cycle configuration
+ ( INFO  )  SCycleConfig       :   - Running mode: LOCAL
+ ( INFO  )  SCycleConfig       :   - Target luminosity: 19708
+ ( INFO  )  SCycleConfig       :   - Output directory: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/
+ ( INFO  )  SCycleConfig       :   - Post-fix: _39
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP500W5
+ ( INFO  )  SInputData         :  Total luminosity   : 238028pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP500W5.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP500W50
+ ( INFO  )  SInputData         :  Total luminosity   : 229767pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP500W50.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP750W7p5
+ ( INFO  )  SInputData         :  Total luminosity   : 217629pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP750W7p5.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP750W75
+ ( INFO  )  SInputData         :  Total luminosity   : 216010pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP750W75.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP1000W10
+ ( INFO  )  SInputData         :  Total luminosity   : 203984pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1000W10.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP1000W100
+ ( INFO  )  SInputData         :  Total luminosity   : 207430pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1000W100.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP1250W12p5
+ ( INFO  )  SInputData         :  Total luminosity   : 197422pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1250W12p5.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP1250W125
+ ( INFO  )  SInputData         :  Total luminosity   : 201420pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1250W125.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP1500W15
+ ( INFO  )  SInputData         :  Total luminosity   : 471449pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1500W15.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP1500W150
+ ( INFO  )  SInputData         :  Total luminosity   : 196751pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1500W150.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP2000W20
+ ( INFO  )  SInputData         :  Total luminosity   : 181494pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP2000W20.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP2000W200
+ ( INFO  )  SInputData         :  Total luminosity   : 485137pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP2000W200.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP3000W30
+ ( INFO  )  SInputData         :  Total luminosity   : 91209pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP3000W30.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP3000W300
+ ( INFO  )  SInputData         :  Total luminosity   : 200810pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP3000W300.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP4000W40
+ ( INFO  )  SInputData         :  Total luminosity   : 204582pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP4000W40.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : ZP4000W400
+ ( INFO  )  SInputData         :  Total luminosity   : 103388pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP4000W400.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG700
+ ( INFO  )  SInputData         :  Total luminosity   : 92960pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG700.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG1000
+ ( INFO  )  SInputData         :  Total luminosity   : 100000pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1000.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG1200
+ ( INFO  )  SInputData         :  Total luminosity   : 100000pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1200.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG1400
+ ( INFO  )  SInputData         :  Total luminosity   : 97440pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1400.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG1500
+ ( INFO  )  SInputData         :  Total luminosity   : 100000pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1500.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG1600
+ ( INFO  )  SInputData         :  Total luminosity   : 99840pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1600.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG1800
+ ( INFO  )  SInputData         :  Total luminosity   : 100000pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1800.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG2000
+ ( INFO  )  SInputData         :  Total luminosity   : 100000pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG2000.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG2500
+ ( INFO  )  SInputData         :  Total luminosity   : 100000pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG2500.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG3000
+ ( INFO  )  SInputData         :  Total luminosity   : 100000pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG3000.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG3500
+ ( INFO  )  SInputData         :  Total luminosity   : 100000pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG3500.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SInputData         :  Type               : MC
+ ( INFO  )  SInputData         :  Version            : RSG4000
+ ( INFO  )  SInputData         :  Total luminosity   : 100000pb-1
+ ( INFO  )  SInputData         :  NEventsMax         : -1
+ ( INFO  )  SInputData         :  NEventsSkip        : 0
+ ( INFO  )  SInputData         :  Cacheable          : Yes
+ ( INFO  )  SInputData         :  Skip validation    : No
+ ( INFO  )  SInputData         :  Skip file lookup   : No
+ ( INFO  )  SInputData         :  Input File         : '/nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG4000.root' (file) | '0' (lumi)
+ ( INFO  )  SInputData         :  Tree               : 'AnalysisTree' (name) | 'Flat input tree' (type)
+ ( INFO  )  SInputData         :  ---------------------------------------------------------
+ ( INFO  )  SCycleConfig       : ===========================================================
+ ( INFO  )  SCycleController   : Job 'BackgroundCycleJob' configured
+ ( INFO  )  SCycleController   : Time needed for initialisation:   0.07 s
+ ( INFO  )  SCycleController   : Entering ExecuteAllCycles()
+ ( INFO  )  SInputData         : Input type "MC" version "ZP500W5" : 145 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP500W50" : 362 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP750W7p5" : 4361 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP750W75" : 4189 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP1000W10" : 6055 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP1000W100" : 5574 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP1250W12p5" : 3500 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP1250W125" : 3805 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP1500W15" : 5813 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP1500W150" : 2720 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP2000W20" : 1352 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP2000W200" : 4857 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP3000W30" : 465 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP3000W300" : 2218 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP4000W40" : 2201 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "ZP4000W400" : 1481 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG700" : 1143 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG1000" : 2191 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG1200" : 1811 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG1400" : 1402 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG1500" : 1348 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG1600" : 1255 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG1800" : 1189 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG2000" : 1113 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG2500" : 968 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG3000" : 1156 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG3500" : 1104 events (cached)
+ ( INFO  )  SInputData         : Input type "MC" version "RSG4000" : 1149 events (cached)
+ ( INFO  )  SCycleController   : Executing Cycle #0 ('BackgroundCycle') locally
+ ( INFO  )  LuminosityHandler  :  <GetLumiPerLumiBinHist> IntLumiPerLumiBin histogram is empty!
+ (WARNING)  LuminosityHandler  : No Lumi File specified ==> No lumi calculation
+ ( INFO  )  SCycleController   : Processing input data type: MC version: ZP500W5
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.ZP500W5.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//ZP500W5_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:ZP500W5) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP500W5.root
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:ZP500W5) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 145; NEventsMax: 18446744073709551615; nskip: 0; expecting 145)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.ZP500W5_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: ZP500W50
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.ZP500W50.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//ZP500W50_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:ZP500W50) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP500W50.root
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:ZP500W50) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 362; NEventsMax: 18446744073709551615; nskip: 0; expecting 362)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.ZP500W50_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: ZP750W7p5
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.ZP750W7p5.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//ZP750W7p5_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:ZP750W7p5) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP750W7p5.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 4361 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 1999 (1999 / 4361 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 2999 (2999 / 4361 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 3999 (3999 / 4361 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:ZP750W7p5) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 4361; NEventsMax: 18446744073709551615; nskip: 0; expecting 4361)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.ZP750W7p5_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: ZP750W75
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.ZP750W75.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//ZP750W75_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:ZP750W75) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP750W75.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 4189 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 1999 (1999 / 4189 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 2999 (2999 / 4189 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 3999 (3999 / 4189 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:ZP750W75) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 4189; NEventsMax: 18446744073709551615; nskip: 0; expecting 4189)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.ZP750W75_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: ZP1000W10
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.ZP1000W10.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//ZP1000W10_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:ZP1000W10) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1000W10.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 6055 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 1999 (1999 / 6055 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 2999 (2999 / 6055 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 3999 (3999 / 6055 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 4999 (4999 / 6055 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 5999 (5999 / 6055 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:ZP1000W10) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 6055; NEventsMax: 18446744073709551615; nskip: 0; expecting 6055)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.ZP1000W10_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: ZP1000W100
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.ZP1000W100.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//ZP1000W100_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:ZP1000W100) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1000W100.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 5574 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 1999 (1999 / 5574 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 2999 (2999 / 5574 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 3999 (3999 / 5574 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 4999 (4999 / 5574 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:ZP1000W100) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 5574; NEventsMax: 18446744073709551615; nskip: 0; expecting 5574)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.ZP1000W100_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: ZP1250W12p5
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.ZP1250W12p5.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//ZP1250W12p5_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:ZP1250W12p5) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1250W12p5.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 3500 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 1999 (1999 / 3500 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 2999 (2999 / 3500 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:ZP1250W12p5) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 3500; NEventsMax: 18446744073709551615; nskip: 0; expecting 3500)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.ZP1250W12p5_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: ZP1250W125
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.ZP1250W125.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//ZP1250W125_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:ZP1250W125) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1250W125.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 3805 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 1999 (1999 / 3805 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 2999 (2999 / 3805 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:ZP1250W125) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 3805; NEventsMax: 18446744073709551615; nskip: 0; expecting 3805)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.ZP1250W125_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: ZP1500W15
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.ZP1500W15.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//ZP1500W15_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:ZP1500W15) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1500W15.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 5813 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 1999 (1999 / 5813 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 2999 (2999 / 5813 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 3999 (3999 / 5813 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 4999 (4999 / 5813 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:ZP1500W15) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 5813; NEventsMax: 18446744073709551615; nskip: 0; expecting 5813)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.ZP1500W15_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: ZP1500W150
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.ZP1500W150.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//ZP1500W150_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:ZP1500W150) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP1500W150.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 2720 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 1999 (1999 / 2720 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:ZP1500W150) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 2720; NEventsMax: 18446744073709551615; nskip: 0; expecting 2720)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.ZP1500W150_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: ZP2000W20
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.ZP2000W20.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//ZP2000W20_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:ZP2000W20) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP2000W20.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 1352 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:ZP2000W20) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 1352; NEventsMax: 18446744073709551615; nskip: 0; expecting 1352)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.ZP2000W20_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: ZP2000W200
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.ZP2000W200.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//ZP2000W200_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:ZP2000W200) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP2000W200.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 4857 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 1999 (1999 / 4857 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 2999 (2999 / 4857 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 3999 (3999 / 4857 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:ZP2000W200) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 4857; NEventsMax: 18446744073709551615; nskip: 0; expecting 4857)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.ZP2000W200_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: ZP3000W30
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.ZP3000W30.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//ZP3000W30_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:ZP3000W30) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP3000W30.root
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:ZP3000W30) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 465; NEventsMax: 18446744073709551615; nskip: 0; expecting 465)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.ZP3000W30_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: ZP3000W300
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.ZP3000W300.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//ZP3000W300_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:ZP3000W300) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP3000W300.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 2218 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 1999 (1999 / 2218 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:ZP3000W300) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 2218; NEventsMax: 18446744073709551615; nskip: 0; expecting 2218)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.ZP3000W300_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: ZP4000W40
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.ZP4000W40.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//ZP4000W40_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:ZP4000W40) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP4000W40.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 2201 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 1999 (1999 / 2201 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:ZP4000W40) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 2201; NEventsMax: 18446744073709551615; nskip: 0; expecting 2201)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.ZP4000W40_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: ZP4000W400
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.ZP4000W400.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//ZP4000W400_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:ZP4000W400) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.ZP4000W400.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 1481 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:ZP4000W400) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 1481; NEventsMax: 18446744073709551615; nskip: 0; expecting 1481)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.ZP4000W400_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: RSG700
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.RSG700.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//RSG700_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:RSG700) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG700.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 1143 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:RSG700) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 1143; NEventsMax: 18446744073709551615; nskip: 0; expecting 1143)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.RSG700_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: RSG1000
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.RSG1000.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//RSG1000_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:RSG1000) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1000.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 2191 events processed so far)
+ ( INFO  )  AnalysisCycle      : Processing entry: 1999 (1999 / 2191 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:RSG1000) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 2191; NEventsMax: 18446744073709551615; nskip: 0; expecting 2191)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.RSG1000_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: RSG1200
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.RSG1200.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//RSG1200_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:RSG1200) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1200.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 1811 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:RSG1200) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 1811; NEventsMax: 18446744073709551615; nskip: 0; expecting 1811)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.RSG1200_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: RSG1400
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.RSG1400.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//RSG1400_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:RSG1400) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1400.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 1402 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:RSG1400) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 1402; NEventsMax: 18446744073709551615; nskip: 0; expecting 1402)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.RSG1400_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: RSG1500
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.RSG1500.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//RSG1500_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:RSG1500) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1500.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 1348 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:RSG1500) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 1348; NEventsMax: 18446744073709551615; nskip: 0; expecting 1348)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.RSG1500_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: RSG1600
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.RSG1600.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//RSG1600_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:RSG1600) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1600.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 1255 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:RSG1600) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 1255; NEventsMax: 18446744073709551615; nskip: 0; expecting 1255)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.RSG1600_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: RSG1800
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.RSG1800.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//RSG1800_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:RSG1800) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG1800.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 1189 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:RSG1800) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 1189; NEventsMax: 18446744073709551615; nskip: 0; expecting 1189)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.RSG1800_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: RSG2000
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.RSG2000.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//RSG2000_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:RSG2000) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG2000.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 1113 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:RSG2000) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 1113; NEventsMax: 18446744073709551615; nskip: 0; expecting 1113)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.RSG2000_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: RSG2500
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.RSG2500.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//RSG2500_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:RSG2500) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG2500.root
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:RSG2500) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 968; NEventsMax: 18446744073709551615; nskip: 0; expecting 968)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.RSG2500_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: RSG3000
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.RSG3000.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//RSG3000_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:RSG3000) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG3000.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 1156 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:RSG3000) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 1156; NEventsMax: 18446744073709551615; nskip: 0; expecting 1156)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.RSG3000_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: RSG3500
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.RSG3500.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//RSG3500_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:RSG3500) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG3500.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 1104 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:RSG3500) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 1104; NEventsMax: 18446744073709551615; nskip: 0; expecting 1104)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.RSG3500_39.root
+ ( INFO  )  SCycleController   : Processing input data type: MC version: RSG4000
+ ( INFO  )  AnalysisCycle      : Using JEC files from /nfs/dust/cms/user/marchesi/JECfiles
+ ( INFO  )  AnalysisCycle      : Using JEC global tags for data FT_53_V21_AN6 and for MC START53_V27
+ ( INFO  )  AnalysisCycle      : Using JEC for jet collection AK5PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for topjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for toptagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : Using JEC for higgstagjet collection AK7PFchs
+ ( INFO  )  AnalysisCycle      : PU Reweighting will be performed. File(data) = /nfs/dust/cms/user/peiffer/Analysis53X_v3/PileUpHistos/MyDataPileupHistogram.root File(MC) = /nfs/dust/cms/user/usaiem/ZprimeFullHad/PileUpHistoCycle.MC.RSG4000.root
+ ( INFO  )  AnalysisCycle      : PU, histograms: Hist(data) = pileup Hist(MC) = N_pileup_hist
+ (WARNING)  AnalysisCycle      : Running with systematic uncertainty: PDF  (this is more an info than a warning)
+ (WARNING)  AnalysisCycle      : Applying shift: up
+got pdfset number 44
+ ( INFO  )  PDFWeights         : Do pdf re-weighting with respect to weights in file: /afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis//RSG4000_cteq66_weights.txt
+ ( INFO  )  AnalysisCycle      : Initialised InputData "MC" (Version:RSG4000) on worker node
+ ( INFO  )  AnalysisCycle      : Current file: /nfs/dust/cms/user/usaiem/ZprimeFullHad/BackgroundCycle.MC.RSG4000.root
+ ( INFO  )  AnalysisCycle      : Processing entry: 999 (999 / 1149 events processed so far)
+ ( INFO  )  AnalysisCycle      : Terminated InputData "MC" (Version:RSG4000) on worker node
+ ( INFO  )  AnalysisCycle      : Checking how many events have actually been processed (ntot: 1149; NEventsMax: 18446744073709551615; nskip: 0; expecting 1149)
+ ( INFO  )  SCycleController   : Writing output of "BackgroundCycle" to: /nfs/dust/cms/user/usaiem/ZprimeFullHad/preselection/BackgroundCycle.MC.RSG4000_39.root
+ ( INFO  )  SCycleController   : Overall cycle statistics:
+ ( INFO  )  SCycleController   :      64927 Events - Real time 507.67 s  -   128 Hz | CPU time 451.13 s  -   144 Hz
+ *************************************
+ *       LHAPDF Version 5.9.1        *
+ *   Configured for the following:   *
+ *             All PDFs              *
+ *         FULL MEMORY option        *
+ *    Maximum  3 concurrent set(s)   *
+ *************************************
+
+ >>>>>> PDF description: <<<<<<
+ CTEQ6.6                                                         
+ Reference:                                                      
+ P.M.Nadolsky, H.-L.Lai, Q.-H.Cao, J. Huston,                    
+ J.Pumplin, D.Stump, W.-K.Tung and C.-P.Yuan.                    
+ arXiv:0802.0007                                                 
+ This set has 44 member PDFs.                                    
+     mem=0 --> central value                                     
+     mem=1-44 --> eigenvector sets                               
+         use these for standard uncertainty calculations         
+         all have alpha_s(mz) = 0.118                            
+ >>>>>>                   <<<<<<
+

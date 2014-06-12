@@ -74,7 +74,7 @@ public:
 private:
   TFile *f;//,*f_pari,*f_dispari;
   TH2F *mistag,*mistagmc,*mjmistag,*mjmistagmc;
-  TH1F *shape,*mjshape;
+  TH1F *shapelow,*mjshapelow,*shapehigh,*mjshapehigh,*shape,*mjshape;
   string version;
   unsigned int event_number;
   string region;
