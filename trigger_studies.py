@@ -35,11 +35,13 @@ def hadd(inputlist,outputname):
   system(command_list)
   return path_base+outputname+'.root'
 
-hadd(['ZprimeFullHadCycle.DATA.MUDATA_A.root','ZprimeFullHadCycle.DATA.MUDATA_B.root','ZprimeFullHadCycle.DATA.MUDATA_C.root','ZprimeFullHadCycle.DATA.MUDATA_D.root'],'mudata_trigger')
+hadd(['ZprimeFullHadCycle.DATA.MUDATA_C.root','ZprimeFullHadCycle.DATA.MUDATA_D.root'],'mudata_trigger')#'ZprimeFullHadCycle.DATA.MUDATA_A.root','ZprimeFullHadCycle.DATA.MUDATA_B.root',
 sample_list.append('mudata_trigger')
 
 hadd(['ZprimeFullHadCycle.MC.QCD_HT-100To250.root','ZprimeFullHadCycle.MC.QCD_HT-250To500.root','ZprimeFullHadCycle.MC.QCD_HT-500To1000.root','ZprimeFullHadCycle.MC.QCD_HT-1000ToInf.root'],'muqcd_trigger')
 sample_list.append('muqcd_trigger')
+
+hadd(['ZprimeFullHadCycle.DATA.DATA_A.root','ZprimeFullHadCycle.DATA.DATA_B.root','ZprimeFullHadCycle.DATA.DATA_C.root','ZprimeFullHadCycle.DATA.DATA_D.root'],'data_trigger')
 
 sample_names=["Z' 1TeV","ttbar","Data","MC QCD"]
 
@@ -148,7 +150,111 @@ for cutIndex in range(len(cut_list)):
   for histoIndex in range(len(histo_list)):
     getEff2(histoIndex,cutIndex,4)
 
+cut_list=["SFHT650Histos"]#,"Trigger4Histos","Trigger5Histos"
+trigger_names=["HLT_HT750 on top of HT650"]
+base_cut="SFbase650Histos"
+sample_list=['ZprimeFullHadCycle.MC.ZP1000W10','ZprimeFullHadCycle.MC.TTbar','data_trigger','muqcd_trigger']
+sample_names=["Z' 1TeV","ttbar","Data","MC QCD"]
 
+for cutIndex in range(len(cut_list)):
+  for histoIndex in range(len(histo_list)):
+    getEff2(histoIndex,cutIndex,4)
+
+cut_list=["SFHTBtagHistos","SFQuadBtagHistos"]#,"Trigger4Histos","Trigger5Histos"
+trigger_names=["HLT_HT750","HLT_QuadJet50"]
+base_cut="SFbaseBtagHistos"
+sample_list=['ZprimeFullHadCycle.MC.TTbar','mudata_trigger']
+sample_names=["TTbar","Data"]
+
+for cutIndex in range(len(cut_list)):
+  for histoIndex in range(len(histo_list)):
+    getEff2(histoIndex,cutIndex,4)
+
+cut_list=["SFHTBtag2Histos","SFQuadBtag2Histos"]#,"Trigger4Histos","Trigger5Histos"
+base_cut="SFbaseBtag2Histos"
+for cutIndex in range(len(cut_list)):
+  for histoIndex in range(len(histo_list)):
+    getEff2(histoIndex,cutIndex,4)
+
+cut_list=["SFHTBtaglHistos","SFQuadBtaglHistos"]#,"Trigger4Histos","Trigger5Histos"
+base_cut="SFbaseBtaglHistos"
+for cutIndex in range(len(cut_list)):
+  for histoIndex in range(len(histo_list)):
+    getEff2(histoIndex,cutIndex,4)
+
+cut_list=["SFHTBtag2lHistos","SFQuadBtag2lHistos"]#,"Trigger4Histos","Trigger5Histos"
+base_cut="SFbaseBtag2lHistos"
+for cutIndex in range(len(cut_list)):
+  for histoIndex in range(len(histo_list)):
+    getEff2(histoIndex,cutIndex,4)
+
+sample_list=['ZprimeFullHadCycle.MC.TTbar','data_trigger']
+
+cut_list=["SFHT650BtagHistos"]#,"Trigger4Histos","Trigger5Histos"
+base_cut="SFbase650BtagHistos"
+for cutIndex in range(len(cut_list)):
+  for histoIndex in range(len(histo_list)):
+    getEff2(histoIndex,cutIndex,4)
+
+cut_list=["SFHT650Btag2Histos"]#,"Trigger4Histos","Trigger5Histos"
+base_cut="SFbase650Btag2Histos"
+for cutIndex in range(len(cut_list)):
+  for histoIndex in range(len(histo_list)):
+    getEff2(histoIndex,cutIndex,4)
+
+cut_list=["SFHT650BtaglHistos"]#,"Trigger4Histos","Trigger5Histos"
+base_cut="SFbase650BtaglHistos"
+for cutIndex in range(len(cut_list)):
+  for histoIndex in range(len(histo_list)):
+    getEff2(histoIndex,cutIndex,4)
+
+cut_list=["SFHT650Btag2lHistos"]#,"Trigger4Histos","Trigger5Histos"
+base_cut="SFbase650Btag2lHistos"
+for cutIndex in range(len(cut_list)):
+  for histoIndex in range(len(histo_list)):
+    getEff2(histoIndex,cutIndex,4)
+
+trigger_names=["HLT_QuadJet50"]
+cut_list=["SFQuad300Histos"]#,"Trigger4Histos","Trigger5Histos"
+base_cut="SFbase300Histos"
+for cutIndex in range(len(cut_list)):
+  for histoIndex in range(len(histo_list)):
+    getEff2(histoIndex,cutIndex,4)
+
+
+sample_list=['ZprimeFullHadCycle.MC.TTbar']
+trigger_names=["HLT_Mu40"]
+cut_list=["SFMu40BtaglHistos"]#,"Trigger4Histos","Trigger5Histos"
+base_cut="SFbase40Histos"
+for cutIndex in range(len(cut_list)):
+  for histoIndex in range(len(histo_list)):
+    getEff2(histoIndex,cutIndex,4)
+
+
+
+def doSF(num,den,name,title):
+  sf=num.Clone('sf_'+name)
+  sf.Divide(den)
+  sf.SetLineWidth(3)
+  sf.GetYaxis().SetTitle(title)
+  sf.Write()
+
+doSF(outfile.Get("SFHTBtagHistos_HT50_mudata_trigger"),outfile.Get("SFHTBtagHistos_HT50_ZprimeFullHadCycle.MC.TTbar"),"1xCSVM_ht","1xCSVM")
+doSF(outfile.Get("SFHTBtag2Histos_HT50_mudata_trigger"),outfile.Get("SFHTBtag2Histos_HT50_ZprimeFullHadCycle.MC.TTbar"),"2xCSVM_ht","2xCSVM")
+doSF(outfile.Get("SFHTBtaglHistos_HT50_mudata_trigger"),outfile.Get("SFHTBtaglHistos_HT50_ZprimeFullHadCycle.MC.TTbar"),"1xCSVL_ht","1xCSVL")
+doSF(outfile.Get("SFHTBtag2lHistos_HT50_mudata_trigger"),outfile.Get("SFHTBtag2lHistos_HT50_ZprimeFullHadCycle.MC.TTbar"),"2xCSVL_ht","2xCSVL")
+
+doSF(outfile.Get("SFQuadBtagHistos_pT4_mudata_trigger"),outfile.Get("SFQuadBtagHistos_pT4_ZprimeFullHadCycle.MC.TTbar"),"1xCSVM_quad","1xCSVM")
+doSF(outfile.Get("SFQuadBtag2Histos_pT4_mudata_trigger"),outfile.Get("SFQuadBtag2Histos_pT4_ZprimeFullHadCycle.MC.TTbar"),"2xCSVM_quad","2xCSVM")
+doSF(outfile.Get("SFQuadBtaglHistos_pT4_mudata_trigger"),outfile.Get("SFQuadBtaglHistos_pT4_ZprimeFullHadCycle.MC.TTbar"),"1xCSVL_quad","1xCSVL")
+doSF(outfile.Get("SFQuadBtag2lHistos_pT4_mudata_trigger"),outfile.Get("SFQuadBtag2lHistos_pT4_ZprimeFullHadCycle.MC.TTbar"),"2xCSVL_quad","2xCSVL")
+
+doSF(outfile.Get("SFHT650BtagHistos_HT50_data_trigger"),outfile.Get("SFHT650BtagHistos_HT50_ZprimeFullHadCycle.MC.TTbar"),"1xCSVM_650","1xCSVM")
+doSF(outfile.Get("SFHT650Btag2Histos_HT50_data_trigger"),outfile.Get("SFHT650Btag2Histos_HT50_ZprimeFullHadCycle.MC.TTbar"),"2xCSVM_650","2xCSVM")
+doSF(outfile.Get("SFHT650BtaglHistos_HT50_data_trigger"),outfile.Get("SFHT650BtaglHistos_HT50_ZprimeFullHadCycle.MC.TTbar"),"1xCSVL_650","1xCSVL")
+doSF(outfile.Get("SFHT650Btag2lHistos_HT50_data_trigger"),outfile.Get("SFHT650Btag2lHistos_HT50_ZprimeFullHadCycle.MC.TTbar"),"2xCSVL_650","2xCSVL")
+
+doSF(outfile.Get("SFQuad300Histos_pT4_data_trigger"),outfile.Get("SFQuad300Histos_pT4_ZprimeFullHadCycle.MC.TTbar"),"HT300","HT300")
 
 sf_quad_data_ttbar=outfile.Get("SFQuadHistos_pT4_mudata_trigger").Clone("sf_quad_data_ttbar")
 sf_quad_data_zp1000=outfile.Get("SFQuadHistos_pT4_mudata_trigger").Clone("sf_quad_data_zp1000")
@@ -162,9 +268,17 @@ sf_ht_data_ttbar=outfile.Get("SFHTHistos_HT50_mudata_trigger").Clone("sf_ht_data
 sf_ht_data_zp1000=outfile.Get("SFHTHistos_HT50_mudata_trigger").Clone("sf_ht_data_zp1000")
 sf_ht_data_qcd=outfile.Get("SFHTHistos_HT50_mudata_trigger").Clone("sf_ht_data_qcd")
 
+sf_ht650_data_ttbar=outfile.Get("SFHT650Histos_HT50_data_trigger").Clone("sf_ht650_data_ttbar")
+sf_ht650_data_zp1000=outfile.Get("SFHT650Histos_HT50_data_trigger").Clone("sf_ht650_data_zp1000")
+sf_ht650_data_qcd=outfile.Get("SFHT650Histos_HT50_data_trigger").Clone("sf_ht650_data_qcd")
+
 sf_ht_data_ttbar.Divide(outfile.Get("SFHTHistos_HT50_ZprimeFullHadCycle.MC.TTbar"))
 sf_ht_data_zp1000.Divide(outfile.Get("SFHTHistos_HT50_ZprimeFullHadCycle.MC.ZP1000W10"))
 sf_ht_data_qcd.Divide(outfile.Get("SFHTHistos_HT50_muqcd_trigger"))
+
+sf_ht650_data_ttbar.Divide(outfile.Get("SFHT650Histos_HT50_ZprimeFullHadCycle.MC.TTbar"))
+sf_ht650_data_zp1000.Divide(outfile.Get("SFHT650Histos_HT50_ZprimeFullHadCycle.MC.ZP1000W10"))
+sf_ht650_data_qcd.Divide(outfile.Get("SFHT650Histos_HT50_muqcd_trigger"))
 
 sf_quad_data_ttbar.SetLineWidth(3)
 sf_quad_data_zp1000.SetLineWidth(3)
@@ -174,6 +288,10 @@ sf_ht_data_ttbar.SetLineWidth(3)
 sf_ht_data_zp1000.SetLineWidth(3)
 sf_ht_data_qcd.SetLineWidth(3)
 
+sf_ht650_data_ttbar.SetLineWidth(3)
+sf_ht650_data_zp1000.SetLineWidth(3)
+sf_ht650_data_qcd.SetLineWidth(3)
+
 sf_quad_data_ttbar.GetYaxis().SetTitle('Trigger Data/MC SF (ttbar)')
 sf_quad_data_zp1000.GetYaxis().SetTitle("Trigger Data/MC SF (Z' 1TeV)")
 sf_quad_data_qcd.GetYaxis().SetTitle("Trigger Data/MC SF (QCD MC)")
@@ -181,6 +299,10 @@ sf_quad_data_qcd.GetYaxis().SetTitle("Trigger Data/MC SF (QCD MC)")
 sf_ht_data_ttbar.GetYaxis().SetTitle('Trigger Data/MC SF (ttbar)')
 sf_ht_data_zp1000.GetYaxis().SetTitle("Trigger Data/MC SF (Z' 1TeV)")
 sf_ht_data_qcd.GetYaxis().SetTitle("Trigger Data/MC SF (QCD MC)")
+
+sf_ht650_data_ttbar.GetYaxis().SetTitle('Trigger Data/MC SF (ttbar) wrt HT650')
+sf_ht650_data_zp1000.GetYaxis().SetTitle("Trigger Data/MC SF (Z' 1TeV) wrt HT650")
+sf_ht650_data_qcd.GetYaxis().SetTitle("Trigger Data/MC SF (QCD MC) wrt HT650")
 
 #sf_quad_data_ttbar.
 #sf_quad_data_zp1000.
@@ -198,5 +320,8 @@ sf_quad_data_qcd.Write()
 sf_ht_data_ttbar.Write()
 sf_ht_data_zp1000.Write()
 sf_ht_data_qcd.Write()
+sf_ht650_data_ttbar.Write()
+sf_ht650_data_zp1000.Write()
+sf_ht650_data_qcd.Write()
 #eff.Write()
 outfile.Close()

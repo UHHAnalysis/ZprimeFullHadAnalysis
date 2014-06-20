@@ -445,6 +445,34 @@ bool MassAndPtCutWithMatch(TopJet topjet,double minpt, double mlow, double mhigh
   return (nextjet.pt()>minpt && mjet>mlow && mjet<mhigh) ;
   
 }
+
+int  IndexWithMatch(TopJet topjet)
+{
+
+  EventCalc* calc = EventCalc::Instance();
+  
+  BaseCycleContainer* bcc = calc->GetBaseCycleContainer();
+  
+  double deltarmin = double_infinity();
+  
+  int the_index=-1;
+  for(unsigned int it=0; it<bcc->toptagjets->size();++it){
+    
+    TopJet top4jet=bcc->toptagjets->at(it);
+    
+    if(top4jet.deltaR(topjet) < deltarmin){
+      deltarmin = top4jet.deltaR(topjet);
+      the_index=it;
+    }
+    
+  }
+  
+  if(deltarmin>=0.3) return -1;
+  
+  return the_index;
+  
+}
+
 bool variableMassHepTopTagWithMatch(TopJet topjet, double ptJetMin, double massWindowLower, double massWindowUpper, double cutCondition2, double cutCondition3, double mlow, double mhigh)
 {
     //Taking the top tag from the proper jet collection

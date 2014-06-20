@@ -1,6 +1,23 @@
 #include "include/HEPTopTaggerReweight.h"
 #include "SFrameTools/include/EventCalc.h"
 
+double HEPTopTaggerReweight::GetScaleWeight1(int index)
+{
+  EventCalc* calc = EventCalc::Instance();
+  BaseCycleContainer* bcc = calc->GetBaseCycleContainer();
+  bool IsRealData = calc->IsRealData();
+  double scale_factor = 1.;
+  if(!IsRealData)
+  {
+    double jetpt=bcc->toptagjets->at(index).pt();
+    
+    if(jetpt>200. && jetpt<=250.) scale_factor *= 0.924272951738;//0.92
+    if(jetpt>250. && jetpt<=400.) scale_factor *= 0.946817294077;//0.95
+    if(jetpt>400.) scale_factor *= 1.28199803289;//1.28
+}
+  return scale_factor;
+}
+
 double HEPTopTaggerReweight::GetScaleWeight(std::vector<int> Indices, string type)
 {
     EventCalc* calc = EventCalc::Instance();

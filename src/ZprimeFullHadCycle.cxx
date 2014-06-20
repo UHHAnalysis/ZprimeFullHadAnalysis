@@ -200,6 +200,7 @@ void ZprimeFullHadCycle::BeginInputData( const SInputData& id ) throw( SError )
   TriggerHT = new Selection("TriggerHT");
   TriggerQuad = new Selection("TriggerQuad");
   Trigger650 = new Selection("Trigger650");
+  Trigger300 = new Selection("Trigger300");
   Trigger1Sel->addSelectionModule(new TriggerSelection("HLT_HT750"));
   Trigger2Sel->addSelectionModule(new TriggerSelection("HLT_QuadJet50"));
   Trigger3Sel->addSelectionModule(new TriggerSelection("HLT_QuadJet50"));
@@ -209,6 +210,7 @@ void ZprimeFullHadCycle::BeginInputData( const SInputData& id ) throw( SError )
   TriggerHT->addSelectionModule(new TriggerSelection("HLT_HT750"));
   TriggerQuad->addSelectionModule(new TriggerSelection("HLT_QuadJet50"));
   Trigger650->addSelectionModule(new TriggerSelection("HLT_HT650"));
+  Trigger300->addSelectionModule(new TriggerSelection("HLT_HT300"));
   RegisterSelection(Trigger1Sel);
   RegisterSelection(Trigger2Sel);
   RegisterSelection(Trigger3Sel);
@@ -218,6 +220,7 @@ void ZprimeFullHadCycle::BeginInputData( const SInputData& id ) throw( SError )
   RegisterSelection(TriggerHT);
   RegisterSelection(TriggerQuad);
   RegisterSelection(Trigger650);
+  RegisterSelection(Trigger300);
 /*
   BSel = new Selection( "BSelection");
   // addSelectionModule transfers memory release responsibility to the Selection instance.
@@ -274,6 +277,48 @@ void ZprimeFullHadCycle::BeginInputData( const SInputData& id ) throw( SError )
   RegisterHistCollection( new ZprimeFullHadHists("SFMuHistos"));
   RegisterHistCollection( new ZprimeFullHadHists("SFbase650Histos"));
   RegisterHistCollection( new ZprimeFullHadHists("SFHT650Histos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFbase300Histos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFQuad300Histos"));
+  
+  RegisterHistCollection( new ZprimeFullHadHists("SFbaseBtagHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFHTBtagHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFQuadBtagHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFbase650BtagHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFHT650BtagHistos"));
+  
+  RegisterHistCollection( new ZprimeFullHadHists("SFbase300BtagHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFQuad300BtagHistos"));
+  
+  RegisterHistCollection( new ZprimeFullHadHists("SFbaseBtag2Histos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFHTBtag2Histos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFQuadBtag2Histos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFbase650Btag2Histos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFHT650Btag2Histos"));
+  
+  RegisterHistCollection( new ZprimeFullHadHists("SFbase300Btag2Histos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFQuad300Btag2Histos"));
+  
+  RegisterHistCollection( new ZprimeFullHadHists("SFbaseBtaglHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFHTBtaglHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFQuadBtaglHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFbase650BtaglHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFHT650BtaglHistos"));
+  
+  RegisterHistCollection( new ZprimeFullHadHists("SFbase300BtaglHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFQuad300BtaglHistos"));
+  
+  RegisterHistCollection( new ZprimeFullHadHists("SFbaseBtag2lHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFHTBtag2lHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFQuadBtag2lHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFbase650Btag2lHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFHT650Btag2lHistos"));
+  
+  RegisterHistCollection( new ZprimeFullHadHists("SFbase300Btag2lHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFQuad300Btag2lHistos"));
+  
+  RegisterHistCollection( new ZprimeFullHadHists("SFbase40Histos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFMu40BtaglHistos"));
+  
 /*  
   RegisterHistCollection( new ZprimeFullHadHists("Cat_2jet"));
   RegisterHistCollection( new ZprimeFullHadHists("Cat_2htt"));
@@ -344,6 +389,52 @@ void ZprimeFullHadCycle::ExecuteEvent( const SInputData& id, Double_t weight) th
   BaseHists* SFMuHistos = GetHistCollection("SFMuHistos");
   BaseHists* SFbase650Histos = GetHistCollection("SFbase650Histos");
   BaseHists* SFHT650Histos = GetHistCollection("SFHT650Histos");
+  BaseHists* SFbase300Histos = GetHistCollection("SFbase300Histos");
+  BaseHists* SFQuad300Histos = GetHistCollection("SFQuad300Histos");
+  
+  BaseHists* SFbaseBtagHistos = GetHistCollection("SFbaseBtagHistos");
+  BaseHists* SFHTBtagHistos = GetHistCollection("SFHTBtagHistos");
+  BaseHists* SFQuadBtagHistos = GetHistCollection("SFQuadBtagHistos");
+  BaseHists* SFbase650BtagHistos = GetHistCollection("SFbase650BtagHistos");
+  BaseHists* SFHT650BtagHistos = GetHistCollection("SFHT650BtagHistos");
+  
+  BaseHists* SFbase300BtagHistos = GetHistCollection("SFbase300BtagHistos");
+  BaseHists* SFQuad300BtagHistos = GetHistCollection("SFQuad300BtagHistos");
+  
+  
+  BaseHists* SFbaseBtag2Histos = GetHistCollection("SFbaseBtag2Histos");
+  BaseHists* SFHTBtag2Histos = GetHistCollection("SFHTBtag2Histos");
+  BaseHists* SFQuadBtag2Histos = GetHistCollection("SFQuadBtag2Histos");
+  BaseHists* SFbase650Btag2Histos = GetHistCollection("SFbase650Btag2Histos");
+  BaseHists* SFHT650Btag2Histos = GetHistCollection("SFHT650Btag2Histos");
+  
+  BaseHists* SFbase300Btag2Histos = GetHistCollection("SFbase300Btag2Histos");
+  BaseHists* SFQuad300Btag2Histos = GetHistCollection("SFQuad300Btag2Histos");
+  
+  
+  BaseHists* SFbaseBtaglHistos = GetHistCollection("SFbaseBtaglHistos");
+  BaseHists* SFHTBtaglHistos = GetHistCollection("SFHTBtaglHistos");
+  BaseHists* SFQuadBtaglHistos = GetHistCollection("SFQuadBtaglHistos");
+  BaseHists* SFbase650BtaglHistos = GetHistCollection("SFbase650BtaglHistos");
+  BaseHists* SFHT650BtaglHistos = GetHistCollection("SFHT650BtaglHistos");
+  
+  BaseHists* SFbase300BtaglHistos = GetHistCollection("SFbase300BtaglHistos");
+  BaseHists* SFQuad300BtaglHistos = GetHistCollection("SFQuad300BtaglHistos");
+  
+  
+  BaseHists* SFbaseBtag2lHistos = GetHistCollection("SFbaseBtag2lHistos");
+  BaseHists* SFHTBtag2lHistos = GetHistCollection("SFHTBtag2lHistos");
+  BaseHists* SFQuadBtag2lHistos = GetHistCollection("SFQuadBtag2lHistos");
+  BaseHists* SFbase650Btag2lHistos = GetHistCollection("SFbase650Btag2lHistos");
+  BaseHists* SFHT650Btag2lHistos = GetHistCollection("SFHT650Btag2lHistos");
+  
+  BaseHists* SFbase300Btag2lHistos = GetHistCollection("SFbase300Btag2lHistos");
+  BaseHists* SFQuad300Btag2lHistos = GetHistCollection("SFQuad300Btag2lHistos");
+  
+  BaseHists* SFbase40Histos = GetHistCollection("SFbase40Histos");
+  BaseHists* SFMu40BtaglHistos = GetHistCollection("SFMu40BtaglHistos");
+  
+  
   
 //   BaseHists* Cat_2jetHistos = GetHistCollection("Cat_2jet");
 //   BaseHists* Cat_2httHistos = GetHistCollection("Cat_2htt");
@@ -484,16 +575,22 @@ Indices={0,1};
   bool Quad_trigger = TriggerQuad->passSelection();
   bool Mu_trigger = TriggerMu->passSelection();
   bool HT650_trigger = Trigger650->passSelection();
+  bool HT300_trigger = Trigger300->passSelection();
   
   bool signal_region = false;
+  bool ncsvm = 0;
+  bool ncsvl = 0;
   if (bcc->topjets->size()>1)
   {
     if(HepTopTagWithMatch(bcc->topjets->at(0))&&HepTopTagWithMatch(bcc->topjets->at(1))) signal_region=true;
+    if (subJetBTag(bcc->topjets->at(0),e_CSVM)>0) ncsvm++;
+    if (subJetBTag(bcc->topjets->at(1),e_CSVM)>0) ncsvm++;
+    if (subJetBTag(bcc->topjets->at(0),e_CSVL)>0) ncsvl++;
+    if (subJetBTag(bcc->topjets->at(1),e_CSVL)>0) ncsvl++;
   }
   
   if (Mu_trigger && bcc->topjets->size()>1)
   {
-    ((ZprimeFullHadHists*)SFMuHistos)->Fill2(Indices);
     if (signal_region)
     {
       ((ZprimeFullHadHists*)SFbaseHistos)->Fill2(Indices);
@@ -517,7 +614,164 @@ Indices={0,1};
     }
   }
   
-//   
+  if (HT300_trigger && signal_region)
+  {
+    ((ZprimeFullHadHists*)SFbase300Histos)->Fill2(Indices);
+    if (Quad_trigger)
+    {
+      ((ZprimeFullHadHists*)SFQuad300Histos)->Fill2(Indices);
+    }
+  }
+  
+  
+  
+  
+  if (Mu_trigger && signal_region && ncsvm>0)
+  {
+      ((ZprimeFullHadHists*)SFbaseBtagHistos)->Fill2(Indices);
+      if (HT_trigger)
+      {
+        ((ZprimeFullHadHists*)SFHTBtagHistos)->Fill2(Indices);
+      }
+      if (Quad_trigger)
+      {
+        ((ZprimeFullHadHists*)SFQuadBtagHistos)->Fill2(Indices);
+      }
+  }
+  
+  if (HT650_trigger && signal_region && ncsvm>0)
+  {
+    ((ZprimeFullHadHists*)SFbase650BtagHistos)->Fill2(Indices);
+    if (HT_trigger)
+    {
+      ((ZprimeFullHadHists*)SFHT650BtagHistos)->Fill2(Indices);
+    }
+  }
+  
+  if (HT300_trigger && signal_region && ncsvm>0)
+  {
+    ((ZprimeFullHadHists*)SFbase300BtagHistos)->Fill2(Indices);
+    if (Quad_trigger)
+    {
+      ((ZprimeFullHadHists*)SFQuad300BtagHistos)->Fill2(Indices);
+    }
+  }
+  
+  
+  
+  
+  
+  if (Mu_trigger && signal_region && ncsvm>1)
+  {
+    ((ZprimeFullHadHists*)SFbaseBtag2Histos)->Fill2(Indices);
+    if (HT_trigger)
+    {
+      ((ZprimeFullHadHists*)SFHTBtag2Histos)->Fill2(Indices);
+    }
+    if (Quad_trigger)
+    {
+      ((ZprimeFullHadHists*)SFQuadBtag2Histos)->Fill2(Indices);
+    }
+  }
+  
+  if (HT650_trigger && signal_region && ncsvm>1)
+  {
+    ((ZprimeFullHadHists*)SFbase650Btag2Histos)->Fill2(Indices);
+    if (HT_trigger)
+    {
+      ((ZprimeFullHadHists*)SFHT650Btag2Histos)->Fill2(Indices);
+    }
+  }
+  
+  if (HT300_trigger && signal_region && ncsvm>1)
+  {
+    ((ZprimeFullHadHists*)SFbase300Btag2Histos)->Fill2(Indices);
+    if (Quad_trigger)
+    {
+      ((ZprimeFullHadHists*)SFQuad300Btag2Histos)->Fill2(Indices);
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  if (Mu_trigger && signal_region && ncsvl>0)
+  {
+    ((ZprimeFullHadHists*)SFbaseBtaglHistos)->Fill2(Indices);
+    if (HT_trigger)
+    {
+      ((ZprimeFullHadHists*)SFHTBtaglHistos)->Fill2(Indices);
+    }
+    if (Quad_trigger)
+    {
+      ((ZprimeFullHadHists*)SFQuadBtaglHistos)->Fill2(Indices);
+    }
+  }
+  
+  if (HT650_trigger && signal_region && ncsvl>0)
+  {
+    ((ZprimeFullHadHists*)SFbase650BtaglHistos)->Fill2(Indices);
+    if (HT_trigger)
+    {
+      ((ZprimeFullHadHists*)SFHT650BtaglHistos)->Fill2(Indices);
+    }
+  }
+  
+  if (HT300_trigger && signal_region && ncsvl>0)
+  {
+    ((ZprimeFullHadHists*)SFbase300BtaglHistos)->Fill2(Indices);
+    if (Quad_trigger)
+    {
+      ((ZprimeFullHadHists*)SFQuad300BtaglHistos)->Fill2(Indices);
+    }
+  }
+  
+  
+  if (Mu_trigger && signal_region && ncsvl>1)
+  {
+    ((ZprimeFullHadHists*)SFbaseBtag2lHistos)->Fill2(Indices);
+    if (HT_trigger)
+    {
+      ((ZprimeFullHadHists*)SFHTBtag2lHistos)->Fill2(Indices);
+    }
+    if (Quad_trigger)
+    {
+      ((ZprimeFullHadHists*)SFQuadBtag2lHistos)->Fill2(Indices);
+    }
+  }
+  
+  if (HT650_trigger && signal_region && ncsvl>1)
+  {
+    ((ZprimeFullHadHists*)SFbase650Btag2lHistos)->Fill2(Indices);
+    if (HT_trigger)
+    {
+      ((ZprimeFullHadHists*)SFHT650Btag2lHistos)->Fill2(Indices);
+    }
+  }
+  
+  if (HT300_trigger && signal_region && ncsvl>1)
+  {
+    ((ZprimeFullHadHists*)SFbase300Btag2lHistos)->Fill2(Indices);
+    if (Quad_trigger)
+    {
+      ((ZprimeFullHadHists*)SFQuad300Btag2lHistos)->Fill2(Indices);
+    }
+  }
+  
+  if ( signal_region && ncsvl>0 )
+  {
+    ((ZprimeFullHadHists*)SFbase40Histos)->Fill2(Indices);
+    if (Mu_trigger)
+    {
+      ((ZprimeFullHadHists*)SFMu40BtaglHistos)->Fill2(Indices);
+    }
+  }
+  
+  
+//
 //    
 //
    bool HT750_trigger = Trigger1Sel->passSelection();

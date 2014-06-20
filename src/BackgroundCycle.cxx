@@ -6,6 +6,7 @@
 using namespace std;
 
 #include "include/BackgroundCycle.h"
+#include "include/ZTriggerWeight.h"
 #include "SFrameAnalysis/include/Cleaner.h"
 
 
@@ -250,30 +251,63 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
   if ( version.find("_scaledown")!=string::npos ) {calc->ProduceWeight( 0.938204 );}
   ///////////
   
+  string trg_rewe_mode="";
+  if (contains(version,"_trigup")) trg_rewe_mode="up";
+  if (contains(version,"_trigdown")) trg_rewe_mode="down";
+  ZTriggerWeight ztw("triggerout.root",trg_rewe_mode);
+  
   
   if (HT_region)
   {
     ((BackgroundHists*)HTDatasetHistos)->setVersion(id.GetVersion().Data());
     ((BackgroundHists*)HTDatasetHistos)->setEventNumber(bcc->event);
     ((BackgroundHists*)HTDatasetHistos)->setRegion("HTDatasetHistos");
-    HTDatasetHistos->Fill();
+    if (version.find("TTbar")!=string::npos || version.find("ZP")!=string::npos || version.find("RSG")!=string::npos)
+    {
+      double trigw=ztw.produceWeightHT(bcc);
+      calc->ProduceWeight(trigw);
+      HTDatasetHistos->Fill();
+      calc->ProduceWeight(1.0/trigw);
+    }
+    else
+    {
+      HTDatasetHistos->Fill();
+    }
+    
+
   }
   
   if (Quad_region)
   {
     if ( version.find("MJDATA")!=string::npos && bcc->run<194270) throw SError( SError::SkipEvent );
-    if (!IsRealData) calc->ProduceWeight(0.95*13.826599/19.7);/*4.114*/
+    if (!IsRealData) calc->ProduceWeight(/*0.95*/13.826599/19.7);/*4.114*/
     ((BackgroundHists*)QuadJetDatasetHistos)->setVersion(id.GetVersion().Data());
     ((BackgroundHists*)QuadJetDatasetHistos)->setEventNumber(bcc->event);
     ((BackgroundHists*)QuadJetDatasetHistos)->setRegion("QuadJetDatasetHistos");
-    QuadJetDatasetHistos->Fill();
+    if (version.find("TTbar")!=string::npos || version.find("ZP")!=string::npos || version.find("RSG")!=string::npos)
+    {
+      double trigw=ztw.produceWeightQuadJet(bcc);
+      calc->ProduceWeight(trigw);
+      QuadJetDatasetHistos->Fill();
+      calc->ProduceWeight(1.0/trigw);
+    }
+    else
+    {
+      QuadJetDatasetHistos->Fill();
+    }
+    
+//    if(HepTopTagWithMatch(bcc->topjets->at(0))&&HepTopTagWithMatch(bcc->topjets->at(1)))
+//    {
+//      cout<<"iniziaqui "<<bcc->run<<" "<<bcc->luminosityBlock<<" "<<bcc->event<<endl;
+//    }
+    
   }
-  
+  ztw.Close();
   if ( (!HT_region) && (!Quad_region) ) throw SError( SError::SkipEvent );
   
 
   
-  if ( /*version.find("TTbar")!=string::npos ||*/ version.find("ZP")!=string::npos || version.find("RSG")!=string::npos/*|| version.find("DATA")!=string::npos*/)
+  if ( version.find("TTbar")!=string::npos || version.find("ZP")!=string::npos || version.find("RSG")!=string::npos/*|| version.find("DATA")!=string::npos*/)
   {
     if(HepTopTagWithMatch(bcc->topjets->at(0))&&HepTopTagWithMatch(bcc->topjets->at(1))) 
     {

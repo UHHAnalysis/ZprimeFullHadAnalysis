@@ -34,7 +34,7 @@ def hadd(inputlist,outputname):
     command_list+=' '+path_base+i
   system(command_list)
   return path_base+outputname+'.root'
-ttbar_filename=hadd(process_list_ttbar,'bkg_ttbar')
+ttbar_filename= path_base + process_list_ttbar[0]#hadd(process_list_ttbar,'bkg_ttbar')
 qcd_filename=hadd(process_list_qcd,'bkg_qcd')
 mjdata_filename=hadd(process_list_data,'bkg_mjdata')
 

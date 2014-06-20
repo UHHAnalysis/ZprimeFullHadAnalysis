@@ -370,7 +370,7 @@ void BackgroundHists::Fill()
       //        cout<<bcc->topjets->at(mistag_index).pt()<<" "<<maxcsv<<endl;
       Int_t mistag_bin = 0;
       double mistag_value = 0;
-      if (IsRealData||version=="TTbarHad"||version=="TTbarLept"||version=="TTbarSemi")
+      if (IsRealData||version=="TTbarHad"||version=="TTbarLept"||version=="TTbarSemi"||version=="TTbar")
       {
 	if (region=="HTDatasetHistos")
 	{
@@ -475,9 +475,21 @@ void BackgroundHists::Fill()
       float subleadingcsv=getMaxCSV(bcc->topjets->at(isubleading));
       
       int nbtags=0;
-      if (subJetBTag(bcc->topjets->at(tag_index),e_CSVM)>0) nbtags++;
-      if (subJetBTag(bcc->topjets->at(mistag_index),e_CSVM)>0) nbtags++;
-      if (mtt>mttcut)
+      if (version=="TTbar")
+      {
+        if (subJetBTag(bcc->topjets->at(tag_index),e_CSVM,"mean","/nfs/dust/cms/user/usaiem/ZprimeFullHad/ZBTagEff.root")>0) nbtags++;
+        if (subJetBTag(bcc->topjets->at(mistag_index),e_CSVM,"mean","/nfs/dust/cms/user/usaiem/ZprimeFullHad/ZBTagEff.root")>0) nbtags++;
+        HEPTopTaggerReweight htt;
+        mistag_value=mistag_value*htt.GetScaleWeight1(IndexWithMatch(bcc->topjets->at(tag_index)));
+        //cout<<IndexWithMatch(bcc->topjets->at(tag_index))<<" "<<htt.GetScaleWeight1(IndexWithMatch(bcc->topjets->at(tag_index)))<<endl;
+      }
+      else
+      {
+        if (subJetBTag(bcc->topjets->at(tag_index),e_CSVM)>0) nbtags++;
+        if (subJetBTag(bcc->topjets->at(mistag_index),e_CSVM)>0) nbtags++;
+      }
+      
+        if (mtt>mttcut)
       {
       Hist("Mtt012")->Fill(mtt,mistag_value*weight);
       Hist("Jet1pT012")->Fill(bcc->topjets->at(ileading).pt(),weight*mistag_value);

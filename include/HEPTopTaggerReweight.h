@@ -22,6 +22,7 @@ public:
 
     ///return the weighted correction factor
     double GetScaleWeight(std::vector<int> Indices, string type="");
+    double GetScaleWeight1(int index);
 
 private:
                  
