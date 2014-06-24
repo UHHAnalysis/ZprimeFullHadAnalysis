@@ -319,6 +319,9 @@ void ZprimeFullHadCycle::BeginInputData( const SInputData& id ) throw( SError )
   RegisterHistCollection( new ZprimeFullHadHists("SFbase40Histos"));
   RegisterHistCollection( new ZprimeFullHadHists("SFMu40BtaglHistos"));
   
+  RegisterHistCollection( new ZprimeFullHadHists("SFbaseNoHTBtaglHistos"));
+  RegisterHistCollection( new ZprimeFullHadHists("SFQuadNoHTBtaglHistos"));
+  
 /*  
   RegisterHistCollection( new ZprimeFullHadHists("Cat_2jet"));
   RegisterHistCollection( new ZprimeFullHadHists("Cat_2htt"));
@@ -433,6 +436,9 @@ void ZprimeFullHadCycle::ExecuteEvent( const SInputData& id, Double_t weight) th
   
   BaseHists* SFbase40Histos = GetHistCollection("SFbase40Histos");
   BaseHists* SFMu40BtaglHistos = GetHistCollection("SFMu40BtaglHistos");
+  
+  BaseHists* SFQuadNoHTBtaglHistos = GetHistCollection("SFQuadNoHTBtaglHistos");
+  BaseHists* SFbaseNoHTBtaglHistos = GetHistCollection("SFbaseNoHTBtaglHistos");
   
   
   
@@ -711,6 +717,7 @@ Indices={0,1};
     }
   }
   
+  
   if (HT650_trigger && signal_region && ncsvl>0)
   {
     ((ZprimeFullHadHists*)SFbase650BtaglHistos)->Fill2(Indices);
@@ -767,6 +774,17 @@ Indices={0,1};
     if (Mu_trigger)
     {
       ((ZprimeFullHadHists*)SFMu40BtaglHistos)->Fill2(Indices);
+    }
+  }
+  
+  
+  
+  if (Mu_trigger && signal_region && ncsvl>0 && !HT_trigger)
+  {
+    ((ZprimeFullHadHists*)SFbaseNoHTBtaglHistos)->Fill2(Indices);
+    if (Quad_trigger)
+    {
+      ((ZprimeFullHadHists*)SFQuadNoHTBtaglHistos)->Fill2(Indices);
     }
   }
   

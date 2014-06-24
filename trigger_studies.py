@@ -41,7 +41,7 @@ sample_list.append('mudata_trigger')
 hadd(['ZprimeFullHadCycle.MC.QCD_HT-100To250.root','ZprimeFullHadCycle.MC.QCD_HT-250To500.root','ZprimeFullHadCycle.MC.QCD_HT-500To1000.root','ZprimeFullHadCycle.MC.QCD_HT-1000ToInf.root'],'muqcd_trigger')
 sample_list.append('muqcd_trigger')
 
-hadd(['ZprimeFullHadCycle.DATA.DATA_A.root','ZprimeFullHadCycle.DATA.DATA_B.root','ZprimeFullHadCycle.DATA.DATA_C.root','ZprimeFullHadCycle.DATA.DATA_D.root'],'data_trigger')
+hadd(['ZprimeFullHadCycle.DATA.DATA_C.root','ZprimeFullHadCycle.DATA.DATA_D.root'],'data_trigger')#'ZprimeFullHadCycle.DATA.DATA_A.root','ZprimeFullHadCycle.DATA.DATA_B.root',
 
 sample_names=["Z' 1TeV","ttbar","Data","MC QCD"]
 
@@ -188,6 +188,15 @@ for cutIndex in range(len(cut_list)):
   for histoIndex in range(len(histo_list)):
     getEff2(histoIndex,cutIndex,4)
 
+
+trigger_names=["HLT_QuadJet50"]
+cut_list=["SFQuadNoHTBtaglHistos"]#,"Trigger4Histos","Trigger5Histos"
+base_cut="SFbaseNoHTBtaglHistos"
+for cutIndex in range(len(cut_list)):
+  for histoIndex in range(len(histo_list)):
+    getEff2(histoIndex,cutIndex,4)
+trigger_names=["HLT_HT750","HLT_QuadJet50"]
+
 sample_list=['ZprimeFullHadCycle.MC.TTbar','data_trigger']
 
 cut_list=["SFHT650BtagHistos"]#,"Trigger4Histos","Trigger5Histos"
@@ -255,6 +264,8 @@ doSF(outfile.Get("SFHT650BtaglHistos_HT50_data_trigger"),outfile.Get("SFHT650Bta
 doSF(outfile.Get("SFHT650Btag2lHistos_HT50_data_trigger"),outfile.Get("SFHT650Btag2lHistos_HT50_ZprimeFullHadCycle.MC.TTbar"),"2xCSVL_650","2xCSVL")
 
 doSF(outfile.Get("SFQuad300Histos_pT4_data_trigger"),outfile.Get("SFQuad300Histos_pT4_ZprimeFullHadCycle.MC.TTbar"),"HT300","HT300")
+
+doSF(outfile.Get("SFQuadNoHTBtaglHistos_pT4_mudata_trigger"),outfile.Get("SFQuadNoHTBtaglHistos_pT4_ZprimeFullHadCycle.MC.TTbar"),"QuadNoHT_1xCSVL","SF")
 
 sf_quad_data_ttbar=outfile.Get("SFQuadHistos_pT4_mudata_trigger").Clone("sf_quad_data_ttbar")
 sf_quad_data_zp1000=outfile.Get("SFQuadHistos_pT4_mudata_trigger").Clone("sf_quad_data_zp1000")

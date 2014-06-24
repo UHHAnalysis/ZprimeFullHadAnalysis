@@ -94,9 +94,9 @@
 <InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MUDATA_D" Cacheable="True">
   &MuDataD;
   <InputTree Name="AnalysisTree" />
-</InputData>
+</InputData>-->
 
-<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="DATA_A" Cacheable="True">
+<!--<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="DATA_A" Cacheable="True">
  &RunA;
  <InputTree Name="AnalysisTree" />
  </InputData>
@@ -116,10 +116,10 @@
  <InputTree Name="AnalysisTree" />
  </InputData>>-->
 
-<InputData Lumi="8818.5" NEventsMax="-1" Type="MC" Version="TTbar" Cacheable="True">
+<!--<InputData Lumi="8818.5" NEventsMax="-1" Type="MC" Version="TTbar" Cacheable="True">
   &TTbar;
   <InputTree Name="AnalysisTree" />
-</InputData>
+</InputData>-->
 
 <!--<InputData Lumi="4.834294305" NEventsMax="-1" Type="MC" Version="QCD_HT-100To250" Cacheable="True">
 &QCD_HT-100To250;

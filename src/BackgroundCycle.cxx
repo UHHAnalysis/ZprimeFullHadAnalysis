@@ -254,7 +254,7 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
   string trg_rewe_mode="";
   if (contains(version,"_trigup")) trg_rewe_mode="up";
   if (contains(version,"_trigdown")) trg_rewe_mode="down";
-  ZTriggerWeight ztw("triggerout.root",trg_rewe_mode);
+  ZTriggerWeight ztw("/afs/desy.de/user/u/usaiem/code/ZprimeFullHadAnalysis/triggerout.root",trg_rewe_mode);
   
   
   if (HT_region)
