@@ -8,6 +8,10 @@ from array import array
 
 print 'setup'
 
+postfix='zprimenarrow'
+if len(argv[1:])>0:
+  postfix='_'+argv[1]
+
 dolimits=False
 doplots=True
 dothetafile=True
@@ -37,16 +41,31 @@ process_list_ttbar_lightdown=['BackgroundCycle.MC.TTbarHad_lightdown.root','Back
 process_list_qcd=['BackgroundCycle.MC.QCD_HT-1000ToInf.root','BackgroundCycle.MC.QCD_HT-250To500.root','BackgroundCycle.MC.QCD_HT-500To1000.root']#,'BackgroundCycle.MC.QCD_HT-100To250.root'
 process_list_data=['BackgroundCycle.DATA.MJDATAB.root','BackgroundCycle.DATA.MJDATAC.root','BackgroundCycle.DATA.MJDATAD.root']
 #process_list_data=['BackgroundCycle.DATA.MJDATAD.root']
-systematics=['','_bcup','_bcdown','_lightup','_lightdown','_scaleup','_scaledown','_httup','_httdown','_subjecup','_subjecdown','_topjerup','_topjerdown','_topjecup','_topjecdown','_topptup','_topptdown']#,'_puup','_pudown']#],'_subjerup','_subjerdown'
-theta_sys=['','__btagbc__plus','__btagbc__minus','__btaglight__plus','__btaglight__minus','__q2__plus','__q2__minus','__htt__plus','__htt__minus','__subjec__plus','__subjec__minus','__jer__plus','__jer__minus','__jec__plus','__jec__minus','__toppt__plus','__toppt__minus']#,'__pu__plus','__pu__minus']
-ttbar_only_sys=['_scaleup','_scaledown','_topptup','_topptdown']
+systematics=['','_bcup','_bcdown','_lightup','_lightdown','_httup','_httdown','_subjecup','_subjecdown','_topjerup','_topjerdown','_topjecup','_topjecdown']#,'_scaleup','_scaledown','_topptup','_topptdown']#,'_puup','_pudown']#],'_subjerup','_subjerdown'
+theta_sys=['','__subjbtaghtt__plus','__subjbtaghtt__minus','__subjbtaglighthtt__plus','__subjbtaglighthtt__minus','__htt__plus','__htt__minus','__subjec__plus','__subjec__minus','__jer__plus','__jer__minus','__jec__plus','__jec__minus']#,'__q2__plus','__q2__minus','__toppt__plus','__toppt__minus']#,'__pu__plus','__pu__minus']
+ttbar_only_sys=[]#'_scaleup','_scaledown']#,'_topptup','_topptdown']
 #theta_signal=['Zprime500','Zprime500w','Zprime750','Zprime750w','Zprime1000','Zprime1000w','Zprime1250','Zprime1250w','Zprime1500','Zprime1500w','Zprime2000','Zprime2000w','Zprime3000','Zprime3000w','Zprime4000','Zprime4000w',"RSG700","RSG1000","RSG1200","RSG1400","RSG1500","RSG1600","RSG1800","RSG2000","RSG2500","RSG3000","RSG3500","RSG4000"]#
-theta_signal=['Zprime500','Zprime750','Zprime1000','Zprime1250','Zprime1500','Zprime2000','Zprime3000','Zprime4000']#
-#theta_signal=['Zprime500w','Zprime750w','Zprime1000w','Zprime1250w','Zprime1500w','Zprime2000w','Zprime3000w','Zprime4000w']#
-#theta_signal=["RSG700","RSG1000","RSG1200","RSG1400","RSG1500","RSG1600","RSG1800","RSG2000","RSG2500","RSG3000","RSG3500","RSG4000"]#
 cyclename="BackgroundCycle.MC."
+
+theta_signal=[]
+process_namelist=[]
+if postfix=='_zprimenarrow':
+  theta_signal=['Zprime500','Zprime750','Zprime1000','Zprime1250','Zprime1500','Zprime2000','Zprime3000','Zprime4000']#
+  theta_signal_old=['Zprime500','Zprime750','Zprime1000','Zprime1250','Zprime1500','Zprime2000','Zprime3000','Zprime4000']
+  process_namelist=["ZP500W5","ZP750W7p5","ZP1000W10","ZP1250W12p5","ZP1500W15","ZP2000W20","ZP3000W30","ZP4000W40"]
+if postfix=='_zprimewide':
+  theta_signal=['ZprimeWide500','ZprimeWide750','ZprimeWide1000','ZprimeWide1250','ZprimeWide1500','ZprimeWide2000','ZprimeWide3000','ZprimeWide4000']
+  theta_signal_old=['Zprime500w','Zprime750w','Zprime1000w','Zprime1250w','Zprime1500w','Zprime2000w','Zprime3000w','Zprime4000w']
+  process_namelist=["ZP500W50","ZP750W75","ZP1000W100","ZP1250W125","ZP1500W150","ZP2000W200","ZP3000W300","ZP4000W400"]
+if postfix=='_rsg':
+  theta_signal=["RSgluon700","RSgluon1000","RSgluon1200","RSgluon1400","RSgluon1500","RSgluon1600","RSgluon1800","RSgluon2000","RSgluon2500","RSgluon3000","RSgluon3500","RSgluon4000"]
+  theta_signal_old=["RSG700","RSG1000","RSG1200","RSG1400","RSG1500","RSG1600","RSG1800","RSG2000","RSG2500","RSG3000","RSG3500","RSG4000"]
+  process_namelist=["RSG700","RSG1000","RSG1200","RSG1400","RSG1500","RSG1600","RSG1800","RSG2000","RSG2500","RSG3000","RSG3500","RSG4000"]
+#theta_signal=['ZprimeWide500','ZprimeWide750','ZprimeWide1000','ZprimeWide1250','ZprimeWide1500','ZprimeWide2000','ZprimeWide3000','ZprimeWide4000']#
+#theta_signal=["RSgluon700","RSgluon1000","RSgluon1200","RSgluon1400","RSgluon1500","RSgluon1600","RSgluon1800","RSgluon2000","RSgluon2500","RSgluon3000","RSgluon3500","RSgluon4000"]#
+
 #process_namelist=["ZP500W5","ZP500W50","ZP750W7p5","ZP750W75","ZP1000W10","ZP1000W100","ZP1250W12p5","ZP1250W125","ZP1500W15","ZP1500W150","ZP2000W20","ZP2000W200","ZP3000W30","ZP3000W300","ZP4000W40","ZP4000W400","RSG700","RSG1000","RSG1200","RSG1400","RSG1500","RSG1600","RSG1800","RSG2000","RSG2500","RSG3000","RSG3500","RSG4000"]#
-process_namelist=["ZP500W5","ZP750W7p5","ZP1000W10","ZP1250W12p5","ZP1500W15","ZP2000W20","ZP3000W30","ZP4000W40"]#
+#process_namelist=["ZP500W5","ZP750W7p5","ZP1000W10","ZP1250W12p5","ZP1500W15","ZP2000W20","ZP3000W30","ZP4000W40"]#
 #process_namelist=["ZP500W50","ZP750W75","ZP1000W100","ZP1250W125","ZP1500W150","ZP2000W200","ZP3000W300","ZP4000W400"]#
 #process_namelist=["RSG700","RSG1000","RSG1200","RSG1400","RSG1500","RSG1600","RSG1800","RSG2000","RSG2500","RSG3000","RSG3500","RSG4000"]#
 
@@ -163,6 +182,25 @@ if doplots:
       for imtt in range(1,ttbar_histo.GetNbinsX()+1):
         sys_diff[imtt-1].append(ttbar_tmp.GetBinContent(imtt))
     
+    doaverageq2=True
+    ttbar_q2up=ttbar_histo.Clone('ttbar_q2up')
+    ttbar_q2down=ttbar_histo.Clone('ttbar_q2down')
+    if doaverageq2:
+      ttf_up=TFile(path_base+cyclename+'TTbar'+'_scaleup'+'.root','READ')
+      ttf_down=TFile(path_base+cyclename+'TTbar'+'_scaledown'+'.root','READ')
+      tt_up=ttf_up.Get(folder+measured_histo_name).Clone('ttbar_q2up')
+      tt_down=ttf_down.Get(folder+measured_histo_name).Clone('ttbar_q2down')
+      tt_updiff=ttbar_histo.Clone('tt_updiff')
+      tt_downdiff=ttbar_histo.Clone('tt_downdiff')
+      tt_updiff.Add(tt_up,-1)
+      tt_downdiff.Add(tt_down,-1)
+      for imtt in range(1,ttbar_histo.GetNbinsX()+1):
+      	diff=max(abs(tt_updiff.GetBinContent(imtt)),abs(tt_downdiff.GetBinContent(imtt)))
+      	sys_diff[imtt-1].append(diff)
+      	sys_diff[imtt-1].append(-diff)
+      	ttbar_q2up.SetBinContent(imtt,ttbar_q2up.GetBinContent(imtt)+diff)
+        ttbar_q2down.SetBinContent(imtt,ttbar_q2down.GetBinContent(imtt)-diff)
+
     if histo_name=='Mtt0' or histo_name=='Mtt1' or histo_name=='Mtt2':
       #for imtt in range(1,ttbar_histo.GetNbinsX()+1):
       #  sys_diff.append([])
@@ -414,7 +452,7 @@ if doplots:
     bkg_histo.Write()
     bkg_histo_up.Write()
     bkg_histo_down.Write()
-    return [bkg_histo,bkg_histo_up,bkg_histo_down]
+    return [bkg_histo,bkg_histo_up,bkg_histo_down,ttbar_q2up,ttbar_q2down]
     
   #for i in range(len(histo_name_list)):
   #  for j in range(len(histo_folder_list)):
@@ -559,7 +597,7 @@ if dothetafile:
   htnamebase='httbtag'
   mjnamebase='mjhttbtag'
   uu='__'
-  limitfile=TFile("htt"+".root","RECREATE")
+  limitfile=TFile("htt"+postfix+".root","RECREATE")
   limitfile.cd()
   
   def make_comp(mean_histo,up_histo,down_histo,cname,title,trigger='HT750'):
@@ -676,10 +714,10 @@ if dothetafile:
     make_comp(mean_histo,pdfttbarup,pdfttbardown,htnamebase+bt+uu+'ttbar'+'__pdf',bt+'btag')
     make_comp(meanmj_histo,mjpdfttbarup,mjpdfttbardown,mjnamebase+bt+uu+'ttbar'+'__pdf',bt+'btag','QuadJet50')
     for isgn in range(len(process_namelist)):
-      pdftmpup=pdffile.Get(htnamebase+bt+uu+theta_signal[isgn]+uu+'pdf__plus')
-      pdftmpdown=pdffile.Get(htnamebase+bt+uu+theta_signal[isgn]+uu+'pdf__minus')
-      mjpdftmpup=mjpdffile.Get(mjnamebase+bt+uu+theta_signal[isgn]+uu+'pdf__plus')
-      mjpdftmpdown=mjpdffile.Get(mjnamebase+bt+uu+theta_signal[isgn]+uu+'pdf__minus')
+      pdftmpup=pdffile.Get(htnamebase+bt+uu+theta_signal_old[isgn]+uu+'pdf__plus')
+      pdftmpdown=pdffile.Get(htnamebase+bt+uu+theta_signal_old[isgn]+uu+'pdf__minus')
+      mjpdftmpup=mjpdffile.Get(mjnamebase+bt+uu+theta_signal_old[isgn]+uu+'pdf__plus')
+      mjpdftmpdown=mjpdffile.Get(mjnamebase+bt+uu+theta_signal_old[isgn]+uu+'pdf__minus')
       limitfile.cd()
       pdftmpup.Write()
       pdftmpdown.Write()
@@ -699,7 +737,13 @@ if dothetafile:
     qcdmisdown=bkg_histos[int(bt)][2].Clone(htnamebase+bt+uu+'qcd'+uu+'misErr__minus')
     qcdmisdown.Write()
     make_comp(qcdmean,qcdmisup,qcdmisdown,htnamebase+bt+uu+'qcd'+uu+'misErr',bt+'btag')
-    
+
+    q2up=bkg_histos[int(bt)][3].Clone(htnamebase+bt+uu+'ttbar'+uu+'q2__plus')
+    q2down=bkg_histos[int(bt)][4].Clone(htnamebase+bt+uu+'ttbar'+uu+'q2__minus')
+    q2up.Write()
+    q2down.Write()
+    make_comp(mean_histo,q2up,q2down,htnamebase+bt+uu+'ttbar'+uu+'q2',bt+'btag')
+
     b=bkg_histos[int(bt)+3][0].Clone(mjnamebase+bt+uu+'qcd')
     removebin_save(b)
     #b.Scale(16.4/13.8)
@@ -714,6 +758,13 @@ if dothetafile:
     #d.Write()
     make_comp(b,c,d,mjnamebase+bt+uu+'qcd'+uu+'misErr',bt+'btag','QuadJet50')
     
+
+    mjq2up=bkg_histos[int(bt)+3][3].Clone(mjnamebase+bt+uu+'ttbar'+uu+'q2__plus')
+    mjq2down=bkg_histos[int(bt)+3][4].Clone(mjnamebase+bt+uu+'ttbar'+uu+'q2__minus')
+    mjq2up.Write()
+    mjq2down.Write()
+    make_comp(meanmj_histo,mjq2up,mjq2down,mjnamebase+bt+uu+'ttbar'+uu+'q2',bt+'btag')
+
     for isys in range(len(systematics)):
       ttf=TFile(path_base+cyclename+'TTbar'+systematics[isys]+'.root','READ')
       limitfile.cd()
