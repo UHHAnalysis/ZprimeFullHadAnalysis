@@ -83,7 +83,7 @@
 		   <Item Name="JECTopJetCollection" Value="AK7PFchs" />
 		   <Item Name="JECTopTagJetCollection" Value="AK7PFchs" />
 		   
- 		   <Item Name="toppagptweight" Value="mean" /> 
+ 		   <!-- <Item Name="toppagptweight" Value="mean" />  -->
  		
 		   
 		   <Item Name="SystematicUncertainty" Value="PDF" />

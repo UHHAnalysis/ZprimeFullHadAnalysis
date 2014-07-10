@@ -246,9 +246,10 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
   bool Quad_region = QuadJet50_trigger && ( !HT_region ) && ( !cms_analysis_region ) && QuadJet_cut && good_number_of_jets;// && filtered_200_cut && spt5_cut;
     
   
+  
   ///////////
-  if ( version.find("_scaleup")!=string::npos ) {calc->ProduceWeight( 0.992089 );}
-  if ( version.find("_scaledown")!=string::npos ) {calc->ProduceWeight( 0.938204 );}
+  //if ( version.find("_scaleup")!=string::npos ) {calc->ProduceWeight( 0.992089 );}
+  //if ( version.find("_scaledown")!=string::npos ) {calc->ProduceWeight( 0.938204 );}
   ///////////
   
   string trg_rewe_mode="";
