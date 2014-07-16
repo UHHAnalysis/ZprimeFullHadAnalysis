@@ -28,7 +28,7 @@ class ZTriggerWeight{
 //  TH1F *h_mc;
   TH1F *h_ht, *h_quad;
   TString m_mode;
-  TFile *file_mc;
+  //TFile *file_mc;
 
 };
 

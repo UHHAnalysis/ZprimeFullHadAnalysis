@@ -21,7 +21,7 @@
 <!-- ProofNodes="6" -->
 
 
-<!--<InputData Lumi="88185" NEventsMax="-1" Type="MC" Version="TTbar_topjerup" Cacheable="True">
+<InputData Lumi="88185" NEventsMax="-1" Type="MC" Version="TTbar_topjerup" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.TTbar00.root" Lumi="0.0"/>
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.TTbar01.root" Lumi="0.0"/> 
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.TTbar02.root" Lumi="0.0"/> 
@@ -60,14 +60,14 @@
 <InputData Lumi="217629" NEventsMax="-1" Type="MC" Version="ZP750W7p5_topjerup" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP750W7p5.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
-</InputData>-->
+</InputData>
 
 <InputData Lumi="203984" NEventsMax="-1" Type="MC" Version="ZP1000W10_topjerup" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP1000W10.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
 </InputData>
 
-<!--<InputData Lumi="197422" NEventsMax="-1" Type="MC" Version="ZP1250W12p5_topjerup" Cacheable="True">
+<InputData Lumi="197422" NEventsMax="-1" Type="MC" Version="ZP1250W12p5_topjerup" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP1250W12p5.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
 </InputData>
@@ -184,7 +184,7 @@
 <InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG4000_topjerup" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.RSG4000.root" Lumi="0.0"/>
 <InputTree Name="AnalysisTree" />
-</InputData>-->
+</InputData>
 
 
 
@@ -243,8 +243,8 @@
 		   
 		    <Item Name="SystematicUncertainty" Value="FATJER" />
                   <Item Name="SystematicVariation" Value="up" />
-<!-- 		  <Item Name="TopJetCollectionGen" Value="caFilteredGenJetsNoNu"/> -->
-		  <Item Name="TopJetCollectionGen" Value="caHEPTopTagGen"/>
+		  <Item Name="TopJetCollectionGen" Value="caFilteredGenJetsNoNu"/>
+		  <!-- <Item Name="TopJetCollectionGen" Value="caHEPTopTagGen"/> DOVREBBE ESSERE QUESTO DAPPERTUTTO -->
 		   
 		   
  		   

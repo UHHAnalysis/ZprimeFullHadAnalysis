@@ -15,7 +15,7 @@
 
 	<Package Name="ZprimeFullHadAnalysis.par" /> 
 
-<!--   <Cycle Name="BackgroundCycle" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19708" > -->
+  <!-- <Cycle Name="BackgroundCycle" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19708" > -->
    <Cycle Name="BackgroundCycle"  RunMode="PROOF" ProofServer="lite://" ProofWorkDir="/nfs/dust/cms/user/usaiem/PROOF/" OutputDirectory="/nfs/dust/cms/user/usaiem/ZprimeFullHad/" PostFix="" TargetLumi="19700" >
 
 <!-- ProofNodes="6" -->
@@ -23,7 +23,7 @@
 
 <!--bcup-->
 
-<!--<InputData Lumi="88185" NEventsMax="-1" Type="MC" Version="TTbar_topjerdown" Cacheable="True">
+<InputData Lumi="88185" NEventsMax="-1" Type="MC" Version="TTbar_topjerdown" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.TTbar00.root" Lumi="0.0"/>
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.TTbar01.root" Lumi="0.0"/> 
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.TTbar02.root" Lumi="0.0"/> 
@@ -62,14 +62,14 @@
 <InputData Lumi="217629" NEventsMax="-1" Type="MC" Version="ZP750W7p5_topjerdown" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP750W7p5.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
-</InputData>-->
+</InputData>
 
 <InputData Lumi="203984" NEventsMax="-1" Type="MC" Version="ZP1000W10_topjerdown" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP1000W10.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
 </InputData>
 
-<!--<InputData Lumi="197422" NEventsMax="-1" Type="MC" Version="ZP1250W12p5_topjerdown" Cacheable="True">
+<InputData Lumi="197422" NEventsMax="-1" Type="MC" Version="ZP1250W12p5_topjerdown" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP1250W12p5.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
 </InputData>
@@ -115,124 +115,7 @@
 </InputData>
 
 <InputData Lumi="201420" NEventsMax="-1" Type="MC" Version="ZP1250W125_topjerdown" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPresele<InputData Lumi="197422" NEventsMax="-1" Type="MC" Version="ZP1250W12p5_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP1250W12p5.root" Lumi="0.0"/> 
-<InputTree Name="AnalysisTree" />
-</InputData>
-
-<InputData Lumi="471449" NEventsMax="-1" Type="MC" Version="ZP1500W15_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP1500W15.root" Lumi="0.0"/> 
-<InputTree Name="AnalysisTree" />
-</InputData>
-
-<InputData Lumi="181494" NEventsMax="-1" Type="MC" Version="ZP2000W20_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP2000W20.root" Lumi="0.0"/> 
-<InputTree Name="AnalysisTree" />
-</InputData>
-
-<InputData Lumi="91209" NEventsMax="-1" Type="MC" Version="ZP3000W30_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP3000W30.root" Lumi="0.0"/> 
-<InputTree Name="AnalysisTree" />
-</InputData>
-
-<InputData Lumi="204582" NEventsMax="-1" Type="MC" Version="ZP4000W40_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP4000W40.root" Lumi="0.0"/> 
-<InputTree Name="AnalysisTree" />
-</InputData>
-
-<InputData Lumi="238028" NEventsMax="-1" Type="MC" Version="ZP500W5_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP500W5.root" Lumi="0.0"/> 
-<InputTree Name="AnalysisTree" />
-</InputData>
-
-<InputData Lumi="229767" NEventsMax="-1" Type="MC" Version="ZP500W50_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP500W50.root" Lumi="0.0"/> 
-<InputTree Name="AnalysisTree" />
-</InputData>
-
-<InputData Lumi="216010" NEventsMax="-1" Type="MC" Version="ZP750W75_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP750W75.root" Lumi="0.0"/> 
-<InputTree Name="AnalysisTree" />
-</InputData>
-
-<InputData Lumi="207430" NEventsMax="-1" Type="MC" Version="ZP1000W100_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP1000W100.root" Lumi="0.0"/> 
-<InputTree Name="AnalysisTree" />
-</InputData>
-
-<InputData Lumi="201420" NEventsMax="-1" Type="MC" Version="ZP1250W125_topjerup" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP1250W125.root" Lumi="0.0"/> 
-<InputTree Name="AnalysisTree" />
-</InputData>
-
-<InputData Lumi="196751" NEventsMax="-1" Type="MC" Version="ZP1500W150_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP1500W150.root" Lumi="0.0"/> 
-<InputTree Name="AnalysisTree" />
-</InputData>
-
-<InputData Lumi="485137" NEventsMax="-1" Type="MC" Version="ZP2000W200_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP2000W200.root" Lumi="0.0"/> 
-<InputTree Name="AnalysisTree" />
-</InputData>
-
-<InputData Lumi="200810" NEventsMax="-1" Type="MC" Version="ZP3000W300_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP3000W300.root" Lumi="0.0"/> 
-<InputTree Name="AnalysisTree" />
-</InputData>
-
-<InputData Lumi="103388" NEventsMax="-1" Type="MC" Version="ZP4000W400_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.ZP4000W400.root" Lumi="0.0"/> 
-<InputTree Name="AnalysisTree" />
-</InputData>
-
-<InputData Lumi="92960" NEventsMax="-1" Type="MC" Version="RSG700_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.RSG700.root" Lumi="0.0"/>
-<InputTree Name="AnalysisTree" />
-</InputData>
-<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG1000_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.RSG1000.root" Lumi="0.0"/>
-<InputTree Name="AnalysisTree" />
-</InputData>
-<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG1200_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.RSG1200.root" Lumi="0.0"/>
-<InputTree Name="AnalysisTree" />
-</InputData>
-<InputData Lumi="97440" NEventsMax="-1" Type="MC" Version="RSG1400_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.RSG1400.root" Lumi="0.0"/>
-<InputTree Name="AnalysisTree" />
-</InputData>
-<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG1500_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.RSG1500.root" Lumi="0.0"/>
-<InputTree Name="AnalysisTree" />
-</InputData>
-<InputData Lumi="99840" NEventsMax="-1" Type="MC" Version="RSG1600_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.RSG1600.root" Lumi="0.0"/>
-<InputTree Name="AnalysisTree" />
-</InputData>
-<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG1800_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.RSG1800.root" Lumi="0.0"/>
-<InputTree Name="AnalysisTree" />
-</InputData>
-<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG2000_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.RSG2000.root" Lumi="0.0"/>
-<InputTree Name="AnalysisTree" />
-</InputData>
-<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG2500_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.RSG2500.root" Lumi="0.0"/>
-<InputTree Name="AnalysisTree" />
-</InputData>
-<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG3000_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.RSG3000.root" Lumi="0.0"/>
-<InputTree Name="AnalysisTree" />
-</InputData>
-<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG3500_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.RSG3500.root" Lumi="0.0"/>
-<InputTree Name="AnalysisTree" />
-</InputData>
-<InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG4000_topjerup" Cacheable="True">
-<In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.RSG4000.root" Lumi="0.0"/>
-<InputTree Name="AnalysisTree" />
-</InputData>ctionCycle.MC.ZP1250W125.root" Lumi="0.0"/> 
 <InputTree Name="AnalysisTree" />
 </InputData>
 
@@ -303,7 +186,7 @@
 <InputData Lumi="100000" NEventsMax="-1" Type="MC" Version="RSG4000_topjerdown" Cacheable="True">
 <In FileName="/nfs/dust/cms/user/usaiem/ZprimeFullHad/preselectionPreselectionCycle.MC.RSG4000.root" Lumi="0.0"/>
 <InputTree Name="AnalysisTree" />
-</InputData>-->
+</InputData>
 
 
 
@@ -363,8 +246,8 @@
 		   
 		    <Item Name="SystematicUncertainty" Value="FATJER" />
                   <Item Name="SystematicVariation" Value="down" />
-<!-- 		  <Item Name="TopJetCollectionGen" Value="caFilteredGenJetsNoNu"/> -->
-                  <Item Name="TopJetCollectionGen" Value="caHEPTopTagGen"/>
+		  <Item Name="TopJetCollectionGen" Value="caFilteredGenJetsNoNu"/>
+                  <!-- <Item Name="TopJetCollectionGen" Value="caHEPTopTagGen"/> DOVREBBE ESSERE QUESTO DAPPERTUTTO-->
 		   
 		   
  		   

@@ -41,8 +41,8 @@ process_list_ttbar_lightdown=['BackgroundCycle.MC.TTbarHad_lightdown.root','Back
 process_list_qcd=['BackgroundCycle.MC.QCD_HT-1000ToInf.root','BackgroundCycle.MC.QCD_HT-250To500.root','BackgroundCycle.MC.QCD_HT-500To1000.root']#,'BackgroundCycle.MC.QCD_HT-100To250.root'
 process_list_data=['BackgroundCycle.DATA.MJDATAB.root','BackgroundCycle.DATA.MJDATAC.root','BackgroundCycle.DATA.MJDATAD.root']
 #process_list_data=['BackgroundCycle.DATA.MJDATAD.root']
-systematics=['','_bcup','_bcdown','_lightup','_lightdown','_httup','_httdown','_subjecup','_subjecdown','_topjerup','_topjerdown','_topjecup','_topjecdown']#,'_scaleup','_scaledown','_topptup','_topptdown']#,'_puup','_pudown']#],'_subjerup','_subjerdown'
-theta_sys=['','__subjbtaghtt__plus','__subjbtaghtt__minus','__subjbtaglighthtt__plus','__subjbtaglighthtt__minus','__htt__plus','__htt__minus','__subjec__plus','__subjec__minus','__jer__plus','__jer__minus','__jec__plus','__jec__minus']#,'__q2__plus','__q2__minus','__toppt__plus','__toppt__minus']#,'__pu__plus','__pu__minus']
+systematics=['','_bcup','_bcdown','_lightup','_lightdown','_httup','_httdown','_subjecup','_subjecdown','_topjerup','_topjerdown','_topjecup','_topjecdown','_trigup','_trigdown']#,'_scaleup','_scaledown','_topptup','_topptdown']#,'_puup','_pudown']#],'_subjerup','_subjerdown'
+theta_sys=['','__subjbtaghtt__plus','__subjbtaghtt__minus','__subjbtaglighthtt__plus','__subjbtaglighthtt__minus','__htt__plus','__htt__minus','__subjec__plus','__subjec__minus','__jer__plus','__jer__minus','__jec__plus','__jec__minus','__heptrig__plus','__heptrig__minus']#,'__q2__plus','__q2__minus','__toppt__plus','__toppt__minus']#,'__pu__plus','__pu__minus']
 ttbar_only_sys=[]#'_scaleup','_scaledown']#,'_topptup','_topptdown']
 #theta_signal=['Zprime500','Zprime500w','Zprime750','Zprime750w','Zprime1000','Zprime1000w','Zprime1250','Zprime1250w','Zprime1500','Zprime1500w','Zprime2000','Zprime2000w','Zprime3000','Zprime3000w','Zprime4000','Zprime4000w',"RSG700","RSG1000","RSG1200","RSG1400","RSG1500","RSG1600","RSG1800","RSG2000","RSG2500","RSG3000","RSG3500","RSG4000"]#
 cyclename="BackgroundCycle.MC."
@@ -132,11 +132,13 @@ if doplots:
   print 'make histos'
 
   
-  def make_plot(histo_name,folder=htfolder): 
+  def make_plot(histo_name,folder=htfolder,override=False,ttbar1=0,ttbar2=0,bkg1=0,bkg2=0,data1=0,data2=0,err1=0,err2=0): 
     zf=1
     legendstring="HEPTopTagger HT750"
     if folder==mjfolder:
       legendstring="HEPTopTagger QuadJet50"
+    if override:
+      legendstring="HEPTopTagger"
     legend=TLegend(0.7,0.5,0.945,0.895,legendstring)
     legend.SetFillColor(kWhite)
     legend.SetBorderSize(0)
@@ -274,11 +276,31 @@ if doplots:
         sysdown.append(sqrt(edown))
         #print eup,err.GetErrorYhigh(ierr)
         lumierr=0.0263*ttbar_histo.GetBinContent(ierr)
-        trigerr=0.0202*ttbar_histo.GetBinContent(ierr)
+        trigerr=0#0.0202*ttbar_histo.GetBinContent(ierr)
         xserr=0.1618*ttbar_histo.GetBinContent(ierr)
         err.SetPointEYhigh(ierr-1,sqrt(lumierr*lumierr+trigerr*trigerr+xserr*xserr+err.GetErrorYhigh(ierr-1)*err.GetErrorYhigh(ierr-1)+eup))
         err.SetPointEYlow(ierr-1,sqrt(lumierr*lumierr+trigerr*trigerr+xserr*xserr+err.GetErrorYlow(ierr-1)*err.GetErrorYlow(ierr-1)+edown))
     #print relsysup
+    if override:
+      ttbarm=ttbar1.Clone()
+      ttbarm.Add(ttbar2)
+      bkgm=bkg1.Clone()
+      bkgm.Add(bkg2)
+      datam=data1.Clone()
+      datam.Add(data2)
+      errm=err1.Clone()
+      sum_mcm=ttbarm.Clone()
+      sum_mcm.Add(bkgm)
+      errm=TGraphAsymmErrors(sum_mcm)
+      for ierr in range(1,err1.GetN()+1):
+        errm.SetPointEYhigh(ierr-1,sqrt(err1.GetErrorYhigh(ierr-1)*err1.GetErrorYhigh(ierr-1)+err2.GetErrorYhigh(ierr-1)*err2.GetErrorYhigh(ierr-1)))
+        errm.SetPointEYlow(ierr-1,sqrt(err1.GetErrorYlow(ierr-1)*err1.GetErrorYlow(ierr-1)+err2.GetErrorYlow(ierr-1)*err2.GetErrorYlow(ierr-1)))
+      sum_mc=sum_mcm
+      data_histo=datam
+      ttbar_histo=ttbarm
+      bkg_histo=bkgm
+      err=errm
+
     sum_mc_noerr=sum_mc.Clone('sum_mc_noerr'+us+histo_name)
     for i in range(1,sum_mc_noerr.GetNbinsX()+1):
       sum_mc_noerr.SetBinError(i,0)
@@ -360,6 +382,8 @@ if doplots:
     cmslabelstring="CMS Preliminary #sqrt{s} = 8TeV  19.7 fb^{-1}"
     if folder==mjfolder:
       cmslabelstring="CMS Preliminary #sqrt{s} = 8TeV  13.8 fb^{-1}"
+    if override:
+      cmslabelstring="CMS Preliminary #sqrt{s} = 8TeV  13.8-19.7 fb^{-1}"
     cmslabel=TLatex(0.15,0.925,cmslabelstring)
     #cmslabel=TLatex(0.15,0.925,"Private work")
     cmslabel.SetTextSize(0.07)
@@ -370,6 +394,10 @@ if doplots:
     signal1000=signal_files[process_names_signal_narrow.index('750')].Get(folder+measured_histo_name).Clone('ZP1000'+us+histo_name)
     signal2000=signal_files[process_names_signal_narrow.index('1000')].Get(folder+measured_histo_name).Clone('ZP2000'+us+histo_name)
     signal3000=signal_files[process_names_signal_narrow.index('1250')].Get(folder+measured_histo_name).Clone('ZP3000'+us+histo_name)
+    if override:
+      signal1000.Add(signal_files[process_names_signal_narrow.index('750')].Get(mjfolder+measured_histo_name).Clone('ZP1000'+us+histo_name))
+      signal2000.Add(signal_files[process_names_signal_narrow.index('1000')].Get(mjfolder+measured_histo_name).Clone('ZP2000'+us+histo_name))
+      signal3000.Add(signal_files[process_names_signal_narrow.index('1250')].Get(mjfolder+measured_histo_name).Clone('ZP3000'+us+histo_name))
     signal1000.SetLineWidth(3)
     signal1000.SetLineStyle(1)
     signal2000.SetLineWidth(3)
@@ -448,11 +476,14 @@ if doplots:
     #outfile.cd(cut_name)
     outfile.cd()
     canvas.Write()
-    canvas.SaveAs('pdf/'+folder+canvas.GetName()+'.pdf')
+    overridepostfix=''
+    if override:
+      overridepostfix='merge'
+    canvas.SaveAs('pdf/'+folder+canvas.GetName()+overridepostfix+'.pdf')
     bkg_histo.Write()
     bkg_histo_up.Write()
     bkg_histo_down.Write()
-    return [bkg_histo,bkg_histo_up,bkg_histo_down,ttbar_q2up,ttbar_q2down]
+    return [bkg_histo,bkg_histo_up,bkg_histo_down,ttbar_q2up,ttbar_q2down,ttbar_histo,data_histo,err]
     
   #for i in range(len(histo_name_list)):
   #  for j in range(len(histo_folder_list)):
@@ -468,6 +499,56 @@ if doplots:
   bkg_histos.append(make_plot('Mtt0',mjfolder))
   bkg_histos.append(make_plot('Mtt1',mjfolder))
   bkg_histos.append(make_plot('Mtt2',mjfolder))
+
+  btcat=0
+  bkg1=bkg_histos[btcat][0]
+  bkg2=bkg_histos[btcat+3][0]
+  ttbar1=bkg_histos[btcat][5]
+  ttbar2=bkg_histos[btcat+3][5]
+  data1=bkg_histos[btcat][6]
+  data2=bkg_histos[btcat+3][6]
+  err1=bkg_histos[btcat][7]
+  err2=bkg_histos[btcat+3][7]
+  make_plot('Mtt0',htfolder,True,ttbar1,ttbar2,bkg1,bkg2,data1,data2,err1,err2)
+
+  btcat=1
+  bkg1=bkg_histos[btcat][0]
+  bkg2=bkg_histos[btcat+3][0]
+  ttbar1=bkg_histos[btcat][5]
+  ttbar2=bkg_histos[btcat+3][5]
+  data1=bkg_histos[btcat][6]
+  data2=bkg_histos[btcat+3][6]
+  err1=bkg_histos[btcat][7]
+  err2=bkg_histos[btcat+3][7]
+  make_plot('Mtt1',htfolder,True,ttbar1,ttbar2,bkg1,bkg2,data1,data2,err1,err2)
+
+  btcat=2
+  bkg1=bkg_histos[btcat][0]
+  bkg2=bkg_histos[btcat+3][0]
+  ttbar1=bkg_histos[btcat][5]
+  ttbar2=bkg_histos[btcat+3][5]
+  data1=bkg_histos[btcat][6]
+  data2=bkg_histos[btcat+3][6]
+  err1=bkg_histos[btcat][7]
+  err2=bkg_histos[btcat+3][7]
+  make_plot('Mtt2',htfolder,True,ttbar1,ttbar2,bkg1,bkg2,data1,data2,err1,err2)
+  # def domerge:
+  #   ttbarm=ttbar1.Clone()
+  #   ttbarm.Add(ttbar2)
+  #   bkgm=bkg1.Clone()
+  #   bkgm.Add(bkg2)
+  #   datam=data1.Clone()
+  #   datam.Add(data2)
+  #   errm=err1.Clone()
+  #   sum_mcm=ttbarm.Clone()
+  #   sum_mcm.Add(bkgm)
+  #   errm=TGraphAsymmErrors(sum_mcm)
+  #   for ierr in range(1,err1.GetN()+1):
+  #     errm.SetPointEYhigh(ierr-1,sqrt(err1.GetErrorYhigh(ierr-1)*err1.GetErrorYhigh(ierr-1)+err2.GetErrorYhigh(ierr-1)*err2.GetErrorYhigh(ierr-1)))
+  #     errm.SetPointEYlow(ierr-1,sqrt(err1.GetErrorYlow(ierr-1)*err1.GetErrorYlow(ierr-1)+err2.GetErrorYlow(ierr-1)*err2.GetErrorYlow(ierr-1)))
+
+
+
   
   make_plot('Jet1pT012')
   make_plot('Jet1pT0')
@@ -724,13 +805,16 @@ if dothetafile:
       removebin_save(mjpdftmpup)
       removebin_save(mjpdftmpdown)
     
+    limitfile.cd()
     htdata_file.Get(htfolder+measuredmtt+bt).Clone(htnamebase+bt+uu+'DATA').Write()
     a=mjdata_file.Get(mjfolder+measuredmtt+bt).Clone(mjnamebase+bt+uu+'DATA')
+    limitfile.cd()
     removebin_save(a)
     #a.Scale(16.4/13.8)
     #a.Write()
     
     qcdmean=bkg_histos[int(bt)][0].Clone(htnamebase+bt+uu+'qcd')
+    limitfile.cd()
     qcdmean.Write()
     qcdmisup=bkg_histos[int(bt)][1].Clone(htnamebase+bt+uu+'qcd'+uu+'misErr__plus')
     #qcdmisup.Write()
@@ -740,11 +824,13 @@ if dothetafile:
 
     q2up=bkg_histos[int(bt)][3].Clone(htnamebase+bt+uu+'ttbar'+uu+'q2__plus')
     q2down=bkg_histos[int(bt)][4].Clone(htnamebase+bt+uu+'ttbar'+uu+'q2__minus')
+    limitfile.cd()
     q2up.Write()
     q2down.Write()
     make_comp(mean_histo,q2up,q2down,htnamebase+bt+uu+'ttbar'+uu+'q2',bt+'btag')
 
     b=bkg_histos[int(bt)+3][0].Clone(mjnamebase+bt+uu+'qcd')
+    limitfile.cd()
     removebin_save(b)
     #b.Scale(16.4/13.8)
     #b.Write()
@@ -761,6 +847,7 @@ if dothetafile:
 
     mjq2up=bkg_histos[int(bt)+3][3].Clone(mjnamebase+bt+uu+'ttbar'+uu+'q2__plus')
     mjq2down=bkg_histos[int(bt)+3][4].Clone(mjnamebase+bt+uu+'ttbar'+uu+'q2__minus')
+    limitfile.cd()
     mjq2up.Write()
     mjq2down.Write()
     make_comp(meanmj_histo,mjq2up,mjq2down,mjnamebase+bt+uu+'ttbar'+uu+'q2',bt+'btag')
