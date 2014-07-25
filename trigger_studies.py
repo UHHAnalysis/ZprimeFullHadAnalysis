@@ -10,7 +10,7 @@ gROOT.SetBatch()
 
 path_base='/nfs/dust/cms/user/usaiem/ZprimeFullHad/'
 #sample_list=['ZprimeFullHadCycle.MC.ZP750W7p5','ZprimeFullHadCycle.MC.ZP1000W10','ZprimeFullHadCycle.MC.ZP1250W12p5','ZprimeFullHadCycle.MC.ZP1500W15','ZprimeFullHadCycle.MC.ZP2000W20','ZprimeFullHadCycle.MC.TTbar']#'ZP500W5',
-sample_list=['ZprimeFullHadCycle.MC.ZP1000W10','ZprimeFullHadCycle.MC.TTbar']
+sample_list=['ZprimeFullHadCycle.MC.ZP1500W15','ZprimeFullHadCycle.MC.TTbar']
 #sample_list=['ZP2000W20']
 colors=[kRed,kBlue,kBlack,kGreen,kOrange,6,9]
 #histo_list=['SumOfTopCandidatesPt2','SubLeadingTopCandidatePt2','HT50','pT4']#,'SumOfTopCandidatesPt','LeadingTopCandidatePt','SubLeadingTopCandidatePt','HT50'
@@ -19,13 +19,13 @@ histo_list=['HT50','pT4']#,'SumOfTopCandidatesPt','LeadingTopCandidatePt','SubLe
 histo_list2=['HT_{50} [GeV]','p_{T} fourth AK5 jet']
 
 
-#cut_list=["Trigger1Histos","Trigger2Histos","Trigger3Histos"]#,"Trigger4Histos","Trigger5Histos"
-#trigger_names=["HLT_HT750","HLT_QuadJet50","HLT_HT750||HLT_QuadJet50"]
-#base_cut="BaseHistos"
+cut_list=["Trigger1Histos","Trigger2Histos","Trigger3Histos"]#,"Trigger4Histos","Trigger5Histos"
+trigger_names=["HLT_HT750","HLT_QuadJet50","HLT_HT750||HLT_QuadJet50"]
+base_cut="BaseHistos"
 
-cut_list=["SFHTHistos","SFQuadHistos"]#,"Trigger4Histos","Trigger5Histos"
-trigger_names=["HLT_HT750","HLT_QuadJet50"]
-base_cut="SFbaseHistos"
+# cut_list=["SFHTHistos","SFQuadHistos"]#,"Trigger4Histos","Trigger5Histos"
+# trigger_names=["HLT_HT750","HLT_QuadJet50"]
+# base_cut="SFbaseHistos"
 
 
 def hadd(inputlist,outputname):
@@ -126,7 +126,8 @@ def getEff2(histo_index,cut_index,rebin=0):
       eff_error_bars[-1].Draw('PSAME')
     c2=TCanvas(cut_list[cut_index]+'_'+histo_list[histo_index]+'_'+sample_list[sample_index]+'_Canvas')
     #eff_histos[-1].Draw('AXIS')
-    eff_error_bars[-1].Draw()
+    eff_error_bars[-1].Draw('AP')
+    #eff_error_bars[-1].Write()
     legend2=TLegend(0.8,0.2,0.999,0.93)
     legend2.AddEntry(eff_histos[-1],sample_list[sample_index],'l')
     legend2.Draw()
@@ -146,6 +147,15 @@ def getEff2(histo_index,cut_index,rebin=0):
     #for histoIndex in range(len(histo_list)):
       #getEff(sampleIndex,histoIndex,cutIndex)
 
+
+for cutIndex in range(len(cut_list)):
+  for histoIndex in range(len(histo_list)):
+    getEff2(histoIndex,cutIndex,3)
+
+sample_list[0]='ZprimeFullHadCycle.MC.ZP1000W10'
+cut_list=["SFHTHistos","SFQuadHistos"]#,"Trigger4Histos","Trigger5Histos"
+trigger_names=["HLT_HT750","HLT_QuadJet50"]
+base_cut="SFbaseHistos"
 for cutIndex in range(len(cut_list)):
   for histoIndex in range(len(histo_list)):
     getEff2(histoIndex,cutIndex,4)

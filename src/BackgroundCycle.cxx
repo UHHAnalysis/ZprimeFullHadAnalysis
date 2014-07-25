@@ -243,7 +243,7 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
   
   bool HT_region = HT750_trigger && (!cms_analysis_region) && HT_cut && good_number_of_jets;// && filtered_200_cut && spt5_cut;
   
-  bool Quad_region = QuadJet50_trigger && ( !HT_region ) && ( !cms_analysis_region ) && QuadJet_cut && good_number_of_jets;// && filtered_200_cut && spt5_cut;
+  bool Quad_region = QuadJet50_trigger && ( !HT_region ) && ( !cms_analysis_region ) && QuadJet_cut && good_number_of_jets && ( !HT_cut );//<-- split categories in HT && filtered_200_cut && spt5_cut;
     
   
   
@@ -281,7 +281,7 @@ void BackgroundCycle::ExecuteEvent( const SInputData& id, Double_t weight) throw
   if (Quad_region)
   {
     if ( version.find("MJDATA")!=string::npos && bcc->run<194270) throw SError( SError::SkipEvent );
-    if (!IsRealData) calc->ProduceWeight(/*0.95*/13.826599/19.7);/*4.114*/
+    if (!IsRealData) calc->ProduceWeight(/*0.95*/18.285/19.7);/*4.114*/
     ((BackgroundHists*)QuadJetDatasetHistos)->setVersion(id.GetVersion().Data());
     ((BackgroundHists*)QuadJetDatasetHistos)->setEventNumber(bcc->event);
     ((BackgroundHists*)QuadJetDatasetHistos)->setRegion("QuadJetDatasetHistos");

@@ -134,15 +134,17 @@ if doplots:
   
   def make_plot(histo_name,folder=htfolder,override=False,ttbar1=0,ttbar2=0,bkg1=0,bkg2=0,data1=0,data2=0,err1=0,err2=0): 
     zf=1
-    legendstring="HEPTopTagger HT750"
+    legendstring="HEPTopTagger HT>800 GeV"
     if folder==mjfolder:
-      legendstring="HEPTopTagger QuadJet50"
+      legendstring="HEPTopTagger HT<800 GeV"
     if override:
       legendstring="HEPTopTagger"
-    legend=TLegend(0.7,0.5,0.945,0.895,legendstring)
+    legend=TLegend(0.5,0.5,0.945,0.895,legendstring)
     legend.SetFillColor(kWhite)
     legend.SetBorderSize(0)
     legend.SetFillStyle(0)
+    if histo_name in ['Mtt0','Mtt1','Mtt2','Mtt012']:
+      legend.SetTextSize(0.05)
     stack=THStack(histo_name+us+'stack','')
     #ttbar_histo=ttbar_file.Get(cut_name+'/'+histo_name).Clone('ttbar'+us+histo_name+us+cut_name)
     #qcd_histo=qcd_file.Get(cut_name+'/'+histo_name).Clone('qcd'+us+histo_name+us+cut_name)
@@ -381,9 +383,9 @@ if doplots:
     stack.Add(bkg_histo)
     cmslabelstring="CMS Preliminary #sqrt{s} = 8TeV  19.7 fb^{-1}"
     if folder==mjfolder:
-      cmslabelstring="CMS Preliminary #sqrt{s} = 8TeV  13.8 fb^{-1}"
+      cmslabelstring="CMS Preliminary #sqrt{s} = 8TeV  18.3 fb^{-1}"
     if override:
-      cmslabelstring="CMS Preliminary #sqrt{s} = 8TeV  13.8-19.7 fb^{-1}"
+      cmslabelstring="CMS Preliminary #sqrt{s} = 8TeV  18.3-19.7 fb^{-1}"
     cmslabel=TLatex(0.15,0.925,cmslabelstring)
     #cmslabel=TLatex(0.15,0.925,"Private work")
     cmslabel.SetTextSize(0.07)
@@ -480,6 +482,8 @@ if doplots:
     if override:
       overridepostfix='merge'
     canvas.SaveAs('pdf/'+folder+canvas.GetName()+overridepostfix+'.pdf')
+    if histo_name in ['Mtt0','Mtt1','Mtt2','Mtt012']:
+      canvas.SaveAs('pdf/'+folder+canvas.GetName()+overridepostfix+'.png')
     bkg_histo.Write()
     bkg_histo_up.Write()
     bkg_histo_down.Write()

@@ -9,26 +9,44 @@ ZTriggerWeight::ZTriggerWeight(TString filename_mc, TString mode){
 //  h_mc=(TH1F*) file_mc->Get("triggerSF");
   h_ht=new TH1F("h_ht","HLT_HT750",25,0,2000);
   h_quad=new TH1F("h_quad","HLT_QuadJet50",25,0,500);
-   h_quad->SetBinContent(2,0.4955357);
-   h_quad->SetBinContent(3,0.6839759);
-   h_quad->SetBinContent(4,0.9060282);
-   h_quad->SetBinContent(5,0.9602375);
-   h_quad->SetBinContent(6,0.9924242);
-   h_quad->SetBinContent(7,1.011859);
-   h_quad->SetBinContent(8,0.9655172);
-   h_quad->SetBinContent(9,1.1);
-   h_quad->SetBinContent(10,1);
-   h_quad->SetBinError(2,0.3313248);
-   h_quad->SetBinError(3,0.04989849);
-   h_quad->SetBinError(4,0.02072731);
-   h_quad->SetBinError(5,0.01675328);
-   h_quad->SetBinError(6,0.01578304);
-   h_quad->SetBinError(7,0.01718527);
-   h_quad->SetBinError(8,0.03388301);
-   h_quad->SetBinError(9,0.07416198);
+   // h_quad->SetBinContent(2,0.4955357);
+   // h_quad->SetBinContent(3,0.6839759);
+   // h_quad->SetBinContent(4,0.9060282);
+   // h_quad->SetBinContent(5,0.9602375);
+   // h_quad->SetBinContent(6,0.9924242);
+   // h_quad->SetBinContent(7,1.011859);
+   // h_quad->SetBinContent(8,0.9655172);
+   // h_quad->SetBinContent(9,1.1);
+   // h_quad->SetBinContent(10,1);
+   // h_quad->SetBinError(2,0.3313248);
+   // h_quad->SetBinError(3,0.04989849);
+   // h_quad->SetBinError(4,0.02072731);
+   // h_quad->SetBinError(5,0.01675328);
+   // h_quad->SetBinError(6,0.01578304);
+   // h_quad->SetBinError(7,0.01718527);
+   // h_quad->SetBinError(8,0.03388301);
+   // h_quad->SetBinError(9,0.07416198);
+   // h_quad->SetMinimum(0);
+   // h_quad->SetMaximum(1.01);
+   // h_quad->SetEntries(548.0842);
+   // h_quad->SetStats(0);
+   h_quad->SetBinContent(2,0.5454545);
+   h_quad->SetBinContent(3,0.6209647);
+   h_quad->SetBinContent(4,0.9010614);
+   h_quad->SetBinContent(5,0.9589044);
+   h_quad->SetBinContent(6,0.99708);
+   h_quad->SetBinContent(7,1.003876);
+   h_quad->SetBinContent(8,0.8333333);
+   h_quad->SetBinError(2,0.5312191);
+   h_quad->SetBinError(3,0.05029461);
+   h_quad->SetBinError(4,0.02261437);
+   h_quad->SetBinError(5,0.01976425);
+   h_quad->SetBinError(6,0.02280628);
+   h_quad->SetBinError(7,0.03059904);
+   h_quad->SetBinError(8,0.1521452);
    h_quad->SetMinimum(0);
    h_quad->SetMaximum(1.01);
-   h_quad->SetEntries(548.0842);
+   h_quad->SetEntries(110.7163);
    h_quad->SetStats(0);
 
    h_ht->SetBinContent(8,0.8013334);
@@ -108,6 +126,7 @@ double ZTriggerWeight::produceWeightHT(BaseCycleContainer* bcc)
   
   int bin=h_ht->FindFixBin(ht50);
   double weight=h_ht->GetBinContent(bin);
+  if (weight<0.01) weight=1.0;
   double addweight=fabs(1.-weight)*0.5;
   
   if(m_mode=="up"){
@@ -132,6 +151,7 @@ double ZTriggerWeight::produceWeightQuadJet(BaseCycleContainer* bcc)
   
   int bin=h_quad->FindFixBin(pt4);
   double weight=h_quad->GetBinContent(bin);
+  if (weight<0.01) weight=1.0;
   double addweight=fabs(1.-weight)*0.5;
   
   if(m_mode=="up"){

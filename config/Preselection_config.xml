@@ -397,6 +397,47 @@
 <!ENTITY MJRunDPart117 SYSTEM "MJRunDPart117">
 <!ENTITY MJRunDPart118 SYSTEM "MJRunDPart118">
 <!ENTITY MJRunDPart119 SYSTEM "MJRunDPart119">
+<!ENTITY MJRunDPart120 SYSTEM "MJRunDPart120">
+<!ENTITY MJRunDPart121 SYSTEM "MJRunDPart121">
+<!ENTITY MJRunDPart122 SYSTEM "MJRunDPart122">
+<!ENTITY MJRunDPart123 SYSTEM "MJRunDPart123">
+<!ENTITY MJRunDPart124 SYSTEM "MJRunDPart124">
+<!ENTITY MJRunDPart125 SYSTEM "MJRunDPart125">
+<!ENTITY MJRunDPart126 SYSTEM "MJRunDPart126">
+<!ENTITY MJRunDPart127 SYSTEM "MJRunDPart127">
+<!ENTITY MJRunDPart128 SYSTEM "MJRunDPart128">
+<!ENTITY MJRunDPart129 SYSTEM "MJRunDPart129">
+
+<!ENTITY MJRunDPart1sge00 SYSTEM "MJRunDPart1sge00">
+<!ENTITY MJRunDPart1sge01 SYSTEM "MJRunDPart1sge01">
+<!ENTITY MJRunDPart1sge02 SYSTEM "MJRunDPart1sge02">
+<!ENTITY MJRunDPart1sge03 SYSTEM "MJRunDPart1sge03">
+<!ENTITY MJRunDPart1sge04 SYSTEM "MJRunDPart1sge04">
+<!ENTITY MJRunDPart1sge05 SYSTEM "MJRunDPart1sge05">
+<!ENTITY MJRunDPart1sge06 SYSTEM "MJRunDPart1sge06">
+<!ENTITY MJRunDPart1sge07 SYSTEM "MJRunDPart1sge07">
+<!ENTITY MJRunDPart1sge08 SYSTEM "MJRunDPart1sge08">
+<!ENTITY MJRunDPart1sge09 SYSTEM "MJRunDPart1sge09">
+<!ENTITY MJRunDPart1sge10 SYSTEM "MJRunDPart1sge10">
+<!ENTITY MJRunDPart1sge11 SYSTEM "MJRunDPart1sge11">
+<!ENTITY MJRunDPart1sge12 SYSTEM "MJRunDPart1sge12">
+<!ENTITY MJRunDPart1sge13 SYSTEM "MJRunDPart1sge13">
+<!ENTITY MJRunDPart1sge14 SYSTEM "MJRunDPart1sge14">
+<!ENTITY MJRunDPart1sge15 SYSTEM "MJRunDPart1sge15">
+<!ENTITY MJRunDPart1sge16 SYSTEM "MJRunDPart1sge16">
+<!ENTITY MJRunDPart1sge17 SYSTEM "MJRunDPart1sge17">
+<!ENTITY MJRunDPart1sge18 SYSTEM "MJRunDPart1sge18">
+<!ENTITY MJRunDPart1sge19 SYSTEM "MJRunDPart1sge19">
+<!ENTITY MJRunDPart1sge20 SYSTEM "MJRunDPart1sge20">
+<!ENTITY MJRunDPart1sge21 SYSTEM "MJRunDPart1sge21">
+<!ENTITY MJRunDPart1sge22 SYSTEM "MJRunDPart1sge22">
+<!ENTITY MJRunDPart1sge23 SYSTEM "MJRunDPart1sge23">
+<!ENTITY MJRunDPart1sge24 SYSTEM "MJRunDPart1sge24">
+<!ENTITY MJRunDPart1sge25 SYSTEM "MJRunDPart1sge25">
+<!ENTITY MJRunDPart1sge26 SYSTEM "MJRunDPart1sge26">
+<!ENTITY MJRunDPart1sge27 SYSTEM "MJRunDPart1sge27">
+<!ENTITY MJRunDPart1sge28 SYSTEM "MJRunDPart1sge28">
+<!ENTITY MJRunDPart1sge29 SYSTEM "MJRunDPart1sge29">
 
 <!ENTITY MJRunDPart200 SYSTEM "MJRunDPart200">
 <!ENTITY MJRunDPart201 SYSTEM "MJRunDPart201">
@@ -557,7 +598,18 @@
 <!ENTITY MJRunC2-419 SYSTEM "MJRunC2-419">
 
 
+<!ENTITY MJRunB1sge6 SYSTEM "MJRunB1sge6">
+<!ENTITY MJRunB2sge7 SYSTEM "MJRunB2sge7">
+<!ENTITY MJRunB3sge7 SYSTEM "MJRunB3sge7">
+<!ENTITY MJRunB3sge8 SYSTEM "MJRunB3sge8">
 
+<!ENTITY MJRunC1sge6 SYSTEM "MJRunC1sge6">
+<!ENTITY MJRunC2-1sge6 SYSTEM "MJRunC2-1sge6">
+<!ENTITY MJRunC2-2sge6 SYSTEM "MJRunC2-2sge6">
+<!ENTITY MJRunC2-3sge6 SYSTEM "MJRunC2-3sge6">
+<!ENTITY MJRunC2-4sge6 SYSTEM "MJRunC2-4sge6">
+<!ENTITY MJRunC1sge7 SYSTEM "MJRunC1sge7">
+<!ENTITY MJRunC2-1sge7 SYSTEM "MJRunC2-1sge7">
 
 
 <!ENTITY QCDFlat00 SYSTEM "QCDFlat00">
@@ -950,7 +1002,7 @@
 
 
 
-<!--<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPixel00" Cacheable="True">
+<!-- <InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPixel00" Cacheable="True">
 &MJRunDPixel00;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -998,7 +1050,7 @@
 <InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPixel09" Cacheable="True">
 &MJRunDPixel09;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>-->
+</InputData> -->
 
 
 
@@ -1103,6 +1155,55 @@
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
 
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart120" Cacheable="True">
+&MJRunDPart120;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart121" Cacheable="True">
+&MJRunDPart121;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart122" Cacheable="True">
+&MJRunDPart122;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart123" Cacheable="True">
+&MJRunDPart123;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart124" Cacheable="True">
+&MJRunDPart124;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart125" Cacheable="True">
+&MJRunDPart125;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart126" Cacheable="True">
+&MJRunDPart126;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart127" Cacheable="True">
+&MJRunDPart127;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart128" Cacheable="True">
+&MJRunDPart128;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart129" Cacheable="True">
+&MJRunDPart129;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>-->
 
 
 
@@ -1110,7 +1211,163 @@
 
 
 
-<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart200" Cacheable="True">
+<!-- <InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge00" Cacheable="True">
+&MJRunDPart1sge00;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge01" Cacheable="True">
+&MJRunDPart1sge01;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge02" Cacheable="True">
+&MJRunDPart1sge02;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge03" Cacheable="True">
+&MJRunDPart1sge03;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge04" Cacheable="True">
+&MJRunDPart1sge04;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge05" Cacheable="True">
+&MJRunDPart1sge05;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge06" Cacheable="True">
+&MJRunDPart1sge06;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+ <InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge07" Cacheable="True">
+&MJRunDPart1sge07;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge08" Cacheable="True">
+&MJRunDPart1sge08;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge09" Cacheable="True">
+&MJRunDPart1sge09;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge10" Cacheable="True">
+&MJRunDPart1sge10;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge11" Cacheable="True">
+&MJRunDPart1sge11;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge12" Cacheable="True">
+&MJRunDPart1sge12;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge13" Cacheable="True">
+&MJRunDPart1sge13;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge14" Cacheable="True">
+&MJRunDPart1sge14;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge15" Cacheable="True">
+&MJRunDPart1sge15;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge16" Cacheable="True">
+&MJRunDPart1sge16;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge17" Cacheable="True">
+&MJRunDPart1sge17;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge18" Cacheable="True">
+&MJRunDPart1sge18;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge19" Cacheable="True">
+&MJRunDPart1sge19;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge20" Cacheable="True">
+&MJRunDPart1sge20;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge21" Cacheable="True">
+&MJRunDPart1sge21;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge22" Cacheable="True">
+&MJRunDPart1sge22;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge23" Cacheable="True">
+&MJRunDPart1sge23;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge24" Cacheable="True">
+&MJRunDPart1sge24;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge25" Cacheable="True">
+&MJRunDPart1sge25;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge26" Cacheable="True">
+&MJRunDPart1sge26;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge27" Cacheable="True">
+&MJRunDPart1sge27;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge28" Cacheable="True">
+&MJRunDPart1sge28;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart1sge29" Cacheable="True">
+&MJRunDPart1sge29;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>  -->
+
+
+
+
+
+
+
+<!-- <InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart200" Cacheable="True">
 &MJRunDPart200;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -1208,7 +1465,7 @@
 <InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunDPart219" Cacheable="True">
 &MJRunDPart219;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>-->
+</InputData> -->
 
 
 
@@ -1853,6 +2110,48 @@
 </InputData>-->
 
 
+<!-- <InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunB1-recover" Cacheable="True">
+&MJRunB1sge6;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunB2-recover" Cacheable="True">
+&MJRunB2sge7;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunB3-recover" Cacheable="True">
+&MJRunB3sge7;
+&MJRunB3sge8;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunC1-recover" Cacheable="True">
+&MJRunC1sge6;
+&MJRunC1sge7;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunC2-1-recover" Cacheable="True">
+&MJRunC2-1sge6;
+&MJRunC2-1sge7;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunC2-2-recover" Cacheable="True">
+&MJRunC2-2sge6;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunC2-3-recover" Cacheable="True">
+&MJRunC2-3sge6;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData>
+
+<InputData Lumi="1" NEventsMax="-1" Type="DATA" Version="MJRunC2-4-recover" Cacheable="True">
+&MJRunC2-4sge6;
+<InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
+</InputData> -->
 
 
 
@@ -2006,7 +2305,7 @@
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>-->
 
-<!--<InputData Lumi="238028" NEventsMax="-1" Type="MC" Version="ZP500W5" Cacheable="True">
+<!-- <InputData Lumi="238028" NEventsMax="-1" Type="MC" Version="ZP500W5" Cacheable="True">
 &ZP500W5;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
@@ -2024,13 +2323,13 @@
 <InputData Lumi="216010" NEventsMax="-1" Type="MC" Version="ZP750W75" Cacheable="True">
 &ZP750W75;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>-->
+</InputData>
 
 <InputData Lumi="206846" NEventsMax="-1" Type="MC" Version="ZP1000W10" Cacheable="True">
 &ZP1000W10;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>
-<!--
+
 <InputData Lumi="207430" NEventsMax="-1" Type="MC" Version="ZP1000W100" Cacheable="True">
 &ZP1000W100;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
@@ -2084,7 +2383,7 @@
 <InputData Lumi="103388" NEventsMax="-1" Type="MC" Version="ZP4000W400" Cacheable="True">
 &ZP4000W400;
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
-</InputData>-->
+</InputData> -->
 
 <!--
 <InputData Lumi="88185" NEventsMax="-1" Type="MC" Version="TTbar" Cacheable="True">
@@ -3693,7 +3992,7 @@
 <InputTree Name="AnalysisTree" /> <OutputTree Name="AnalysisTree"/>
 </InputData>-->
 
-<!-- <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="RSG700" Cacheable="True">
+ <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="RSG700" Cacheable="True">
 &RSG700;
 <InputTree Name="AnalysisTree" />
 <OutputTree Name="AnalysisTree" />
@@ -3753,7 +4052,7 @@
 &RSG4000;
 <InputTree Name="AnalysisTree" />
 <OutputTree Name="AnalysisTree" />
-</InputData>-->
+</InputData>
 
 
 		<UserConfig>

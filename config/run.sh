@@ -33,7 +33,7 @@ source /afs/desy.de/user/u/usaiem/xxl-af-cms/PoD/PoD_env.sh
 cd -
 cd ZprimeFullHadAnalysis/
 cd config
-cp sys_pdf_config.xml temp_${MYNUM}.xml
+cp sys_pdftop_config.xml temp_${MYNUM}.xml
 sed -i "s|PDFINDEX|${MYNUM}|g" temp_${MYNUM}.xml
 cat temp_${MYNUM}.xml
 sframe_main temp_${MYNUM}.xml

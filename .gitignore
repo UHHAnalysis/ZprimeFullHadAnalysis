@@ -7,3 +7,5 @@ src/ZprimeFullHadAnalysis_Dict.h
 *.root
 *.txt
 ._*
+*.o*
+*.e*
