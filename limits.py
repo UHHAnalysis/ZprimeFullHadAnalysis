@@ -139,7 +139,10 @@ if doplots:
       legendstring="HEPTopTagger HT<800 GeV"
     if override:
       legendstring="HEPTopTagger"
-    legend=TLegend(0.5,0.5,0.945,0.895,legendstring)
+    larghezza=0.7
+    if histo_name in ['Mtt0','Mtt1','Mtt2','Mtt012']:
+      larghezza=0.5
+    legend=TLegend(larghezza,0.5,0.945,0.895,legendstring)
     legend.SetFillColor(kWhite)
     legend.SetBorderSize(0)
     legend.SetFillStyle(0)
