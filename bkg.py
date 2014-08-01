@@ -1,9 +1,16 @@
 from os import system
-from ROOT import TFile,gROOT,THStack,TCanvas,TLegend,kRed,kYellow,kWhite,TLatex,kBlue,TIter,TList
+import ROOT
+from ROOT import TFile,THStack,TCanvas,TLegend,kRed,kYellow,kWhite,TLatex,kBlue,TIter,TList
 from sys import argv
 #setup
 print 'setup'
-gROOT.SetBatch()
+ROOT.gROOT.SetBatch()
+ROOT.gROOT.SetBatch()
+ROOT.gROOT.LoadMacro("tdrstyle.C");
+ROOT.gROOT.ProcessLine( 'setTDRStyle();')
+#setTDRStyle()
+ROOT.gROOT.LoadMacro("CMS_lumi.C+");
+
 path_base='/nfs/dust/cms/user/usaiem/ZprimeFullHad/'
 process_list_ttbar=['BackgroundCycle.MC.TTbar.root']#['BackgroundCycle.MC.TTbarHad.root','BackgroundCycle.MC.TTbarLept.root','BackgroundCycle.MC.TTbarSemi.root']
 process_list_qcd=['BackgroundCycle.MC.QCD_HT-250To500.root','BackgroundCycle.MC.QCD_HT-1000ToInf.root','BackgroundCycle.MC.QCD_HT-500To1000.root']#,'BackgroundCycle.MC.QCD_HT-100To250.root']'BackgroundCycle.MC.QCD_HT-250To500.root',
@@ -261,14 +268,24 @@ print 'make plots'
 def make_plot(name,name_list,legend_list,normalize=False,thefile=0):
   histo_list=[]
   c=TCanvas(name,'',600,600)
-  legend=TLegend(0.8,0.2,0.999,0.93)
+  c.SetLeftMargin(0.15)#
+  c.SetRightMargin(0.05)#
+  c.SetTopMargin(0.10)#
+  c.SetBottomMargin(0.10)
+  #legend=TLegend(0.7,0.4,0.95,0.7)
+  legend=TLegend(0.35,0.2,0.85,0.5)
+  legend.SetHeader('HEP Tagger, H_{T}>800 GeV')
+  if folder_quad in name:
+    legend=TLegend(0.35,0.2,0.85,0.5)
+    legend.SetHeader('HEP Tagger, H_{T}<800 GeV')
+  legend.SetTextSize(0.03)
   legend.SetBorderSize(0)
-  legend.SetTextFont(62)
+  legend.SetTextFont(42)
   legend.SetLineColor(1)
   legend.SetLineStyle(1)
   legend.SetLineWidth(1)
   legend.SetFillColor(0)
-  legend.SetFillStyle(1001)
+  legend.SetFillStyle(0)
   for i in range(len(name_list)):
     if thefile==0:
       histo_list.append(outfile.Get(name_list[i]))
@@ -279,14 +296,38 @@ def make_plot(name,name_list,legend_list,normalize=False,thefile=0):
     histo_list[-1].SetStats(0)
     histo_list[-1].SetLineWidth(3)
     histo_list[-1].SetLineColor(i+1)
+    histo_list[-1].GetXaxis().SetTitle('p_{T} (GeV)')
+    histo_list[-1].GetYaxis().SetTitle('Misidentification probability')
+    histo_list[-1].GetYaxis().SetLabelSize(0.043)
+    histo_list[-1].GetYaxis().SetTitleSize(0.043)
+    histo_list[-1].GetYaxis().SetTitleOffset(1.5)
+    histo_list[-1].GetXaxis().SetLabelSize(0.043)
+    histo_list[-1].GetXaxis().SetTitleSize(0.043)
+    histo_list[-1].GetXaxis().SetTitleOffset(1.0)
+    histo_list[-1].GetXaxis().SetMoreLogLabels()
+    histo_list[-1].GetXaxis().SetNoExponent()
+    if folder_quad in name:
+      histo_list[-1].GetXaxis().SetRangeUser(150,400)
+    else:
+      histo_list[-1].GetXaxis().SetRangeUser(150,800)
+    # histo_list[-1].GetYaxis().SetMoreLogLabels()
+    # histo_list[-1].GetYaxis().SetNoExponent()
+    c.SetLogy()
+    c.SetLogx()
     legend.AddEntry(histo_list[-1],legend_list[i],'l')
     if i==0:
       histo_list[-1].Draw()
     else:
       histo_list[-1].Draw('SAME')
+  histo_list[0]
   legend.Draw()
-  outfile.cd()
+  outfile.cd()   
+  if folder_ht in name:
+    ROOT.CMS_lumi( c, 2, 33 )
+  if folder_quad in name:
+    ROOT.CMS_lumi( c, 1, 33 )
   c.Write(name)
+  c.SaveAs('pdf/'+name+'.pdf')
 
 
 #thisfile=TFile('dust/BackgroundCycle.MC.ZP500W5.root','READ')
@@ -323,9 +364,12 @@ def make_plot(name,name_list,legend_list,normalize=False,thefile=0):
 
 #########################
 for i in [folder_ht,folder_quad]:
-  make_plot('comp_mistag_'+i,[i+'/Mistag/qcd_htt/Mistag_px4_qcd_htt',i+'/Mistag/qcd_htt/Mistag_px3_qcd_htt',i+'/Mistag/qcd_htt/Mistag_px2_qcd_htt',i+'/Mistag/qcd_htt/Mistag_px1_qcd_htt'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])
-  make_plot('comp_mistag_data_'+i,[i+'/Mistag/data_htt/Mistag_px4_data_htt',i+'/Mistag/data_htt/Mistag_px3_data_htt',i+'/Mistag/data_htt/Mistag_px2_data_htt',i+'/Mistag/data_htt/Mistag_px1_data_htt'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])
-  make_plot('comp_mistag_data_nosub_'+i,[i+'/Mistag/data_htt_nosub/Mistag_px4_data_htt_nosub',i+'/Mistag/data_htt_nosub/Mistag_px3_data_htt_nosub',i+'/Mistag/data_htt_nosub/Mistag_px2_data_htt_nosub',i+'/Mistag/data_htt_nosub/Mistag_px1_data_htt_nosub'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])
+  #make_plot('comp_mistag_'+i,[i+'/Mistag/qcd_htt/Mistag_px4_qcd_htt',i+'/Mistag/qcd_htt/Mistag_px3_qcd_htt',i+'/Mistag/qcd_htt/Mistag_px2_qcd_htt',i+'/Mistag/qcd_htt/Mistag_px1_qcd_htt'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])
+  #make_plot('comp_mistag_data_'+i,[i+'/Mistag/data_htt/Mistag_px4_data_htt',i+'/Mistag/data_htt/Mistag_px3_data_htt',i+'/Mistag/data_htt/Mistag_px2_data_htt',i+'/Mistag/data_htt/Mistag_px1_data_htt'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])
+  #make_plot('comp_mistag_data_nosub_'+i,[i+'/Mistag/data_htt_nosub/Mistag_px4_data_htt_nosub',i+'/Mistag/data_htt_nosub/Mistag_px3_data_htt_nosub',i+'/Mistag/data_htt_nosub/Mistag_px2_data_htt_nosub',i+'/Mistag/data_htt_nosub/Mistag_px1_data_htt_nosub'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])
+  #make_plot('comp_mistag_'+i,[i+'/Mistag/qcd_htt/Mistag_px4_qcd_htt',i+'/Mistag/qcd_htt/Mistag_px3_qcd_htt',i+'/Mistag/qcd_htt/Mistag_px2_qcd_htt'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])
+  make_plot('comp_mistag_data_'+i,[i+'/Mistag/data_htt/Mistag_px4_data_htt',i+'/Mistag/data_htt/Mistag_px3_data_htt',i+'/Mistag/data_htt/Mistag_px2_data_htt'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])
+  make_plot('comp_mistag_data_nosub_'+i,[i+'/Mistag/data_htt_nosub/Mistag_px4_data_htt_nosub',i+'/Mistag/data_htt_nosub/Mistag_px3_data_htt_nosub',i+'/Mistag/data_htt_nosub/Mistag_px2_data_htt_nosub'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])
 #make_plot('comp_mistag500To1000',['HEPTagger/Mistag/qcd500to1000/Mistag_px4_qcd500to1000','HEPTagger/Mistag/qcd500to1000/Mistag_px3_qcd500to1000','HEPTagger/Mistag/qcd500to1000/Mistag_px2_qcd500to1000','HEPTagger/Mistag/qcd500to1000/Mistag_px1_qcd500to1000'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])
 
 #make_plot('comp_mistag500To1000Measured',['HEPTagger/Mistag/qcd500to1000Measured/Mistag_px4_qcd500to1000Measured','HEPTagger/Mistag/qcd500to1000Measured/Mistag_px3_qcd500to1000Measured','HEPTagger/Mistag/qcd500to1000Measured/Mistag_px2_qcd500to1000Measured','HEPTagger/Mistag/qcd500to1000Measured/Mistag_px1_qcd500to1000Measured'],['[CSVM,1]','[CSVL,CSVM]','[0,CSVL]','[-1,0]'])

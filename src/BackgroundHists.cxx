@@ -281,6 +281,7 @@ void BackgroundHists::Init()
   Book( TH3F( "ErrMtt0", ";Mtt;pT;CSV", sizeof(mtt_bins)/sizeof(double)-1 , mtt_bins, sizeof(mistag_pt_bins)/sizeof(double)-1 , mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1 , csv_bins ) );
   Book( TH3F( "ErrMtt1", ";Mtt;pT;CSV", sizeof(mtt_bins)/sizeof(double)-1 , mtt_bins, sizeof(mistag_pt_bins)/sizeof(double)-1 , mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1 , csv_bins ) );
   Book( TH3F( "ErrMtt2", ";Mtt;pT;CSV", sizeof(mtt_bins)/sizeof(double)-1 , mtt_bins, sizeof(mistag_pt_bins)/sizeof(double)-1 , mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1 , csv_bins ) );
+  Book( TH3F( "ErrMtt012", ";Mtt;pT;CSV", sizeof(mtt_bins)/sizeof(double)-1 , mtt_bins, sizeof(mistag_pt_bins)/sizeof(double)-1 , mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1 , csv_bins ) );
   
 //   Book( TProfile3D( "mistag_crosscheck", ";pT;CSV;HT", sizeof(mistag_pt_bins)/sizeof(double)-1,mistag_pt_bins, sizeof(csv_bins)/sizeof(double)-1, csv_bins, sizeof(mistag_ht_bins)/sizeof(double)-1, mistag_ht_bins ) );
   //   Book( TH2F( "mass_shape2D",";m;CSV",110,140.0,250.0,sizeof(csv_bins)/sizeof(double)-1, csv_bins));
@@ -492,6 +493,7 @@ void BackgroundHists::Fill()
         if (mtt>mttcut)
       {
       Hist("Mtt012")->Fill(mtt,mistag_value*weight);
+      ((TH3F*)Hist("ErrMtt012"))->Fill(mtt,bcc->topjets->at(mistag_index).pt(),maxcsv,weight);
       Hist("Jet1pT012")->Fill(bcc->topjets->at(ileading).pt(),weight*mistag_value);
       Hist("Jet2pT012")->Fill(bcc->topjets->at(isubleading).pt(),weight*mistag_value);
       Hist("Jet1eta012")->Fill(bcc->topjets->at(ileading).eta(),weight*mistag_value);

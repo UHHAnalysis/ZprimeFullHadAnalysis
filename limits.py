@@ -337,7 +337,8 @@ if doplots:
             err_ratio.SetPointEYlow(ierr-1,0)
 
     
-    
+    summc=sum_mc.Clone('summc')
+    summc.SetLineColor(kBlack)
     ratio_histo=data_histo.Clone('ratio'+us+histo_name)
     ratio_histo.Divide(sum_mc_noerr)
     ratio_histo.SetLineColor(1)
@@ -446,6 +447,8 @@ if doplots:
     err.SetFillColor(kGray)
     err.Draw('2')
     data_histo.Draw("sameEX0")
+    #if histo_name not in ['Mtt0','Mtt1','Mtt2','Mtt012']:
+    summc.Draw('samehist')
     stack.SetMinimum(0.1)
     stack.SetMaximum(stack.GetMaximum()*1.2)
     stack.GetXaxis().SetTitle("a")#ttbar_histo.GetXaxis().GetTitle())
@@ -466,9 +469,9 @@ if doplots:
     #stack.GetXaxis().SetTitleOffset(1.5)
     
     #stack.GetXaxis().SetRangeUser(stack.GetXaxis().GetXmin(),stack.GetXaxis().GetXmax()*zf)
-    signal1000.Draw('samehisto')
-    signal2000.Draw('samehisto')
-    signal3000.Draw('samehisto')
+    signal1000.Draw('samehist')
+    signal2000.Draw('samehist')
+    signal3000.Draw('samehist')
     legend.Draw()
     cmslabel.Draw()
     bottom_pad.cd()
